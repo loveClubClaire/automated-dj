@@ -9,7 +9,7 @@
 import Foundation
 import Automator
 
-class Show: NSObject{
+class Show: NSObject, NSCoding{
     //Initial defination of object variables
     var name: String?
     var startDate: NSDate?
@@ -20,6 +20,24 @@ class Show: NSObject{
         name = aName
         startDate = aStartDate
         endDate = anEndDate
+    }
+    
+    //Decode each individual object and then create a new object instance
+    required convenience init?(coder decoder: NSCoder) {
+        guard let name = decoder.decodeObjectForKey("name") as? String,
+            let startDate = decoder.decodeObjectForKey("startDate") as? NSDate,
+            let endDate = decoder.decodeObjectForKey("endDate") as? NSDate
+            //let automator = decoder.decodeObjectForKey("automator") as? Automator
+            else { return nil }
+        
+        self.init(aName: name, aStartDate: startDate, anEndDate: endDate)
+    }
+    //Encoding fucntion for saving. Encode each object with a key for retervial
+    func encodeWithCoder(coder: NSCoder) {
+        coder.encodeObject(name, forKey: "name")
+        coder.encodeObject(startDate, forKey: "startDate")
+        coder.encodeObject(endDate, forKey: "endDate")
+        coder.encodeObject(automator, forKey: "automator")
     }
     
     override var description: String {

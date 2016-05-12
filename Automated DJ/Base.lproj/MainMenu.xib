@@ -14,12 +14,14 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Automated_DJ" customModuleProvider="target">
             <connections>
+                <outlet property="MasterScheduleObject" destination="uEM-xV-SIH" id="vZB-Wa-e9q"/>
                 <outlet property="ShowWindowObject" destination="vLi-vE-d4F" id="dpV-RZ-lTu"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <customObject id="uEM-xV-SIH" customClass="MasterSchedule" customModule="Automated_DJ" customModuleProvider="target">
             <connections>
+                <outlet property="AppDelegateObject" destination="Voe-Tx-rLC" id="Aeg-WY-znu"/>
                 <outlet property="ShowWindowObject" destination="vLi-vE-d4F" id="Nfg-5d-Tft"/>
                 <outlet property="tableView" destination="jMR-ZI-pef" id="14e-lb-8JC"/>
             </connections>

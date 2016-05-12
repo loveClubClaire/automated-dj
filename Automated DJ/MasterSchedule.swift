@@ -11,6 +11,7 @@ import Cocoa
 
 class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate {
     @IBOutlet weak var ShowWindowObject: ShowWindow!
+    @IBOutlet weak var AppDelegateObject: AppDelegate!
     @IBOutlet weak var tableView: NSTableView!
 
     var dataArray = [Show]()
@@ -22,13 +23,13 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate {
     
     func addShow(aShow: Show){
         dataArray.append(aShow)
+        NSKeyedArchiver.archiveRootObject(dataArray, toFile: AppDelegateObject.storedProgramsFilepath)
         tableView.reloadData()
     }
     
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
         return dataArray.count
     }
-    
     
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
         //Get the column identifer, the show for the current row, and create an empty cellView variable

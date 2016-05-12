@@ -19,8 +19,7 @@ class ShowWindow: NSObject {
     @IBOutlet weak var endDay: NSPopUpButton!
     
     @IBOutlet weak var MasterScheduleObject: MasterSchedule!
-
-
+    
     func spawnNewShowWindow(){
         showWindow.title = "New Show"
         showWindow.center()
