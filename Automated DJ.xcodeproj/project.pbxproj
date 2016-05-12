@@ -12,6 +12,11 @@
 		C04616A91CE43542004E1B38 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C04616A71CE43542004E1B38 /* MainMenu.xib */; };
 		C04616B41CE43542004E1B38 /* Automated_DJTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04616B31CE43542004E1B38 /* Automated_DJTests.swift */; };
 		C04616BF1CE43542004E1B38 /* Automated_DJUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04616BE1CE43542004E1B38 /* Automated_DJUITests.swift */; };
+		C04616CD1CE436A7004E1B38 /* MasterSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04616CC1CE436A7004E1B38 /* MasterSchedule.swift */; };
+		C04616CF1CE436AF004E1B38 /* Show.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04616CE1CE436AF004E1B38 /* Show.swift */; };
+		C04616D11CE436B9004E1B38 /* ShowWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04616D01CE436B9004E1B38 /* ShowWindow.swift */; };
+		C04616D31CE436CD004E1B38 /* Automator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04616D21CE436CD004E1B38 /* Automator.swift */; };
+		C04616D51CE436D7004E1B38 /* AutomatorWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04616D41CE436D7004E1B38 /* AutomatorWindow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +48,11 @@
 		C04616BA1CE43542004E1B38 /* Automated DJUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Automated DJUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C04616BE1CE43542004E1B38 /* Automated_DJUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Automated_DJUITests.swift; sourceTree = "<group>"; };
 		C04616C01CE43542004E1B38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C04616CC1CE436A7004E1B38 /* MasterSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterSchedule.swift; sourceTree = "<group>"; };
+		C04616CE1CE436AF004E1B38 /* Show.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Show.swift; sourceTree = "<group>"; };
+		C04616D01CE436B9004E1B38 /* ShowWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowWindow.swift; sourceTree = "<group>"; };
+		C04616D21CE436CD004E1B38 /* Automator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Automator.swift; sourceTree = "<group>"; };
+		C04616D41CE436D7004E1B38 /* AutomatorWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomatorWindow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +104,11 @@
 			isa = PBXGroup;
 			children = (
 				C04616A31CE43542004E1B38 /* AppDelegate.swift */,
+				C04616CC1CE436A7004E1B38 /* MasterSchedule.swift */,
+				C04616CE1CE436AF004E1B38 /* Show.swift */,
+				C04616D01CE436B9004E1B38 /* ShowWindow.swift */,
+				C04616D21CE436CD004E1B38 /* Automator.swift */,
+				C04616D41CE436D7004E1B38 /* AutomatorWindow.swift */,
 				C04616A51CE43542004E1B38 /* Assets.xcassets */,
 				C04616A71CE43542004E1B38 /* MainMenu.xib */,
 				C04616AA1CE43542004E1B38 /* Info.plist */,
@@ -249,6 +264,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C04616D11CE436B9004E1B38 /* ShowWindow.swift in Sources */,
+				C04616D31CE436CD004E1B38 /* Automator.swift in Sources */,
+				C04616CF1CE436AF004E1B38 /* Show.swift in Sources */,
+				C04616CD1CE436A7004E1B38 /* MasterSchedule.swift in Sources */,
+				C04616D51CE436D7004E1B38 /* AutomatorWindow.swift in Sources */,
 				C04616A41CE43542004E1B38 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
