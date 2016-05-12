@@ -36,6 +36,30 @@ class ShowWindow: NSObject {
     }
     
     @IBAction func okButton(sender: AnyObject) {
+        //Convert the index of the selected date to that days correcponding day value in the gregorian calendar. (We start with monday at index zero. The gregorian calendar starts on Sunday at index 1.)
+        var correctedStartDay = startDay.indexOfSelectedItem
+        correctedStartDay = correctedStartDay + 2
+        if correctedStartDay == 8 {
+            correctedStartDay = 1
+        }
+        var correctedEndDay = endDay.indexOfSelectedItem
+        correctedEndDay = correctedEndDay + 2
+        if correctedEndDay == 8 {
+            correctedEndDay = 1
+        }
+        //Create a Gregorian calendar object and create NSDateComponents for the start and end time of the show which contain the hour and minute.
+        let calendar = NSCalendar(identifier: NSCalendarIdentifierGregorian)
+        let startDateComponents: NSDateComponents = calendar!.components([.Hour, .Minute], fromDate: startTime.dateValue)
+        startDateComponents.weekday = correctedStartDay
+        let endDateComponents: NSDateComponents = calendar!.components([.Hour, .Minute], fromDate: endTime.dateValue)
+        endDateComponents.weekday = correctedEndDay
+        
+        //Check for validity
+        
+        //Create a new show object using this information
+        let show = Show.init(aName: showName.stringValue, aStartDate: (calendar?.dateFromComponents(startDateComponents))!, anEndDate: (calendar?.dateFromComponents(endDateComponents))!)
+        
+        //Add it to the MasterSchedule
         
     }
     
