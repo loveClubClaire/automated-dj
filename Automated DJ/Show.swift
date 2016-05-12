@@ -7,3 +7,19 @@
 //
 
 import Foundation
+import Automator
+
+class Show: NSObject {
+    //Initial defination of object variables
+    var name: String?
+    var startTime: NSDate?
+    var endTime: NSDate?
+    var automator: Automator?
+    
+    init(aName: String, aStartTime: NSDate, anEndTime: NSDate) {
+        name = aName
+        startTime = aStartTime
+        endTime = anEndTime
+    }
+        
+}
