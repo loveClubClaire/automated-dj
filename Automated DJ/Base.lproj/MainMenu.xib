@@ -12,7 +12,11 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Automated_DJ" customModuleProvider="target"/>
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Automated_DJ" customModuleProvider="target">
+            <connections>
+                <outlet property="ShowWindowObject" destination="vLi-vE-d4F" id="dpV-RZ-lTu"/>
+            </connections>
+        </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <customObject id="uEM-xV-SIH" customClass="MasterSchedule" customModule="Automated_DJ" customModuleProvider="target"/>
         <customObject id="vLi-vE-d4F" customClass="ShowWindow" customModule="Automated_DJ" customModuleProvider="target">
@@ -942,30 +946,18 @@
                     </datePicker>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ubl-jz-bJG">
                         <rect key="frame" x="102" y="141" width="127" height="26"/>
-                        <popUpButtonCell key="cell" type="push" title="Wednesday" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="eGS-xo-eI4" id="cP0-TM-8AC">
+                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="cP0-TM-8AC">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
-                            <menu key="menu" id="opn-Vt-5fX">
-                                <items>
-                                    <menuItem title="Wednesday" state="on" id="eGS-xo-eI4"/>
-                                    <menuItem title="Item 2" id="bS6-b1-a5c"/>
-                                    <menuItem title="Item 3" id="yom-Ay-dSz"/>
-                                </items>
-                            </menu>
+                            <menu key="menu" id="opn-Vt-5fX"/>
                         </popUpButtonCell>
                     </popUpButton>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="itd-A2-n26">
                         <rect key="frame" x="102" y="110" width="127" height="26"/>
-                        <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="cKC-72-3jC" id="Hg9-dA-ZJe">
+                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="Hg9-dA-ZJe">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
-                            <menu key="menu" id="bKM-mi-sFP">
-                                <items>
-                                    <menuItem title="Item 1" state="on" id="cKC-72-3jC"/>
-                                    <menuItem title="Item 2" id="QX5-Ls-lJp"/>
-                                    <menuItem title="Item 3" id="yJC-zO-OSo"/>
-                                </items>
-                            </menu>
+                            <menu key="menu" id="bKM-mi-sFP"/>
                         </popUpButtonCell>
                     </popUpButton>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b5G-2X-m7m">

@@ -10,12 +10,15 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-    @IBOutlet weak var window: NSWindow!
-
-
+    @IBOutlet weak var ShowWindowObject: ShowWindow!
+    
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        // Insert code here to initialize your application
+        //Populate the Show Window drop down menus with the days of the week
+        let daysOfTheWeek = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+        ShowWindowObject.startDay.addItemsWithTitles(daysOfTheWeek)
+        ShowWindowObject.endDay.addItemsWithTitles(daysOfTheWeek)
+        
+        
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
