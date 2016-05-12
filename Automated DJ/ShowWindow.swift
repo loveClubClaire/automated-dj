@@ -17,8 +17,20 @@ class ShowWindow: NSObject {
     @IBOutlet weak var isAutomated: NSButton!
     
 
-    func spawnShowWindow(){
-        
+    func spawnNewShowWindow(){
+        showWindow.title = "New Show"
+        showWindow.center()
+        showWindow.makeKeyAndOrderFront(self)
+        NSApp.runModalForWindow(showWindow)
+    }
+    
+    //Will need to take parameters. The values of the show being edited
+    func spawnEditShowWindow(){
+        showWindow.title = "Edit Show"
+        //Set the values passed to their respective objects
+        showWindow.center()
+        showWindow.makeKeyAndOrderFront(self)
+        NSApp.runModalForWindow(showWindow)
     }
     
     @IBAction func okButton(sender: AnyObject) {

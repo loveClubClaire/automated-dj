@@ -876,14 +876,14 @@
         <window title="Show Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="RBR-ot-TiD">
             <windowStyleMask key="styleMask" titled="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="131" y="158" width="367" height="174"/>
+            <rect key="contentRect" x="131" y="158" width="367" height="217"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="Lev-mG-0o4">
-                <rect key="frame" x="0.0" y="0.0" width="367" height="174"/>
+                <rect key="frame" x="0.0" y="0.0" width="367" height="217"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bk3-IH-KNV">
-                        <rect key="frame" x="18" y="135" width="80" height="17"/>
+                        <rect key="frame" x="18" y="178" width="80" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Show Name:" id="Htj-gq-pWk">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -891,7 +891,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ER4-KL-36G">
-                        <rect key="frame" x="18" y="104" width="39" height="17"/>
+                        <rect key="frame" x="18" y="147" width="39" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="From:" id="bEK-gn-Bge">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -899,22 +899,15 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c7j-i2-bqg">
-                        <rect key="frame" x="190" y="104" width="17" height="17"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="to" id="Kgv-G7-I8g">
+                        <rect key="frame" x="18" y="116" width="23" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="To:" id="Kgv-G7-I8g">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b5G-2X-m7m">
-                        <rect key="frame" x="18" y="68" width="125" height="18"/>
-                        <buttonCell key="cell" type="check" title="Automated Show" bezelStyle="regularSquare" imagePosition="left" inset="2" id="uUa-TP-ips">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                    </button>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bgy-as-ywg">
-                        <rect key="frame" x="104" y="132" width="243" height="22"/>
+                        <rect key="frame" x="104" y="175" width="243" height="22"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="OPf-xT-gED">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -922,7 +915,7 @@
                         </textFieldCell>
                     </textField>
                     <datePicker verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r1O-a4-YH0">
-                        <rect key="frame" x="104" y="101" width="83" height="27"/>
+                        <rect key="frame" x="234" y="144" width="83" height="27"/>
                         <datePickerCell key="cell" borderStyle="bezel" alignment="left" id="Kqv-HB-xZj">
                             <font key="font" metaFont="system"/>
                             <date key="date" timeIntervalSinceReferenceDate="-595940400">
@@ -934,7 +927,7 @@
                         </datePickerCell>
                     </datePicker>
                     <datePicker verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gvi-MF-gMp">
-                        <rect key="frame" x="213" y="101" width="83" height="27"/>
+                        <rect key="frame" x="234" y="113" width="83" height="27"/>
                         <datePickerCell key="cell" borderStyle="bezel" alignment="left" id="a7q-uY-xQ1">
                             <font key="font" metaFont="system"/>
                             <date key="date" timeIntervalSinceReferenceDate="-595933200">
@@ -945,6 +938,41 @@
                             <datePickerElements key="datePickerElements" hour="YES" minute="YES"/>
                         </datePickerCell>
                     </datePicker>
+                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ubl-jz-bJG">
+                        <rect key="frame" x="102" y="141" width="127" height="26"/>
+                        <popUpButtonCell key="cell" type="push" title="Wednesday" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="eGS-xo-eI4" id="cP0-TM-8AC">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="menu"/>
+                            <menu key="menu" id="opn-Vt-5fX">
+                                <items>
+                                    <menuItem title="Wednesday" state="on" id="eGS-xo-eI4"/>
+                                    <menuItem title="Item 2" id="bS6-b1-a5c"/>
+                                    <menuItem title="Item 3" id="yom-Ay-dSz"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                    </popUpButton>
+                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="itd-A2-n26">
+                        <rect key="frame" x="102" y="110" width="127" height="26"/>
+                        <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="cKC-72-3jC" id="Hg9-dA-ZJe">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="menu"/>
+                            <menu key="menu" id="bKM-mi-sFP">
+                                <items>
+                                    <menuItem title="Item 1" state="on" id="cKC-72-3jC"/>
+                                    <menuItem title="Item 2" id="QX5-Ls-lJp"/>
+                                    <menuItem title="Item 3" id="yJC-zO-OSo"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                    </popUpButton>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b5G-2X-m7m">
+                        <rect key="frame" x="18" y="68" width="125" height="18"/>
+                        <buttonCell key="cell" type="check" title="Automated Show" bezelStyle="regularSquare" imagePosition="left" inset="2" id="uUa-TP-ips">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
                     <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="3eh-Pi-NSU">
                         <rect key="frame" x="12" y="90" width="343" height="5"/>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
@@ -985,7 +1013,7 @@ Gw
                     </button>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="224.5" y="-200"/>
+            <point key="canvasLocation" x="224.5" y="-178.5"/>
         </window>
         <window title="Automator Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="hq7-sJ-C1m">
             <windowStyleMask key="styleMask" titled="YES"/>
