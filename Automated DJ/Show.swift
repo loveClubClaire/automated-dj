@@ -9,7 +9,7 @@
 import Foundation
 import Automator
 
-class Show: NSObject {
+class Show: NSObject{
     //Initial defination of object variables
     var name: String?
     var startDate: NSDate?
@@ -21,5 +21,8 @@ class Show: NSObject {
         startDate = aStartDate
         endDate = anEndDate
     }
-        
+    
+    override var description: String {
+        return name!
+    }
 }
