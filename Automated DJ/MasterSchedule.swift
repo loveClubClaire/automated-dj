@@ -22,7 +22,6 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate {
     
     func addShow(aShow: Show){
         dataArray.append(aShow)
-        print(dataArray)
         tableView.reloadData()
     }
     
@@ -57,7 +56,7 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate {
             let endDay = dayFormatter.stringFromDate(aShow.endDate!)
             let endTime = timeFormatter.stringFromDate(aShow.endDate!)
             //Append those strings together and set their value to the cell view
-            cellView!.textField?.stringValue = startDay + ", " + startTime + " to " + endDay + ", " + endTime
+            cellView!.textField?.stringValue = startDay + ", " + startTime + " - " + endDay + ", " + endTime
         }
         else if identifier == "automated"{
             //Create cell view and if there's not an automator set its value to no otherwise set it to no
@@ -73,16 +72,6 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate {
         // return the populated NSTableCellView
         return cellView
         
-    }
-    
-    
-    func getDataArray () -> NSArray{
-        let dataArray:[NSDictionary] = [["showName": "Debasis", "time": "Das", "automated": "Yes"],
-                                        ["showName": "Nishant", "time": "Singh", "automated": "No"],
-                                        ["showName": "John", "time": "Doe", "automated": "Yes"],
-                                        ["showName": "Jane", "time": "Doe", "automated": "No"],
-                                        ["showName": "Mary", "time": "Jane", "automated": "Yes"]];
-        return dataArray;
     }
     
 }

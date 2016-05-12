@@ -23,6 +23,15 @@ class Show: NSObject{
     }
     
     override var description: String {
-        return name!
+        let timeFormatter = NSDateFormatter();timeFormatter.dateFormat = "hh:mm a"
+        let dayFormatter = NSDateFormatter();dayFormatter.dateFormat = "EEEE"
+        //Convert the shows dates into strings
+        let startDay = dayFormatter.stringFromDate(startDate!);let startTime = timeFormatter.stringFromDate(startDate!)
+        let endDay = dayFormatter.stringFromDate(endDate!);let endTime = timeFormatter.stringFromDate(endDate!)
+        
+        var automatorString = "No"
+        if automator != nil {automatorString = "Yes"}
+        
+        return name! + " " + startDay + ", " + startTime + " - " + endDay + ", " + endTime + " Automator:" + automatorString
     }
 }
