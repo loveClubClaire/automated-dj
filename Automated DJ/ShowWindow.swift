@@ -18,6 +18,8 @@ class ShowWindow: NSObject {
     @IBOutlet weak var startDay: NSPopUpButton!
     @IBOutlet weak var endDay: NSPopUpButton!
     
+    @IBOutlet weak var MasterScheduleObject: MasterSchedule!
+
 
     func spawnNewShowWindow(){
         showWindow.title = "New Show"
@@ -58,8 +60,17 @@ class ShowWindow: NSObject {
         
         //Create a new show object using this information
         let show = Show.init(aName: showName.stringValue, aStartDate: (calendar?.dateFromComponents(startDateComponents))!, anEndDate: (calendar?.dateFromComponents(endDateComponents))!)
-        
-        //Add it to the MasterSchedule
+        //Depending on the state of the isAutomated button...
+        if isAutomated.state == 0 {
+            //Add it to the MasterScheduleObject or
+            MasterScheduleObject.addShow(show)
+            cancelButton(self)
+        }
+        else{
+            //Create an automated program
+            cancelButton(self)
+        }
+       
         
     }
     

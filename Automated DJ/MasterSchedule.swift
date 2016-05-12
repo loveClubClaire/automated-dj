@@ -10,7 +10,20 @@ import Foundation
 import Cocoa
 
 class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate {
+    @IBOutlet weak var ShowWindowObject: ShowWindow!
+    @IBOutlet weak var tableView: NSTableView!
+
+    var dataArray = [Show]()
     
+
+    @IBAction func createShow(sender: AnyObject) {
+        ShowWindowObject.spawnNewShowWindow()
+    }
+    
+    func addShow(aShow: Show){
+        dataArray.append(aShow)
+        tableView.reloadData()
+    }
     
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
         return getDataArray().count

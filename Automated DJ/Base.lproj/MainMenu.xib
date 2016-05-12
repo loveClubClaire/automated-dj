@@ -18,9 +18,15 @@
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
-        <customObject id="uEM-xV-SIH" customClass="MasterSchedule" customModule="Automated_DJ" customModuleProvider="target"/>
+        <customObject id="uEM-xV-SIH" customClass="MasterSchedule" customModule="Automated_DJ" customModuleProvider="target">
+            <connections>
+                <outlet property="ShowWindowObject" destination="vLi-vE-d4F" id="Nfg-5d-Tft"/>
+                <outlet property="tableView" destination="jMR-ZI-pef" id="14e-lb-8JC"/>
+            </connections>
+        </customObject>
         <customObject id="vLi-vE-d4F" customClass="ShowWindow" customModule="Automated_DJ" customModuleProvider="target">
             <connections>
+                <outlet property="MasterScheduleObject" destination="uEM-xV-SIH" id="RuI-R5-PrF"/>
                 <outlet property="endDay" destination="itd-A2-n26" id="pKk-Gd-TXF"/>
                 <outlet property="endTime" destination="Gvi-MF-gMp" id="VjA-Qq-sA9"/>
                 <outlet property="isAutomated" destination="b5G-2X-m7m" id="TQJ-ct-aeU"/>
@@ -842,6 +848,9 @@
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
                         </button>
+                        <connections>
+                            <action selector="createShow:" target="uEM-xV-SIH" id="3nx-S4-qHu"/>
+                        </connections>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="2C9494AA-C7F6-4CB3-ABF1-788E4077510E" label="LoadSchedule" paletteLabel="LoadSchedule" id="IFo-4X-eg2">
                         <nil key="toolTip"/>
@@ -879,7 +888,7 @@
             </toolbar>
             <point key="canvasLocation" x="305" y="-132"/>
         </window>
-        <window title="Show Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="RBR-ot-TiD">
+        <window title="Show Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="RBR-ot-TiD">
             <windowStyleMask key="styleMask" titled="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="131" y="158" width="367" height="217"/>
