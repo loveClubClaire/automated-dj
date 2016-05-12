@@ -491,6 +491,7 @@
 				C04616C51CE43542004E1B38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C04616C61CE43542004E1B38 /* Build configuration list for PBXNativeTarget "Automated DJTests" */ = {
 			isa = XCConfigurationList;
@@ -499,6 +500,7 @@
 				C04616C81CE43542004E1B38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C04616C91CE43542004E1B38 /* Build configuration list for PBXNativeTarget "Automated DJUITests" */ = {
 			isa = XCConfigurationList;
@@ -507,6 +509,7 @@
 				C04616CB1CE43542004E1B38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
