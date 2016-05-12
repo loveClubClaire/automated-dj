@@ -17,10 +17,12 @@
         <customObject id="uEM-xV-SIH" customClass="MasterSchedule" customModule="Automated_DJ" customModuleProvider="target"/>
         <customObject id="vLi-vE-d4F" customClass="ShowWindow" customModule="Automated_DJ" customModuleProvider="target">
             <connections>
+                <outlet property="endDay" destination="itd-A2-n26" id="pKk-Gd-TXF"/>
                 <outlet property="endTime" destination="Gvi-MF-gMp" id="VjA-Qq-sA9"/>
                 <outlet property="isAutomated" destination="b5G-2X-m7m" id="TQJ-ct-aeU"/>
                 <outlet property="showName" destination="Bgy-as-ywg" id="IWO-0U-X7X"/>
                 <outlet property="showWindow" destination="RBR-ot-TiD" id="F5Z-pu-DZb"/>
+                <outlet property="startDay" destination="Ubl-jz-bJG" id="eoD-a8-uB6"/>
                 <outlet property="startTime" destination="r1O-a4-YH0" id="QOp-QN-7RU"/>
             </connections>
         </customObject>
