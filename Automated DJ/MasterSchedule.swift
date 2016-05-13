@@ -27,6 +27,7 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
         tableView.reloadData()
     }
     
+    
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
         return dataArray.count
     }
@@ -97,7 +98,7 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
         let automatorSortDescriptor = NSSortDescriptor(key: "automator", ascending: true, selector: #selector(Automator.compare(_:)))
         automatorColumn?.sortDescriptorPrototype = automatorSortDescriptor
         
-        //TimeColumn sorting. 1000% easier than in 1.0 release because proper data structures 
+        //TimeColumn sorting. 1000% easier than in 1.0 release because proper data structures
         let timeColumn = tableView.tableColumnWithIdentifier("time")
         let timeSortDescriptor = NSSortDescriptor(key: "startDate", ascending: true, selector: #selector(NSDate.compare(_:)))
         timeColumn?.sortDescriptorPrototype = timeSortDescriptor

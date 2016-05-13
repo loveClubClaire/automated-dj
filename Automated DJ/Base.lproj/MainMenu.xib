@@ -38,6 +38,7 @@
                 <outlet property="startTime" destination="r1O-a4-YH0" id="QOp-QN-7RU"/>
             </connections>
         </customObject>
+        <customObject id="o8a-iw-ZZb"/>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
                 <menuItem title="Automated DJ" id="1Xt-HY-uBw">
@@ -687,7 +688,7 @@
                 </menuItem>
             </items>
         </menu>
-        <window title="Master Schedule" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="OTS-To-fwt">
+        <window title="Master Schedule" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="OTS-To-fwt" customClass="MasterScheduleWindow" customModule="Automated_DJ" customModuleProvider="target">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" texturedBackground="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="413" y="349" width="600" height="350"/>
@@ -1274,7 +1275,7 @@ Gw
                         </buttonCell>
                     </button>
                     <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="QwO-aC-kk5">
-                        <rect key="frame" x="32" y="96" width="443" height="4"/>
+                        <rect key="frame" x="32" y="96" width="443" height="5"/>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <font key="titleFont" metaFont="system"/>

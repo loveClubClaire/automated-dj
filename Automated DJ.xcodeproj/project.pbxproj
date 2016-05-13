@@ -17,6 +17,7 @@
 		C04616D11CE436B9004E1B38 /* ShowWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04616D01CE436B9004E1B38 /* ShowWindow.swift */; };
 		C04616D31CE436CD004E1B38 /* Automator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04616D21CE436CD004E1B38 /* Automator.swift */; };
 		C04616D51CE436D7004E1B38 /* AutomatorWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04616D41CE436D7004E1B38 /* AutomatorWindow.swift */; };
+		C08372AA1CE62EAA0046F231 /* MasterScheduleWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08372A91CE62EAA0046F231 /* MasterScheduleWindow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		C04616D01CE436B9004E1B38 /* ShowWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowWindow.swift; sourceTree = "<group>"; };
 		C04616D21CE436CD004E1B38 /* Automator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Automator.swift; sourceTree = "<group>"; };
 		C04616D41CE436D7004E1B38 /* AutomatorWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomatorWindow.swift; sourceTree = "<group>"; };
+		C08372A91CE62EAA0046F231 /* MasterScheduleWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterScheduleWindow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 			children = (
 				C04616A31CE43542004E1B38 /* AppDelegate.swift */,
 				C04616CC1CE436A7004E1B38 /* MasterSchedule.swift */,
+				C08372A91CE62EAA0046F231 /* MasterScheduleWindow.swift */,
 				C04616CE1CE436AF004E1B38 /* Show.swift */,
 				C04616D01CE436B9004E1B38 /* ShowWindow.swift */,
 				C04616D21CE436CD004E1B38 /* Automator.swift */,
@@ -270,6 +273,7 @@
 				C04616CD1CE436A7004E1B38 /* MasterSchedule.swift in Sources */,
 				C04616D51CE436D7004E1B38 /* AutomatorWindow.swift in Sources */,
 				C04616A41CE43542004E1B38 /* AppDelegate.swift in Sources */,
+				C08372AA1CE62EAA0046F231 /* MasterScheduleWindow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
