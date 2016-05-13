@@ -26,7 +26,7 @@ class MasterScheduleWindow: NSWindow {
         else if(anEvent.keyCode == 51){
             Swift.print("Delete")
         }
-        //Else just do what would have been expected 
+        //Else just do what would have been expected
         else{
             super.keyDown(anEvent)
         }
