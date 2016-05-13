@@ -91,5 +91,16 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
         let showSortDescriptor = NSSortDescriptor(key:"name", ascending: true, selector: #selector(NSString.caseInsensitiveCompare(_:)))
         //Set our showColumn's sortDescriptor to the one we just made
         showColumn?.sortDescriptorPrototype = showSortDescriptor
+
+        //AutomatorColumn sorting. Not fully tested. Implemented before automator added. 5/13/16. TODO
+        let automatorColumn = tableView.tableColumnWithIdentifier("automated")
+        let automatorSortDescriptor = NSSortDescriptor(key: "automator", ascending: true, selector: #selector(Automator.compare(_:)))
+        automatorColumn?.sortDescriptorPrototype = automatorSortDescriptor
+        
+        //TimeColumn sorting. 1000% easier than in 1.0 release because proper data structures 
+        let timeColumn = tableView.tableColumnWithIdentifier("time")
+        let timeSortDescriptor = NSSortDescriptor(key: "startDate", ascending: true, selector: #selector(NSDate.compare(_:)))
+        timeColumn?.sortDescriptorPrototype = timeSortDescriptor
+
     }
 }

@@ -10,4 +10,16 @@ import Foundation
 
 class Automator: NSObject {
     
+    
+    
+    
+func compare(anAutomator: Automator?) -> NSComparisonResult {
+    if anAutomator == nil {
+        return NSComparisonResult.OrderedDescending
+    }
+    else{
+        return NSComparisonResult.OrderedSame
+    }
+}
+    
 }
