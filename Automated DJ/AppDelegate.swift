@@ -35,7 +35,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if shows != nil {
             MasterScheduleObject.dataArray = shows as! [Show]
             MasterScheduleObject.tableView.reloadData()
-        }        
+        }
+        
+        //Inatalizes things in the masterScheduleObject related to its UI. Check this function for more information. 
+        MasterScheduleObject.viewDidLoad()
+        
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {

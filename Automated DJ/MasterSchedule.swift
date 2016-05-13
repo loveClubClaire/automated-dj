@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate {
+class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
     @IBOutlet weak var ShowWindowObject: ShowWindow!
     @IBOutlet weak var AppDelegateObject: AppDelegate!
     @IBOutlet weak var tableView: NSTableView!
@@ -75,4 +75,21 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate {
         
     }
     
+    func tableView(tableView: NSTableView, sortDescriptorsDidChange oldDescriptors: [NSSortDescriptor]) {
+        //Convert the data array into an NSMutableArray, sort that using the given SortDescriptor, and then convert it back to an array. Then reload the data. We do this because array can not be sorted by SortDescriptor as of Swift 2.2 but NSMutableArray can.
+        let dataMutableArray = NSMutableArray(array: dataArray)
+        dataMutableArray.sortUsingDescriptors(tableView.sortDescriptors)
+        dataArray = dataMutableArray as AnyObject as! [Show]
+        tableView.reloadData()
+    }
+    
+    //Called by AppDelegate after application has finished launching. Think of this function as an initalization function
+    func viewDidLoad(){
+        //Create a showColumn variable using an Identifier to get the corresponding column from the tableView
+        let showColumn = tableView.tableColumnWithIdentifier("showName")
+        //Create a new sortDescriptor. Key refers to the variable in the object being sorted. So we are sorting our array of Shows by the name field. Assending is true and we use a caseInsensitiveCompare selector to determine the way we sort.
+        let showSortDescriptor = NSSortDescriptor(key:"name", ascending: true, selector: #selector(NSString.caseInsensitiveCompare(_:)))
+        //Set our showColumn's sortDescriptor to the one we just made
+        showColumn?.sortDescriptorPrototype = showSortDescriptor
+    }
 }
