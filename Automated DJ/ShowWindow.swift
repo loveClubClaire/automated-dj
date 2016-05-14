@@ -30,26 +30,24 @@ class ShowWindow: NSObject {
     func spawnEditShowWindow(aShow: Show, anAutomator: Automator?, status: [Bool]){
         showWindow.title = "Edit Shows"
         //Set the values passed to their respective objects
+        let timeFormatter = NSDateFormatter();timeFormatter.dateFormat = "hh:mm a"
         let dayFormatter = NSDateFormatter();dayFormatter.dateFormat = "EEEE"
         if status[0] == true {showName.stringValue = aShow.name!}
         else{showName.placeholderString = "Mixed"}
-        if status[1] == true {
-            startTime.dateValue = aShow.startDate!
-            startDay.selectItemWithTitle(dayFormatter.stringFromDate(aShow.startDate!))
-        }
-        else{
-            startDay.selectItem(nil)
-            (startTime as! CustomDatePicker).makePlaceholder()
-        }
-        if status[2] == true {
-            endTime.dateValue = aShow.endDate!
-            endDay.selectItemWithTitle(dayFormatter.stringFromDate(aShow.endDate!))
-        }
-        else{
-            endDay.selectItem(nil)
-            (endTime as! CustomDatePicker).makePlaceholder()
-        }
-        if status[3] == true{
+        //1 is day 2 is time
+        if status[2] == true {startTime.dateValue = aShow.startDate!}
+        else{(startTime as! CustomDatePicker).makePlaceholder()}
+        
+        if status[1] == true {startDay.selectItemWithTitle(dayFormatter.stringFromDate(aShow.startDate!))}
+        else{startDay.selectItem(nil)}
+        
+        if status[4] == true {endTime.dateValue = aShow.endDate!}
+        else{(endTime as! CustomDatePicker).makePlaceholder()}
+
+        if status[3] == true {endDay.selectItemWithTitle(dayFormatter.stringFromDate(aShow.endDate!))}
+        else{endDay.selectItem(nil)}
+        
+        if status[5] == true{
             if anAutomator == nil {
                isAutomated.state = 0
             }

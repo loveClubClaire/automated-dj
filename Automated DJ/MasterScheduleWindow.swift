@@ -20,7 +20,7 @@ class MasterScheduleWindow: NSWindow {
         if (trueRawModiferFlag == NSEventModifierFlags.CommandKeyMask.rawValue) {
             //If the E key (which has a keyCode of 14) is pressed along with the command key, call the edit function
             if anEvent.keyCode == 14 {
-                Swift.print("Edit");
+                MasterScheduleObject.editShows(self)
             }
         }
         //Else if the delete key (key code 51) is pressed call the delete function
