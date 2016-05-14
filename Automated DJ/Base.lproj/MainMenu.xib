@@ -944,13 +944,13 @@
                     </textField>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bgy-as-ywg">
                         <rect key="frame" x="104" y="175" width="243" height="22"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="OPf-xT-gED">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="" drawsBackground="YES" id="OPf-xT-gED">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <datePicker verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r1O-a4-YH0">
+                    <datePicker verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r1O-a4-YH0" customClass="CustomDatePicker" customModule="Automated_DJ" customModuleProvider="target">
                         <rect key="frame" x="234" y="144" width="83" height="27"/>
                         <datePickerCell key="cell" borderStyle="bezel" alignment="left" id="Kqv-HB-xZj">
                             <font key="font" metaFont="system"/>
@@ -962,7 +962,7 @@
                             <datePickerElements key="datePickerElements" hour="YES" minute="YES"/>
                         </datePickerCell>
                     </datePicker>
-                    <datePicker verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gvi-MF-gMp">
+                    <datePicker verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gvi-MF-gMp" customClass="CustomDatePicker" customModule="Automated_DJ" customModuleProvider="target">
                         <rect key="frame" x="234" y="113" width="83" height="27"/>
                         <datePickerCell key="cell" borderStyle="bezel" alignment="left" id="a7q-uY-xQ1">
                             <font key="font" metaFont="system"/>

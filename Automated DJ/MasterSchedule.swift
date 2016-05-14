@@ -13,7 +13,7 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
     @IBOutlet weak var ShowWindowObject: ShowWindow!
     @IBOutlet weak var AppDelegateObject: AppDelegate!
     @IBOutlet weak var tableView: NSTableView!
-
+    
     var dataArray = [Show]()
     
     //Called by AppDelegate after application has finished launching. Think of this function as an initalization function
@@ -162,7 +162,7 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
                 }
                 index = selectedShows.indexGreaterThanIndex(index)
             }
-            ShowWindowObject.spawnEditShowWindow(aShow, anAutomator: anAutomator!, status: status)
+            ShowWindowObject.spawnEditShowWindow(aShow, anAutomator: anAutomator, status: status)
         }
     }
 }

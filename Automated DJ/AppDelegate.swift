@@ -37,15 +37,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             MasterScheduleObject.tableView.reloadData()
         }
         
-        //Inatalizes things in the masterScheduleObject related to its UI. Check this function for more information. 
+        //Inatalizes things in the masterScheduleObject related to its UI. Check this function for more information.
         MasterScheduleObject.viewDidLoad()
-        
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
     }
-
 
 }
 

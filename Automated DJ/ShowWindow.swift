@@ -27,10 +27,40 @@ class ShowWindow: NSObject {
         NSApp.runModalForWindow(showWindow)
     }
     
-    //Will need to take parameters. The values of the show being edited
-    func spawnEditShowWindow(aShow: Show, anAutomator: Automator, status: [Bool]){
-        showWindow.title = "Edit Show"
+    func spawnEditShowWindow(aShow: Show, anAutomator: Automator?, status: [Bool]){
+        showWindow.title = "Edit Shows"
         //Set the values passed to their respective objects
+        let dayFormatter = NSDateFormatter();dayFormatter.dateFormat = "EEEE"
+        if status[0] == true {showName.stringValue = aShow.name!}
+        else{showName.placeholderString = "Mixed"}
+        if status[1] == true {
+            startTime.dateValue = aShow.startDate!
+            startDay.selectItemWithTitle(dayFormatter.stringFromDate(aShow.startDate!))
+        }
+        else{
+            startDay.selectItem(nil)
+            (startTime as! CustomDatePicker).makePlaceholder()
+        }
+        if status[2] == true {
+            endTime.dateValue = aShow.endDate!
+            endDay.selectItemWithTitle(dayFormatter.stringFromDate(aShow.endDate!))
+        }
+        else{
+            endDay.selectItem(nil)
+            (endTime as! CustomDatePicker).makePlaceholder()
+        }
+        if status[3] == true{
+            if anAutomator == nil {
+               isAutomated.state = 0
+            }
+            else{
+                isAutomated.state = 1
+            }
+        }
+        else{
+            isAutomated.state = -1
+        }
+        
         showWindow.center()
         showWindow.makeKeyAndOrderFront(self)
         NSApp.runModalForWindow(showWindow)
@@ -78,8 +108,9 @@ class ShowWindow: NSObject {
         //Set the NSDatePickers to their default values
         startTime.dateValue = (calendar?.dateFromComponents(startTimeComponents))!
         endTime.dateValue = (calendar?.dateFromComponents(endTimeComponents))!
-        //Set the show name to its default value
+        //Set the show name to its default value and make it selected (like the state it was in when the app launched)
         showName.stringValue = ""
+        showName.selectText(self)
         //Set the NSPopUpButtons to their default values (Index at 0 should be Monday)
         startDay.selectItemAtIndex(0)
         endDay.selectItemAtIndex(0)
