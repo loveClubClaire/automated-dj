@@ -143,7 +143,8 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
         //If the number of shows selected is greater than zero, get the value of the first selected show and its automator. Then compare it to all other selected shows and automators. If any fields in either object are different, then change that fields assoicated (position 0 = show.name etc etc. Its not programmably assoicated) status boolean to false. Then sent the automator, show, and status array to the ShowWindow class. 
         if selectedShows.count > 0 {
                 var index = selectedShows.firstIndex
-                var status = [true,true,true,true,true,true]
+                //var status = [true,true,true,true,true,true]
+                let status = ShowStatus()
                 let aShow = dataArray[index]
                 var anAutomator = aShow.automator
                 index = selectedShows.indexGreaterThanIndex(index)
@@ -151,16 +152,16 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
                 let timeFormatter = NSDateFormatter();timeFormatter.dateFormat = "hh:mm a"
                 let dayFormatter = NSDateFormatter();dayFormatter.dateFormat = "EEEE"
 
-                if aShow.name != dataArray[index].name {status[0] = false}
-                if dayFormatter.stringFromDate(aShow.startDate!) !=  dayFormatter.stringFromDate(dataArray[index].startDate!){status[1] = false}
-                if timeFormatter.stringFromDate(aShow.startDate!) !=  timeFormatter.stringFromDate(dataArray[index].startDate!){status[2] = false}
-                if dayFormatter.stringFromDate(aShow.endDate!) !=  dayFormatter.stringFromDate(dataArray[index].endDate!){status[3] = false}
-                if timeFormatter.stringFromDate(aShow.endDate!) != timeFormatter.stringFromDate(dataArray[index].endDate!){status[4] = false}
+                if aShow.name != dataArray[index].name {status.name = false}
+                if dayFormatter.stringFromDate(aShow.startDate!) !=  dayFormatter.stringFromDate(dataArray[index].startDate!){status.startDay = false}
+                if timeFormatter.stringFromDate(aShow.startDate!) !=  timeFormatter.stringFromDate(dataArray[index].startDate!){status.startTime = false}
+                if dayFormatter.stringFromDate(aShow.endDate!) !=  dayFormatter.stringFromDate(dataArray[index].endDate!){status.endDay = false}
+                if timeFormatter.stringFromDate(aShow.endDate!) != timeFormatter.stringFromDate(dataArray[index].endDate!){status.endTime = false}
                 
                 if dataArray[index].automator != nil {
                     if anAutomator == nil {
                         anAutomator = dataArray[index].automator
-                        status[5] = false
+                        status.automator = false
                     }
                     else{
                         //DO compares
