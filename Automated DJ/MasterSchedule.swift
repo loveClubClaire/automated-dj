@@ -131,4 +131,38 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
         }
     }
     
+    @IBAction func editShows(sender: AnyObject) {
+        //get all selected elements in the tableview
+        var selectedShows = tableView.selectedRowIndexes
+        //If the clicked show (if there is one) is not contained in the NSIndexSet, then add it. Because NSIndexSet is not mutable, we need to convert it into a NSMutableIndexSet, add the new value, and then set selectedShows to that new mutable index set.
+        if(selectedShows.containsIndex(tableView.clickedRow) == false){
+            let selectedShowsMutable = NSMutableIndexSet.init(indexSet: selectedShows)
+            selectedShowsMutable.addIndex(tableView.clickedRow)
+            selectedShows = selectedShowsMutable
+        }
+        //If the number of shows selected is greater than zero, get the value of the first selected show and its automator. Then compare it to all other selected shows and automators. If any fields in either object are different, then change that fields assoicated (position 0 = show.name etc etc. Its not programmably assoicated) status boolean to false. Then sent the automator, show, and status array to the ShowWindow class. 
+        if selectedShows.count > 0 {
+                var index = selectedShows.firstIndex
+                var status = [true,true,true,true]
+                let aShow = dataArray[index]
+                var anAutomator = aShow.automator
+                index = selectedShows.indexGreaterThanIndex(index)
+            while index != NSNotFound {
+                if aShow.name != dataArray[index].name {status[0] = false}
+                if aShow.startDate != dataArray[index].startDate {status[1] = false}
+                if aShow.endDate != dataArray[index].endDate {status[2] = false}
+                if dataArray[index].automator != nil {
+                    if anAutomator == nil {
+                        anAutomator = dataArray[index].automator
+                        status[3] = false
+                    }
+                    else{
+                        //DO compares
+                    }
+                }
+                index = selectedShows.indexGreaterThanIndex(index)
+            }
+            ShowWindowObject.spawnEditShowWindow(aShow, anAutomator: anAutomator!, status: status)
+        }
+    }
 }

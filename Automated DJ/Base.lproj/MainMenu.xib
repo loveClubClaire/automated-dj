@@ -913,7 +913,7 @@
             <windowStyleMask key="styleMask" titled="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="131" y="158" width="367" height="217"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="Lev-mG-0o4">
                 <rect key="frame" x="0.0" y="0.0" width="367" height="217"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -1037,7 +1037,7 @@ Gw
                     </button>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="224.5" y="-178.5"/>
+            <point key="canvasLocation" x="285.5" y="-370.5"/>
         </window>
         <window title="Automator Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="hq7-sJ-C1m">
             <windowStyleMask key="styleMask" titled="YES"/>
@@ -1318,6 +1318,9 @@ Gw
             <items>
                 <menuItem title="Edit" keyEquivalent="e" id="aoH-Wc-v1h">
                     <attributedString key="attributedTitle"/>
+                    <connections>
+                        <action selector="editShows:" target="uEM-xV-SIH" id="vtO-Pa-CSC"/>
+                    </connections>
                 </menuItem>
                 <menuItem title="Delete" id="bpL-iQ-lQZ">
                     <modifierMask key="keyEquivalentModifierMask"/>

@@ -28,7 +28,7 @@ class ShowWindow: NSObject {
     }
     
     //Will need to take parameters. The values of the show being edited
-    func spawnEditShowWindow(){
+    func spawnEditShowWindow(aShow: Show, anAutomator: Automator, status: [Bool]){
         showWindow.title = "Edit Show"
         //Set the values passed to their respective objects
         showWindow.center()
