@@ -16,6 +16,26 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
 
     var dataArray = [Show]()
     
+    //Called by AppDelegate after application has finished launching. Think of this function as an initalization function
+    func viewDidLoad(){
+        //Create a showColumn variable using an Identifier to get the corresponding column from the tableView
+        let showColumn = tableView.tableColumnWithIdentifier("showName")
+        //Create a new sortDescriptor. Key refers to the variable in the object being sorted. So we are sorting our array of Shows by the name field. Assending is true and we use a caseInsensitiveCompare selector to determine the way we sort.
+        let showSortDescriptor = NSSortDescriptor(key:"name", ascending: true, selector: #selector(NSString.caseInsensitiveCompare(_:)))
+        //Set our showColumn's sortDescriptor to the one we just made
+        showColumn?.sortDescriptorPrototype = showSortDescriptor
+        
+        //AutomatorColumn sorting. Not fully tested. Implemented before automator added. 5/13/16. TODO
+        let automatorColumn = tableView.tableColumnWithIdentifier("automated")
+        let automatorSortDescriptor = NSSortDescriptor(key: "automator", ascending: true, selector: #selector(Automator.compare(_:)))
+        automatorColumn?.sortDescriptorPrototype = automatorSortDescriptor
+        
+        //TimeColumn sorting. 1000% easier than in 1.0 release because proper data structures
+        let timeColumn = tableView.tableColumnWithIdentifier("time")
+        let timeSortDescriptor = NSSortDescriptor(key: "startDate", ascending: true, selector: #selector(NSDate.compare(_:)))
+        timeColumn?.sortDescriptorPrototype = timeSortDescriptor
+        
+    }
 
     @IBAction func createShow(sender: AnyObject) {
         ShowWindowObject.spawnNewShowWindow()
@@ -26,7 +46,6 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
         NSKeyedArchiver.archiveRootObject(dataArray, toFile: AppDelegateObject.storedProgramsFilepath)
         tableView.reloadData()
     }
-    
     
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
         return dataArray.count
@@ -84,24 +103,32 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
         tableView.reloadData()
     }
     
-    //Called by AppDelegate after application has finished launching. Think of this function as an initalization function
-    func viewDidLoad(){
-        //Create a showColumn variable using an Identifier to get the corresponding column from the tableView
-        let showColumn = tableView.tableColumnWithIdentifier("showName")
-        //Create a new sortDescriptor. Key refers to the variable in the object being sorted. So we are sorting our array of Shows by the name field. Assending is true and we use a caseInsensitiveCompare selector to determine the way we sort.
-        let showSortDescriptor = NSSortDescriptor(key:"name", ascending: true, selector: #selector(NSString.caseInsensitiveCompare(_:)))
-        //Set our showColumn's sortDescriptor to the one we just made
-        showColumn?.sortDescriptorPrototype = showSortDescriptor
-
-        //AutomatorColumn sorting. Not fully tested. Implemented before automator added. 5/13/16. TODO
-        let automatorColumn = tableView.tableColumnWithIdentifier("automated")
-        let automatorSortDescriptor = NSSortDescriptor(key: "automator", ascending: true, selector: #selector(Automator.compare(_:)))
-        automatorColumn?.sortDescriptorPrototype = automatorSortDescriptor
-        
-        //TimeColumn sorting. 1000% easier than in 1.0 release because proper data structures
-        let timeColumn = tableView.tableColumnWithIdentifier("time")
-        let timeSortDescriptor = NSSortDescriptor(key: "startDate", ascending: true, selector: #selector(NSDate.compare(_:)))
-        timeColumn?.sortDescriptorPrototype = timeSortDescriptor
-
+    @IBAction func deleteShows(sender: AnyObject) {
+        //get all selected elements in the tableview
+        var selectedShows = tableView.selectedRowIndexes
+        //If the clicked show (if there is one) is not contained in the NSIndexSet, then add it. Because NSIndexSet is not mutable, we need to convert it into a NSMutableIndexSet, add the new value, and then set selectedShows to that new mutable index set.
+        if(selectedShows.containsIndex(tableView.clickedRow) == false){
+            let selectedShowsMutable = NSMutableIndexSet.init(indexSet: selectedShows)
+            selectedShowsMutable.addIndex(tableView.clickedRow)
+            selectedShows = selectedShowsMutable
+        }
+        //If the number of shows selected is greater than zero, alert the user about the deletion. If they agree to it, remove the items from the dataArray, save the new state of the dataArray, and refresh the tableView
+        if selectedShows.count > 0 {
+            let myPopup: NSAlert = NSAlert()
+            myPopup.messageText = "Are you sure you want to delete the selected shows?"
+            myPopup.informativeText = "This can not be undone"
+            myPopup.alertStyle = NSAlertStyle.WarningAlertStyle
+            myPopup.addButtonWithTitle("OK")
+            myPopup.addButtonWithTitle("Cancel")
+            let res = myPopup.runModal()
+            if res == NSAlertFirstButtonReturn {
+                let dataMutableArray = NSMutableArray(array: dataArray)
+                dataMutableArray.removeObjectsAtIndexes(selectedShows)
+                dataArray = dataMutableArray as AnyObject as! [Show]
+                NSKeyedArchiver.archiveRootObject(dataArray, toFile: AppDelegateObject.storedProgramsFilepath)
+                tableView.reloadData()
+            }
+        }
     }
+    
 }

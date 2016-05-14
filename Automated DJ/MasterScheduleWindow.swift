@@ -10,6 +10,7 @@ import Foundation
 import Cocoa
 
 class MasterScheduleWindow: NSWindow {
+    @IBOutlet weak var MasterScheduleObject: MasterSchedule!
     override func keyDown(anEvent: NSEvent) {
         
         //get the key modifier flags, and use the bitwise and function to remove the machine specific bits. Leaving you with the unadulatrated modiferFlag
@@ -24,7 +25,7 @@ class MasterScheduleWindow: NSWindow {
         }
         //Else if the delete key (key code 51) is pressed call the delete function
         else if(anEvent.keyCode == 51){
-            Swift.print("Delete")
+            MasterScheduleObject.deleteShows(self)
         }
         //Else just do what would have been expected
         else{

@@ -904,6 +904,9 @@
                     <toolbarItem reference="IFo-4X-eg2"/>
                 </defaultToolbarItems>
             </toolbar>
+            <connections>
+                <outlet property="MasterScheduleObject" destination="uEM-xV-SIH" id="g0C-v6-jFR"/>
+            </connections>
             <point key="canvasLocation" x="305" y="-132"/>
         </window>
         <window title="Show Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="RBR-ot-TiD">
@@ -1317,10 +1320,10 @@ Gw
                     <attributedString key="attributedTitle"/>
                 </menuItem>
                 <menuItem title="Delete" id="bpL-iQ-lQZ">
-                    <string key="keyEquivalent" base64-UTF8="YES">
-CA
-</string>
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="deleteShows:" target="uEM-xV-SIH" id="tTl-S3-CZe"/>
+                    </connections>
                 </menuItem>
             </items>
             <point key="canvasLocation" x="258.5" y="-442.5"/>
