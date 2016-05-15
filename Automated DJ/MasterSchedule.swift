@@ -47,6 +47,10 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
         tableView.reloadData()
     }
     
+    func modifyShows(aShow: Show, aStatus: ShowStatus){
+        
+    }
+    
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
         return dataArray.count
     }
@@ -143,7 +147,6 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
         //If the number of shows selected is greater than zero, get the value of the first selected show and its automator. Then compare it to all other selected shows and automators. If any fields in either object are different, then change that fields assoicated (position 0 = show.name etc etc. Its not programmably assoicated) status boolean to false. Then sent the automator, show, and status array to the ShowWindow class. 
         if selectedShows.count > 0 {
                 var index = selectedShows.firstIndex
-                //var status = [true,true,true,true,true,true]
                 let status = ShowStatus()
                 let aShow = dataArray[index]
                 var anAutomator = aShow.automator

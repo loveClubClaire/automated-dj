@@ -58,10 +58,34 @@ class ShowWindow: NSObject {
         else{
             isAutomated.state = -1
         }
+        //end value setting
         
         showWindow.center()
         showWindow.makeKeyAndOrderFront(self)
         NSApp.runModalForWindow(showWindow)
+    }
+    
+    func getWindowStatus() -> ShowStatus{
+        let isNotChanged = ShowStatus()
+        if showName.placeholderString != "Mixed" {
+            isNotChanged.name = false
+        }
+        if startDay.indexOfSelectedItem != -1 {
+            isNotChanged.startDay = false
+        }
+        if (startTime as! CustomDatePicker).isPlaceholder() == false {
+            isNotChanged.startTime = false
+        }
+        if endDay.indexOfSelectedItem != -1 {
+            isNotChanged.endDay = false
+        }
+        if (endTime as! CustomDatePicker).isPlaceholder() == false {
+            isNotChanged.endTime = false
+        }
+        if isAutomated.state != -1 {
+            isNotChanged.automator = false
+        }
+        return isNotChanged
     }
     
     @IBAction func okButton(sender: AnyObject) {
@@ -84,12 +108,17 @@ class ShowWindow: NSObject {
         //Depending on the state of the isAutomated button...
         if isAutomated.state == 0 {
             //Add it to the MasterScheduleObject or
-            MasterScheduleObject.addShow(show)
+            if showWindow.title == "New Show" {MasterScheduleObject.addShow(show)}
+            else{MasterScheduleObject.modifyShows(show, aStatus: getWindowStatus())}
             cancelButton(self)
         }
         else{
-            //Create an automated program
-            cancelButton(self)
+            if showWindow.title == "New Show" {
+                cancelButton(self)
+            }
+            else{
+                
+            }
         }
        
         
@@ -106,6 +135,9 @@ class ShowWindow: NSObject {
         //Set the NSDatePickers to their default values
         startTime.dateValue = (calendar?.dateFromComponents(startTimeComponents))!
         endTime.dateValue = (calendar?.dateFromComponents(endTimeComponents))!
+        //Make the NSDatePickers not placeholders 
+        (startTime as! CustomDatePicker).disablePlaceholder()
+        (endTime as! CustomDatePicker).disablePlaceholder()
         //Set the show name to its default value and make it selected (like the state it was in when the app launched)
         showName.stringValue = ""
         showName.selectText(self)
