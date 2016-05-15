@@ -48,7 +48,16 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
     }
     
     func modifyShows(aShow: Show, aStatus: ShowStatus){
-        
+        //get all selected elements in the tableview
+        let selectedShows = tableView.selectedRowIndexes
+        var index = selectedShows.firstIndex
+        //itterate through the selected shows and modify each one
+        while index != NSNotFound {
+            dataArray[index] = aStatus.modifyShow(dataArray[index], masterShow: aShow)
+            index = selectedShows.indexGreaterThanIndex(index)
+        }
+        NSKeyedArchiver.archiveRootObject(dataArray, toFile: AppDelegateObject.storedProgramsFilepath)
+        tableView.reloadData()
     }
     
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {

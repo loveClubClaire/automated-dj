@@ -67,7 +67,7 @@ class ShowWindow: NSObject {
     
     func getWindowStatus() -> ShowStatus{
         let isNotChanged = ShowStatus()
-        if showName.placeholderString != "Mixed" {
+        if showName.stringValue != "" {
             isNotChanged.name = false
         }
         if startDay.indexOfSelectedItem != -1 {
