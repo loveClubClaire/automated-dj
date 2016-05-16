@@ -15,7 +15,9 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Automated_DJ" customModuleProvider="target">
             <connections>
                 <outlet property="MasterScheduleObject" destination="uEM-xV-SIH" id="vZB-Wa-e9q"/>
+                <outlet property="RuleScrollViewObject" destination="osi-q6-9Jp" id="hPW-NQ-56M"/>
                 <outlet property="ShowWindowObject" destination="vLi-vE-d4F" id="dpV-RZ-lTu"/>
+                <outlet property="TestingClassObject" destination="osi-q6-9Jp" id="lL2-Zf-LA1"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
@@ -39,6 +41,13 @@
             </connections>
         </customObject>
         <customObject id="o8a-iw-ZZb" customClass="ErrorChecker" customModule="Automated_DJ" customModuleProvider="target"/>
+        <customObject id="osi-q6-9Jp" customClass="RuleScrollView" customModule="Automated_DJ" customModuleProvider="target">
+            <connections>
+                <outlet property="automatorWindow" destination="hq7-sJ-C1m" id="GHB-I2-KYr"/>
+                <outlet property="predicateEditor" destination="iFI-VU-gq6" id="OGx-po-hJ2"/>
+                <outlet property="predicateEditorView" destination="VYg-fd-S3z" id="AzV-FV-AGA"/>
+            </connections>
+        </customObject>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
                 <menuItem title="Automated DJ" id="1Xt-HY-uBw">
@@ -692,7 +701,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" texturedBackground="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="413" y="349" width="600" height="350"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <value key="minSize" type="size" width="600" height="350"/>
             <value key="maxSize" type="size" width="600" height="350"/>
             <view key="contentView" id="UVc-wa-BDJ">
@@ -1039,11 +1048,11 @@ Gw
             </view>
             <point key="canvasLocation" x="285.5" y="-370.5"/>
         </window>
-        <window title="Automator Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="hq7-sJ-C1m">
+        <window title="Automator Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="hq7-sJ-C1m">
             <windowStyleMask key="styleMask" titled="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="131" y="158" width="495" height="420"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
+            <rect key="contentRect" x="0.0" y="0.0" width="495" height="420"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="sUT-4g-aY1">
                 <rect key="frame" x="0.0" y="0.0" width="495" height="420"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -1232,66 +1241,37 @@ Gw
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q0m-Lt-nHo">
-                        <rect key="frame" x="32" y="69" width="99" height="19"/>
-                        <popUpButtonCell key="cell" type="roundRect" title="Artist" bezelStyle="roundedRect" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="hIO-3X-qnI" id="4an-yy-QwG">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="cellTitle"/>
-                            <menu key="menu" id="1qG-f5-YuK">
-                                <items>
-                                    <menuItem title="Artist" state="on" id="hIO-3X-qnI"/>
-                                </items>
-                            </menu>
-                        </popUpButtonCell>
-                    </popUpButton>
-                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1hR-jN-dh2">
-                        <rect key="frame" x="139" y="69" width="100" height="19"/>
-                        <popUpButtonCell key="cell" type="roundRect" title="Contains" bezelStyle="roundedRect" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="unk-WS-swX" id="0pz-Cx-pSc">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="cellTitle"/>
-                            <menu key="menu" id="Upj-Km-JI5">
-                                <items>
-                                    <menuItem title="Contains" state="on" id="unk-WS-swX"/>
-                                </items>
-                            </menu>
-                        </popUpButtonCell>
-                    </popUpButton>
-                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5m5-RS-CcM">
-                        <rect key="frame" x="247" y="68" width="150" height="22"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="JEi-AQ-163">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Jj-lU-QDu">
-                        <rect key="frame" x="450" y="69" width="25" height="19"/>
-                        <buttonCell key="cell" type="roundRect" bezelStyle="roundedRect" image="NSAddTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="S1m-yw-w5x">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="cellTitle"/>
-                        </buttonCell>
-                    </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vDi-Ih-tHC">
-                        <rect key="frame" x="423" y="69" width="25" height="19"/>
-                        <buttonCell key="cell" type="roundRect" bezelStyle="roundedRect" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XRd-qN-RE3">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="cellTitle"/>
-                        </buttonCell>
-                    </button>
                     <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="QwO-aC-kk5">
-                        <rect key="frame" x="32" y="96" width="443" height="5"/>
+                        <rect key="frame" x="30" y="96" width="443" height="5"/>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <font key="titleFont" metaFont="system"/>
                     </box>
-                    <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="43i-uy-vvY">
-                        <rect key="frame" x="31" y="59" width="444" height="5"/>
-                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <font key="titleFont" metaFont="system"/>
-                    </box>
+                    <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VYg-fd-S3z">
+                        <rect key="frame" x="30" y="73" width="443" height="25"/>
+                        <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="D0L-k2-29f">
+                            <rect key="frame" x="0.0" y="0.0" width="443" height="25"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <predicateEditor verticalHuggingPriority="750" ambiguous="YES" nestingMode="compound" rowHeight="25" id="iFI-VU-gq6">
+                                    <rect key="frame" x="0.0" y="0.0" width="443" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <rowTemplates/>
+                                </predicateEditor>
+                            </subviews>
+                            <color key="backgroundColor" white="0.91000002619999998" alpha="1" colorSpace="calibratedWhite"/>
+                        </clipView>
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="hvQ-sE-8ri">
+                            <rect key="frame" x="-100" y="-100" width="360" height="15"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="ZIT-qG-oys">
+                            <rect key="frame" x="420" y="0.0" width="16" height="25"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                    </scrollView>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ofe-VX-Re0">
-                        <rect key="frame" x="391" y="13" width="90" height="32"/>
+                        <rect key="frame" x="391" y="22" width="90" height="32"/>
                         <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="vE7-fF-Dms">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -1301,7 +1281,7 @@ DQ
                         </buttonCell>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yqr-Lu-lK9">
-                        <rect key="frame" x="301" y="13" width="90" height="32"/>
+                        <rect key="frame" x="301" y="22" width="90" height="32"/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Fen-sf-oc3">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -1312,7 +1292,7 @@ Gw
                     </button>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="288.5" y="156"/>
+            <point key="canvasLocation" x="279.5" y="43"/>
         </window>
         <menu id="EdZ-DC-4Wx">
             <items>
@@ -1329,11 +1309,10 @@ Gw
                     </connections>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="258.5" y="-442.5"/>
+            <point key="canvasLocation" x="374.5" y="-576.5"/>
         </menu>
     </objects>
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>
-        <image name="NSRemoveTemplate" width="11" height="11"/>
     </resources>
 </document>

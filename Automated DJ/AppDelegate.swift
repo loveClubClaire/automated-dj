@@ -12,10 +12,14 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var ShowWindowObject: ShowWindow!
     @IBOutlet weak var MasterScheduleObject: MasterSchedule!
-    
+
+    @IBOutlet weak var RuleScrollViewObject: RuleScrollView!
     var storedProgramsFilepath = ""
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
+        
+        RuleScrollViewObject.initalize()
+        
         //Populate the Show Window drop down menus with the days of the week
         let daysOfTheWeek = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
         ShowWindowObject.startDay.addItemsWithTitles(daysOfTheWeek)
