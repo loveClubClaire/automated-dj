@@ -111,15 +111,11 @@
 		C04616A21CE43542004E1B38 /* Automated DJ */ = {
 			isa = PBXGroup;
 			children = (
-				C09D9F571CE93D8C009458FC /* Custom UI */,
 				C04616A31CE43542004E1B38 /* AppDelegate.swift */,
-				C04616D01CE436B9004E1B38 /* ShowWindow.swift */,
 				C09D9F5A1CE95954009458FC /* ErrorChecker.swift */,
-				C09D9F551CE7ECBE009458FC /* ShowStatus.swift */,
-				C04616CC1CE436A7004E1B38 /* MasterSchedule.swift */,
-				C04616CE1CE436AF004E1B38 /* Show.swift */,
-				C04616D21CE436CD004E1B38 /* Automator.swift */,
-				C04616D41CE436D7004E1B38 /* AutomatorWindow.swift */,
+				C09D9F5D1CE9C31F009458FC /* Custom Objects */,
+				C09D9F5C1CE9C2E4009458FC /* UI Classes */,
+				C09D9F571CE93D8C009458FC /* Custom UI */,
 				C04616A51CE43542004E1B38 /* Assets.xcassets */,
 				C04616A71CE43542004E1B38 /* MainMenu.xib */,
 				C04616AA1CE43542004E1B38 /* Info.plist */,
@@ -152,6 +148,26 @@
 				C09D9F511CE7B615009458FC /* CustomDatePicker.swift */,
 			);
 			name = "Custom UI";
+			sourceTree = "<group>";
+		};
+		C09D9F5C1CE9C2E4009458FC /* UI Classes */ = {
+			isa = PBXGroup;
+			children = (
+				C04616CC1CE436A7004E1B38 /* MasterSchedule.swift */,
+				C04616D01CE436B9004E1B38 /* ShowWindow.swift */,
+				C04616D41CE436D7004E1B38 /* AutomatorWindow.swift */,
+			);
+			name = "UI Classes";
+			sourceTree = "<group>";
+		};
+		C09D9F5D1CE9C31F009458FC /* Custom Objects */ = {
+			isa = PBXGroup;
+			children = (
+				C04616CE1CE436AF004E1B38 /* Show.swift */,
+				C04616D21CE436CD004E1B38 /* Automator.swift */,
+				C09D9F551CE7ECBE009458FC /* ShowStatus.swift */,
+			);
+			name = "Custom Objects";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -11,6 +11,8 @@ import Cocoa
 
 class ErrorChecker: NSObject {
     //do playlists exist
+    
+    
     func checkShowValidity(aShow: Show, aShowStatus: ShowStatus, selectedShows: [Show]) -> Bool {
         
         var result = true
