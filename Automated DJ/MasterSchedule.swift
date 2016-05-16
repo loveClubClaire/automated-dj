@@ -47,6 +47,59 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
         tableView.reloadData()
     }
     
+    @IBAction func editShows(sender: AnyObject) {
+        //get all selected elements in the tableview
+        var selectedShows = tableView.selectedRowIndexes
+        //If the clicked show (if there is one) is not contained in the NSIndexSet, then add it. Because NSIndexSet is not mutable, we need to convert it into a NSMutableIndexSet, add the new value, and then set selectedShows to that new mutable index set.
+        if(selectedShows.containsIndex(tableView.clickedRow) == false && tableView.clickedRow != -1){
+            let selectedShowsMutable = NSMutableIndexSet.init(indexSet: selectedShows)
+            selectedShowsMutable.addIndex(tableView.clickedRow)
+            selectedShows = selectedShowsMutable
+        }
+        //If the number of shows selected is greater than zero, get the value of the first selected show and its automator. Then compare it to all other selected shows and automators. If any fields in either object are different, then change that fields assoicated (position 0 = show.name etc etc. Its not programmably assoicated) status boolean to false. Then sent the automator, show, and status array to the ShowWindow class.
+        if selectedShows.count > 0 {
+            var userConfirmed = true
+            let myPopup: NSAlert = NSAlert()
+            myPopup.messageText = "Are you sure you want to edit information for multiple shows?"
+            myPopup.alertStyle = NSAlertStyle.WarningAlertStyle
+            myPopup.addButtonWithTitle("Edit Shows")
+            myPopup.addButtonWithTitle("Cancel")
+            let res = myPopup.runModal()
+            if res != NSAlertFirstButtonReturn {
+                userConfirmed = false
+            }
+            if userConfirmed == true {
+            var index = selectedShows.firstIndex
+            let status = ShowStatus()
+            let aShow = dataArray[index]
+            var anAutomator = aShow.automator
+            index = selectedShows.indexGreaterThanIndex(index)
+            while index != NSNotFound {
+                let timeFormatter = NSDateFormatter();timeFormatter.dateFormat = "hh:mm a"
+                let dayFormatter = NSDateFormatter();dayFormatter.dateFormat = "EEEE"
+                
+                if aShow.name != dataArray[index].name {status.name = false}
+                if dayFormatter.stringFromDate(aShow.startDate!) !=  dayFormatter.stringFromDate(dataArray[index].startDate!){status.startDay = false}
+                if timeFormatter.stringFromDate(aShow.startDate!) !=  timeFormatter.stringFromDate(dataArray[index].startDate!){status.startTime = false}
+                if dayFormatter.stringFromDate(aShow.endDate!) !=  dayFormatter.stringFromDate(dataArray[index].endDate!){status.endDay = false}
+                if timeFormatter.stringFromDate(aShow.endDate!) != timeFormatter.stringFromDate(dataArray[index].endDate!){status.endTime = false}
+                
+                if dataArray[index].automator != nil {
+                    if anAutomator == nil {
+                        anAutomator = dataArray[index].automator
+                        status.automator = false
+                    }
+                    else{
+                        //DO compares
+                    }
+                }
+                index = selectedShows.indexGreaterThanIndex(index)
+            }
+            ShowWindowObject.spawnEditShowWindow(aShow, anAutomator: anAutomator, status: status)
+            }
+        }
+    }
+    
     func modifyShows(aShow: Show, aStatus: ShowStatus){
         //get all selected elements in the tableview
         let selectedShows = tableView.selectedRowIndexes
@@ -58,6 +111,53 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
         }
         NSKeyedArchiver.archiveRootObject(dataArray, toFile: AppDelegateObject.storedProgramsFilepath)
         tableView.reloadData()
+    }
+    
+    @IBAction func deleteShows(sender: AnyObject) {
+        //get all selected elements in the tableview
+        var selectedShows = tableView.selectedRowIndexes
+        //If the clicked show (if there is one) is not contained in the NSIndexSet, then add it. Because NSIndexSet is not mutable, we need to convert it into a NSMutableIndexSet, add the new value, and then set selectedShows to that new mutable index set.
+        if(selectedShows.containsIndex(tableView.clickedRow) == false && tableView.clickedRow != -1){
+            let selectedShowsMutable = NSMutableIndexSet.init(indexSet: selectedShows)
+            selectedShowsMutable.addIndex(tableView.clickedRow)
+            selectedShows = selectedShowsMutable
+        }
+        //If the number of shows selected is greater than zero, alert the user about the deletion. If they agree to it, remove the items from the dataArray, save the new state of the dataArray, and refresh the tableView
+        if selectedShows.count > 0 {
+            let myPopup: NSAlert = NSAlert()
+            myPopup.messageText = "Are you sure you want to delete the selected shows?"
+            myPopup.informativeText = "This can not be undone"
+            myPopup.alertStyle = NSAlertStyle.WarningAlertStyle
+            myPopup.addButtonWithTitle("OK")
+            myPopup.addButtonWithTitle("Cancel")
+            let res = myPopup.runModal()
+            if res == NSAlertFirstButtonReturn {
+                let dataMutableArray = NSMutableArray(array: dataArray)
+                dataMutableArray.removeObjectsAtIndexes(selectedShows)
+                dataArray = dataMutableArray as AnyObject as! [Show]
+                NSKeyedArchiver.archiveRootObject(dataArray, toFile: AppDelegateObject.storedProgramsFilepath)
+                tableView.reloadData()
+            }
+        }
+    }
+    
+    func getSelectedShows() -> [Show] {
+        //get all selected elements in the tableview
+        var selectedShows = tableView.selectedRowIndexes
+        //If the clicked show (if there is one) is not contained in the NSIndexSet, then add it. Because NSIndexSet is not mutable, we need to convert it into a NSMutableIndexSet, add the new value, and then set selectedShows to that new mutable index set.
+        if(selectedShows.containsIndex(tableView.clickedRow) == false && tableView.clickedRow != -1){
+            let selectedShowsMutable = NSMutableIndexSet.init(indexSet: selectedShows)
+            selectedShowsMutable.addIndex(tableView.clickedRow)
+            selectedShows = selectedShowsMutable
+        }
+
+        var selectedShowsArray = [Show]()
+        var index = selectedShows.firstIndex
+        while index != NSNotFound {
+            selectedShowsArray.append(dataArray[index])
+            index = selectedShows.indexGreaterThanIndex(index)
+        }
+        return selectedShowsArray
     }
     
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
@@ -116,72 +216,4 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
         tableView.reloadData()
     }
     
-    @IBAction func deleteShows(sender: AnyObject) {
-        //get all selected elements in the tableview
-        var selectedShows = tableView.selectedRowIndexes
-        //If the clicked show (if there is one) is not contained in the NSIndexSet, then add it. Because NSIndexSet is not mutable, we need to convert it into a NSMutableIndexSet, add the new value, and then set selectedShows to that new mutable index set.
-        if(selectedShows.containsIndex(tableView.clickedRow) == false && tableView.clickedRow != -1){
-            let selectedShowsMutable = NSMutableIndexSet.init(indexSet: selectedShows)
-            selectedShowsMutable.addIndex(tableView.clickedRow)
-            selectedShows = selectedShowsMutable
-        }
-        //If the number of shows selected is greater than zero, alert the user about the deletion. If they agree to it, remove the items from the dataArray, save the new state of the dataArray, and refresh the tableView
-        if selectedShows.count > 0 {
-            let myPopup: NSAlert = NSAlert()
-            myPopup.messageText = "Are you sure you want to delete the selected shows?"
-            myPopup.informativeText = "This can not be undone"
-            myPopup.alertStyle = NSAlertStyle.WarningAlertStyle
-            myPopup.addButtonWithTitle("OK")
-            myPopup.addButtonWithTitle("Cancel")
-            let res = myPopup.runModal()
-            if res == NSAlertFirstButtonReturn {
-                let dataMutableArray = NSMutableArray(array: dataArray)
-                dataMutableArray.removeObjectsAtIndexes(selectedShows)
-                dataArray = dataMutableArray as AnyObject as! [Show]
-                NSKeyedArchiver.archiveRootObject(dataArray, toFile: AppDelegateObject.storedProgramsFilepath)
-                tableView.reloadData()
-            }
-        }
-    }
-    
-    @IBAction func editShows(sender: AnyObject) {
-        //get all selected elements in the tableview
-        var selectedShows = tableView.selectedRowIndexes
-        //If the clicked show (if there is one) is not contained in the NSIndexSet, then add it. Because NSIndexSet is not mutable, we need to convert it into a NSMutableIndexSet, add the new value, and then set selectedShows to that new mutable index set.
-        if(selectedShows.containsIndex(tableView.clickedRow) == false && tableView.clickedRow != -1){
-            let selectedShowsMutable = NSMutableIndexSet.init(indexSet: selectedShows)
-            selectedShowsMutable.addIndex(tableView.clickedRow)
-            selectedShows = selectedShowsMutable
-        }
-        //If the number of shows selected is greater than zero, get the value of the first selected show and its automator. Then compare it to all other selected shows and automators. If any fields in either object are different, then change that fields assoicated (position 0 = show.name etc etc. Its not programmably assoicated) status boolean to false. Then sent the automator, show, and status array to the ShowWindow class. 
-        if selectedShows.count > 0 {
-                var index = selectedShows.firstIndex
-                let status = ShowStatus()
-                let aShow = dataArray[index]
-                var anAutomator = aShow.automator
-                index = selectedShows.indexGreaterThanIndex(index)
-            while index != NSNotFound {
-                let timeFormatter = NSDateFormatter();timeFormatter.dateFormat = "hh:mm a"
-                let dayFormatter = NSDateFormatter();dayFormatter.dateFormat = "EEEE"
-
-                if aShow.name != dataArray[index].name {status.name = false}
-                if dayFormatter.stringFromDate(aShow.startDate!) !=  dayFormatter.stringFromDate(dataArray[index].startDate!){status.startDay = false}
-                if timeFormatter.stringFromDate(aShow.startDate!) !=  timeFormatter.stringFromDate(dataArray[index].startDate!){status.startTime = false}
-                if dayFormatter.stringFromDate(aShow.endDate!) !=  dayFormatter.stringFromDate(dataArray[index].endDate!){status.endDay = false}
-                if timeFormatter.stringFromDate(aShow.endDate!) != timeFormatter.stringFromDate(dataArray[index].endDate!){status.endTime = false}
-                
-                if dataArray[index].automator != nil {
-                    if anAutomator == nil {
-                        anAutomator = dataArray[index].automator
-                        status.automator = false
-                    }
-                    else{
-                        //DO compares
-                    }
-                }
-                index = selectedShows.indexGreaterThanIndex(index)
-            }
-            ShowWindowObject.spawnEditShowWindow(aShow, anAutomator: anAutomator, status: status)
-        }
-    }
 }

@@ -100,11 +100,14 @@ class ShowWindow: NSObject {
         endDateComponents.year = 2015
         endDateComponents.month = 6
         endDateComponents.day = endDay.indexOfSelectedItem + 1
-        
-        //Check for validity
-
         //Create a new show object using this information
         let show = Show.init(aName: showName.stringValue, aStartDate: (calendar?.dateFromComponents(startDateComponents))!, anEndDate: (calendar?.dateFromComponents(endDateComponents))!)
+        //Check for validity
+        var selectedShows = MasterScheduleObject.getSelectedShows()
+        if selectedShows.count == 0 {selectedShows.append(show)}
+        let isValidShow = ErrorChecker().checkShowValidity(show, aShowStatus: getWindowStatus(), selectedShows: selectedShows)
+        
+        if isValidShow == true {
         //Depending on the state of the isAutomated button...
         if isAutomated.state == 0 {
             //Add it to the MasterScheduleObject or
@@ -120,7 +123,7 @@ class ShowWindow: NSObject {
                 
             }
         }
-       
+        }
         
     }
     

@@ -20,6 +20,7 @@
 		C08372AA1CE62EAA0046F231 /* MasterScheduleWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08372A91CE62EAA0046F231 /* MasterScheduleWindow.swift */; };
 		C09D9F521CE7B615009458FC /* CustomDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09D9F511CE7B615009458FC /* CustomDatePicker.swift */; };
 		C09D9F561CE7ECBE009458FC /* ShowStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09D9F551CE7ECBE009458FC /* ShowStatus.swift */; };
+		C09D9F5B1CE95954009458FC /* ErrorChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09D9F5A1CE95954009458FC /* ErrorChecker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		C08372A91CE62EAA0046F231 /* MasterScheduleWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterScheduleWindow.swift; sourceTree = "<group>"; };
 		C09D9F511CE7B615009458FC /* CustomDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDatePicker.swift; sourceTree = "<group>"; };
 		C09D9F551CE7ECBE009458FC /* ShowStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowStatus.swift; sourceTree = "<group>"; };
+		C09D9F5A1CE95954009458FC /* ErrorChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorChecker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,13 +111,13 @@
 		C04616A21CE43542004E1B38 /* Automated DJ */ = {
 			isa = PBXGroup;
 			children = (
+				C09D9F571CE93D8C009458FC /* Custom UI */,
 				C04616A31CE43542004E1B38 /* AppDelegate.swift */,
-				C08372A91CE62EAA0046F231 /* MasterScheduleWindow.swift */,
+				C04616D01CE436B9004E1B38 /* ShowWindow.swift */,
+				C09D9F5A1CE95954009458FC /* ErrorChecker.swift */,
 				C09D9F551CE7ECBE009458FC /* ShowStatus.swift */,
 				C04616CC1CE436A7004E1B38 /* MasterSchedule.swift */,
-				C04616D01CE436B9004E1B38 /* ShowWindow.swift */,
 				C04616CE1CE436AF004E1B38 /* Show.swift */,
-				C09D9F511CE7B615009458FC /* CustomDatePicker.swift */,
 				C04616D21CE436CD004E1B38 /* Automator.swift */,
 				C04616D41CE436D7004E1B38 /* AutomatorWindow.swift */,
 				C04616A51CE43542004E1B38 /* Assets.xcassets */,
@@ -141,6 +143,15 @@
 				C04616C01CE43542004E1B38 /* Info.plist */,
 			);
 			path = "Automated DJUITests";
+			sourceTree = "<group>";
+		};
+		C09D9F571CE93D8C009458FC /* Custom UI */ = {
+			isa = PBXGroup;
+			children = (
+				C08372A91CE62EAA0046F231 /* MasterScheduleWindow.swift */,
+				C09D9F511CE7B615009458FC /* CustomDatePicker.swift */,
+			);
+			name = "Custom UI";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,6 +288,7 @@
 				C09D9F561CE7ECBE009458FC /* ShowStatus.swift in Sources */,
 				C04616D11CE436B9004E1B38 /* ShowWindow.swift in Sources */,
 				C04616D31CE436CD004E1B38 /* Automator.swift in Sources */,
+				C09D9F5B1CE95954009458FC /* ErrorChecker.swift in Sources */,
 				C04616CF1CE436AF004E1B38 /* Show.swift in Sources */,
 				C04616CD1CE436A7004E1B38 /* MasterSchedule.swift in Sources */,
 				C04616D51CE436D7004E1B38 /* AutomatorWindow.swift in Sources */,

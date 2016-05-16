@@ -38,7 +38,7 @@
                 <outlet property="startTime" destination="r1O-a4-YH0" id="QOp-QN-7RU"/>
             </connections>
         </customObject>
-        <customObject id="o8a-iw-ZZb"/>
+        <customObject id="o8a-iw-ZZb" customClass="ErrorChecker" customModule="Automated_DJ" customModuleProvider="target"/>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
                 <menuItem title="Automated DJ" id="1Xt-HY-uBw">
