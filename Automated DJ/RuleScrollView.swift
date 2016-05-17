@@ -13,6 +13,7 @@ import Cocoa
 
 class RuleScrollView: NSObject {
     
+    @IBOutlet weak var AutomatorWindowObject: AutomatorWindow!
     @IBOutlet weak var predicateEditor: NSPredicateEditor!
     @IBOutlet weak var predicateEditorView: NSScrollView!
     @IBOutlet weak var automatorWindow: NSWindow!
@@ -44,17 +45,15 @@ class RuleScrollView: NSObject {
     
     func didRowsChange(notification: NSNotification){
         if predicateEditor.numberOfRows < 6 {
-            var windowFrame = automatorWindow.frame
-            windowFrame.size.height = 420 + CGFloat((predicateEditor.numberOfRows-1) * 25)
-            print(CGFloat((predicateEditor.numberOfRows-1) * 25))
-            windowFrame.origin.y = windowFrame.origin.y - CGFloat((predicateEditor.numberOfRows-1) * 25)
-            automatorWindow.setFrame(windowFrame, display: true, animate: true)
+            let aHeight = CGFloat((predicateEditor.numberOfRows) * 25)
+            AutomatorWindowObject.changeWindowSizeBy(aHeight)
+
             
-            var frame = predicateEditorView.frame
-            frame.size.height = CGFloat(predicateEditor.numberOfRows * 25)
-            //Const is one row height (25 in this case) added to the origin found in IB
-            frame.origin.y = 98 - CGFloat(predicateEditor.numberOfRows * 25)
-            predicateEditorView.frame = frame
+//            var frame = predicateEditorView.frame
+//            frame.size.height = CGFloat(predicateEditor.numberOfRows * 25)
+//            //Const is one row height (25 in this case) added to the origin found in IB
+//            frame.origin.y = 98 - CGFloat(predicateEditor.numberOfRows * 25)
+//            predicateEditorView.frame = frame
         }
     }
 }

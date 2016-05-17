@@ -156,9 +156,9 @@
 			isa = PBXGroup;
 			children = (
 				C09D9F601CEA7B6D009458FC /* RuleScrollView.swift */,
+				C04616D41CE436D7004E1B38 /* AutomatorWindow.swift */,
 				C04616CC1CE436A7004E1B38 /* MasterSchedule.swift */,
 				C04616D01CE436B9004E1B38 /* ShowWindow.swift */,
-				C04616D41CE436D7004E1B38 /* AutomatorWindow.swift */,
 			);
 			name = "UI Classes";
 			sourceTree = "<group>";
