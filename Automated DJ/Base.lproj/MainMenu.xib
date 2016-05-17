@@ -17,7 +17,6 @@
                 <outlet property="MasterScheduleObject" destination="uEM-xV-SIH" id="vZB-Wa-e9q"/>
                 <outlet property="RuleScrollViewObject" destination="osi-q6-9Jp" id="hPW-NQ-56M"/>
                 <outlet property="ShowWindowObject" destination="vLi-vE-d4F" id="dpV-RZ-lTu"/>
-                <outlet property="TestingClassObject" destination="osi-q6-9Jp" id="lL2-Zf-LA1"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
@@ -44,7 +43,6 @@
         <customObject id="osi-q6-9Jp" customClass="RuleScrollView" customModule="Automated_DJ" customModuleProvider="target">
             <connections>
                 <outlet property="AutomatorWindowObject" destination="7bL-4F-b7G" id="Naf-z8-Wsk"/>
-                <outlet property="automatorWindow" destination="hq7-sJ-C1m" id="GHB-I2-KYr"/>
                 <outlet property="predicateEditor" destination="iFI-VU-gq6" id="OGx-po-hJ2"/>
                 <outlet property="predicateEditorView" destination="VYg-fd-S3z" id="AzV-FV-AGA"/>
             </connections>
@@ -52,8 +50,6 @@
         <customObject id="7bL-4F-b7G" customClass="AutomatorWindow" customModule="Automated_DJ" customModuleProvider="target">
             <connections>
                 <outlet property="automatorWindow" destination="hq7-sJ-C1m" id="mVo-Y5-i4W"/>
-                <outlet property="cancelButton" destination="Yqr-Lu-lK9" id="Zf8-QR-sbp"/>
-                <outlet property="okButton" destination="ofe-VX-Re0" id="F21-kb-0dQ"/>
             </connections>
         </customObject>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
