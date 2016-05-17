@@ -20,14 +20,53 @@ class RuleScrollView: NSObject {
     @IBAction func Generate(sender: AnyObject) {
         print(predicateEditor.objectValue?.description)
     }
+    
     func initalize() {
-        let resultPredicate = NSPredicate(format: "firstName = '' ")
+    
+        let resultPredicate = NSPredicate(format: "Album = '' ")
+        let stringModifiers = [NSPredicateOperatorType.EqualToPredicateOperatorType.rawValue,NSPredicateOperatorType.NotEqualToPredicateOperatorType.rawValue,NSPredicateOperatorType.BeginsWithPredicateOperatorType.rawValue,NSPredicateOperatorType.EndsWithPredicateOperatorType.rawValue,NSPredicateOperatorType.ContainsPredicateOperatorType.rawValue]
+        let intModifiers = [NSPredicateOperatorType.EqualToPredicateOperatorType.rawValue,NSPredicateOperatorType.NotEqualToPredicateOperatorType.rawValue,NSPredicateOperatorType.GreaterThanPredicateOperatorType.rawValue,NSPredicateOperatorType.LessThanPredicateOperatorType.rawValue]
         
-        let firstNameTimpleate = NSPredicateEditorRowTemplate.init(leftExpressions: [NSExpression.init(forKeyPath: "firstName")], rightExpressionAttributeType: NSAttributeType.StringAttributeType, modifier:  NSComparisonPredicateModifier.DirectPredicateModifier, operators: [NSPredicateOperatorType.EqualToPredicateOperatorType.rawValue,NSPredicateOperatorType .NotEqualToPredicateOperatorType.rawValue], options: 0)
         
-        let lastNameTimpleate = NSPredicateEditorRowTemplate.init(leftExpressions: [NSExpression.init(forKeyPath: "lastName")], rightExpressionAttributeType: NSAttributeType.StringAttributeType, modifier:  NSComparisonPredicateModifier.DirectPredicateModifier, operators: [NSPredicateOperatorType.EqualToPredicateOperatorType.rawValue,NSPredicateOperatorType .NotEqualToPredicateOperatorType.rawValue], options: 0)
+        let albumTemplate = NSPredicateEditorRowTemplate.init(leftExpressions: [NSExpression.init(forKeyPath: "Album")], rightExpressionAttributeType: NSAttributeType.StringAttributeType, modifier:  NSComparisonPredicateModifier.DirectPredicateModifier, operators: stringModifiers, options: 0)
         
-        let array = [firstNameTimpleate,lastNameTimpleate]
+        let albumArtistTemplate = NSPredicateEditorRowTemplate.init(leftExpressions: [NSExpression.init(forKeyPath: "Album Artist")], rightExpressionAttributeType: NSAttributeType.StringAttributeType, modifier:  NSComparisonPredicateModifier.DirectPredicateModifier, operators: stringModifiers, options: 0)
+        
+        let artistTemplate = NSPredicateEditorRowTemplate.init(leftExpressions: [NSExpression.init(forKeyPath: "Artist")], rightExpressionAttributeType: NSAttributeType.StringAttributeType, modifier:  NSComparisonPredicateModifier.DirectPredicateModifier, operators: stringModifiers, options: 0)
+        
+        let categoryTemplate = NSPredicateEditorRowTemplate.init(leftExpressions: [NSExpression.init(forKeyPath: "Category")], rightExpressionAttributeType: NSAttributeType.StringAttributeType, modifier:  NSComparisonPredicateModifier.DirectPredicateModifier, operators: stringModifiers, options: 0)
+        
+        let commentsTemplate = NSPredicateEditorRowTemplate.init(leftExpressions: [NSExpression.init(forKeyPath: "Comments")], rightExpressionAttributeType: NSAttributeType.StringAttributeType, modifier:  NSComparisonPredicateModifier.DirectPredicateModifier, operators: stringModifiers, options: 0)
+        
+        let composerTemplate = NSPredicateEditorRowTemplate.init(leftExpressions: [NSExpression.init(forKeyPath: "Composer")], rightExpressionAttributeType: NSAttributeType.StringAttributeType, modifier:  NSComparisonPredicateModifier.DirectPredicateModifier, operators: stringModifiers, options: 0)
+        
+        let descriptionTemplate = NSPredicateEditorRowTemplate.init(leftExpressions: [NSExpression.init(forKeyPath: "Description")], rightExpressionAttributeType: NSAttributeType.StringAttributeType, modifier:  NSComparisonPredicateModifier.DirectPredicateModifier, operators: stringModifiers, options: 0)
+        
+        let genreTemplate = NSPredicateEditorRowTemplate.init(leftExpressions: [NSExpression.init(forKeyPath: "Genre")], rightExpressionAttributeType: NSAttributeType.StringAttributeType, modifier:  NSComparisonPredicateModifier.DirectPredicateModifier, operators: stringModifiers, options: 0)
+        
+        let groupingTemplate = NSPredicateEditorRowTemplate.init(leftExpressions: [NSExpression.init(forKeyPath: "Grouping")], rightExpressionAttributeType: NSAttributeType.StringAttributeType, modifier:  NSComparisonPredicateModifier.DirectPredicateModifier, operators: stringModifiers, options: 0)
+        
+        let kindTemplate = NSPredicateEditorRowTemplate.init(leftExpressions: [NSExpression.init(forKeyPath: "Kind")], rightExpressionAttributeType: NSAttributeType.StringAttributeType, modifier:  NSComparisonPredicateModifier.DirectPredicateModifier, operators: stringModifiers, options: 0)
+    
+        let nameTemplate = NSPredicateEditorRowTemplate.init(leftExpressions: [NSExpression.init(forKeyPath: "Name")], rightExpressionAttributeType: NSAttributeType.StringAttributeType, modifier:  NSComparisonPredicateModifier.DirectPredicateModifier, operators: stringModifiers, options: 0)
+        
+        let sortAlbumTemplate = NSPredicateEditorRowTemplate.init(leftExpressions: [NSExpression.init(forKeyPath: "Sort Album")], rightExpressionAttributeType: NSAttributeType.StringAttributeType, modifier:  NSComparisonPredicateModifier.DirectPredicateModifier, operators: stringModifiers, options: 0)
+        
+        let sortAlbumArtistTemplate = NSPredicateEditorRowTemplate.init(leftExpressions: [NSExpression.init(forKeyPath: "Sort Album Artist")], rightExpressionAttributeType: NSAttributeType.StringAttributeType, modifier:  NSComparisonPredicateModifier.DirectPredicateModifier, operators: stringModifiers, options: 0)
+        
+        let sortArtistTemplate = NSPredicateEditorRowTemplate.init(leftExpressions: [NSExpression.init(forKeyPath: "Sort Artist")], rightExpressionAttributeType: NSAttributeType.StringAttributeType, modifier:  NSComparisonPredicateModifier.DirectPredicateModifier, operators: stringModifiers, options: 0)
+        
+        let sortComposerTemplate = NSPredicateEditorRowTemplate.init(leftExpressions: [NSExpression.init(forKeyPath: "Sort Composer")], rightExpressionAttributeType: NSAttributeType.StringAttributeType, modifier:  NSComparisonPredicateModifier.DirectPredicateModifier, operators: stringModifiers, options: 0)
+        
+        let sortNameTemplate = NSPredicateEditorRowTemplate.init(leftExpressions: [NSExpression.init(forKeyPath: "Sort Name")], rightExpressionAttributeType: NSAttributeType.StringAttributeType, modifier:  NSComparisonPredicateModifier.DirectPredicateModifier, operators: stringModifiers, options: 0)
+        
+        let playsTemplate = NSPredicateEditorRowTemplate.init(leftExpressions: [NSExpression.init(forKeyPath: "Plays")], rightExpressionAttributeType: NSAttributeType.Integer64AttributeType, modifier:  NSComparisonPredicateModifier.DirectPredicateModifier, operators: intModifiers, options: 0)
+        
+        let timeTemplate = NSPredicateEditorRowTemplate.init(leftExpressions: [NSExpression.init(forKeyPath: "Time")], rightExpressionAttributeType: NSAttributeType.Integer64AttributeType, modifier:  NSComparisonPredicateModifier.DirectPredicateModifier, operators: intModifiers, options: 0)
+        
+        let yearTemplate = NSPredicateEditorRowTemplate.init(leftExpressions: [NSExpression.init(forKeyPath: "Year")], rightExpressionAttributeType: NSAttributeType.Integer64AttributeType, modifier:  NSComparisonPredicateModifier.DirectPredicateModifier, operators: intModifiers, options: 0)
+        
+        let array = [albumTemplate,albumArtistTemplate,artistTemplate,categoryTemplate,commentsTemplate,composerTemplate,descriptionTemplate,genreTemplate,groupingTemplate,kindTemplate,nameTemplate,playsTemplate,sortAlbumTemplate,sortAlbumArtistTemplate,sortArtistTemplate,sortComposerTemplate,sortNameTemplate,timeTemplate,yearTemplate]
                 
         predicateEditor.rowTemplates = array
         predicateEditor.objectValue = resultPredicate
