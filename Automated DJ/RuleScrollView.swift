@@ -41,19 +41,21 @@ class RuleScrollView: NSObject {
             name: NSRuleEditorRowsDidChangeNotification,
             object: nil)
         
+        //This is called because by default the window contains one row in the predicateEditor
+        AutomatorWindowObject.changeWindowSizeBy(25)
+        
     }
     
     func didRowsChange(notification: NSNotification){
         if predicateEditor.numberOfRows < 6 {
+            var frame = predicateEditorView.frame
+            frame.size.height = CGFloat(predicateEditor.numberOfRows * 25)
+            //Const is one row height (25 in this case) added to the origin found in IB
+            //frame.origin.y = 93 - CGFloat(predicateEditor.numberOfRows * 25)
+            predicateEditorView.frame = frame
+            
             let aHeight = CGFloat((predicateEditor.numberOfRows) * 25)
             AutomatorWindowObject.changeWindowSizeBy(aHeight)
-
-            
-//            var frame = predicateEditorView.frame
-//            frame.size.height = CGFloat(predicateEditor.numberOfRows * 25)
-//            //Const is one row height (25 in this case) added to the origin found in IB
-//            frame.origin.y = 98 - CGFloat(predicateEditor.numberOfRows * 25)
-//            predicateEditorView.frame = frame
         }
     }
 }

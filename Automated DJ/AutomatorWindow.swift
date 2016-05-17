@@ -15,7 +15,8 @@ class AutomatorWindow: NSObject {
     
     func changeWindowSizeBy(aHeight: CGFloat){
         var windowFrame = automatorWindow.frame
-        windowFrame.size.height = 420 + aHeight
+        windowFrame.size.height = 415 + aHeight
+        print(windowFrame.size.height)
         
         //If true, window is shrinking
         if (automatorWindow.frame.size.height - windowFrame.size.height) > 0 {
@@ -28,9 +29,8 @@ class AutomatorWindow: NSObject {
             windowFrame.origin.y = windowFrame.origin.y - 25
         }
  
-        
-
-        automatorWindow.setFrame(windowFrame, display: true, animate: true)
+        automatorWindow.setFrame(windowFrame, display: true, animate: false)
     }
+    
     
 }

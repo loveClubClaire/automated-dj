@@ -52,6 +52,8 @@
         <customObject id="7bL-4F-b7G" customClass="AutomatorWindow" customModule="Automated_DJ" customModuleProvider="target">
             <connections>
                 <outlet property="automatorWindow" destination="hq7-sJ-C1m" id="mVo-Y5-i4W"/>
+                <outlet property="cancelButton" destination="Yqr-Lu-lK9" id="Zf8-QR-sbp"/>
+                <outlet property="okButton" destination="ofe-VX-Re0" id="F21-kb-0dQ"/>
             </connections>
         </customObject>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
@@ -1057,14 +1059,14 @@ Gw
         <window title="Automator Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="hq7-sJ-C1m">
             <windowStyleMask key="styleMask" titled="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="0.0" y="0.0" width="495" height="420"/>
+            <rect key="contentRect" x="0.0" y="0.0" width="496" height="415"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="sUT-4g-aY1">
-                <rect key="frame" x="0.0" y="0.0" width="495" height="420"/>
+                <rect key="frame" x="0.0" y="0.0" width="496" height="415"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BJe-Ha-ghu">
-                        <rect key="frame" x="95" y="383" width="71" height="17"/>
+                        <rect key="frame" x="95" y="378" width="71" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Total Time:" id="h2A-7e-byb">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1072,7 +1074,7 @@ Gw
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IdW-bt-wcp">
-                        <rect key="frame" x="95" y="353" width="133" height="17"/>
+                        <rect key="frame" x="95" y="348" width="133" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Tier One Precentage:" id="2fi-Se-VvQ">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1080,7 +1082,7 @@ Gw
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ndt-z8-G5W">
-                        <rect key="frame" x="95" y="323" width="133" height="17"/>
+                        <rect key="frame" x="95" y="318" width="133" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Tier Two Precentage:" id="DDf-eG-ULX">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1088,7 +1090,7 @@ Gw
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8pm-0f-sBe">
-                        <rect key="frame" x="95" y="293" width="143" height="17"/>
+                        <rect key="frame" x="95" y="288" width="143" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Tier Three Precentage:" id="Yh2-x1-FXD">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1096,7 +1098,7 @@ Gw
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vw2-G8-EC2">
-                        <rect key="frame" x="277" y="378" width="96" height="22"/>
+                        <rect key="frame" x="277" y="373" width="96" height="22"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="oy4-cC-vT5">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="Tav-sy-KfS"/>
                             <font key="font" metaFont="system"/>
@@ -1105,7 +1107,7 @@ Gw
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sqB-PA-ZY9">
-                        <rect key="frame" x="277" y="348" width="96" height="22"/>
+                        <rect key="frame" x="277" y="343" width="96" height="22"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="0kI-Lb-Pj2">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="XbI-Px-RT2"/>
                             <font key="font" metaFont="system"/>
@@ -1114,7 +1116,7 @@ Gw
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Ie-HF-iaM">
-                        <rect key="frame" x="277" y="318" width="96" height="22"/>
+                        <rect key="frame" x="277" y="313" width="96" height="22"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="4oc-Gg-SMH">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="Mj7-uu-1pY"/>
                             <font key="font" metaFont="system"/>
@@ -1123,7 +1125,7 @@ Gw
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Sf-vo-GYn">
-                        <rect key="frame" x="277" y="288" width="96" height="22"/>
+                        <rect key="frame" x="277" y="283" width="96" height="22"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="XCf-WC-Ibj">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="ybj-wy-cGd"/>
                             <font key="font" metaFont="system"/>
@@ -1132,7 +1134,7 @@ Gw
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZNw-1I-rba">
-                        <rect key="frame" x="95" y="139" width="146" height="17"/>
+                        <rect key="frame" x="95" y="134" width="146" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Songs Between Blocks:" id="FqK-U1-3ra">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1140,27 +1142,27 @@ Gw
                         </textFieldCell>
                     </textField>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7rO-EN-b31">
-                        <rect key="frame" x="95" y="252" width="100" height="18"/>
+                        <rect key="frame" x="95" y="247" width="100" height="18"/>
                         <buttonCell key="cell" type="check" title="Seed Playlist" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="DzF-dU-OPy">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Im5-7f-bHJ">
-                        <rect key="frame" x="95" y="211" width="123" height="18"/>
+                        <rect key="frame" x="95" y="206" width="123" height="18"/>
                         <buttonCell key="cell" type="check" title="Bumpers Playlist" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="xbl-6k-WYu">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
                     <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="bdX-4V-jbX">
-                        <rect key="frame" x="20" y="280" width="463" height="5"/>
+                        <rect key="frame" x="20" y="275" width="463" height="5"/>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <font key="titleFont" metaFont="system"/>
                     </box>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Msw-DU-OVu">
-                        <rect key="frame" x="95" y="171" width="123" height="17"/>
+                        <rect key="frame" x="95" y="166" width="123" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Bumpers Per Block:" id="SCF-ov-nWN">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1168,7 +1170,7 @@ Gw
                         </textFieldCell>
                     </textField>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="piJ-Ps-mMp">
-                        <rect key="frame" x="275" y="209" width="125" height="26"/>
+                        <rect key="frame" x="275" y="204" width="125" height="26"/>
                         <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="lqA-Mb-XfR" id="j9k-Up-DRA">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
@@ -1182,7 +1184,7 @@ Gw
                         </popUpButtonCell>
                     </popUpButton>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U4t-NX-HEY">
-                        <rect key="frame" x="277" y="170" width="96" height="22"/>
+                        <rect key="frame" x="277" y="165" width="96" height="22"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="AcD-zx-t5U">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="NQ2-mQ-Nm7"/>
                             <font key="font" metaFont="system"/>
@@ -1191,7 +1193,7 @@ Gw
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bk7-xq-6E1">
-                        <rect key="frame" x="277" y="138" width="96" height="22"/>
+                        <rect key="frame" x="277" y="133" width="96" height="22"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Nwx-Lo-nVq">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="aCr-IC-8zs"/>
                             <font key="font" metaFont="system"/>
@@ -1200,13 +1202,13 @@ Gw
                         </textFieldCell>
                     </textField>
                     <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="WzT-LF-eTm">
-                        <rect key="frame" x="20" y="127" width="463" height="5"/>
+                        <rect key="frame" x="20" y="122" width="463" height="5"/>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <font key="titleFont" metaFont="system"/>
                     </box>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3bf-3N-wkn">
-                        <rect key="frame" x="275" y="250" width="125" height="26"/>
+                        <rect key="frame" x="275" y="245" width="125" height="26"/>
                         <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="b1o-d2-KCN" id="MRy-Bg-Xpj">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
@@ -1220,14 +1222,14 @@ Gw
                         </popUpButtonCell>
                     </popUpButton>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Gd-v9-2Cm">
-                        <rect key="frame" x="18" y="105" width="60" height="18"/>
+                        <rect key="frame" x="18" y="100" width="60" height="18"/>
                         <buttonCell key="cell" type="check" title="Match" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Qc6-cr-Bbu">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LYG-jG-dJl">
-                        <rect key="frame" x="82" y="100" width="60" height="26"/>
+                        <rect key="frame" x="82" y="95" width="60" height="26"/>
                         <popUpButtonCell key="cell" type="push" title="All" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="VdZ-Mh-YPE" id="9Gm-GK-D7Q">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
@@ -1240,7 +1242,7 @@ Gw
                         </popUpButtonCell>
                     </popUpButton>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="loT-xA-9Fz">
-                        <rect key="frame" x="145" y="106" width="135" height="17"/>
+                        <rect key="frame" x="145" y="101" width="135" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="of the following rules:" id="cws-aw-65i">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1248,15 +1250,15 @@ Gw
                         </textFieldCell>
                     </textField>
                     <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="QwO-aC-kk5">
-                        <rect key="frame" x="30" y="96" width="443" height="5"/>
+                        <rect key="frame" x="30" y="91" width="443" height="5"/>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <font key="titleFont" metaFont="system"/>
                     </box>
                     <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VYg-fd-S3z">
-                        <rect key="frame" x="30" y="73" width="443" height="25"/>
+                        <rect key="frame" x="30" y="-32" width="443" height="125"/>
                         <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="D0L-k2-29f">
-                            <rect key="frame" x="0.0" y="0.0" width="443" height="25"/>
+                            <rect key="frame" x="0.0" y="0.0" width="443" height="125"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <predicateEditor verticalHuggingPriority="750" ambiguous="YES" nestingMode="compound" rowHeight="25" id="iFI-VU-gq6">
@@ -1276,8 +1278,8 @@ Gw
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ofe-VX-Re0">
-                        <rect key="frame" x="391" y="22" width="90" height="32"/>
+                    <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ofe-VX-Re0">
+                        <rect key="frame" x="392" y="13" width="90" height="32"/>
                         <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="vE7-fF-Dms">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -1286,8 +1288,8 @@ DQ
 </string>
                         </buttonCell>
                     </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yqr-Lu-lK9">
-                        <rect key="frame" x="301" y="22" width="90" height="32"/>
+                    <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yqr-Lu-lK9">
+                        <rect key="frame" x="302" y="13" width="90" height="32"/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Fen-sf-oc3">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -1297,8 +1299,12 @@ Gw
                         </buttonCell>
                     </button>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="ofe-VX-Re0" firstAttribute="bottom" secondItem="sUT-4g-aY1" secondAttribute="bottom" constant="-27" id="0ao-ee-GrS"/>
+                    <constraint firstItem="Yqr-Lu-lK9" firstAttribute="bottom" secondItem="sUT-4g-aY1" secondAttribute="bottom" constant="-27" id="7tA-WW-Md5"/>
+                </constraints>
             </view>
-            <point key="canvasLocation" x="279.5" y="43"/>
+            <point key="canvasLocation" x="165" y="56.5"/>
         </window>
         <menu id="EdZ-DC-4Wx">
             <items>
