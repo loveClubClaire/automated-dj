@@ -36,6 +36,28 @@ class GloablAnnouncements: NSObject, NSTableViewDataSource, NSTableViewDelegate 
         addGlobalAnnouncementWindow.orderOut(self)
     }
     
+    func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+        let aTextView = NSTextView.init( NSFrameRect(NSRect.init(x: 0, y: 0, width: 597, height: 17)))
+        aTextView.string = dataArray[row]
+        return (17.0 * CGFloat(numOfLinesIn(aTextView)))
+    }
+    
+    func numOfLinesIn(aTextView: NSTextView) -> Int {
+        let layoutManager = aTextView.layoutManager
+        var numberOfLines = 0
+        var index = 0
+        var lineRange = NSRange()
+        let numberOfGlyphs = layoutManager!.numberOfGlyphs
+        
+        while index < numberOfGlyphs {
+            layoutManager!.lineFragmentRectForGlyphAtIndex(index, effectiveRange: &lineRange)
+            index = NSMaxRange(lineRange);
+            numberOfLines += 1
+        }
+
+        return numberOfLines
+    }
+    
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
         return dataArray.count
     }
