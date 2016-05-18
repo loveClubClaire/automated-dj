@@ -16,6 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var RuleScrollViewObject: RuleScrollView!
     var storedProgramsFilepath = ""
+    var storedAnnouncementsFilepath = ""
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         //Populate the Show Window drop down menus with the days of the week
@@ -31,12 +32,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             try! NSFileManager().createDirectoryAtPath(storedDataFilepath, withIntermediateDirectories:false, attributes: nil)
         }
         storedProgramsFilepath = storedDataFilepath + "/MasterSchedule.txt"
+        storedAnnouncementsFilepath = storedDataFilepath + "GlobalAnnouncements.txt"
         
         //Get the information stored in file at the storedProgramsFilepath. If its not empty (or non existant), set the data array to the reterived values and reload the tableview
         let shows = NSKeyedUnarchiver.unarchiveObjectWithFile(storedProgramsFilepath)
         if shows != nil {
             MasterScheduleObject.dataArray = shows as! [Show]
             MasterScheduleObject.tableView.reloadData()
+        }
+        
+        //Get the information stored in file at the storedAnnouncementsFilepath. If its not empty (or non existant), set the global annoucements data array to the reterived values and reload the tableview
+        let announcements = NSKeyedUnarchiver.unarchiveObjectWithFile(storedAnnouncementsFilepath)
+        if announcements != nil {
+            GlobalAnnouncementsObject.dataArray = announcements as! [String]
+            GlobalAnnouncementsObject.tableView.reloadData()
         }
         
         //Inatalizes things in the masterScheduleObject related to its UI. Check this function for more information.

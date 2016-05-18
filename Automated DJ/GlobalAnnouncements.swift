@@ -10,6 +10,7 @@ import Foundation
 import Cocoa
 
 class GloablAnnouncements: NSObject, NSTableViewDataSource, NSTableViewDelegate {
+    @IBOutlet weak var AppDelegateObject: AppDelegate!
     @IBOutlet weak var globalAnnouncementsWindow: NSWindow!
     @IBOutlet weak var addGlobalAnnouncementWindow: NSWindow!
     @IBOutlet var addGlobalAnnouncementText: NSTextView!
@@ -27,6 +28,7 @@ class GloablAnnouncements: NSObject, NSTableViewDataSource, NSTableViewDelegate 
     
     @IBAction func addAnnouncement(sender: AnyObject) {
         dataArray.append(addGlobalAnnouncementText.string!)
+        NSKeyedArchiver.archiveRootObject(dataArray, toFile: AppDelegateObject.storedAnnouncementsFilepath)
         tableView.reloadData()
         cancelNewAnnouncement(self)
     }
@@ -38,9 +40,8 @@ class GloablAnnouncements: NSObject, NSTableViewDataSource, NSTableViewDelegate 
     }
     
     func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-
+        //set the TextView (Which as the same width as the GlobalAnnouncements tableView cell) to the string at the given row in the data array. Then calculate how large the cell needs to be and retrun that value.
         settingTextView.string = dataArray[row]
-    
         return (17.0 * CGFloat(numOfLinesIn(settingTextView)))
     }
     
