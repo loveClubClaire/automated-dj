@@ -12,14 +12,12 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var ShowWindowObject: ShowWindow!
     @IBOutlet weak var MasterScheduleObject: MasterSchedule!
+    @IBOutlet weak var GlobalAnnouncementsObject: GloablAnnouncements!
 
     @IBOutlet weak var RuleScrollViewObject: RuleScrollView!
     var storedProgramsFilepath = ""
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        
-        RuleScrollViewObject.initalize()
-        
         //Populate the Show Window drop down menus with the days of the week
         let daysOfTheWeek = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
         ShowWindowObject.startDay.addItemsWithTitles(daysOfTheWeek)
@@ -43,6 +41,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         //Inatalizes things in the masterScheduleObject related to its UI. Check this function for more information.
         MasterScheduleObject.viewDidLoad()
+        
+        //Intalized the ruleScrollView object. Check this function for more information
+        RuleScrollViewObject.initalize()
+        
+        //Hides the gloablAnnouncementsToolbar and places its buttons on the same level as the quit button and title
+        GlobalAnnouncementsObject.globalAnnouncementsWindow.titleVisibility = NSWindowTitleVisibility.Hidden
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
