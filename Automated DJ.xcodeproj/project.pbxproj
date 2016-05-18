@@ -22,6 +22,7 @@
 		C09D9F561CE7ECBE009458FC /* ShowStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09D9F551CE7ECBE009458FC /* ShowStatus.swift */; };
 		C09D9F5B1CE95954009458FC /* ErrorChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09D9F5A1CE95954009458FC /* ErrorChecker.swift */; };
 		C09D9F611CEA7B6D009458FC /* RuleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09D9F601CEA7B6D009458FC /* RuleScrollView.swift */; };
+		C0DCCA4C1CEC14C60068533F /* GlobalAnnouncements.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DCCA4B1CEC14C60068533F /* GlobalAnnouncements.swift */; };
 		C0E88CA21CEBD27400BBA2B8 /* CustomPredicateEditorRowTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E88CA11CEBD27400BBA2B8 /* CustomPredicateEditorRowTemplate.swift */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +65,7 @@
 		C09D9F551CE7ECBE009458FC /* ShowStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowStatus.swift; sourceTree = "<group>"; };
 		C09D9F5A1CE95954009458FC /* ErrorChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorChecker.swift; sourceTree = "<group>"; };
 		C09D9F601CEA7B6D009458FC /* RuleScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleScrollView.swift; sourceTree = "<group>"; };
+		C0DCCA4B1CEC14C60068533F /* GlobalAnnouncements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalAnnouncements.swift; sourceTree = "<group>"; };
 		C0E88CA11CEBD27400BBA2B8 /* CustomPredicateEditorRowTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPredicateEditorRowTemplate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -161,6 +163,7 @@
 				C09D9F601CEA7B6D009458FC /* RuleScrollView.swift */,
 				C04616D41CE436D7004E1B38 /* AutomatorWindow.swift */,
 				C04616CC1CE436A7004E1B38 /* MasterSchedule.swift */,
+				C0DCCA4B1CEC14C60068533F /* GlobalAnnouncements.swift */,
 				C04616D01CE436B9004E1B38 /* ShowWindow.swift */,
 			);
 			name = "UI Classes";
@@ -313,6 +316,7 @@
 				C04616D31CE436CD004E1B38 /* Automator.swift in Sources */,
 				C09D9F5B1CE95954009458FC /* ErrorChecker.swift in Sources */,
 				C04616CF1CE436AF004E1B38 /* Show.swift in Sources */,
+				C0DCCA4C1CEC14C60068533F /* GlobalAnnouncements.swift in Sources */,
 				C04616CD1CE436A7004E1B38 /* MasterSchedule.swift in Sources */,
 				C04616D51CE436D7004E1B38 /* AutomatorWindow.swift in Sources */,
 				C04616A41CE43542004E1B38 /* AppDelegate.swift in Sources */,
