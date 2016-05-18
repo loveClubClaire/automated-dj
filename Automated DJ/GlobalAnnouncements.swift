@@ -14,6 +14,7 @@ class GloablAnnouncements: NSObject, NSTableViewDataSource, NSTableViewDelegate 
     @IBOutlet weak var addGlobalAnnouncementWindow: NSWindow!
     @IBOutlet var addGlobalAnnouncementText: NSTextView!
     @IBOutlet weak var tableView: NSTableView!
+    @IBOutlet var settingTextView: NSTextView!
     
     var dataArray = [String]()
     
@@ -38,9 +39,9 @@ class GloablAnnouncements: NSObject, NSTableViewDataSource, NSTableViewDelegate 
     
     func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
 
-        addGlobalAnnouncementText.string = dataArray[row]
+        settingTextView.string = dataArray[row]
     
-        return (17.0 * CGFloat(numOfLinesIn(addGlobalAnnouncementText)))
+        return (17.0 * CGFloat(numOfLinesIn(settingTextView)))
     }
     
     func numOfLinesIn(aTextView: NSTextView) -> Int {

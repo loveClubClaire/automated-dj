@@ -58,6 +58,7 @@
                 <outlet property="addGlobalAnnouncementText" destination="uyp-Bd-WTO" id="hLk-8q-Ssv"/>
                 <outlet property="addGlobalAnnouncementWindow" destination="ram-yi-uF9" id="Ai5-0Q-jYh"/>
                 <outlet property="globalAnnouncementsWindow" destination="U6T-JL-RDx" id="tiO-HJ-cQK"/>
+                <outlet property="settingTextView" destination="x7e-R7-GMs" id="fdC-tS-YXJ"/>
                 <outlet property="tableView" destination="hU3-pI-tnk" id="wWJ-YE-7Vu"/>
             </connections>
         </customObject>
@@ -1161,7 +1162,7 @@ Gw
                         </buttonCell>
                     </button>
                     <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="bdX-4V-jbX">
-                        <rect key="frame" x="20" y="275" width="463" height="5"/>
+                        <rect key="frame" x="20" y="275" width="463" height="4"/>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <font key="titleFont" metaFont="system"/>
@@ -1207,7 +1208,7 @@ Gw
                         </textFieldCell>
                     </textField>
                     <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="WzT-LF-eTm">
-                        <rect key="frame" x="20" y="122" width="463" height="5"/>
+                        <rect key="frame" x="20" y="122" width="463" height="4"/>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <font key="titleFont" metaFont="system"/>
@@ -1369,19 +1370,15 @@ Gw
                                                     <rect key="frame" x="1" y="1" width="597" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="BfL-Ou-vur">
-                                                            <rect key="frame" x="1" y="0.0" width="97" height="17"/>
-                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="zlt-3y-rYS">
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BfL-Ou-vur">
+                                                            <rect key="frame" x="1" y="-273" width="595" height="290"/>
+                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Table View Cell" id="zlt-3y-rYS">
                                                                 <font key="font" metaFont="system"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
                                                     </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="BfL-Ou-vur" firstAttribute="leading" secondItem="hZc-Er-ofy" secondAttribute="leading" constant="3" id="Dpy-Qg-i2y"/>
-                                                        <constraint firstItem="BfL-Ou-vur" firstAttribute="centerY" secondItem="hZc-Er-ofy" secondAttribute="centerY" id="R0C-Vp-tc7"/>
-                                                    </constraints>
                                                     <connections>
                                                         <outlet property="textField" destination="BfL-Ou-vur" id="i6Z-Td-xjG"/>
                                                     </connections>
@@ -1410,6 +1407,40 @@ Gw
             </view>
             <toolbar key="toolbar" implicitIdentifier="C1BEA8E4-CD72-4BE6-90FE-AADF656356E2" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconOnly" sizeMode="regular" id="NX4-KT-RZQ">
                 <allowedToolbarItems>
+                    <toolbarItem implicitItemIdentifier="99467C5A-838A-46E5-9F2C-400B240ECD42" label="Custom View" paletteLabel="Custom View" tag="-1" id="zFj-mq-lGP">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="240" height="135"/>
+                        <size key="maxSize" width="595" height="135"/>
+                        <scrollView key="view" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="dhg-Re-Oa3">
+                            <rect key="frame" x="0.0" y="14" width="595" height="135"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <clipView key="contentView" id="nu0-9Y-ktB">
+                                <rect key="frame" x="1" y="1" width="593" height="133"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <textView importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="x7e-R7-GMs">
+                                        <rect key="frame" x="0.0" y="0.0" width="593" height="133"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <size key="minSize" width="593" height="133"/>
+                                        <size key="maxSize" width="595" height="10000000"/>
+                                        <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <size key="minSize" width="593" height="133"/>
+                                        <size key="maxSize" width="595" height="10000000"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </clipView>
+                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="ZE7-bp-MHl">
+                                <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </scroller>
+                            <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="LWM-Vf-7m0">
+                                <rect key="frame" x="578" y="1" width="16" height="133"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </scroller>
+                        </scrollView>
+                    </toolbarItem>
                     <toolbarItem implicitItemIdentifier="NSToolbarShowColorsItem" id="HVj-Vf-PSd"/>
                     <toolbarItem implicitItemIdentifier="NSToolbarShowFontsItem" id="icF-Yw-Yzx"/>
                     <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="ovA-my-0Bp"/>
