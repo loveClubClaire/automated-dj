@@ -37,9 +37,10 @@ class GloablAnnouncements: NSObject, NSTableViewDataSource, NSTableViewDelegate 
     }
     
     func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        let aTextView = NSTextView.init( NSFrameRect(NSRect.init(x: 0, y: 0, width: 597, height: 17)))
-        aTextView.string = dataArray[row]
-        return (17.0 * CGFloat(numOfLinesIn(aTextView)))
+
+        addGlobalAnnouncementText.string = dataArray[row]
+    
+        return (17.0 * CGFloat(numOfLinesIn(addGlobalAnnouncementText)))
     }
     
     func numOfLinesIn(aTextView: NSTextView) -> Int {
@@ -54,7 +55,8 @@ class GloablAnnouncements: NSObject, NSTableViewDataSource, NSTableViewDelegate 
             index = NSMaxRange(lineRange);
             numberOfLines += 1
         }
-
+        print(numberOfLines)
+        if numberOfLines == 0 {return 1}
         return numberOfLines
     }
     
