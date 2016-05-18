@@ -11,8 +11,30 @@ import Cocoa
 
 class GloablAnnouncements: NSObject, NSTableViewDataSource, NSTableViewDelegate {
     @IBOutlet weak var globalAnnouncementsWindow: NSWindow!
+    @IBOutlet weak var addGlobalAnnouncementWindow: NSWindow!
+    @IBOutlet var addGlobalAnnouncementText: NSTextView!
+    @IBOutlet weak var tableView: NSTableView!
     
     var dataArray = [String]()
+    
+    @IBAction func spawnNewAnnouncementWindow(sender: AnyObject) {
+        addGlobalAnnouncementWindow.title = "New Announcement"
+        addGlobalAnnouncementWindow.center()
+        addGlobalAnnouncementWindow.makeKeyAndOrderFront(self)
+        NSApp.runModalForWindow(addGlobalAnnouncementWindow)
+    }
+    
+    @IBAction func addAnnouncement(sender: AnyObject) {
+        dataArray.append(addGlobalAnnouncementText.string!)
+        tableView.reloadData()
+        cancelNewAnnouncement(self)
+    }
+    
+    @IBAction func cancelNewAnnouncement(sender: AnyObject) {
+        addGlobalAnnouncementText.string = ""
+        NSApp.stopModal()
+        addGlobalAnnouncementWindow.orderOut(self)
+    }
     
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
         return dataArray.count
