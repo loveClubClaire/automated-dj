@@ -909,6 +909,9 @@
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
                         </button>
+                        <connections>
+                            <action selector="loadSchedule:" target="uEM-xV-SIH" id="5Oa-TW-rLW"/>
+                        </connections>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="0718C804-B48F-41DE-A541-DDA9832CB94A" label="SaveSchedule" paletteLabel="SaveSchedule" id="OtJ-OS-wNJ">
                         <nil key="toolTip"/>
@@ -922,6 +925,9 @@
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
                         </button>
+                        <connections>
+                            <action selector="saveSchedule:" target="uEM-xV-SIH" id="jKR-HX-WOh"/>
+                        </connections>
                     </toolbarItem>
                 </allowedToolbarItems>
                 <defaultToolbarItems>

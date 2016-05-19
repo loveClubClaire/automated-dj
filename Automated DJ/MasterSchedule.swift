@@ -160,6 +160,40 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
         return selectedShowsArray
     }
     
+    @IBAction func saveSchedule(sender: AnyObject) {
+        let savePanel = NSSavePanel()
+        let result = savePanel.runModal()
+        if result == NSFileHandlingPanelOKButton {
+            var filepath = savePanel.URL?.path
+            filepath = filepath! + ".adjs"
+            NSKeyedArchiver.archiveRootObject(dataArray, toFile: filepath!)
+        }
+    }
+    
+    @IBAction func loadSchedule(sender: AnyObject) {
+        let myPopup: NSAlert = NSAlert()
+        myPopup.messageText = "All unsaved scheduler data will be lost"
+        myPopup.informativeText = "Are you sure you want to continue?"
+        myPopup.alertStyle = NSAlertStyle.CriticalAlertStyle
+        myPopup.addButtonWithTitle("OK")
+        myPopup.addButtonWithTitle("Cancel")
+        let res = myPopup.runModal()
+        if res == NSAlertFirstButtonReturn {
+            let openPanel = NSOpenPanel()
+            openPanel.allowedFileTypes = ["adjs"]
+            openPanel.allowsMultipleSelection = false
+            openPanel.canChooseDirectories = false
+            openPanel.canChooseFiles = true
+            let result = openPanel.runModal()
+            if result == NSFileHandlingPanelOKButton {
+                let filepath = openPanel.URL?.path
+                dataArray = NSKeyedUnarchiver.unarchiveObjectWithFile(filepath!) as! [Show]
+                NSKeyedArchiver.archiveRootObject(dataArray, toFile: AppDelegateObject.storedProgramsFilepath)
+                tableView.reloadData()
+            }
+        }
+    }
+    
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
         return dataArray.count
     }
