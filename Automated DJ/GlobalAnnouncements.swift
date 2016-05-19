@@ -118,7 +118,6 @@ class GloablAnnouncements: NSObject, NSTableViewDataSource, NSTableViewDelegate 
             index = NSMaxRange(lineRange);
             numberOfLines += 1
         }
-        print(numberOfLines)
         if numberOfLines == 0 {return 1}
         return numberOfLines
     }

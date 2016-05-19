@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C00162ED1CEE332A009EE840 /* GlobalAnnouncementsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00162EC1CEE332A009EE840 /* GlobalAnnouncementsWindow.swift */; };
 		C04616A41CE43542004E1B38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04616A31CE43542004E1B38 /* AppDelegate.swift */; };
 		C04616A61CE43542004E1B38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C04616A51CE43542004E1B38 /* Assets.xcassets */; };
 		C04616A91CE43542004E1B38 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C04616A71CE43542004E1B38 /* MainMenu.xib */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C00162EC1CEE332A009EE840 /* GlobalAnnouncementsWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalAnnouncementsWindow.swift; sourceTree = "<group>"; };
 		C04616A01CE43542004E1B38 /* Automated DJ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Automated DJ.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C04616A31CE43542004E1B38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C04616A51CE43542004E1B38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 			children = (
 				C0E88CA11CEBD27400BBA2B8 /* CustomPredicateEditorRowTemplate.swift */,
 				C08372A91CE62EAA0046F231 /* MasterScheduleWindow.swift */,
+				C00162EC1CEE332A009EE840 /* GlobalAnnouncementsWindow.swift */,
 				C09D9F511CE7B615009458FC /* CustomDatePicker.swift */,
 			);
 			name = "Custom UI";
@@ -322,6 +325,7 @@
 				C04616A41CE43542004E1B38 /* AppDelegate.swift in Sources */,
 				C08372AA1CE62EAA0046F231 /* MasterScheduleWindow.swift in Sources */,
 				C09D9F611CEA7B6D009458FC /* RuleScrollView.swift in Sources */,
+				C00162ED1CEE332A009EE840 /* GlobalAnnouncementsWindow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

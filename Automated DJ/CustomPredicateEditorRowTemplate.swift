@@ -13,7 +13,7 @@ class CustomPredicateEditorRowTemplate: NSPredicateEditorRowTemplate {
     
     override var templateViews: [NSView]{
         get {
-            var views = super.templateViews
+            let views = super.templateViews
             print(views)
             return views
         }
