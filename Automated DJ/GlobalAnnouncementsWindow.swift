@@ -12,6 +12,7 @@ import Cocoa
 class GlobalAnnoucementsWindow: NSWindow {
     @IBOutlet weak var GlobalAnnouncementsObject: GloablAnnouncements!
     override func keyDown(anEvent: NSEvent) {
+        if GlobalAnnouncementsObject.isMutable == true {
         //get the key modifier flags, and use the bitwise and function to remove the machine specific bits. Leaving you with the unadulatrated modiferFlag
         let trueRawModiferFlag = anEvent.modifierFlags.rawValue & NSEventModifierFlags.DeviceIndependentModifierFlagsMask.rawValue
         
@@ -27,6 +28,10 @@ class GlobalAnnoucementsWindow: NSWindow {
             GlobalAnnouncementsObject.deleteAnnouncements(self)
         }
             //Else just do what would have been expected
+        else{
+            super.keyDown(anEvent)
+        }
+        }
         else{
             super.keyDown(anEvent)
         }

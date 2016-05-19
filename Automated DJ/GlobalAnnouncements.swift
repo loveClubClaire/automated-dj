@@ -16,8 +16,30 @@ class GloablAnnouncements: NSObject, NSTableViewDataSource, NSTableViewDelegate 
     @IBOutlet var addGlobalAnnouncementText: NSTextView!
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet var settingTextView: NSTextView!
+    @IBOutlet weak var addAnnouncementButton: NSToolbarItem!
+    @IBOutlet weak var editMenuItem: NSMenuItem!
+    @IBOutlet weak var deleteMenuItem: NSMenuItem!
+
     
+    var isMutable = false
     var dataArray = [String]()
+    
+    func spawnMutableGlobalAnnouncements(){
+        addAnnouncementButton.view?.hidden = false
+        editMenuItem.hidden = false; deleteMenuItem.hidden = false;
+        globalAnnouncementsWindow.center()
+        globalAnnouncementsWindow.makeKeyAndOrderFront(self)
+        isMutable = true
+    }
+    
+    func spawnImmutableGlobalAnnouncements(){
+        addAnnouncementButton.view?.hidden = true
+        editMenuItem.hidden = true; deleteMenuItem.hidden = true;
+        globalAnnouncementsWindow.center()
+        globalAnnouncementsWindow.makeKeyAndOrderFront(self)
+        isMutable = false
+    }
+    
     
     @IBAction func spawnNewAnnouncementWindow(sender: AnyObject) {
         addGlobalAnnouncementWindow.title = "New Announcement"
