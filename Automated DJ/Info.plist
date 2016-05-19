@@ -4,6 +4,27 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>Automated DJ Schedule</string>
+			<key>CFBundleTypeOSTypes</key>
+			<string>ADJS</string>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>adjs</string>
+			</array>
+			<key>CFBundleTypeMIMETypes</key>
+			<string>application/adjs</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>LSHandlerRank</key>
+	<string>Owner</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIconFile</key>

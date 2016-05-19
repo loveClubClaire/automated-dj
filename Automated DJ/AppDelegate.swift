@@ -61,6 +61,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
     }
-
+    
+    func application(sender: NSApplication, openFile filename: String) -> Bool {
+        var result = false;
+        let myPopup: NSAlert = NSAlert()
+        myPopup.messageText = "All unsaved scheduler data will be lost"
+        myPopup.informativeText = "Are you sure you want to continue?"
+        myPopup.alertStyle = NSAlertStyle.CriticalAlertStyle
+        myPopup.addButtonWithTitle("OK")
+        myPopup.addButtonWithTitle("Cancel")
+        let res = myPopup.runModal()
+        if res == NSAlertFirstButtonReturn {
+            MasterScheduleObject.dataArray = NSKeyedUnarchiver.unarchiveObjectWithFile(filename) as! [Show]
+            result = NSKeyedArchiver.archiveRootObject(MasterScheduleObject.dataArray, toFile: storedProgramsFilepath)
+            MasterScheduleObject.tableView.reloadData()
+        }
+        return result
+    }
 }
 
