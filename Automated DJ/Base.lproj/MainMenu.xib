@@ -16,6 +16,7 @@
             <connections>
                 <outlet property="GlobalAnnouncementsObject" destination="wyT-FT-Ij2" id="lCh-ez-6rF"/>
                 <outlet property="MasterScheduleObject" destination="uEM-xV-SIH" id="vZB-Wa-e9q"/>
+                <outlet property="PreferencesObject" destination="yDZ-1S-ELR" id="3GK-vN-SOC"/>
                 <outlet property="RuleScrollViewObject" destination="osi-q6-9Jp" id="hPW-NQ-56M"/>
                 <outlet property="ShowWindowObject" destination="vLi-vE-d4F" id="dpV-RZ-lTu"/>
             </connections>
@@ -68,10 +69,10 @@
         </customObject>
         <customObject id="yDZ-1S-ELR" customClass="Preferences" customModule="Automated_DJ" customModuleProvider="target">
             <connections>
-                <outlet property="advancedPreferencesView" destination="Nmm-ad-Bl4" id="77R-o8-Rbr"/>
-                <outlet property="defaultPreferencesView" destination="de8-ox-8Vy" id="rh3-91-MiI"/>
+                <outlet property="advancedPreferencesWindow" destination="JH5-kU-f0Y" id="5Om-Dt-I8I"/>
                 <outlet property="globalAnnouncementsDelayTextField" destination="eGZ-qR-8Cn" id="0H1-xK-oty"/>
                 <outlet property="isAdminButton" destination="qs7-SA-SaH" id="Cqx-50-8Uw"/>
+                <outlet property="preferencesToolbar" destination="2Vg-xe-VpN" id="Ob4-wu-9nB"/>
                 <outlet property="preferencesWindow" destination="Oqq-od-7Zb" id="75F-nv-hML"/>
                 <outlet property="testAutomatorButton" destination="2N5-VA-YI2" id="vFW-9K-nAO"/>
                 <outlet property="tollerenceTextField" destination="jIH-Pl-yxN" id="f5h-yW-rn3"/>
@@ -1598,17 +1599,17 @@ Gw
         </menu>
         <window title="Default Preferences Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="Oqq-od-7Zb">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="131" y="158" width="350" height="167"/>
+            <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="584" y="560" width="350" height="167"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
-            <value key="minSize" type="size" width="370" height="270"/>
-            <value key="maxSize" type="size" width="370" height="270"/>
+            <value key="minSize" type="size" width="350" height="167"/>
+            <value key="maxSize" type="size" width="350" height="167"/>
             <view key="contentView" id="de8-ox-8Vy">
                 <rect key="frame" x="0.0" y="0.0" width="350" height="167"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gxA-8V-sI1">
-                        <rect key="frame" x="26" y="128" width="183" height="17"/>
+                        <rect key="frame" x="18" y="130" width="183" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Global announcements delay:" id="FeD-VN-Of7">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1616,7 +1617,7 @@ Gw
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tsY-Pp-leA">
-                        <rect key="frame" x="271" y="128" width="57" height="17"/>
+                        <rect key="frame" x="263" y="130" width="57" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Seconds" id="sF2-Il-yHr">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1631,7 +1632,7 @@ Gw
                         </buttonCell>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a19-ef-YuP">
-                        <rect key="frame" x="209" y="92" width="105" height="32"/>
+                        <rect key="frame" x="201" y="94" width="105" height="32"/>
                         <buttonCell key="cell" type="push" title="Customize" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FpH-rX-60P">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -1641,7 +1642,7 @@ Gw
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RFa-ax-s8j">
-                        <rect key="frame" x="91" y="101" width="118" height="17"/>
+                        <rect key="frame" x="83" y="103" width="118" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Default automator:" id="Fc4-Oz-zCd">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1660,8 +1661,17 @@ Gw
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <font key="titleFont" metaFont="system"/>
                     </box>
+                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eGZ-qR-8Cn">
+                        <rect key="frame" x="207" y="127" width="50" height="22"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="R8l-Wx-ohk">
+                            <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="Eaf-b6-4t9"/>
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xm9-uI-dx4">
-                        <rect key="frame" x="254" y="13" width="90" height="32"/>
+                        <rect key="frame" x="246" y="13" width="90" height="32"/>
                         <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DyX-Dr-Qvo">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -1674,7 +1684,7 @@ DQ
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7qp-9d-P4b">
-                        <rect key="frame" x="164" y="13" width="90" height="32"/>
+                        <rect key="frame" x="156" y="13" width="90" height="32"/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OIc-Um-rVS">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -1683,44 +1693,43 @@ Gw
 </string>
                         </buttonCell>
                         <connections>
-                            <action selector="cancelButton:" target="yDZ-1S-ELR" id="KGM-6r-79A"/>
+                            <action selector="performClose:" target="Oqq-od-7Zb" id="mff-wy-XRX"/>
                         </connections>
                     </button>
-                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eGZ-qR-8Cn">
-                        <rect key="frame" x="215" y="125" width="50" height="22"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="R8l-Wx-ohk">
-                            <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="Eaf-b6-4t9"/>
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                 </subviews>
             </view>
-            <toolbar key="toolbar" implicitIdentifier="31CFA89A-104B-4386-AF90-A723FF5AF1C5" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="2Vg-xe-VpN">
+            <toolbar key="toolbar" implicitIdentifier="31CFA89A-104B-4386-AF90-A723FF5AF1C5" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconAndLabel" sizeMode="regular" id="2Vg-xe-VpN">
                 <allowedToolbarItems>
                     <toolbarItem implicitItemIdentifier="NSToolbarShowColorsItem" id="fgp-p4-ToZ"/>
                     <toolbarItem implicitItemIdentifier="NSToolbarShowFontsItem" id="Snw-Vx-Cra"/>
                     <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="sdI-mP-m0I"/>
                     <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="iw4-je-ePV"/>
                     <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="q08-re-50I"/>
-                    <toolbarItem implicitItemIdentifier="CBB90405-A412-4637-BB08-43618D40FF81" label="General" paletteLabel="General" tag="-1" image="NSPreferencesGeneral" id="ePl-C9-J7Z"/>
-                    <toolbarItem implicitItemIdentifier="4E50C5D0-8C32-467C-BA2B-A4CDBEA6B776" label="Advanced" paletteLabel="Advanced" tag="-1" image="NSAdvanced" id="xhO-Lx-ez0"/>
+                    <toolbarItem implicitItemIdentifier="CBB90405-A412-4637-BB08-43618D40FF81" explicitItemIdentifier="general" label="General" paletteLabel="General" tag="-1" image="NSPreferencesGeneral" selectable="YES" id="ePl-C9-J7Z">
+                        <connections>
+                            <action selector="generalPreferencesButton:" target="yDZ-1S-ELR" id="cz3-t7-Zap"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="4E50C5D0-8C32-467C-BA2B-A4CDBEA6B776" label="Advanced" paletteLabel="Advanced" tag="-1" image="NSAdvanced" selectable="YES" id="xhO-Lx-ez0">
+                        <connections>
+                            <action selector="advancedPrefernecesButton:" target="yDZ-1S-ELR" id="usL-8c-vPr"/>
+                        </connections>
+                    </toolbarItem>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
                     <toolbarItem reference="ePl-C9-J7Z"/>
                     <toolbarItem reference="xhO-Lx-ez0"/>
                 </defaultToolbarItems>
             </toolbar>
-            <point key="canvasLocation" x="224" y="-242.5"/>
+            <point key="canvasLocation" x="224" y="-246.5"/>
         </window>
-        <window title="Advanced Preferences Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="JH5-kU-f0Y">
+        <window title="Advanced Preferences Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="JH5-kU-f0Y">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="131" y="158" width="350" height="151"/>
+            <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="534" y="560" width="350" height="151"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
-            <value key="minSize" type="size" width="350" height="270"/>
-            <value key="maxSize" type="size" width="350" height="270"/>
+            <value key="minSize" type="size" width="350" height="151"/>
+            <value key="maxSize" type="size" width="350" height="151"/>
             <view key="contentView" id="Nmm-ad-Bl4">
                 <rect key="frame" x="0.0" y="0.0" width="350" height="151"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -1763,6 +1772,12 @@ Gw
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="ePl-qy-ntA">
+                        <rect key="frame" x="0.0" y="59" width="350" height="5"/>
+                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <font key="titleFont" metaFont="system"/>
+                    </box>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dMY-QW-dmh">
                         <rect key="frame" x="246" y="13" width="90" height="32"/>
                         <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="AxT-dz-ErB">
@@ -1789,12 +1804,6 @@ Gw
                             <action selector="cancelButton:" target="yDZ-1S-ELR" id="ePz-ub-YOB"/>
                         </connections>
                     </button>
-                    <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="ePl-qy-ntA">
-                        <rect key="frame" x="0.0" y="59" width="350" height="5"/>
-                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <font key="titleFont" metaFont="system"/>
-                    </box>
                 </subviews>
             </view>
             <point key="canvasLocation" x="224" y="-11.5"/>

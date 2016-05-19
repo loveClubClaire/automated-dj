@@ -13,6 +13,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var ShowWindowObject: ShowWindow!
     @IBOutlet weak var MasterScheduleObject: MasterSchedule!
     @IBOutlet weak var GlobalAnnouncementsObject: GloablAnnouncements!
+    @IBOutlet weak var PreferencesObject: Preferences!
 
     @IBOutlet weak var RuleScrollViewObject: RuleScrollView!
     var storedProgramsFilepath = ""
@@ -53,6 +54,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         //Intalized the ruleScrollView object. Check this function for more information
         RuleScrollViewObject.initalize()
+        
+        //Intalized the Preferences Object. Check this function for more information
+        PreferencesObject.initialize()
         
         //Hides the gloablAnnouncementsToolbar and places its buttons on the same level as the quit button and title
         GlobalAnnouncementsObject.globalAnnouncementsWindow.titleVisibility = NSWindowTitleVisibility.Hidden

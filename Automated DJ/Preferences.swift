@@ -10,20 +10,33 @@ import Foundation
 import Cocoa
 
 class Preferences: NSObject {
+    
+    
     @IBOutlet weak var preferencesWindow: NSWindow!
-    @IBOutlet weak var defaultPreferencesView: NSView!
-    @IBOutlet weak var advancedPreferencesView: NSView!
+    @IBOutlet weak var advancedPreferencesWindow: NSWindow!
     @IBOutlet weak var globalAnnouncementsDelayTextField: NSTextField!
     @IBOutlet weak var isAdminButton: NSButton!
     @IBOutlet weak var tollerenceTextField: NSTextField!
     @IBOutlet weak var testAutomatorButton: NSButton!
+    @IBOutlet weak var preferencesToolbar: NSToolbar!
 
+    var defaultPreferencesView: NSView!
+    var advancedPreferencesView: NSView!
+    
     private var tempAutomator: Automator = Automator()
     var defaultAutomator: Automator = Automator()
     var isAdmin = false
     var globalAnnouncementsDelay = 0
     var tollerence = 0
     var testAutomator = true
+    
+    //using custom initialize and not init because this is guaranteed to be called after application has finished launching and all of our outlets have sucessfully bound.
+    func initialize(){
+        defaultPreferencesView = preferencesWindow.contentView
+        advancedPreferencesView = advancedPreferencesWindow.contentView
+        preferencesWindow.title = "General"
+        preferencesToolbar.selectedItemIdentifier = "general"
+    }
     
     func spawnPreferencesWindow(){
         tempAutomator = defaultAutomator
@@ -33,6 +46,29 @@ class Preferences: NSObject {
     
     @IBAction func customizeDefaultAutomator(sender: AnyObject) {
         //Sets tempAutomator
+        print("TODO")
+    }
+    
+    @IBAction func generalPreferencesButton(sender: AnyObject) {
+        //preferencesWindow.contentView = NSView()
+        var tempFrame = preferencesWindow.frame
+        tempFrame.origin.y += tempFrame.size.height
+        tempFrame.origin.y -= 242
+        tempFrame.size.height = 242
+        preferencesWindow.setFrame(tempFrame, display: true, animate: true)
+        preferencesWindow.title = "General"
+        preferencesWindow.contentView = defaultPreferencesView
+    }
+    
+    @IBAction func advancedPrefernecesButton(sender: AnyObject) {
+        //preferencesWindow.contentView = NSView()
+        var tempFrame = preferencesWindow.frame
+        tempFrame.origin.y += tempFrame.size.height
+        tempFrame.origin.y -= 226
+        tempFrame.size.height = 226
+        preferencesWindow.setFrame(tempFrame, display: true, animate: true)
+        preferencesWindow.title = "Advanced"
+        preferencesWindow.contentView = advancedPreferencesView
     }
     
     @IBAction func okButton(sender: AnyObject) {
@@ -43,6 +79,9 @@ class Preferences: NSObject {
         else{testAutomator = false}
         globalAnnouncementsDelay = globalAnnouncementsDelayTextField.integerValue
         tollerence = tollerenceTextField.integerValue
+        
+        preferencesWindow.orderOut(self)
+        generalPreferencesButton(self)
     }
     
     @IBAction func cancelButton(sender: AnyObject) {
@@ -52,6 +91,9 @@ class Preferences: NSObject {
         else{testAutomatorButton.state = NSOffState}
         globalAnnouncementsDelayTextField.integerValue = globalAnnouncementsDelay
         tollerenceTextField.integerValue = tollerence
+        
+        preferencesWindow.orderOut(self)
+        generalPreferencesButton(self)
     }
 
     

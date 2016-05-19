@@ -27,5 +27,6 @@ class AutomatorWindow: NSObject {
         automatorWindow.setFrame(windowFrame, display: true, animate: false)
     }
     
+    //TODO on ok / cancel check to see if window was called by show object or preferences object, different actions will need to be taken depending
     
 }
