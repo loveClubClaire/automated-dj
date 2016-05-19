@@ -1163,7 +1163,7 @@ Gw
                         </buttonCell>
                     </button>
                     <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="bdX-4V-jbX">
-                        <rect key="frame" x="20" y="275" width="463" height="4"/>
+                        <rect key="frame" x="20" y="275" width="463" height="5"/>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <font key="titleFont" metaFont="system"/>
@@ -1347,7 +1347,7 @@ Gw
                             <rect key="frame" x="1" y="1" width="600" height="344"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="hU3-pI-tnk">
+                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnSelection="YES" columnResizing="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="hU3-pI-tnk">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="344"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
@@ -1390,6 +1390,7 @@ Gw
                                     <connections>
                                         <outlet property="dataSource" destination="wyT-FT-Ij2" id="lnr-5I-21O"/>
                                         <outlet property="delegate" destination="wyT-FT-Ij2" id="Smq-IM-wV1"/>
+                                        <outlet property="menu" destination="AuF-Eu-IOQ" id="Skq-cs-w2u"/>
                                     </connections>
                                 </tableView>
                             </subviews>
@@ -1486,9 +1487,12 @@ Gw
                     <toolbarItem reference="3UQ-P7-VrS"/>
                 </defaultToolbarItems>
             </toolbar>
+            <connections>
+                <outlet property="menu" destination="AuF-Eu-IOQ" id="N72-pO-QBm"/>
+            </connections>
             <point key="canvasLocation" x="309" y="318"/>
         </window>
-        <window title="Add Global Announcement" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="ram-yi-uF9">
+        <window title="Add Announcement" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="ram-yi-uF9">
             <windowStyleMask key="styleMask" titled="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="131" y="158" width="400" height="300"/>
@@ -1555,6 +1559,22 @@ Gw
             </view>
             <point key="canvasLocation" x="269" y="688"/>
         </window>
+        <menu title="GlobalAnnouncementsMenu" id="AuF-Eu-IOQ">
+            <items>
+                <menuItem title="Edit" keyEquivalent="e" id="eoa-y7-t4d">
+                    <connections>
+                        <action selector="editAnnouncement:" target="wyT-FT-Ij2" id="8RA-9p-ya8"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Delete" id="DKj-jC-rJY">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="deleteAnnouncements:" target="wyT-FT-Ij2" id="JG6-F9-avR"/>
+                    </connections>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="301.5" y="-457.5"/>
+        </menu>
     </objects>
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>
