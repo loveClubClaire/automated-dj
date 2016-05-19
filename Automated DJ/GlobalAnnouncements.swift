@@ -40,7 +40,6 @@ class GloablAnnouncements: NSObject, NSTableViewDataSource, NSTableViewDelegate 
         isMutable = false
     }
     
-    
     @IBAction func spawnNewAnnouncementWindow(sender: AnyObject) {
         addGlobalAnnouncementWindow.title = "New Announcement"
         addGlobalAnnouncementWindow.center()
@@ -77,6 +76,7 @@ class GloablAnnouncements: NSObject, NSTableViewDataSource, NSTableViewDelegate 
             selectedShowsMutable.addIndex(tableView.clickedRow)
             selectedShows = selectedShowsMutable
         }
+        //User can not edit more than one announcement at a time, so this precents this.
         if selectedShows.count > 1 {
             let myPopup: NSAlert = NSAlert()
             myPopup.messageText = "Can not edit multiple announcements"
@@ -140,6 +140,7 @@ class GloablAnnouncements: NSObject, NSTableViewDataSource, NSTableViewDelegate 
             index = NSMaxRange(lineRange);
             numberOfLines += 1
         }
+        //If number of lines is zero, return one because a textViewCell can not have a height of zero, that causes an exception to be thrown. And anyways, No text still requires a line of space to display that emptyness.
         if numberOfLines == 0 {return 1}
         return numberOfLines
     }
@@ -149,17 +150,12 @@ class GloablAnnouncements: NSObject, NSTableViewDataSource, NSTableViewDelegate 
     }
     
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        //Get the column identifer, the show for the current row, and create an cellView variable
+        //Get the announcement for the current row, and create an cellView variable
         let anAnnouncement = dataArray[row]
         let cellView = (tableView.makeViewWithIdentifier("announcementsCell", owner: nil) as? NSTableCellView)!
-        
+        //set the string value for the current row to its corresponding announcement
         cellView.textField?.stringValue = anAnnouncement
-        
         // return the populated NSTableCellView
         return cellView
-        
     }
-
-
-
 }
