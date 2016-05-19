@@ -73,7 +73,7 @@
                 <outlet property="globalAnnouncementsDelayTextField" destination="eGZ-qR-8Cn" id="0H1-xK-oty"/>
                 <outlet property="isAdminButton" destination="qs7-SA-SaH" id="Cqx-50-8Uw"/>
                 <outlet property="preferencesWindow" destination="Oqq-od-7Zb" id="75F-nv-hML"/>
-                <outlet property="testAdminButton" destination="2N5-VA-YI2" id="ePf-7u-Ff7"/>
+                <outlet property="testAutomatorButton" destination="2N5-VA-YI2" id="vFW-9K-nAO"/>
                 <outlet property="tollerenceTextField" destination="jIH-Pl-yxN" id="f5h-yW-rn3"/>
             </connections>
         </customObject>
