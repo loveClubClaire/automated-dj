@@ -23,6 +23,7 @@
 		C09D9F561CE7ECBE009458FC /* ShowStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09D9F551CE7ECBE009458FC /* ShowStatus.swift */; };
 		C09D9F5B1CE95954009458FC /* ErrorChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09D9F5A1CE95954009458FC /* ErrorChecker.swift */; };
 		C09D9F611CEA7B6D009458FC /* RuleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09D9F601CEA7B6D009458FC /* RuleScrollView.swift */; };
+		C0C43BEB1CEE734F00665376 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C43BEA1CEE734F00665376 /* Preferences.swift */; };
 		C0DCCA4C1CEC14C60068533F /* GlobalAnnouncements.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DCCA4B1CEC14C60068533F /* GlobalAnnouncements.swift */; };
 		C0E88CA21CEBD27400BBA2B8 /* CustomPredicateEditorRowTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E88CA11CEBD27400BBA2B8 /* CustomPredicateEditorRowTemplate.swift */; };
 /* End PBXBuildFile section */
@@ -67,6 +68,7 @@
 		C09D9F551CE7ECBE009458FC /* ShowStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowStatus.swift; sourceTree = "<group>"; };
 		C09D9F5A1CE95954009458FC /* ErrorChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorChecker.swift; sourceTree = "<group>"; };
 		C09D9F601CEA7B6D009458FC /* RuleScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleScrollView.swift; sourceTree = "<group>"; };
+		C0C43BEA1CEE734F00665376 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		C0DCCA4B1CEC14C60068533F /* GlobalAnnouncements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalAnnouncements.swift; sourceTree = "<group>"; };
 		C0E88CA11CEBD27400BBA2B8 /* CustomPredicateEditorRowTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPredicateEditorRowTemplate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -163,6 +165,7 @@
 		C09D9F5C1CE9C2E4009458FC /* UI Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C0C43BEA1CEE734F00665376 /* Preferences.swift */,
 				C0DCCA4B1CEC14C60068533F /* GlobalAnnouncements.swift */,
 				C04616CC1CE436A7004E1B38 /* MasterSchedule.swift */,
 				C04616D41CE436D7004E1B38 /* AutomatorWindow.swift */,
@@ -314,6 +317,7 @@
 			files = (
 				C0E88CA21CEBD27400BBA2B8 /* CustomPredicateEditorRowTemplate.swift in Sources */,
 				C09D9F521CE7B615009458FC /* CustomDatePicker.swift in Sources */,
+				C0C43BEB1CEE734F00665376 /* Preferences.swift in Sources */,
 				C09D9F561CE7ECBE009458FC /* ShowStatus.swift in Sources */,
 				C04616D11CE436B9004E1B38 /* ShowWindow.swift in Sources */,
 				C04616D31CE436CD004E1B38 /* Automator.swift in Sources */,

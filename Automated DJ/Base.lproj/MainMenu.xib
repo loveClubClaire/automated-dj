@@ -66,6 +66,17 @@
                 <outlet property="tableView" destination="hU3-pI-tnk" id="wWJ-YE-7Vu"/>
             </connections>
         </customObject>
+        <customObject id="yDZ-1S-ELR" customClass="Preferences" customModule="Automated_DJ" customModuleProvider="target">
+            <connections>
+                <outlet property="advancedPreferencesView" destination="Nmm-ad-Bl4" id="77R-o8-Rbr"/>
+                <outlet property="defaultPreferencesView" destination="de8-ox-8Vy" id="rh3-91-MiI"/>
+                <outlet property="globalAnnouncementsDelayTextField" destination="eGZ-qR-8Cn" id="0H1-xK-oty"/>
+                <outlet property="isAdminButton" destination="qs7-SA-SaH" id="Cqx-50-8Uw"/>
+                <outlet property="preferencesWindow" destination="Oqq-od-7Zb" id="75F-nv-hML"/>
+                <outlet property="testAdminButton" destination="2N5-VA-YI2" id="ePf-7u-Ff7"/>
+                <outlet property="tollerenceTextField" destination="jIH-Pl-yxN" id="f5h-yW-rn3"/>
+            </connections>
+        </customObject>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
                 <menuItem title="Automated DJ" id="1Xt-HY-uBw">
@@ -1614,7 +1625,7 @@ Gw
                     </textField>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qs7-SA-SaH">
                         <rect key="frame" x="18" y="68" width="223" height="18"/>
-                        <buttonCell key="cell" type="check" title="Require administrative privilages " bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="vgo-bc-xq4">
+                        <buttonCell key="cell" type="check" title="Require administrative privilages " bezelStyle="regularSquare" imagePosition="left" inset="2" id="vgo-bc-xq4">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -1625,6 +1636,9 @@ Gw
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="customizeDefaultAutomator:" target="yDZ-1S-ELR" id="Xls-WO-oYC"/>
+                        </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RFa-ax-s8j">
                         <rect key="frame" x="91" y="101" width="118" height="17"/>
@@ -1655,6 +1669,9 @@ Gw
 DQ
 </string>
                         </buttonCell>
+                        <connections>
+                            <action selector="okButton:" target="yDZ-1S-ELR" id="Ba0-DG-NUy"/>
+                        </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7qp-9d-P4b">
                         <rect key="frame" x="164" y="13" width="90" height="32"/>
@@ -1665,6 +1682,9 @@ DQ
 Gw
 </string>
                         </buttonCell>
+                        <connections>
+                            <action selector="cancelButton:" target="yDZ-1S-ELR" id="KGM-6r-79A"/>
+                        </connections>
                     </button>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eGZ-qR-8Cn">
                         <rect key="frame" x="215" y="125" width="50" height="22"/>
@@ -1752,6 +1772,9 @@ Gw
 DQ
 </string>
                         </buttonCell>
+                        <connections>
+                            <action selector="okButton:" target="yDZ-1S-ELR" id="Bjd-dv-v0u"/>
+                        </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6nW-JE-ETD">
                         <rect key="frame" x="156" y="13" width="90" height="32"/>
@@ -1762,6 +1785,9 @@ DQ
 Gw
 </string>
                         </buttonCell>
+                        <connections>
+                            <action selector="cancelButton:" target="yDZ-1S-ELR" id="ePz-ub-YOB"/>
+                        </connections>
                     </button>
                     <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="ePl-qy-ntA">
                         <rect key="frame" x="0.0" y="59" width="350" height="5"/>
