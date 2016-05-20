@@ -71,9 +71,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         else{
             PreferencesObject.setValuesWith([Automator(),false,240,240,true])
         }
-    
-        
-        PreferencesObject.spawnPreferencesWindow()
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
