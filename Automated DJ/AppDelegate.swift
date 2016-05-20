@@ -17,6 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var RuleScrollViewObject: RuleScrollView!
     
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
+    let myApplication = NSApplication.sharedApplication()
     
     var storedProgramsFilepath = ""
     var storedAnnouncementsFilepath = ""
@@ -83,8 +84,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(NSMenuItem.separatorItem())
         menu.addItem(NSMenuItem(title: "Preferences", action: #selector(showPreferences), keyEquivalent: ","))
         menu.addItem(NSMenuItem.separatorItem())
-        menu.addItem(NSMenuItem(title: "Quit", action: #selector(terminate), keyEquivalent: ""))
+        menu.addItem(NSMenuItem(title: "Quit", action: #selector(terminate), keyEquivalent: "q"))
         statusItem.menu = menu
+        //TODO statusItem.button?.image = image
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
@@ -109,10 +111,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     //Selector functions
-    func showShcedule(){MasterScheduleObject.spawnMasterScheduleWindow()}
-    func showAnnouncements(){GlobalAnnouncementsObject.spawnImmutableGlobalAnnouncements()}
-    func editAnnouncements(){GlobalAnnouncementsObject.spawnMutableGlobalAnnouncements()}
-    func showPreferences(){PreferencesObject.spawnPreferencesWindow()}
+    func showShcedule(){
+        myApplication.activateIgnoringOtherApps(true)
+        MasterScheduleObject.spawnMasterScheduleWindow()
+    }
+    func showAnnouncements(){
+        myApplication.activateIgnoringOtherApps(true)
+        GlobalAnnouncementsObject.spawnImmutableGlobalAnnouncements()
+    }
+    func editAnnouncements(){
+        myApplication.activateIgnoringOtherApps(true)
+        GlobalAnnouncementsObject.spawnMutableGlobalAnnouncements()}
+    func showPreferences(){
+        myApplication.activateIgnoringOtherApps(true)
+        PreferencesObject.spawnPreferencesWindow()}
     func terminate(){NSApplication.sharedApplication().terminate(self)}
 
 }
