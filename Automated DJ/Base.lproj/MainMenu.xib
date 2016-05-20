@@ -952,6 +952,7 @@
                 </defaultToolbarItems>
             </toolbar>
             <connections>
+                <outlet property="AppDelegateObject" destination="Voe-Tx-rLC" id="ayz-7X-s1c"/>
                 <outlet property="MasterScheduleObject" destination="uEM-xV-SIH" id="g0C-v6-jFR"/>
             </connections>
             <point key="canvasLocation" x="305" y="-132"/>
@@ -1511,10 +1512,11 @@ Gw
                 </defaultToolbarItems>
             </toolbar>
             <connections>
+                <outlet property="AppDelegateObject" destination="Voe-Tx-rLC" id="TTU-nQ-jNE"/>
                 <outlet property="GlobalAnnouncementsObject" destination="wyT-FT-Ij2" id="QaB-je-Mcy"/>
                 <outlet property="menu" destination="AuF-Eu-IOQ" id="N72-pO-QBm"/>
             </connections>
-            <point key="canvasLocation" x="309" y="318"/>
+            <point key="canvasLocation" x="305" y="373"/>
         </window>
         <window title="Add Announcement" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="ram-yi-uF9">
             <windowStyleMask key="styleMask" titled="YES"/>

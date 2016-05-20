@@ -77,10 +77,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         //Inatalize the menu bar. Then create NSMenuItems and add them to the menu bar. Then set the menu bar to be our applications menu bar. NSMenuItems which are not separators are given a name an a selector which corresponds to a function related to the name.
         let menu = NSMenu()
-        menu.addItem(NSMenuItem(title: "Show Schedule", action: #selector(showShcedule), keyEquivalent: ""))
+        menu.addItem(NSMenuItem(title: "Show Schedule", action: #selector(showSchedule), keyEquivalent: "S"))
         menu.addItem(NSMenuItem.separatorItem())
-        menu.addItem(NSMenuItem(title: "Show Announcements", action: #selector(showAnnouncements), keyEquivalent: ""))
-        menu.addItem(NSMenuItem(title: "Edit Announcements", action: #selector(editAnnouncements), keyEquivalent: ""))
+        menu.addItem(NSMenuItem(title: "Show Announcements", action: #selector(showAnnouncements), keyEquivalent: "A"))
+        menu.addItem(NSMenuItem(title: "Edit Announcements", action: #selector(editAnnouncements), keyEquivalent: "E"))
         menu.addItem(NSMenuItem.separatorItem())
         menu.addItem(NSMenuItem(title: "Preferences", action: #selector(showPreferences), keyEquivalent: ","))
         menu.addItem(NSMenuItem.separatorItem())
@@ -110,8 +110,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return result
     }
     
-    //Selector functions
-    func showShcedule(){
+    //Selector functions. The call to myApplication brings the system focus to the application when a window is called from the menu. This needs to be done because clicking on the app in the systemStatusBar doesn't bring focus to the application
+    func showSchedule(){
         myApplication.activateIgnoringOtherApps(true)
         MasterScheduleObject.spawnMasterScheduleWindow()
     }
