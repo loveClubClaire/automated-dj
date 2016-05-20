@@ -113,20 +113,32 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     //Selector functions. The call to myApplication brings the system focus to the application when a window is called from the menu. This needs to be done because clicking on the app in the systemStatusBar doesn't bring focus to the application
     func showSchedule(){
-        myApplication.activateIgnoringOtherApps(true)
-        MasterScheduleObject.spawnMasterScheduleWindow()
+        if AdminAccessObject.isAuthorized() == true {
+            myApplication.activateIgnoringOtherApps(true)
+            MasterScheduleObject.spawnMasterScheduleWindow()
+        }
     }
     func showAnnouncements(){
         myApplication.activateIgnoringOtherApps(true)
         GlobalAnnouncementsObject.spawnImmutableGlobalAnnouncements()
     }
     func editAnnouncements(){
-        myApplication.activateIgnoringOtherApps(true)
-        GlobalAnnouncementsObject.spawnMutableGlobalAnnouncements()}
+        if AdminAccessObject.isAuthorized() == true {
+            myApplication.activateIgnoringOtherApps(true)
+            GlobalAnnouncementsObject.spawnMutableGlobalAnnouncements()
+        }
+    }
     func showPreferences(){
-        myApplication.activateIgnoringOtherApps(true)
-        PreferencesObject.spawnPreferencesWindow()}
-    func terminate(){NSApplication.sharedApplication().terminate(self)}
+        if AdminAccessObject.isAuthorized() == true {
+            myApplication.activateIgnoringOtherApps(true)
+            PreferencesObject.spawnPreferencesWindow()
+        }
+    }
+    func terminate(){
+        if AdminAccessObject.isAuthorized() == true {
+            NSApplication.sharedApplication().terminate(self)
+        }
+    }
 
 }
 

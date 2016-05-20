@@ -11,7 +11,7 @@ import Cocoa
 
 class AdminAccess: NSObject {
     @IBOutlet weak var PreferencesObject: Preferences!
-    func getAdminAccess() -> Bool {
+    private func getAdminAccess() -> Bool {
         var result = false;
         var authRef: AuthorizationRef = nil
         var myStatus = AuthorizationCreate(nil, nil, AuthorizationFlags.Defaults, &authRef)
