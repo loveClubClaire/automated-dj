@@ -69,6 +69,7 @@
         </customObject>
         <customObject id="yDZ-1S-ELR" customClass="Preferences" customModule="Automated_DJ" customModuleProvider="target">
             <connections>
+                <outlet property="AppDelegateObject" destination="Voe-Tx-rLC" id="0hh-16-x29"/>
                 <outlet property="advancedPreferencesWindow" destination="JH5-kU-f0Y" id="5Om-Dt-I8I"/>
                 <outlet property="globalAnnouncementsDelayTextField" destination="eGZ-qR-8Cn" id="0H1-xK-oty"/>
                 <outlet property="isAdminButton" destination="qs7-SA-SaH" id="Cqx-50-8Uw"/>

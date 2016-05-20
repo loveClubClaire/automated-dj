@@ -10,7 +10,7 @@ import Foundation
 import Cocoa
 
 class Preferences: NSObject {
-    
+    @IBOutlet weak var AppDelegateObject: AppDelegate!
     
     @IBOutlet weak var preferencesWindow: NSWindow!
     @IBOutlet weak var advancedPreferencesWindow: NSWindow!
@@ -36,6 +36,20 @@ class Preferences: NSObject {
         advancedPreferencesView = advancedPreferencesWindow.contentView
         preferencesWindow.title = "General"
         preferencesToolbar.selectedItemIdentifier = "general"
+    }
+    
+    func setValuesWith(anArray: [AnyObject]) {
+        defaultAutomator = anArray[0] as! Automator
+        isAdmin = anArray[1] as! Bool
+        globalAnnouncementsDelay = anArray[2] as! Int
+        tollerence = anArray[3] as! Int
+        testAutomator = anArray[4] as! Bool
+        //CancelButton is called so that the UI reflects the changes made to the internal values
+        cancelButton(self)
+    }
+    
+    func preferencesAsArray() -> [AnyObject] {
+        return [defaultAutomator,isAdmin,globalAnnouncementsDelay,tollerence,testAutomator]
     }
     
     func spawnPreferencesWindow(){
@@ -80,6 +94,8 @@ class Preferences: NSObject {
         globalAnnouncementsDelay = globalAnnouncementsDelayTextField.integerValue
         tollerence = tollerenceTextField.integerValue
         
+        let prefArray = preferencesAsArray()
+        NSKeyedArchiver.archiveRootObject(prefArray, toFile: AppDelegateObject.storedPreferencesFilepath)
         preferencesWindow.orderOut(self)
         generalPreferencesButton(self)
     }
@@ -95,6 +111,4 @@ class Preferences: NSObject {
         preferencesWindow.orderOut(self)
         generalPreferencesButton(self)
     }
-
-    
 }

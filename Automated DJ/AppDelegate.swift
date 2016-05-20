@@ -18,8 +18,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var RuleScrollViewObject: RuleScrollView!
     var storedProgramsFilepath = ""
     var storedAnnouncementsFilepath = ""
+    var storedPreferencesFilepath = ""
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
+        //Inatalizes things in the masterScheduleObject related to its UI. Check this function for more information.
+        MasterScheduleObject.viewDidLoad()
+        
+        //Intalized the ruleScrollView object. Check this function for more information
+        RuleScrollViewObject.initalize()
+        
+        //Intalized the Preferences Object. Check this function for more information
+        PreferencesObject.initialize()
+        
+        //Hides the gloablAnnouncementsToolbar and places its buttons on the same level as the quit button and title
+        GlobalAnnouncementsObject.globalAnnouncementsWindow.titleVisibility = NSWindowTitleVisibility.Hidden
+        
         //Populate the Show Window drop down menus with the days of the week
         let daysOfTheWeek = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
         ShowWindowObject.startDay.addItemsWithTitles(daysOfTheWeek)
@@ -33,7 +46,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             try! NSFileManager().createDirectoryAtPath(storedDataFilepath, withIntermediateDirectories:false, attributes: nil)
         }
         storedProgramsFilepath = storedDataFilepath + "/MasterSchedule.txt"
-        storedAnnouncementsFilepath = storedDataFilepath + "GlobalAnnouncements.txt"
+        storedAnnouncementsFilepath = storedDataFilepath + "/GlobalAnnouncements.txt"
+        storedPreferencesFilepath = storedDataFilepath + "/Preferences.txt"
         
         //Get the information stored in file at the storedProgramsFilepath. If its not empty (or non existant), set the data array to the reterived values and reload the tableview
         let shows = NSKeyedUnarchiver.unarchiveObjectWithFile(storedProgramsFilepath)
@@ -49,17 +63,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             GlobalAnnouncementsObject.tableView.reloadData()
         }
         
-        //Inatalizes things in the masterScheduleObject related to its UI. Check this function for more information.
-        MasterScheduleObject.viewDidLoad()
+        //Get the information stored in file at the storedPreferencesFilePath. If it's not empty (or non existant), call Preferences' setValuesWith function and pass it the reterived array. Else, create a new array containing the default values and pass setValuesWith that new array
+        let preferences = NSKeyedUnarchiver.unarchiveObjectWithFile(storedPreferencesFilepath)
+        if preferences != nil {
+            PreferencesObject.setValuesWith(preferences as! [AnyObject])
+        }
+        else{
+            PreferencesObject.setValuesWith([Automator(),false,240,240,true])
+        }
+    
         
-        //Intalized the ruleScrollView object. Check this function for more information
-        RuleScrollViewObject.initalize()
-        
-        //Intalized the Preferences Object. Check this function for more information
-        PreferencesObject.initialize()
-        
-        //Hides the gloablAnnouncementsToolbar and places its buttons on the same level as the quit button and title
-        GlobalAnnouncementsObject.globalAnnouncementsWindow.titleVisibility = NSWindowTitleVisibility.Hidden
+        PreferencesObject.spawnPreferencesWindow()
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
