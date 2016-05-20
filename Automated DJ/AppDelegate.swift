@@ -14,8 +14,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var MasterScheduleObject: MasterSchedule!
     @IBOutlet weak var GlobalAnnouncementsObject: GloablAnnouncements!
     @IBOutlet weak var PreferencesObject: Preferences!
-
     @IBOutlet weak var RuleScrollViewObject: RuleScrollView!
+    
+    let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
+    
     var storedProgramsFilepath = ""
     var storedAnnouncementsFilepath = ""
     var storedPreferencesFilepath = ""
@@ -71,6 +73,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         else{
             PreferencesObject.setValuesWith([Automator(),false,240,240,true])
         }
+        
+        //Inatalize the menu bar. Then create NSMenuItems and add them to the menu bar. Then set the menu bar to be our applications menu bar. NSMenuItems which are not separators are given a name an a selector which corresponds to a function related to the name.
+        let menu = NSMenu()
+        menu.addItem(NSMenuItem(title: "Show Schedule", action: #selector(showShcedule), keyEquivalent: ""))
+        menu.addItem(NSMenuItem.separatorItem())
+        menu.addItem(NSMenuItem(title: "Show Announcements", action: #selector(showAnnouncements), keyEquivalent: ""))
+        menu.addItem(NSMenuItem(title: "Edit Announcements", action: #selector(editAnnouncements), keyEquivalent: ""))
+        menu.addItem(NSMenuItem.separatorItem())
+        menu.addItem(NSMenuItem(title: "Preferences", action: #selector(showPreferences), keyEquivalent: ","))
+        menu.addItem(NSMenuItem.separatorItem())
+        menu.addItem(NSMenuItem(title: "Quit", action: #selector(terminate), keyEquivalent: ""))
+        statusItem.menu = menu
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
@@ -93,5 +107,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         return result
     }
+    
+    //Selector functions
+    func showShcedule(){MasterScheduleObject.spawnMasterScheduleWindow()}
+    func showAnnouncements(){GlobalAnnouncementsObject.spawnImmutableGlobalAnnouncements()}
+    func editAnnouncements(){GlobalAnnouncementsObject.spawnMutableGlobalAnnouncements()}
+    func showPreferences(){PreferencesObject.spawnPreferencesWindow()}
+    func terminate(){NSApplication.sharedApplication().terminate(self)}
+
 }
 

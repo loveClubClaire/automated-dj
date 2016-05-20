@@ -12,6 +12,7 @@ import Cocoa
 class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
     @IBOutlet weak var ShowWindowObject: ShowWindow!
     @IBOutlet weak var AppDelegateObject: AppDelegate!
+    @IBOutlet weak var masterScheduleWindow: MasterScheduleWindow!
     @IBOutlet weak var tableView: NSTableView!
     
     var dataArray = [Show]()
@@ -37,6 +38,11 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
         
     }
 
+    func spawnMasterScheduleWindow(){
+        masterScheduleWindow.center()
+        masterScheduleWindow.makeKeyAndOrderFront(self)
+    }
+    
     @IBAction func createShow(sender: AnyObject) {
         ShowWindowObject.spawnNewShowWindow()
     }

@@ -26,6 +26,7 @@
             <connections>
                 <outlet property="AppDelegateObject" destination="Voe-Tx-rLC" id="Aeg-WY-znu"/>
                 <outlet property="ShowWindowObject" destination="vLi-vE-d4F" id="Nfg-5d-Tft"/>
+                <outlet property="masterScheduleWindow" destination="OTS-To-fwt" id="aMC-UY-PaR"/>
                 <outlet property="tableView" destination="jMR-ZI-pef" id="14e-lb-8JC"/>
             </connections>
         </customObject>
@@ -728,7 +729,7 @@
                 </menuItem>
             </items>
         </menu>
-        <window title="Master Schedule" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="OTS-To-fwt" customClass="MasterScheduleWindow" customModule="Automated_DJ" customModuleProvider="target">
+        <window title="Master Schedule" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="OTS-To-fwt" customClass="MasterScheduleWindow" customModule="Automated_DJ" customModuleProvider="target">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" texturedBackground="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="413" y="349" width="600" height="350"/>
