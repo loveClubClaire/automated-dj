@@ -15,6 +15,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var GlobalAnnouncementsObject: GloablAnnouncements!
     @IBOutlet weak var PreferencesObject: Preferences!
     @IBOutlet weak var RuleScrollViewObject: RuleScrollView!
+    @IBOutlet weak var AdminAccessObject: AdminAccess!
     
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
     let myApplication = NSApplication.sharedApplication()

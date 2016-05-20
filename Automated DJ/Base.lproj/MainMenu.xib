@@ -14,6 +14,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Automated_DJ" customModuleProvider="target">
             <connections>
+                <outlet property="AdminAccessObject" destination="6g9-Ul-sqR" id="eWi-NF-uQd"/>
                 <outlet property="GlobalAnnouncementsObject" destination="wyT-FT-Ij2" id="lCh-ez-6rF"/>
                 <outlet property="MasterScheduleObject" destination="uEM-xV-SIH" id="vZB-Wa-e9q"/>
                 <outlet property="PreferencesObject" destination="yDZ-1S-ELR" id="3GK-vN-SOC"/>
@@ -78,6 +79,11 @@
                 <outlet property="preferencesWindow" destination="Oqq-od-7Zb" id="75F-nv-hML"/>
                 <outlet property="testAutomatorButton" destination="2N5-VA-YI2" id="vFW-9K-nAO"/>
                 <outlet property="tollerenceTextField" destination="jIH-Pl-yxN" id="f5h-yW-rn3"/>
+            </connections>
+        </customObject>
+        <customObject id="6g9-Ul-sqR" customClass="AdminAccess" customModule="Automated_DJ" customModuleProvider="target">
+            <connections>
+                <outlet property="PreferencesObject" destination="yDZ-1S-ELR" id="coX-xg-zQI"/>
             </connections>
         </customObject>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">

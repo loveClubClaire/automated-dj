@@ -19,6 +19,7 @@
 		C04616D31CE436CD004E1B38 /* Automator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04616D21CE436CD004E1B38 /* Automator.swift */; };
 		C04616D51CE436D7004E1B38 /* AutomatorWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04616D41CE436D7004E1B38 /* AutomatorWindow.swift */; };
 		C08372AA1CE62EAA0046F231 /* MasterScheduleWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08372A91CE62EAA0046F231 /* MasterScheduleWindow.swift */; };
+		C08C157E1CEECDCE00EF8BCF /* AdminAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08C157D1CEECDCE00EF8BCF /* AdminAccess.swift */; };
 		C09D9F521CE7B615009458FC /* CustomDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09D9F511CE7B615009458FC /* CustomDatePicker.swift */; };
 		C09D9F561CE7ECBE009458FC /* ShowStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09D9F551CE7ECBE009458FC /* ShowStatus.swift */; };
 		C09D9F5B1CE95954009458FC /* ErrorChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09D9F5A1CE95954009458FC /* ErrorChecker.swift */; };
@@ -64,6 +65,7 @@
 		C04616D21CE436CD004E1B38 /* Automator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Automator.swift; sourceTree = "<group>"; };
 		C04616D41CE436D7004E1B38 /* AutomatorWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomatorWindow.swift; sourceTree = "<group>"; };
 		C08372A91CE62EAA0046F231 /* MasterScheduleWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterScheduleWindow.swift; sourceTree = "<group>"; };
+		C08C157D1CEECDCE00EF8BCF /* AdminAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdminAccess.swift; path = ../AdminAccess.swift; sourceTree = "<group>"; };
 		C09D9F511CE7B615009458FC /* CustomDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDatePicker.swift; sourceTree = "<group>"; };
 		C09D9F551CE7ECBE009458FC /* ShowStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowStatus.swift; sourceTree = "<group>"; };
 		C09D9F5A1CE95954009458FC /* ErrorChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorChecker.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 			children = (
 				C04616A31CE43542004E1B38 /* AppDelegate.swift */,
 				C09D9F5A1CE95954009458FC /* ErrorChecker.swift */,
+				C08C157D1CEECDCE00EF8BCF /* AdminAccess.swift */,
 				C09D9F5D1CE9C31F009458FC /* Custom Objects */,
 				C09D9F5C1CE9C2E4009458FC /* UI Classes */,
 				C09D9F571CE93D8C009458FC /* Custom UI */,
@@ -322,6 +325,7 @@
 				C04616D11CE436B9004E1B38 /* ShowWindow.swift in Sources */,
 				C04616D31CE436CD004E1B38 /* Automator.swift in Sources */,
 				C09D9F5B1CE95954009458FC /* ErrorChecker.swift in Sources */,
+				C08C157E1CEECDCE00EF8BCF /* AdminAccess.swift in Sources */,
 				C04616CF1CE436AF004E1B38 /* Show.swift in Sources */,
 				C0DCCA4C1CEC14C60068533F /* GlobalAnnouncements.swift in Sources */,
 				C04616CD1CE436A7004E1B38 /* MasterSchedule.swift in Sources */,
