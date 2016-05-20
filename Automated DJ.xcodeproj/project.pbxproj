@@ -20,6 +20,7 @@
 		C04616D51CE436D7004E1B38 /* AutomatorWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04616D41CE436D7004E1B38 /* AutomatorWindow.swift */; };
 		C08372AA1CE62EAA0046F231 /* MasterScheduleWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08372A91CE62EAA0046F231 /* MasterScheduleWindow.swift */; };
 		C08C157E1CEECDCE00EF8BCF /* AdminAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08C157D1CEECDCE00EF8BCF /* AdminAccess.swift */; };
+		C08C15801CEEF39100EF8BCF /* On Air.png in Resources */ = {isa = PBXBuildFile; fileRef = C08C157F1CEEF39100EF8BCF /* On Air.png */; };
 		C09D9F521CE7B615009458FC /* CustomDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09D9F511CE7B615009458FC /* CustomDatePicker.swift */; };
 		C09D9F561CE7ECBE009458FC /* ShowStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09D9F551CE7ECBE009458FC /* ShowStatus.swift */; };
 		C09D9F5B1CE95954009458FC /* ErrorChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09D9F5A1CE95954009458FC /* ErrorChecker.swift */; };
@@ -66,6 +67,7 @@
 		C04616D41CE436D7004E1B38 /* AutomatorWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomatorWindow.swift; sourceTree = "<group>"; };
 		C08372A91CE62EAA0046F231 /* MasterScheduleWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterScheduleWindow.swift; sourceTree = "<group>"; };
 		C08C157D1CEECDCE00EF8BCF /* AdminAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdminAccess.swift; path = ../AdminAccess.swift; sourceTree = "<group>"; };
+		C08C157F1CEEF39100EF8BCF /* On Air.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "On Air.png"; sourceTree = "<group>"; };
 		C09D9F511CE7B615009458FC /* CustomDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDatePicker.swift; sourceTree = "<group>"; };
 		C09D9F551CE7ECBE009458FC /* ShowStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowStatus.swift; sourceTree = "<group>"; };
 		C09D9F5A1CE95954009458FC /* ErrorChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorChecker.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 		C04616A21CE43542004E1B38 /* Automated DJ */ = {
 			isa = PBXGroup;
 			children = (
+				C08C157F1CEEF39100EF8BCF /* On Air.png */,
 				C04616A31CE43542004E1B38 /* AppDelegate.swift */,
 				C09D9F5A1CE95954009458FC /* ErrorChecker.swift */,
 				C08C157D1CEECDCE00EF8BCF /* AdminAccess.swift */,
@@ -293,6 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C04616A61CE43542004E1B38 /* Assets.xcassets in Resources */,
+				C08C15801CEEF39100EF8BCF /* On Air.png in Resources */,
 				C04616A91CE43542004E1B38 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

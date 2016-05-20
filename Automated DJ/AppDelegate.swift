@@ -87,7 +87,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(NSMenuItem.separatorItem())
         menu.addItem(NSMenuItem(title: "Quit", action: #selector(terminate), keyEquivalent: "q"))
         statusItem.menu = menu
-        //TODO statusItem.button?.image = image
+        statusItem.button?.image = NSImage.init(named:"On Air.png")
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
