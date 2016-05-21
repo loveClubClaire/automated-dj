@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import AppleScriptObjC
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -25,6 +26,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var storedPreferencesFilepath = ""
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
+        //Required for the scripting bridge to function
+        NSBundle.mainBundle().loadAppleScriptObjectiveCScripts()
+        
         //Inatalizes things in the masterScheduleObject related to its UI. Check this function for more information.
         MasterScheduleObject.viewDidLoad()
         

@@ -23,6 +23,9 @@
 		C08C15801CEEF39100EF8BCF /* On Air.png in Resources */ = {isa = PBXBuildFile; fileRef = C08C157F1CEEF39100EF8BCF /* On Air.png */; };
 		C08C15821CF007E900EF8BCF /* Automated DJ.sdef in Resources */ = {isa = PBXBuildFile; fileRef = C08C15811CF007E900EF8BCF /* Automated DJ.sdef */; };
 		C08C15841CF0082F00EF8BCF /* AutomateShowCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08C15831CF0082F00EF8BCF /* AutomateShowCommand.swift */; };
+		C08C158A1CF01ED400EF8BCF /* MyApplescript.applescript in Sources */ = {isa = PBXBuildFile; fileRef = C08C15871CF01ED400EF8BCF /* MyApplescript.applescript */; };
+		C08C158B1CF01ED400EF8BCF /* ApplescriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = C08C15891CF01ED400EF8BCF /* ApplescriptBridge.m */; };
+		C08C158E1CF0276F00EF8BCF /* AppleScriptObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C08C158D1CF0276F00EF8BCF /* AppleScriptObjC.framework */; };
 		C09D9F521CE7B615009458FC /* CustomDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09D9F511CE7B615009458FC /* CustomDatePicker.swift */; };
 		C09D9F561CE7ECBE009458FC /* ShowStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09D9F551CE7ECBE009458FC /* ShowStatus.swift */; };
 		C09D9F5B1CE95954009458FC /* ErrorChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09D9F5A1CE95954009458FC /* ErrorChecker.swift */; };
@@ -72,6 +75,13 @@
 		C08C157F1CEEF39100EF8BCF /* On Air.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "On Air.png"; sourceTree = "<group>"; };
 		C08C15811CF007E900EF8BCF /* Automated DJ.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Automated DJ.sdef"; sourceTree = "<group>"; };
 		C08C15831CF0082F00EF8BCF /* AutomateShowCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomateShowCommand.swift; sourceTree = "<group>"; };
+		C08C15851CF01ED400EF8BCF /* Automated DJ-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Automated DJ-Bridging-Header.h"; sourceTree = "<group>"; };
+		C08C15861CF01ED400EF8BCF /* MyApplescript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyApplescript.h; sourceTree = "<group>"; };
+		C08C15871CF01ED400EF8BCF /* MyApplescript.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = MyApplescript.applescript; sourceTree = "<group>"; };
+		C08C15881CF01ED400EF8BCF /* ApplescriptBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplescriptBridge.h; sourceTree = "<group>"; };
+		C08C15891CF01ED400EF8BCF /* ApplescriptBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplescriptBridge.m; sourceTree = "<group>"; };
+		C08C158D1CF0276F00EF8BCF /* AppleScriptObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppleScriptObjC.framework; path = System/Library/Frameworks/AppleScriptObjC.framework; sourceTree = SDKROOT; };
+		C08C158F1CF02C4800EF8BCF /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		C09D9F511CE7B615009458FC /* CustomDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDatePicker.swift; sourceTree = "<group>"; };
 		C09D9F551CE7ECBE009458FC /* ShowStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowStatus.swift; sourceTree = "<group>"; };
 		C09D9F5A1CE95954009458FC /* ErrorChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorChecker.swift; sourceTree = "<group>"; };
@@ -86,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C08C158E1CF0276F00EF8BCF /* AppleScriptObjC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +120,8 @@
 		C04616971CE43542004E1B38 = {
 			isa = PBXGroup;
 			children = (
+				C08C158F1CF02C4800EF8BCF /* Cocoa.framework */,
+				C08C158D1CF0276F00EF8BCF /* AppleScriptObjC.framework */,
 				C04616A21CE43542004E1B38 /* Automated DJ */,
 				C04616B21CE43542004E1B38 /* Automated DJTests */,
 				C04616BD1CE43542004E1B38 /* Automated DJUITests */,
@@ -137,10 +150,12 @@
 				C09D9F5D1CE9C31F009458FC /* Custom Objects */,
 				C09D9F5C1CE9C2E4009458FC /* UI Classes */,
 				C09D9F571CE93D8C009458FC /* Custom UI */,
+				C08C158C1CF01EFB00EF8BCF /* Applescript */,
 				C04616A51CE43542004E1B38 /* Assets.xcassets */,
 				C04616A71CE43542004E1B38 /* MainMenu.xib */,
 				C04616AA1CE43542004E1B38 /* Info.plist */,
 				C08C15811CF007E900EF8BCF /* Automated DJ.sdef */,
+				C08C15851CF01ED400EF8BCF /* Automated DJ-Bridging-Header.h */,
 			);
 			path = "Automated DJ";
 			sourceTree = "<group>";
@@ -161,6 +176,17 @@
 				C04616C01CE43542004E1B38 /* Info.plist */,
 			);
 			path = "Automated DJUITests";
+			sourceTree = "<group>";
+		};
+		C08C158C1CF01EFB00EF8BCF /* Applescript */ = {
+			isa = PBXGroup;
+			children = (
+				C08C15861CF01ED400EF8BCF /* MyApplescript.h */,
+				C08C15871CF01ED400EF8BCF /* MyApplescript.applescript */,
+				C08C15881CF01ED400EF8BCF /* ApplescriptBridge.h */,
+				C08C15891CF01ED400EF8BCF /* ApplescriptBridge.m */,
+			);
+			name = Applescript;
 			sourceTree = "<group>";
 		};
 		C09D9F571CE93D8C009458FC /* Custom UI */ = {
@@ -341,11 +367,13 @@
 				C04616CF1CE436AF004E1B38 /* Show.swift in Sources */,
 				C0DCCA4C1CEC14C60068533F /* GlobalAnnouncements.swift in Sources */,
 				C04616CD1CE436A7004E1B38 /* MasterSchedule.swift in Sources */,
+				C08C158B1CF01ED400EF8BCF /* ApplescriptBridge.m in Sources */,
 				C04616D51CE436D7004E1B38 /* AutomatorWindow.swift in Sources */,
 				C04616A41CE43542004E1B38 /* AppDelegate.swift in Sources */,
 				C08372AA1CE62EAA0046F231 /* MasterScheduleWindow.swift in Sources */,
 				C09D9F611CEA7B6D009458FC /* RuleScrollView.swift in Sources */,
 				C00162ED1CEE332A009EE840 /* GlobalAnnouncementsWindow.swift in Sources */,
+				C08C158A1CF01ED400EF8BCF /* MyApplescript.applescript in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,11 +506,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Automated DJ/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "sixteensquared.Automated-DJ";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Automated DJ/Automated DJ-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -490,11 +521,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Automated DJ/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "sixteensquared.Automated-DJ";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Automated DJ/Automated DJ-Bridging-Header.h";
 			};
 			name = Release;
 		};
