@@ -127,7 +127,6 @@ class ShowWindow: NSObject {
         
     }
     
-    
     @IBAction func cancelButton(sender: AnyObject) {
         //Create the NSDates which contain the default values for the two NSDatePickers
         let calendar = NSCalendar(identifier: NSCalendarIdentifierGregorian)

@@ -47,12 +47,16 @@
         <customObject id="osi-q6-9Jp" customClass="RuleScrollView" customModule="Automated_DJ" customModuleProvider="target">
             <connections>
                 <outlet property="AutomatorWindowObject" destination="7bL-4F-b7G" id="Naf-z8-Wsk"/>
+                <outlet property="matchButton" destination="3Gd-v9-2Cm" id="dZZ-bd-lBu"/>
+                <outlet property="matchLabel" destination="loT-xA-9Fz" id="IJd-Nh-27a"/>
+                <outlet property="matchPopupButton" destination="LYG-jG-dJl" id="Xem-Pb-QZN"/>
                 <outlet property="predicateEditor" destination="iFI-VU-gq6" id="OGx-po-hJ2"/>
                 <outlet property="predicateEditorView" destination="VYg-fd-S3z" id="AzV-FV-AGA"/>
             </connections>
         </customObject>
         <customObject id="7bL-4F-b7G" customClass="AutomatorWindow" customModule="Automated_DJ" customModuleProvider="target">
             <connections>
+                <outlet property="RuleScrollViewObject" destination="osi-q6-9Jp" id="xIM-yl-OAp"/>
                 <outlet property="automatorWindow" destination="hq7-sJ-C1m" id="mVo-Y5-i4W"/>
             </connections>
         </customObject>
@@ -1093,7 +1097,7 @@ Gw
             </view>
             <point key="canvasLocation" x="285.5" y="-370.5"/>
         </window>
-        <window title="Automator Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="hq7-sJ-C1m">
+        <window title="Automator Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="hq7-sJ-C1m">
             <windowStyleMask key="styleMask" titled="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="0.0" y="0.0" width="496" height="415"/>
@@ -1259,13 +1263,13 @@ Gw
                         </popUpButtonCell>
                     </popUpButton>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Gd-v9-2Cm">
-                        <rect key="frame" x="18" y="100" width="60" height="18"/>
-                        <buttonCell key="cell" type="check" title="Match" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Qc6-cr-Bbu">
+                        <rect key="frame" x="18" y="100" width="172" height="18"/>
+                        <buttonCell key="cell" type="check" title="Match the following rule:" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Qc6-cr-Bbu">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
-                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LYG-jG-dJl">
+                    <popUpButton hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LYG-jG-dJl">
                         <rect key="frame" x="82" y="95" width="60" height="26"/>
                         <popUpButtonCell key="cell" type="push" title="All" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="VdZ-Mh-YPE" id="9Gm-GK-D7Q">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -1278,7 +1282,7 @@ Gw
                             </menu>
                         </popUpButtonCell>
                     </popUpButton>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="loT-xA-9Fz">
+                    <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="loT-xA-9Fz">
                         <rect key="frame" x="145" y="101" width="135" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="of the following rules:" id="cws-aw-65i">
                             <font key="font" metaFont="system"/>
@@ -1324,6 +1328,9 @@ Gw
 DQ
 </string>
                         </buttonCell>
+                        <connections>
+                            <action selector="okButton:" target="7bL-4F-b7G" id="Xqq-Cs-RRZ"/>
+                        </connections>
                     </button>
                     <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yqr-Lu-lK9">
                         <rect key="frame" x="302" y="13" width="90" height="32"/>
@@ -1533,17 +1540,17 @@ Gw
                     <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C3S-dd-tMK">
                         <rect key="frame" x="-1" y="61" width="402" height="240"/>
                         <clipView key="contentView" ambiguous="YES" id="uss-bH-9HP">
-                            <rect key="frame" x="1" y="1" width="384" height="238"/>
+                            <rect key="frame" x="1" y="1" width="400" height="238"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textView ambiguous="YES" importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="uyp-Bd-WTO">
-                                    <rect key="frame" x="0.0" y="0.0" width="384" height="238"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="238"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="384" height="238"/>
+                                    <size key="minSize" width="400" height="238"/>
                                     <size key="maxSize" width="487" height="10000000"/>
                                     <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <size key="minSize" width="384" height="238"/>
+                                    <size key="minSize" width="400" height="238"/>
                                     <size key="maxSize" width="487" height="10000000"/>
                                 </textView>
                             </subviews>
