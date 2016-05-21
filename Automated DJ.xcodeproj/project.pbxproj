@@ -26,6 +26,7 @@
 		C08C158A1CF01ED400EF8BCF /* MyApplescript.applescript in Sources */ = {isa = PBXBuildFile; fileRef = C08C15871CF01ED400EF8BCF /* MyApplescript.applescript */; };
 		C08C158B1CF01ED400EF8BCF /* ApplescriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = C08C15891CF01ED400EF8BCF /* ApplescriptBridge.m */; };
 		C08C158E1CF0276F00EF8BCF /* AppleScriptObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C08C158D1CF0276F00EF8BCF /* AppleScriptObjC.framework */; };
+		C08C15921CF0304A00EF8BCF /* AppleScript-ObjC bridge functions 4:11:16.txt in Resources */ = {isa = PBXBuildFile; fileRef = C08C15911CF0304A00EF8BCF /* AppleScript-ObjC bridge functions 4:11:16.txt */; };
 		C09D9F521CE7B615009458FC /* CustomDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09D9F511CE7B615009458FC /* CustomDatePicker.swift */; };
 		C09D9F561CE7ECBE009458FC /* ShowStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09D9F551CE7ECBE009458FC /* ShowStatus.swift */; };
 		C09D9F5B1CE95954009458FC /* ErrorChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09D9F5A1CE95954009458FC /* ErrorChecker.swift */; };
@@ -81,7 +82,7 @@
 		C08C15881CF01ED400EF8BCF /* ApplescriptBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplescriptBridge.h; sourceTree = "<group>"; };
 		C08C15891CF01ED400EF8BCF /* ApplescriptBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplescriptBridge.m; sourceTree = "<group>"; };
 		C08C158D1CF0276F00EF8BCF /* AppleScriptObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppleScriptObjC.framework; path = System/Library/Frameworks/AppleScriptObjC.framework; sourceTree = SDKROOT; };
-		C08C158F1CF02C4800EF8BCF /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		C08C15911CF0304A00EF8BCF /* AppleScript-ObjC bridge functions 4:11:16.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "AppleScript-ObjC bridge functions 4:11:16.txt"; path = "../../../../Xcode Projects/Now Playing in iTunes/AppleScript-ObjC bridge functions 4:11:16.txt"; sourceTree = "<group>"; };
 		C09D9F511CE7B615009458FC /* CustomDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDatePicker.swift; sourceTree = "<group>"; };
 		C09D9F551CE7ECBE009458FC /* ShowStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowStatus.swift; sourceTree = "<group>"; };
 		C09D9F5A1CE95954009458FC /* ErrorChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorChecker.swift; sourceTree = "<group>"; };
@@ -120,7 +121,6 @@
 		C04616971CE43542004E1B38 = {
 			isa = PBXGroup;
 			children = (
-				C08C158F1CF02C4800EF8BCF /* Cocoa.framework */,
 				C08C158D1CF0276F00EF8BCF /* AppleScriptObjC.framework */,
 				C04616A21CE43542004E1B38 /* Automated DJ */,
 				C04616B21CE43542004E1B38 /* Automated DJTests */,
@@ -154,8 +154,6 @@
 				C04616A51CE43542004E1B38 /* Assets.xcassets */,
 				C04616A71CE43542004E1B38 /* MainMenu.xib */,
 				C04616AA1CE43542004E1B38 /* Info.plist */,
-				C08C15811CF007E900EF8BCF /* Automated DJ.sdef */,
-				C08C15851CF01ED400EF8BCF /* Automated DJ-Bridging-Header.h */,
 			);
 			path = "Automated DJ";
 			sourceTree = "<group>";
@@ -181,10 +179,13 @@
 		C08C158C1CF01EFB00EF8BCF /* Applescript */ = {
 			isa = PBXGroup;
 			children = (
+				C08C15911CF0304A00EF8BCF /* AppleScript-ObjC bridge functions 4:11:16.txt */,
 				C08C15861CF01ED400EF8BCF /* MyApplescript.h */,
 				C08C15871CF01ED400EF8BCF /* MyApplescript.applescript */,
 				C08C15881CF01ED400EF8BCF /* ApplescriptBridge.h */,
 				C08C15891CF01ED400EF8BCF /* ApplescriptBridge.m */,
+				C08C15811CF007E900EF8BCF /* Automated DJ.sdef */,
+				C08C15851CF01ED400EF8BCF /* Automated DJ-Bridging-Header.h */,
 			);
 			name = Applescript;
 			sourceTree = "<group>";
@@ -330,6 +331,7 @@
 				C04616A61CE43542004E1B38 /* Assets.xcassets in Resources */,
 				C08C15801CEEF39100EF8BCF /* On Air.png in Resources */,
 				C04616A91CE43542004E1B38 /* MainMenu.xib in Resources */,
+				C08C15921CF0304A00EF8BCF /* AppleScript-ObjC bridge functions 4:11:16.txt in Resources */,
 				C08C15821CF007E900EF8BCF /* Automated DJ.sdef in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

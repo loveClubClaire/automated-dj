@@ -1337,8 +1337,8 @@ Gw
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="ofe-VX-Re0" firstAttribute="bottom" secondItem="sUT-4g-aY1" secondAttribute="bottom" constant="-27" id="0ao-ee-GrS"/>
-                    <constraint firstItem="Yqr-Lu-lK9" firstAttribute="bottom" secondItem="sUT-4g-aY1" secondAttribute="bottom" constant="-27" id="7tA-WW-Md5"/>
+                    <constraint firstItem="ofe-VX-Re0" firstAttribute="bottom" secondItem="sUT-4g-aY1" secondAttribute="bottom" constant="-27" identifier="idVerticalOKAutomator" id="0ao-ee-GrS"/>
+                    <constraint firstItem="Yqr-Lu-lK9" firstAttribute="bottom" secondItem="sUT-4g-aY1" secondAttribute="bottom" constant="-27" identifier="idVerticalCancelAutomator" id="7tA-WW-Md5"/>
                 </constraints>
             </view>
             <point key="canvasLocation" x="165" y="56.5"/>
@@ -1497,11 +1497,11 @@ Gw
                     <toolbarItem implicitItemIdentifier="C8FD1F15-EADF-4B7C-9533-FBB402EFCE8D" label="Custom View" paletteLabel="Custom View" id="3UQ-P7-VrS">
                         <nil key="toolTip"/>
                         <size key="minSize" width="38" height="17"/>
-                        <size key="maxSize" width="151" height="20"/>
+                        <size key="maxSize" width="265" height="30"/>
                         <textField key="view" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="36T-SK-QP9">
-                            <rect key="frame" x="0.0" y="14" width="151" height="20"/>
+                            <rect key="frame" x="0.0" y="14" width="265" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Global Announcements" id="dLa-m5-2SP">
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Global Announcements" id="dLa-m5-2SP">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1511,9 +1511,6 @@ Gw
                 </allowedToolbarItems>
                 <defaultToolbarItems>
                     <toolbarItem reference="MsT-Wh-9Jj"/>
-                    <toolbarItem reference="l82-4B-ztm"/>
-                    <toolbarItem reference="l82-4B-ztm"/>
-                    <toolbarItem reference="l82-4B-ztm"/>
                     <toolbarItem reference="3UQ-P7-VrS"/>
                 </defaultToolbarItems>
             </toolbar>
@@ -1536,17 +1533,17 @@ Gw
                     <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C3S-dd-tMK">
                         <rect key="frame" x="-1" y="61" width="402" height="240"/>
                         <clipView key="contentView" ambiguous="YES" id="uss-bH-9HP">
-                            <rect key="frame" x="1" y="1" width="400" height="238"/>
+                            <rect key="frame" x="1" y="1" width="384" height="238"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textView ambiguous="YES" importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="uyp-Bd-WTO">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="238"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="384" height="238"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="400" height="238"/>
+                                    <size key="minSize" width="384" height="238"/>
                                     <size key="maxSize" width="487" height="10000000"/>
                                     <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <size key="minSize" width="400" height="238"/>
+                                    <size key="minSize" width="384" height="238"/>
                                     <size key="maxSize" width="487" height="10000000"/>
                                 </textView>
                             </subviews>
@@ -1557,7 +1554,7 @@ Gw
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="0WW-Un-Lob">
-                            <rect key="frame" x="385" y="1" width="16" height="238"/>
+                            <rect key="frame" x="-15" y="1" width="16" height="0.0"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
