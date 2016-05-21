@@ -9,8 +9,12 @@
 		<dict>
 			<key>CFBundleTypeName</key>
 			<string>Automated DJ Schedule</string>
+			<key>CFBundleTypeIconFile</key>
+			<string>AppIcon.icns</string>
 			<key>CFBundleTypeOSTypes</key>
-			<string>ADJS</string>
+            <array>
+                <string>ADJS</string>
+            </array>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>adjs</string>
@@ -52,6 +56,10 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>LSUIElement</key>
+	<true/>
+	<key>OSAScriptingDefinition</key>
+	<string>Automated DJ.sdef</string>
+	<key>NSAppleScriptEnabled</key>
 	<true/>
 </dict>
 </plist>

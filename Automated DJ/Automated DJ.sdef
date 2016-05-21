@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dictionary SYSTEM "file://localhost/System/Library/DTDs/sdef.dtd">
+<dictionary title="Automated DJ">
+	<suite name="Automated DJ Scripting Suite" code="AmDj" description="Standard suite for application communication.">
+		<command name="automate" code="AmDjAuto" description="Automate the next occurrence of a given show ">
+			<cocoa class="Automated_DJ.AutomateShowCommand"/>
+			<parameter name="show" code="ShoW" type="text" description="The show to be automated">
+				<cocoa key="ShowName"/>
+			</parameter>
+			<result type="boolean" description="Returns true if automation was successful."/>
+		</command>
+	</suite>
+</dictionary>
