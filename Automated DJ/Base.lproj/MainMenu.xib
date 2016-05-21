@@ -58,6 +58,7 @@
         </customObject>
         <customObject id="7bL-4F-b7G" customClass="AutomatorWindow" customModule="Automated_DJ" customModuleProvider="target">
             <connections>
+                <outlet property="MasterScheduleObject" destination="uEM-xV-SIH" id="eWO-Dk-TaZ"/>
                 <outlet property="RuleScrollViewObject" destination="osi-q6-9Jp" id="xIM-yl-OAp"/>
                 <outlet property="ShowWindowObject" destination="vLi-vE-d4F" id="ck9-cK-WUj"/>
                 <outlet property="automatorWindow" destination="hq7-sJ-C1m" id="mVo-Y5-i4W"/>

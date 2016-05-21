@@ -12,6 +12,7 @@ import Cocoa
 class AutomatorWindow: NSObject {
     @IBOutlet weak var RuleScrollViewObject: RuleScrollView!
     @IBOutlet weak var ShowWindowObject: ShowWindow!
+    @IBOutlet weak var MasterScheduleObject: MasterSchedule!
     
     @IBOutlet weak var automatorWindow: NSWindow!
     @IBOutlet weak var timeTextField: NSTextField!
@@ -30,10 +31,13 @@ class AutomatorWindow: NSObject {
 
     @IBOutlet weak var predicateTypePopUp: NSPopUpButton!
     
+    var show: Show!
+    var finalSubmit = false
     
-    func spawnNewAutomatorWindow(length: Double){
+    func spawnNewAutomatorWindow(length: Double, aShow: Show){
         automatorWindow.title = "New Automator"
         timeTextField.doubleValue = length
+        show = aShow
         automatorWindow.center()
         automatorWindow.makeKeyAndOrderFront(self)
         NSApp.runModalForWindow(automatorWindow)
@@ -68,6 +72,13 @@ class AutomatorWindow: NSObject {
         //test new automator 
         
         //return or something. IDK yet
+        show.automator = anAutomator
+        if ShowWindowObject.showWindow.title == "New Show" {MasterScheduleObject.addShow(show)}
+        else{MasterScheduleObject.modifyShows(show, aStatus: ShowWindowObject.getWindowStatus())}
+        finalSubmit = true
+        cancelButton(self)
+        ShowWindowObject.cancelButton(self)
+        finalSubmit = false
         
     }
     
@@ -92,15 +103,20 @@ class AutomatorWindow: NSObject {
         bumpersPerBlockTextField.enabled = false
         songsBetweenBlocksTextField.enabled = false
         RuleScrollViewObject.predicateEditorView.hidden = true
-        //Replace all rules with the default rule xw
+        //Replace all rules with the default rule
         let predicate = NSPredicate(format: "Artist = ''")
         RuleScrollViewObject.predicateEditor.objectValue = predicate
         RuleScrollViewObject.predicateEditor.reloadPredicate()
+        //Select tierOneTextField as is the default behavior 
+        tierOneTextField.selectText(self)
         //StopModal and orderout window
         NSApp.stopModal()
         automatorWindow.orderOut(self)
         //TODO If new or editing
-        ShowWindowObject.spawnNewShowWindow()
+        if finalSubmit == false {
+            ShowWindowObject.spawnNewShowWindow()
+        }
+        
     }
 
     @IBAction func seedPlaylistPressed(sender: AnyObject) {

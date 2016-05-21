@@ -128,7 +128,7 @@ class ShowWindow: NSObject {
                 NSApp.stopModal()
                 showWindow.orderOut(self)
                 
-                AutomatorWindowObject.spawnNewAutomatorWindow(showLength)
+                AutomatorWindowObject.spawnNewAutomatorWindow(showLength, aShow: show)
             }
             else{
                 
