@@ -26,11 +26,12 @@ class Show: NSObject, NSCoding{
     required convenience init?(coder decoder: NSCoder) {
         guard let name = decoder.decodeObjectForKey("name") as? String,
             let startDate = decoder.decodeObjectForKey("startDate") as? NSDate,
-            let endDate = decoder.decodeObjectForKey("endDate") as? NSDate
-            //let automator = decoder.decodeObjectForKey("automator") as? Automator
+            let endDate = decoder.decodeObjectForKey("endDate") as? NSDate,
+            let automator = decoder.decodeObjectForKey("automator") as? Automator
             else { return nil }
         
         self.init(aName: name, aStartDate: startDate, anEndDate: endDate)
+        self.automator = automator
     }
     //Encoding fucntion for saving. Encode each object with a key for retervial
     func encodeWithCoder(coder: NSCoder) {
