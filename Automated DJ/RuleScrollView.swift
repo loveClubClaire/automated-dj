@@ -19,6 +19,7 @@ class RuleScrollView: NSObject {
     @IBOutlet weak var matchButton: NSButton!
     @IBOutlet weak var matchLabel: NSTextField!
     @IBOutlet weak var matchPopupButton: NSPopUpButton!
+    
     @IBAction func Generate(sender: AnyObject) {
         print(predicateEditor.objectValue?.description)
     }

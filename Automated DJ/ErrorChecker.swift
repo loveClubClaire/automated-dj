@@ -27,9 +27,6 @@ class ErrorChecker: NSObject {
            missingName = true
         }
         
-       
-
-        
         for aSelectedShow in selectedShows {
             let newStartComp = calendar!.components([.Hour, .Minute, .Day], fromDate: aSelectedShow.startDate!)
             let newEndComp = calendar!.components([.Hour,.Minute,.Day], fromDate: aSelectedShow.endDate!)

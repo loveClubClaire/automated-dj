@@ -11,6 +11,7 @@ import Cocoa
 
 class AutomatorWindow: NSObject {
     @IBOutlet weak var RuleScrollViewObject: RuleScrollView!
+    @IBOutlet weak var ShowWindowObject: ShowWindow!
     
     @IBOutlet weak var automatorWindow: NSWindow!
     @IBOutlet weak var timeTextField: NSTextField!
@@ -30,29 +31,14 @@ class AutomatorWindow: NSObject {
     @IBOutlet weak var predicateTypePopUp: NSPopUpButton!
     
     
-    func getRules() -> NSPredicate{
-        var result: NSPredicate
-        if RuleScrollViewObject.predicateEditor.numberOfRows == 1{
-            result = RuleScrollViewObject.predicateEditor.objectValue as! NSPredicate
-        }
-        else{
-            let predicate = RuleScrollViewObject.predicateEditor.objectValue as! NSCompoundPredicate
-            if predicateTypePopUp.titleOfSelectedItem == "Any" {
-                result = NSCompoundPredicate.init(orPredicateWithSubpredicates: predicate.subpredicates as! [NSPredicate])
-            }
-            else{
-                result = NSCompoundPredicate.init(andPredicateWithSubpredicates: predicate.subpredicates as! [NSPredicate])
-            }
-        }
-        return result
-//        let result = RuleScrollViewObject.predicateEditor.objectValue
-//        let pred = result as! NSCompoundPredicate
-//        let change = NSCompoundPredicate.init(type: NSCompoundPredicateType.OrPredicateType, subpredicates: pred.subpredicates as! [NSPredicate])
-        
-//        let bobPredicate = NSPredicate(format: "Artist = 'U2'")
-//        RuleScrollViewObject.predicateEditor.objectValue = bobPredicate
-//        RuleScrollViewObject.predicateEditor.reloadPredicate()
+    func spawnNewAutomatorWindow(length: Double){
+        automatorWindow.title = "New Automator"
+        timeTextField.doubleValue = length
+        automatorWindow.center()
+        automatorWindow.makeKeyAndOrderFront(self)
+        NSApp.runModalForWindow(automatorWindow)
     }
+    
     
     @IBAction func okButton(sender: AnyObject) {
         let time = timeTextField.doubleValue
@@ -85,6 +71,66 @@ class AutomatorWindow: NSObject {
         
     }
     
+    @IBAction func cancelButton(sender: AnyObject) {
+        //Make all the text fields empty
+        timeTextField.stringValue = ""
+        tierOneTextField.stringValue = ""
+        tierTwoTextField.stringValue = ""
+        tierThreeTextField.stringValue = ""
+        bumpersPerBlockTextField.stringValue = ""
+        songsBetweenBlocksTextField.stringValue = ""
+        //Disable all of the buttons
+        hasSeedPlaylistButton.state = NSOffState
+        hasBumpersButton.state = NSOffState
+        hasRulesButton.state = NSOffState
+        //Unselect the popup buttons
+        seedPlaylistButton.selectItemAtIndex(-1)
+        bumpersPlaylistButton.selectItemAtIndex(-1)
+        //Disable all the UI which is disabled when the buttons are all of
+        seedPlaylistButton.enabled = false
+        bumpersPlaylistButton.enabled = false
+        bumpersPerBlockTextField.enabled = false
+        songsBetweenBlocksTextField.enabled = false
+        RuleScrollViewObject.predicateEditorView.hidden = true
+        //Replace all rules with the default rule xw
+        let predicate = NSPredicate(format: "Artist = ''")
+        RuleScrollViewObject.predicateEditor.objectValue = predicate
+        RuleScrollViewObject.predicateEditor.reloadPredicate()
+        //StopModal and orderout window
+        NSApp.stopModal()
+        automatorWindow.orderOut(self)
+        //TODO If new or editing
+        ShowWindowObject.spawnNewShowWindow()
+    }
+
+    @IBAction func seedPlaylistPressed(sender: AnyObject) {
+        if hasSeedPlaylistButton.state == NSOnState {
+            seedPlaylistButton.enabled = true
+        }
+        else{
+            seedPlaylistButton.enabled = false
+        }
+    }
+    @IBAction func bumpersPlaylistPressed(sender: AnyObject) {
+        if hasBumpersButton.state == NSOnState {
+            bumpersPlaylistButton.enabled = true
+            bumpersPerBlockTextField.enabled = true
+            songsBetweenBlocksTextField.enabled = true
+        }
+        else{
+            bumpersPlaylistButton.enabled = false
+            bumpersPerBlockTextField.enabled = false
+            songsBetweenBlocksTextField.enabled = false
+        }
+    }
+    @IBAction func rulesPressed(sender: AnyObject) {
+        if hasRulesButton.state == NSOnState {
+            RuleScrollViewObject.predicateEditorView.hidden = false
+        }
+        else{
+            RuleScrollViewObject.predicateEditorView.hidden = true
+        }
+    }
     func changeWindowSizeBy(aHeight: CGFloat){
         var windowFrame = automatorWindow.frame
         windowFrame.size.height = 415 + aHeight
@@ -99,35 +145,28 @@ class AutomatorWindow: NSObject {
         automatorWindow.setFrame(windowFrame, display: true, animate: false)
     }
     
-    @IBAction func seedPlaylistPressed(sender: AnyObject) {
-        if hasSeedPlaylistButton.state == NSOnState {
-            seedPlaylistButton.enabled = true
+    func getRules() -> NSPredicate{
+        var result: NSPredicate
+        if RuleScrollViewObject.predicateEditor.numberOfRows == 1{
+            result = RuleScrollViewObject.predicateEditor.objectValue as! NSPredicate
         }
         else{
-            seedPlaylistButton.enabled = false
+            let predicate = RuleScrollViewObject.predicateEditor.objectValue as! NSCompoundPredicate
+            if predicateTypePopUp.titleOfSelectedItem == "Any" {
+                result = NSCompoundPredicate.init(orPredicateWithSubpredicates: predicate.subpredicates as! [NSPredicate])
+            }
+            else{
+                result = NSCompoundPredicate.init(andPredicateWithSubpredicates: predicate.subpredicates as! [NSPredicate])
+            }
         }
-    }
-
-    @IBAction func bumpersPlaylistPressed(sender: AnyObject) {
-        if hasBumpersButton.state == NSOnState {
-            bumpersPlaylistButton.enabled = true
-            bumpersPerBlockTextField.enabled = true
-            songsBetweenBlocksTextField.enabled = true
-        }
-        else{
-            bumpersPlaylistButton.enabled = false
-            bumpersPerBlockTextField.enabled = false
-            songsBetweenBlocksTextField.enabled = false
-        }
-    }
-
-    @IBAction func rulesPressed(sender: AnyObject) {
-        if hasRulesButton.state == NSOnState {
-            RuleScrollViewObject.predicateEditorView.hidden = false
-        }
-        else{
-            RuleScrollViewObject.predicateEditorView.hidden = true
-        }
+        return result
+        //        let result = RuleScrollViewObject.predicateEditor.objectValue
+        //        let pred = result as! NSCompoundPredicate
+        //        let change = NSCompoundPredicate.init(type: NSCompoundPredicateType.OrPredicateType, subpredicates: pred.subpredicates as! [NSPredicate])
+        
+        //        let bobPredicate = NSPredicate(format: "Artist = 'U2'")
+        //        RuleScrollViewObject.predicateEditor.objectValue = bobPredicate
+        //        RuleScrollViewObject.predicateEditor.reloadPredicate()
     }
     
     //TODO on ok / cancel check to see if window was called by show object or preferences object, different actions will need to be taken depending

@@ -19,6 +19,7 @@ class ShowWindow: NSObject {
     @IBOutlet weak var endDay: NSPopUpButton!
     
     @IBOutlet weak var MasterScheduleObject: MasterSchedule!
+    @IBOutlet weak var AutomatorWindowObject: AutomatorWindow!
     
     func spawnNewShowWindow(){
         showWindow.title = "New Show"
@@ -117,7 +118,17 @@ class ShowWindow: NSObject {
         }
         else{
             if showWindow.title == "New Show" {
-                cancelButton(self)
+                //Calculate the length of the show and thusly the length of the automator
+                var dayDifference = endDateComponents.day - startDateComponents.day
+                if startDateComponents.day == 7 && endDateComponents.day == 1 {dayDifference = 1}
+                let endTime = ((Double(endDateComponents.minute)  / 60.0) + Double(endDateComponents.hour))
+                let startTime = ((Double(startDateComponents.minute) as Double / 60.0) + Double(startDateComponents.hour))
+                let showLength = (endTime - startTime) + (Double(dayDifference) * 24.0)
+                
+                NSApp.stopModal()
+                showWindow.orderOut(self)
+                
+                AutomatorWindowObject.spawnNewAutomatorWindow(showLength)
             }
             else{
                 

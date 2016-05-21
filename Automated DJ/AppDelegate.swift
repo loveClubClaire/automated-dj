@@ -17,6 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var PreferencesObject: Preferences!
     @IBOutlet weak var RuleScrollViewObject: RuleScrollView!
     @IBOutlet weak var AdminAccessObject: AdminAccess!
+    @IBOutlet weak var AutomatorWindowObject: AutomatorWindow!
     
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
     let myApplication = NSApplication.sharedApplication()
@@ -46,6 +47,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         ShowWindowObject.startDay.addItemsWithTitles(daysOfTheWeek)
         ShowWindowObject.endDay.addItemsWithTitles(daysOfTheWeek)
 
+        //Configure the number formatter for the automator window so we can have trailing zeros and doubles which are not too large
+        (AutomatorWindowObject.timeTextField.formatter as! NSNumberFormatter).minimumFractionDigits = 2
+        (AutomatorWindowObject.timeTextField.formatter as! NSNumberFormatter).maximumFractionDigits = 2
+        
         //Get the filepaths of our applications stored data. 
         //We grab the URL for the application support folder and append the application name to the end of it, giving us the filepath where all data is stored. If the app has been run before, we should have a valid URL, if not, we create the directory so that the URL is valid. We then create constants with individual file names appended to the stored data directory. If a file does not exist, it will be created using that filepath.
         let applicationSupportFilepath = try! NSFileManager().URLForDirectory(NSSearchPathDirectory.ApplicationSupportDirectory, inDomain: NSSearchPathDomainMask.UserDomainMask, appropriateForURL: nil, create: false)
