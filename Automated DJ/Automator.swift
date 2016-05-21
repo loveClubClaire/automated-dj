@@ -20,6 +20,19 @@ class Automator: NSObject {
     var songsBetweenBlocks: Int?
     var rules: NSPredicate?
     
+
+    init(aTotalTime: Double, aTierOnePrecent: Int, aTierTwoPrecent: Int, aTierThreePrecent: Int) {
+        totalTime = aTotalTime
+        tierOnePrecent = aTierOnePrecent
+        tierTwoPrecent = aTierTwoPrecent
+        tierThreePrecent = aTierThreePrecent
+        seedPlayist = nil
+        bumpersPlaylist = nil
+        bumpersPerBlock = nil
+        songsBetweenBlocks = nil
+        rules = nil
+
+    }
     
     init(aTotalTime: Double, aTierOnePrecent: Int, aTierTwoPrecent: Int, aTierThreePrecent: Int, aSeedPlaylist: String?, aBumpersPlaylist: String?, aBumpersPerBlock: Int?, aSongBetweenBlocks: Int?, aRules: NSPredicate?){
         totalTime = aTotalTime

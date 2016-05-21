@@ -20,10 +20,7 @@
 }
 
 -(void) iTunesPause{
-    NSLog(@"Hello");
-    
     [_myInstance iTunesPause];
-
 }
 
 @end

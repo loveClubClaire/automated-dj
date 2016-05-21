@@ -23,8 +23,8 @@ class Preferences: NSObject {
     var defaultPreferencesView: NSView!
     var advancedPreferencesView: NSView!
     
-    private var tempAutomator: Automator = Automator()
-    var defaultAutomator: Automator = Automator()
+    private var tempAutomator: Automator = Automator.init(aTotalTime: 2.0, aTierOnePrecent: 15, aTierTwoPrecent: 25, aTierThreePrecent: 60)
+    var defaultAutomator: Automator = Automator.init(aTotalTime: 2.0, aTierOnePrecent: 15, aTierTwoPrecent: 25, aTierThreePrecent: 60)
     var isAdmin = false
     var globalAnnouncementsDelay = 0
     var tollerence = 0

@@ -58,6 +58,18 @@
             <connections>
                 <outlet property="RuleScrollViewObject" destination="osi-q6-9Jp" id="xIM-yl-OAp"/>
                 <outlet property="automatorWindow" destination="hq7-sJ-C1m" id="mVo-Y5-i4W"/>
+                <outlet property="bumpersPerBlockTextField" destination="U4t-NX-HEY" id="0g7-dH-ZNB"/>
+                <outlet property="bumpersPlaylistButton" destination="piJ-Ps-mMp" id="4rb-GP-kdd"/>
+                <outlet property="hasBumpersButton" destination="Im5-7f-bHJ" id="RQc-9N-bbU"/>
+                <outlet property="hasRulesButton" destination="3Gd-v9-2Cm" id="TNu-XA-e8Q"/>
+                <outlet property="hasSeedPlaylistButton" destination="7rO-EN-b31" id="Myc-nZ-Z9R"/>
+                <outlet property="predicateTypePopUp" destination="LYG-jG-dJl" id="qM0-Co-MT3"/>
+                <outlet property="seedPlaylistButton" destination="3bf-3N-wkn" id="g7X-wf-Ic0"/>
+                <outlet property="songsBetweenBlocksTextField" destination="Bk7-xq-6E1" id="lUx-id-N6Q"/>
+                <outlet property="tierOneTextField" destination="sqB-PA-ZY9" id="fwG-it-VUV"/>
+                <outlet property="tierThreeTextField" destination="5Sf-vo-GYn" id="Jc1-Wh-Nvc"/>
+                <outlet property="tierTwoTextField" destination="1Ie-HF-iaM" id="yo9-aZ-Lqg"/>
+                <outlet property="timeTextField" destination="Vw2-G8-EC2" id="epu-ot-A9w"/>
             </connections>
         </customObject>
         <customObject id="wyT-FT-Ij2" customClass="GloablAnnouncements" customModule="Automated_DJ" customModuleProvider="target">
@@ -1184,17 +1196,23 @@ Gw
                     </textField>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7rO-EN-b31">
                         <rect key="frame" x="95" y="247" width="100" height="18"/>
-                        <buttonCell key="cell" type="check" title="Seed Playlist" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="DzF-dU-OPy">
+                        <buttonCell key="cell" type="check" title="Seed Playlist" bezelStyle="regularSquare" imagePosition="left" inset="2" id="DzF-dU-OPy">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="seedPlaylistPressed:" target="7bL-4F-b7G" id="2Ka-l3-xWF"/>
+                        </connections>
                     </button>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Im5-7f-bHJ">
                         <rect key="frame" x="95" y="206" width="123" height="18"/>
-                        <buttonCell key="cell" type="check" title="Bumpers Playlist" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="xbl-6k-WYu">
+                        <buttonCell key="cell" type="check" title="Bumpers Playlist" bezelStyle="regularSquare" imagePosition="left" inset="2" id="xbl-6k-WYu">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="bumpersPlaylistPressed:" target="7bL-4F-b7G" id="rba-0H-DOr"/>
+                        </connections>
                     </button>
                     <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="bdX-4V-jbX">
                         <rect key="frame" x="20" y="275" width="463" height="5"/>
@@ -1212,7 +1230,7 @@ Gw
                     </textField>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="piJ-Ps-mMp">
                         <rect key="frame" x="275" y="204" width="125" height="26"/>
-                        <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="lqA-Mb-XfR" id="j9k-Up-DRA">
+                        <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" enabled="NO" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="lqA-Mb-XfR" id="j9k-Up-DRA">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
                             <menu key="menu" id="U70-jJ-MFU">
@@ -1226,7 +1244,7 @@ Gw
                     </popUpButton>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U4t-NX-HEY">
                         <rect key="frame" x="277" y="165" width="96" height="22"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="AcD-zx-t5U">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="AcD-zx-t5U">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="NQ2-mQ-Nm7"/>
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -1235,7 +1253,7 @@ Gw
                     </textField>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bk7-xq-6E1">
                         <rect key="frame" x="277" y="133" width="96" height="22"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Nwx-Lo-nVq">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Nwx-Lo-nVq">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="aCr-IC-8zs"/>
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -1250,7 +1268,7 @@ Gw
                     </box>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3bf-3N-wkn">
                         <rect key="frame" x="275" y="245" width="125" height="26"/>
-                        <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="b1o-d2-KCN" id="MRy-Bg-Xpj">
+                        <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" enabled="NO" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="b1o-d2-KCN" id="MRy-Bg-Xpj">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
                             <menu key="menu" id="8Ph-tS-yme">
@@ -1264,10 +1282,13 @@ Gw
                     </popUpButton>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Gd-v9-2Cm">
                         <rect key="frame" x="18" y="100" width="172" height="18"/>
-                        <buttonCell key="cell" type="check" title="Match the following rule:" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Qc6-cr-Bbu">
+                        <buttonCell key="cell" type="check" title="Match the following rule:" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Qc6-cr-Bbu">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="rulesPressed:" target="7bL-4F-b7G" id="We4-Xx-h8I"/>
+                        </connections>
                     </button>
                     <popUpButton hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LYG-jG-dJl">
                         <rect key="frame" x="82" y="95" width="60" height="26"/>
@@ -1296,7 +1317,7 @@ Gw
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <font key="titleFont" metaFont="system"/>
                     </box>
-                    <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VYg-fd-S3z">
+                    <scrollView hidden="YES" fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VYg-fd-S3z">
                         <rect key="frame" x="30" y="-32" width="443" height="125"/>
                         <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="D0L-k2-29f">
                             <rect key="frame" x="0.0" y="0.0" width="443" height="125"/>
