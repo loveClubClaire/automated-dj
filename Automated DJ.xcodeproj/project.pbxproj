@@ -19,7 +19,6 @@
 		C04616D31CE436CD004E1B38 /* Automator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04616D21CE436CD004E1B38 /* Automator.swift */; };
 		C04616D51CE436D7004E1B38 /* AutomatorWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04616D41CE436D7004E1B38 /* AutomatorWindow.swift */; };
 		C08372AA1CE62EAA0046F231 /* MasterScheduleWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08372A91CE62EAA0046F231 /* MasterScheduleWindow.swift */; };
-		C08C157E1CEECDCE00EF8BCF /* AdminAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08C157D1CEECDCE00EF8BCF /* AdminAccess.swift */; };
 		C08C15801CEEF39100EF8BCF /* On Air.png in Resources */ = {isa = PBXBuildFile; fileRef = C08C157F1CEEF39100EF8BCF /* On Air.png */; };
 		C08C15821CF007E900EF8BCF /* Automated DJ.sdef in Resources */ = {isa = PBXBuildFile; fileRef = C08C15811CF007E900EF8BCF /* Automated DJ.sdef */; };
 		C08C15841CF0082F00EF8BCF /* AutomateShowCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08C15831CF0082F00EF8BCF /* AutomateShowCommand.swift */; };
@@ -34,6 +33,7 @@
 		C0C43BEB1CEE734F00665376 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C43BEA1CEE734F00665376 /* Preferences.swift */; };
 		C0DCCA4C1CEC14C60068533F /* GlobalAnnouncements.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DCCA4B1CEC14C60068533F /* GlobalAnnouncements.swift */; };
 		C0E88CA21CEBD27400BBA2B8 /* CustomPredicateEditorRowTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E88CA11CEBD27400BBA2B8 /* CustomPredicateEditorRowTemplate.swift */; };
+		C0F6D2A41CF1EE76001E0E95 /* AdminAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F6D2A31CF1EE76001E0E95 /* AdminAccess.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,7 +72,6 @@
 		C04616D21CE436CD004E1B38 /* Automator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Automator.swift; sourceTree = "<group>"; };
 		C04616D41CE436D7004E1B38 /* AutomatorWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomatorWindow.swift; sourceTree = "<group>"; };
 		C08372A91CE62EAA0046F231 /* MasterScheduleWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterScheduleWindow.swift; sourceTree = "<group>"; };
-		C08C157D1CEECDCE00EF8BCF /* AdminAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdminAccess.swift; path = ../AdminAccess.swift; sourceTree = "<group>"; };
 		C08C157F1CEEF39100EF8BCF /* On Air.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "On Air.png"; sourceTree = "<group>"; };
 		C08C15811CF007E900EF8BCF /* Automated DJ.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Automated DJ.sdef"; sourceTree = "<group>"; };
 		C08C15831CF0082F00EF8BCF /* AutomateShowCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomateShowCommand.swift; sourceTree = "<group>"; };
@@ -90,6 +89,7 @@
 		C0C43BEA1CEE734F00665376 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		C0DCCA4B1CEC14C60068533F /* GlobalAnnouncements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalAnnouncements.swift; sourceTree = "<group>"; };
 		C0E88CA11CEBD27400BBA2B8 /* CustomPredicateEditorRowTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPredicateEditorRowTemplate.swift; sourceTree = "<group>"; };
+		C0F6D2A31CF1EE76001E0E95 /* AdminAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminAccess.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,7 +145,7 @@
 				C08C157F1CEEF39100EF8BCF /* On Air.png */,
 				C04616A31CE43542004E1B38 /* AppDelegate.swift */,
 				C09D9F5A1CE95954009458FC /* ErrorChecker.swift */,
-				C08C157D1CEECDCE00EF8BCF /* AdminAccess.swift */,
+				C0F6D2A31CF1EE76001E0E95 /* AdminAccess.swift */,
 				C08C15831CF0082F00EF8BCF /* AutomateShowCommand.swift */,
 				C09D9F5D1CE9C31F009458FC /* Custom Objects */,
 				C09D9F5C1CE9C2E4009458FC /* UI Classes */,
@@ -360,12 +360,12 @@
 				C08C15841CF0082F00EF8BCF /* AutomateShowCommand.swift in Sources */,
 				C0E88CA21CEBD27400BBA2B8 /* CustomPredicateEditorRowTemplate.swift in Sources */,
 				C09D9F521CE7B615009458FC /* CustomDatePicker.swift in Sources */,
+				C0F6D2A41CF1EE76001E0E95 /* AdminAccess.swift in Sources */,
 				C0C43BEB1CEE734F00665376 /* Preferences.swift in Sources */,
 				C09D9F561CE7ECBE009458FC /* ShowStatus.swift in Sources */,
 				C04616D11CE436B9004E1B38 /* ShowWindow.swift in Sources */,
 				C04616D31CE436CD004E1B38 /* Automator.swift in Sources */,
 				C09D9F5B1CE95954009458FC /* ErrorChecker.swift in Sources */,
-				C08C157E1CEECDCE00EF8BCF /* AdminAccess.swift in Sources */,
 				C04616CF1CE436AF004E1B38 /* Show.swift in Sources */,
 				C0DCCA4C1CEC14C60068533F /* GlobalAnnouncements.swift in Sources */,
 				C04616CD1CE436A7004E1B38 /* MasterSchedule.swift in Sources */,
