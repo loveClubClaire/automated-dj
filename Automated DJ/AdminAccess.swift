@@ -28,7 +28,7 @@ class AdminAccess: NSObject {
     }
     
     func isAuthorized() -> Bool {
-        //If application preference requies admin access is turned off, then authorization is automatic. If its turned on, then we make a call to getAdminAccess which forces the user to enter in the admin password for the system. If its a valid password, then authorization is given.
+        //If application preferences "requires admin access" is turned off, then authorization is automatic. If its turned on, then we make a call to getAdminAccess which forces the user to enter in the admin password for the system. If its a valid password, then authorization is given.
         var toReturn = false
         if PreferencesObject.isAdmin == false {
             toReturn = true
