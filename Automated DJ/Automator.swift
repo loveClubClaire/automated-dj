@@ -52,11 +52,11 @@ class Automator: NSObject {
             let tierOnePrecent = decoder.decodeObjectForKey("tierOnePrecent") as? Int,
             let tierTwoPrecent = decoder.decodeObjectForKey("tierTwoPrecent") as? Int,
             let tierThreePrecent = decoder.decodeObjectForKey("tierThreePrecent") as? Int,
-            let seedPlayist = decoder.decodeObjectForKey("seedPlayist") as? String,
-            let bumpersPlaylist = decoder.decodeObjectForKey("bumpersPlaylist") as? String,
-            let bumpersPerBlock = decoder.decodeObjectForKey("bumpersPerBlock") as? Int,
-            let songsBetweenBlocks = decoder.decodeObjectForKey("songsBetweenBlocks") as? Int,
-            let rules = decoder.decodeObjectForKey("rules") as? NSPredicate
+            let seedPlayist = decoder.decodeObjectForKey("seedPlayist") as? String?,
+            let bumpersPlaylist = decoder.decodeObjectForKey("bumpersPlaylist") as? String?,
+            let bumpersPerBlock = decoder.decodeObjectForKey("bumpersPerBlock") as? Int?,
+            let songsBetweenBlocks = decoder.decodeObjectForKey("songsBetweenBlocks") as? Int?,
+            let rules = decoder.decodeObjectForKey("rules") as? NSPredicate?
             else { return nil }
         
         self.init(aTotalTime: totalTime, aTierOnePrecent: tierOnePrecent, aTierTwoPrecent: tierTwoPrecent, aTierThreePrecent: tierThreePrecent, aSeedPlaylist: seedPlayist, aBumpersPlaylist: bumpersPlaylist, aBumpersPerBlock: bumpersPerBlock, aSongBetweenBlocks: songsBetweenBlocks, aRules: rules)
