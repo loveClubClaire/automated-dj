@@ -90,7 +90,7 @@ class ShowStatus: NSObject {
         }
         
         if automator == false {
-            
+            editedShow.automator = masterShow.automator
         }
         
         return editedShow
