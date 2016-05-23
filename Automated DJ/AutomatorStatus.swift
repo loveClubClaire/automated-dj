@@ -20,4 +20,8 @@ class AutomatorStatus: NSObject {
     var bumpersPerBlock = true
     var songsBetweenBlocks = true
     var rules = true
+    //True means on or off state, false means mixed state
+    var rulesState = true
+    var bumpersState = true
+    var seedState = true
 }

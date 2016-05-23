@@ -43,6 +43,75 @@ class AutomatorWindow: NSObject {
         NSApp.runModalForWindow(automatorWindow)
     }
     
+    func spawnEditAutomatorWindow(aShow: Show, status: AutomatorStatus){
+        automatorWindow.title = "Edit Automators"
+        show = aShow
+        if status.totalTime == true {timeTextField.doubleValue = (aShow.automator?.totalTime)!}
+        else{timeTextField.placeholderString = "Mixed"}
+        if status.tierOnePrecent == true {tierOneTextField.integerValue = (aShow.automator?.tierOnePrecent)!}
+        else{tierOneTextField.placeholderString = "Mixed"}
+        if status.tierTwoPrecent == true {tierTwoTextField.integerValue = (aShow.automator?.tierTwoPrecent)!}
+        else{tierTwoTextField.placeholderString = "Mixed"}
+        if status.tierThreePrecent == true {tierThreeTextField.integerValue = (aShow.automator?.tierThreePrecent)!}
+        else{tierThreeTextField.placeholderString = "Mixed"}
+        
+        if status.seedPlayist == true && aShow.automator?.seedPlayist != nil{
+            seedPlaylistButton.selectItemWithTitle((aShow.automator?.seedPlayist)!)
+            hasSeedPlaylistButton.state = 1
+            seedPlaylistButton.enabled = true
+        }
+        else{
+            seedPlaylistButton.selectItemAtIndex(-1)
+            if status.seedState == true {
+                hasSeedPlaylistButton.state = 0
+            }
+            else{
+                hasSeedPlaylistButton.state = -1
+            }
+        }
+        
+        if status.bumpersPlaylist == true && aShow.automator?.bumpersPlaylist != nil{
+            bumpersPlaylistButton.selectItemWithTitle((aShow.automator?.bumpersPlaylist)!)
+            hasBumpersButton.state = 1
+            bumpersPerBlockTextField.integerValue = (aShow.automator?.bumpersPerBlock)!
+            songsBetweenBlocksTextField.integerValue = (aShow.automator?.songsBetweenBlocks)!
+            bumpersPlaylistButton.enabled = true
+            bumpersPerBlockTextField.enabled = true
+            songsBetweenBlocksTextField.enabled = true
+        }
+        else{
+            bumpersPlaylistButton.selectItemAtIndex(-1)
+            if status.bumpersState == true {
+                hasBumpersButton.state = 0
+            }
+            else{
+                hasBumpersButton.state = -1
+            }
+        }
+        
+        
+        if status.rules == true && aShow.automator?.rules != nil{
+            RuleScrollViewObject.predicateEditor.objectValue = aShow.automator?.rules
+            RuleScrollViewObject.predicateEditor.reloadPredicate()
+            RuleScrollViewObject.predicateEditorView.hidden = false
+            hasRulesButton.state = 1
+        }
+        else{
+            if status.rulesState == true {
+                hasRulesButton.state = 0
+            }
+            else{
+                hasRulesButton.state = -1
+            }
+        }
+
+        //end value setting
+        automatorWindow.center()
+        automatorWindow.makeKeyAndOrderFront(self)
+        NSApp.runModalForWindow(automatorWindow)
+
+    }
+    
     
     @IBAction func okButton(sender: AnyObject) {
         let time = timeTextField.doubleValue

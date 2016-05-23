@@ -10,6 +10,9 @@ import Foundation
 import Cocoa
 
 class ShowWindow: NSObject {
+    @IBOutlet weak var MasterScheduleObject: MasterSchedule!
+    @IBOutlet weak var AutomatorWindowObject: AutomatorWindow!
+    
     @IBOutlet weak var showWindow: NSWindow!
     @IBOutlet weak var showName: NSTextField!
     @IBOutlet weak var startTime: NSDatePicker!
@@ -18,8 +21,8 @@ class ShowWindow: NSObject {
     @IBOutlet weak var startDay: NSPopUpButton!
     @IBOutlet weak var endDay: NSPopUpButton!
     
-    @IBOutlet weak var MasterScheduleObject: MasterSchedule!
-    @IBOutlet weak var AutomatorWindowObject: AutomatorWindow!
+    var showStatus = ShowStatus()
+    var editAutomator: Automator?
     
     func spawnNewShowWindow(){
         showWindow.title = "New Show"
@@ -30,6 +33,8 @@ class ShowWindow: NSObject {
     
     func spawnEditShowWindow(aShow: Show, anAutomator: Automator?, status: ShowStatus){
         showWindow.title = "Edit Shows"
+        showStatus = status
+        editAutomator = anAutomator
         //Set the values passed to their respective objects
         let timeFormatter = NSDateFormatter();timeFormatter.dateFormat = "hh:mm a"
         let dayFormatter = NSDateFormatter();dayFormatter.dateFormat = "EEEE"
@@ -117,7 +122,7 @@ class ShowWindow: NSObject {
             cancelButton(self)
         }
         else{
-            if showWindow.title == "New Show" {
+            if showWindow.title == "New Show" || editAutomator == nil{
                 //Calculate the length of the show and thusly the length of the automator
                 var dayDifference = endDateComponents.day - startDateComponents.day
                 if startDateComponents.day == 7 && endDateComponents.day == 1 {dayDifference = 1}
@@ -127,11 +132,13 @@ class ShowWindow: NSObject {
                 
                 NSApp.stopModal()
                 showWindow.orderOut(self)
-                
                 AutomatorWindowObject.spawnNewAutomatorWindow(showLength, aShow: show)
             }
             else{
-                
+                NSApp.stopModal()
+                showWindow.orderOut(self)
+                show.automator = editAutomator
+                AutomatorWindowObject.spawnEditAutomatorWindow(show, status: showStatus.automatorStatus)
             }
         }
         }

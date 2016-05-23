@@ -65,14 +65,16 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
         //If the number of shows selected is greater than zero, get the value of the first selected show and its automator. Then compare it to all other selected shows and automators. If any fields in either object are different, then change that fields assoicated (position 0 = show.name etc etc. Its not programmably assoicated) status boolean to false. Then sent the automator, show, and status array to the ShowWindow class.
         if selectedShows.count > 0 {
             var userConfirmed = true
-            let myPopup: NSAlert = NSAlert()
-            myPopup.messageText = "Are you sure you want to edit information for multiple shows?"
-            myPopup.alertStyle = NSAlertStyle.WarningAlertStyle
-            myPopup.addButtonWithTitle("Edit Shows")
-            myPopup.addButtonWithTitle("Cancel")
-            let res = myPopup.runModal()
-            if res != NSAlertFirstButtonReturn {
-                userConfirmed = false
+            if selectedShows.count > 1 {
+                let myPopup: NSAlert = NSAlert()
+                myPopup.messageText = "Are you sure you want to edit information for multiple shows?"
+                myPopup.alertStyle = NSAlertStyle.WarningAlertStyle
+                myPopup.addButtonWithTitle("Edit Shows")
+                myPopup.addButtonWithTitle("Cancel")
+                let res = myPopup.runModal()
+                if res != NSAlertFirstButtonReturn {
+                    userConfirmed = false
+                }
             }
             if userConfirmed == true {
             var index = selectedShows.firstIndex
@@ -107,6 +109,15 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
                         if anAutomator?.bumpersPerBlock != dataArray[index].automator?.bumpersPerBlock {automatorStatus.bumpersPerBlock = false}
                         if anAutomator?.songsBetweenBlocks != dataArray[index].automator?.songsBetweenBlocks {automatorStatus.songsBetweenBlocks = false}
                         if anAutomator?.rules != dataArray[index].automator?.rules {automatorStatus.rules = false}
+                        if (anAutomator?.seedPlayist == nil && dataArray[index].automator?.seedPlayist != nil) || (anAutomator?.seedPlayist != nil && dataArray[index].automator?.seedPlayist == nil){
+                            automatorStatus.rulesState = false
+                        }
+                        if (anAutomator?.bumpersPlaylist == nil && dataArray[index].automator?.bumpersPlaylist != nil) || (anAutomator?.bumpersPlaylist != nil && dataArray[index].automator?.bumpersPlaylist == nil){
+                            automatorStatus.bumpersState = false
+                        }
+                        if (anAutomator?.rules == nil && dataArray[index].automator?.rules != nil) || (anAutomator?.rules != nil && dataArray[index].automator?.rules == nil){
+                            automatorStatus.seedState = false
+                        }
                     }
                 }
                 index = selectedShows.indexGreaterThanIndex(index)
