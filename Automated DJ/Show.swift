@@ -27,7 +27,7 @@ class Show: NSObject, NSCoding{
         guard let name = decoder.decodeObjectForKey("name") as? String,
             let startDate = decoder.decodeObjectForKey("startDate") as? NSDate,
             let endDate = decoder.decodeObjectForKey("endDate") as? NSDate,
-            let automator = decoder.decodeObjectForKey("automator") as? Automator
+            let automator = decoder.decodeObjectForKey("automator") as? Automator?
             else { return nil }
         
         self.init(aName: name, aStartDate: startDate, anEndDate: endDate)
