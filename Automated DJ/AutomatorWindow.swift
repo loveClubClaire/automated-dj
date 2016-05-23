@@ -183,7 +183,14 @@ class AutomatorWindow: NSObject {
         automatorWindow.orderOut(self)
         //TODO If new or editing
         if finalSubmit == false {
-            ShowWindowObject.spawnNewShowWindow()
+            if automatorWindow.title == "Edit Automators" {
+                ShowWindowObject.showWindow.center()
+                ShowWindowObject.showWindow.makeKeyAndOrderFront(self)
+                NSApp.runModalForWindow(ShowWindowObject.showWindow)
+            }
+            else{
+                ShowWindowObject.spawnNewShowWindow()
+            }
         }
         
     }
