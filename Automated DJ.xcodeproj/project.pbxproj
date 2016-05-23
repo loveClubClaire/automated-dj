@@ -34,6 +34,7 @@
 		C0DCCA4C1CEC14C60068533F /* GlobalAnnouncements.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DCCA4B1CEC14C60068533F /* GlobalAnnouncements.swift */; };
 		C0E88CA21CEBD27400BBA2B8 /* CustomPredicateEditorRowTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E88CA11CEBD27400BBA2B8 /* CustomPredicateEditorRowTemplate.swift */; };
 		C0F6D2A41CF1EE76001E0E95 /* AdminAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F6D2A31CF1EE76001E0E95 /* AdminAccess.swift */; };
+		C0F6D2A61CF2B6A7001E0E95 /* AutomatorStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F6D2A51CF2B6A7001E0E95 /* AutomatorStatus.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		C0DCCA4B1CEC14C60068533F /* GlobalAnnouncements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalAnnouncements.swift; sourceTree = "<group>"; };
 		C0E88CA11CEBD27400BBA2B8 /* CustomPredicateEditorRowTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPredicateEditorRowTemplate.swift; sourceTree = "<group>"; };
 		C0F6D2A31CF1EE76001E0E95 /* AdminAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminAccess.swift; sourceTree = "<group>"; };
+		C0F6D2A51CF2B6A7001E0E95 /* AutomatorStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomatorStatus.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,8 +209,8 @@
 				C0C43BEA1CEE734F00665376 /* Preferences.swift */,
 				C0DCCA4B1CEC14C60068533F /* GlobalAnnouncements.swift */,
 				C04616CC1CE436A7004E1B38 /* MasterSchedule.swift */,
-				C04616D41CE436D7004E1B38 /* AutomatorWindow.swift */,
 				C04616D01CE436B9004E1B38 /* ShowWindow.swift */,
+				C04616D41CE436D7004E1B38 /* AutomatorWindow.swift */,
 				C09D9F601CEA7B6D009458FC /* RuleScrollView.swift */,
 			);
 			name = "UI Classes";
@@ -220,6 +222,7 @@
 				C04616CE1CE436AF004E1B38 /* Show.swift */,
 				C04616D21CE436CD004E1B38 /* Automator.swift */,
 				C09D9F551CE7ECBE009458FC /* ShowStatus.swift */,
+				C0F6D2A51CF2B6A7001E0E95 /* AutomatorStatus.swift */,
 			);
 			name = "Custom Objects";
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				C09D9F561CE7ECBE009458FC /* ShowStatus.swift in Sources */,
 				C04616D11CE436B9004E1B38 /* ShowWindow.swift in Sources */,
 				C04616D31CE436CD004E1B38 /* Automator.swift in Sources */,
+				C0F6D2A61CF2B6A7001E0E95 /* AutomatorStatus.swift in Sources */,
 				C09D9F5B1CE95954009458FC /* ErrorChecker.swift in Sources */,
 				C04616CF1CE436AF004E1B38 /* Show.swift in Sources */,
 				C0DCCA4C1CEC14C60068533F /* GlobalAnnouncements.swift in Sources */,

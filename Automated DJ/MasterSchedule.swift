@@ -77,6 +77,7 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
             if userConfirmed == true {
             var index = selectedShows.firstIndex
             let status = ShowStatus()
+            let automatorStatus = AutomatorStatus()
             let aShow = dataArray[index]
             var anAutomator = aShow.automator
             index = selectedShows.indexGreaterThanIndex(index)
@@ -97,10 +98,20 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
                     }
                     else{
                         //DO compares
+                        if anAutomator?.totalTime != dataArray[index].automator?.totalTime {automatorStatus.totalTime = false}
+                        if anAutomator?.tierOnePrecent != dataArray[index].automator?.tierOnePrecent {automatorStatus.tierOnePrecent = false}
+                        if anAutomator?.tierTwoPrecent != dataArray[index].automator?.tierTwoPrecent {automatorStatus.tierTwoPrecent = false}
+                        if anAutomator?.tierThreePrecent != dataArray[index].automator?.tierThreePrecent {automatorStatus.tierThreePrecent = false}
+                        if anAutomator?.seedPlayist != dataArray[index].automator?.seedPlayist {automatorStatus.seedPlayist = false}
+                        if anAutomator?.bumpersPlaylist != dataArray[index].automator?.bumpersPlaylist {automatorStatus.bumpersPlaylist = false}
+                        if anAutomator?.bumpersPerBlock != dataArray[index].automator?.bumpersPerBlock {automatorStatus.bumpersPerBlock = false}
+                        if anAutomator?.songsBetweenBlocks != dataArray[index].automator?.songsBetweenBlocks {automatorStatus.songsBetweenBlocks = false}
+                        if anAutomator?.rules != dataArray[index].automator?.rules {automatorStatus.rules = false}
                     }
                 }
                 index = selectedShows.indexGreaterThanIndex(index)
             }
+            status.automatorStatus = automatorStatus
             ShowWindowObject.spawnEditShowWindow(aShow, anAutomator: anAutomator, status: status)
             }
         }

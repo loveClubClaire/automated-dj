@@ -10,7 +10,8 @@ import Foundation
 import Cocoa
 
 class ShowStatus: NSObject {
-    //True is same false is different
+    var automatorStatus = AutomatorStatus()
+    //True is same false is different (True, has not changed, False, has changed)
     var name = true
     var startDay = true
     var startTime = true
