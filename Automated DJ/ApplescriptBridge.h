@@ -9,11 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "MyApplescript.h"
 
+
 @interface ApplescriptBridge : NSObject
 
 @property id<ApplescriptProtocol> myInstance;
 
 - (void) iTunesPause;
 
+- (NSMutableArray*) getPlaylists;
 
 @end

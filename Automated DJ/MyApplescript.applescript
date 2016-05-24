@@ -6,6 +6,11 @@ script MyApplescript
             pause
         end tell
     end iTunesPause
-
+    
+    on getPlaylists()
+        tell application "iTunes"
+            get properties of playlists
+        end tell
+    end getPlaylists
     
 end script

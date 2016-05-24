@@ -6,4 +6,6 @@
 
 - (void)    iTunesPause;
 
+-(NSArray*) getPlaylists;
+
 @end

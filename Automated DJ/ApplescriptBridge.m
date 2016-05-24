@@ -7,10 +7,12 @@
 //
 
 #import "ApplescriptBridge.h"
+#import "Automated_DJ-Swift.h"
 
 
 @implementation ApplescriptBridge
 
+@class Playlist;
 
 
 -(id)init{
@@ -21,6 +23,20 @@
 
 -(void) iTunesPause{
     [_myInstance iTunesPause];
+}
+
+-(NSMutableArray*) getPlaylists{
+    NSArray *rawPlaylists = [_myInstance getPlaylists];
+    NSMutableArray *Playlists = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < [rawPlaylists count]; i++) {
+        NSAppleEventDescriptor *aPlaylist = [rawPlaylists objectAtIndex:i];
+        Playlist *tempPlaylist = [[Playlist alloc] initWithString:aPlaylist.debugDescription];
+        [Playlists addObject:tempPlaylist];
+    }
+    
+    return Playlists;
+
 }
 
 @end
