@@ -55,56 +55,70 @@ class AutomatorWindow: NSObject {
         if status.tierThreePrecent == true {tierThreeTextField.integerValue = (aShow.automator?.tierThreePrecent)!}
         else{tierThreeTextField.placeholderString = "Mixed"}
         
-        if status.seedPlayist == true && aShow.automator?.seedPlayist != nil{
-            seedPlaylistButton.selectItemWithTitle((aShow.automator?.seedPlayist)!)
-            hasSeedPlaylistButton.state = 1
-            seedPlaylistButton.enabled = true
-        }
-        else{
-            seedPlaylistButton.selectItemAtIndex(-1)
-            if status.seedState == true {
-                hasSeedPlaylistButton.state = 0
-            }
-            else{
-                hasSeedPlaylistButton.state = -1
-            }
-        }
-        
-        if status.bumpersPlaylist == true && aShow.automator?.bumpersPlaylist != nil{
-            bumpersPlaylistButton.selectItemWithTitle((aShow.automator?.bumpersPlaylist)!)
-            hasBumpersButton.state = 1
-            bumpersPerBlockTextField.integerValue = (aShow.automator?.bumpersPerBlock)!
-            songsBetweenBlocksTextField.integerValue = (aShow.automator?.songsBetweenBlocks)!
-            bumpersPlaylistButton.enabled = true
-            bumpersPerBlockTextField.enabled = true
-            songsBetweenBlocksTextField.enabled = true
-        }
-        else{
-            bumpersPlaylistButton.selectItemAtIndex(-1)
-            if status.bumpersState == true {
-                hasBumpersButton.state = 0
-            }
-            else{
-                hasBumpersButton.state = -1
-            }
-        }
         
         
-        if status.rules == true && aShow.automator?.rules != nil{
-            RuleScrollViewObject.predicateEditor.objectValue = aShow.automator?.rules
-            RuleScrollViewObject.predicateEditor.reloadPredicate()
-            RuleScrollViewObject.predicateEditorView.hidden = false
-            hasRulesButton.state = 1
-        }
-        else{
-            if status.rulesState == true {
-                hasRulesButton.state = 0
+        //If seedState == true, it means all automators are either on or off. If the seedPlaylist of the automator we have is nil, we know that ALL of the automators seedPlaylist are nil, and thusly we can set the button to the NSOffState. If its not nil, we know ALL of the automators have a seedPlaylist and we set the button to NSOnState. If all of the automators seedPlaylist's are the same, we set the seedPlaylistButton to that playlist. Otherwise, it will remain unselected. 
+        //If seedState == false, we allow the button to have a mixed state and then set the state to mixed.
+        seedPlaylistButton.selectItemAtIndex(-1)
+        if status.seedState == true {
+            if aShow.automator?.seedPlayist == nil {
+                hasSeedPlaylistButton.state = NSOffState
             }
             else{
-                hasRulesButton.state = -1
+                hasSeedPlaylistButton.state = NSOnState
+                seedPlaylistButton.enabled = true
+                if status.seedPlayist == true {seedPlaylistButton.selectItemWithTitle((aShow.automator?.seedPlayist)!)}
             }
+        }
+        else{
+            hasSeedPlaylistButton.allowsMixedState = true
+            hasSeedPlaylistButton.state = NSMixedState
         }
 
+        //See seedState == true comment
+        bumpersPlaylistButton.selectItemAtIndex(-1)
+        if status.bumpersState == true {
+            if aShow.automator?.bumpersPlaylist == nil {
+                hasBumpersButton.state = NSOffState
+            }
+            else{
+                hasBumpersButton.state = NSOnState
+                bumpersPlaylistButton.enabled = true
+                bumpersPerBlockTextField.enabled = true
+                songsBetweenBlocksTextField.enabled = true
+                if status.bumpersPlaylist == true {bumpersPlaylistButton.selectItemWithTitle((aShow.automator?.bumpersPlaylist)!)}
+            }
+        }
+        else{
+            hasBumpersButton.allowsMixedState = true
+            hasBumpersButton.state = NSMixedState
+        }
+        if hasBumpersButton.state == NSOnState || hasBumpersButton.state == NSMixedState {
+            if status.bumpersPerBlock == true {bumpersPerBlockTextField.integerValue = (aShow.automator?.bumpersPerBlock)!}
+            else{bumpersPerBlockTextField.placeholderString = "Mixed"}
+            if status.songsBetweenBlocks == true {songsBetweenBlocksTextField.integerValue = (aShow.automator?.songsBetweenBlocks)!}
+            else{songsBetweenBlocksTextField.placeholderString = "Mixed"}
+        }
+        
+        //See seedState == true comment
+        if status.rulesState == true {
+            if aShow.automator?.rules == nil {
+                hasRulesButton.state = NSOffState
+            }
+            else{
+                hasRulesButton.state = NSOnState
+                if status.rules == true {
+                    RuleScrollViewObject.predicateEditor.objectValue = aShow.automator?.rules
+                    RuleScrollViewObject.predicateEditor.reloadPredicate()
+                    RuleScrollViewObject.predicateEditorView.hidden = false
+                }
+            }
+        }
+        else{
+            hasRulesButton.allowsMixedState = true
+            hasRulesButton.state = NSMixedState
+        }
+        
         //end value setting
         automatorWindow.center()
         automatorWindow.makeKeyAndOrderFront(self)
@@ -159,6 +173,13 @@ class AutomatorWindow: NSObject {
         tierThreeTextField.stringValue = ""
         bumpersPerBlockTextField.stringValue = ""
         songsBetweenBlocksTextField.stringValue = ""
+        //Make all the placeholder strings empty as well
+        timeTextField.placeholderString = ""
+        tierOneTextField.placeholderString = ""
+        tierTwoTextField.placeholderString = ""
+        tierThreeTextField.placeholderString = ""
+        bumpersPerBlockTextField.placeholderString = ""
+        songsBetweenBlocksTextField.placeholderString = ""
         //Disable all of the buttons
         hasSeedPlaylistButton.state = NSOffState
         hasBumpersButton.state = NSOffState
@@ -195,7 +216,9 @@ class AutomatorWindow: NSObject {
         
     }
 
+    //Funciton is bound to the seedPlaylist button. When changed to an off state, it disables the correcponding seed popupButton. When changed to an on state, it endables it. Whenever the button is pressed, it sets its allowsMixedState value to false. This allows for a button to have an NSMixedState to represent mixed values, but the user can not choose NSMixedState
     @IBAction func seedPlaylistPressed(sender: AnyObject) {
+        hasSeedPlaylistButton.allowsMixedState = false
         if hasSeedPlaylistButton.state == NSOnState {
             seedPlaylistButton.enabled = true
         }
@@ -204,6 +227,7 @@ class AutomatorWindow: NSObject {
         }
     }
     @IBAction func bumpersPlaylistPressed(sender: AnyObject) {
+        hasBumpersButton.allowsMixedState = false
         if hasBumpersButton.state == NSOnState {
             bumpersPlaylistButton.enabled = true
             bumpersPerBlockTextField.enabled = true
@@ -213,9 +237,12 @@ class AutomatorWindow: NSObject {
             bumpersPlaylistButton.enabled = false
             bumpersPerBlockTextField.enabled = false
             songsBetweenBlocksTextField.enabled = false
+            bumpersPerBlockTextField.placeholderString = ""
+            songsBetweenBlocksTextField.placeholderString = ""
         }
     }
     @IBAction func rulesPressed(sender: AnyObject) {
+        hasRulesButton.allowsMixedState = false
         if hasRulesButton.state == NSOnState {
             RuleScrollViewObject.predicateEditorView.hidden = false
         }

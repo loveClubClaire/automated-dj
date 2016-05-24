@@ -109,14 +109,15 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
                         if anAutomator?.bumpersPerBlock != dataArray[index].automator?.bumpersPerBlock {automatorStatus.bumpersPerBlock = false}
                         if anAutomator?.songsBetweenBlocks != dataArray[index].automator?.songsBetweenBlocks {automatorStatus.songsBetweenBlocks = false}
                         if anAutomator?.rules != dataArray[index].automator?.rules {automatorStatus.rules = false}
+                        
                         if (anAutomator?.seedPlayist == nil && dataArray[index].automator?.seedPlayist != nil) || (anAutomator?.seedPlayist != nil && dataArray[index].automator?.seedPlayist == nil){
-                            automatorStatus.rulesState = false
+                            automatorStatus.seedState = false
                         }
                         if (anAutomator?.bumpersPlaylist == nil && dataArray[index].automator?.bumpersPlaylist != nil) || (anAutomator?.bumpersPlaylist != nil && dataArray[index].automator?.bumpersPlaylist == nil){
                             automatorStatus.bumpersState = false
                         }
                         if (anAutomator?.rules == nil && dataArray[index].automator?.rules != nil) || (anAutomator?.rules != nil && dataArray[index].automator?.rules == nil){
-                            automatorStatus.seedState = false
+                            automatorStatus.rulesState = false
                         }
                     }
                 }

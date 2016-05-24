@@ -88,8 +88,9 @@ class ShowStatus: NSObject {
         if endTime == false && endDay == false {
             editedShow.endDate = masterShow.endDate
         }
-        
+        //If the automator has been changed, get a new automator object with the approperate values and set it to the editedShow automator
         if automator == false {
+            //automatorStatus.modifyAutomator
             editedShow.automator = masterShow.automator
         }
         
