@@ -152,18 +152,8 @@ class AutomatorWindow: NSObject {
             isNotChanged.songsBetweenBlocks = false
         }
         
-        if RuleScrollViewObject.predicateEditorView.hidden == true{
+        if RuleScrollViewObject.predicateEditorView.hidden != true{
             isNotChanged.rules = false
-        }
-        
-        if hasSeedPlaylistButton.state == NSMixedState {
-            isNotChanged.seedState = false
-        }
-        if hasBumpersButton.state == NSMixedState {
-            isNotChanged.bumpersState = false
-        }
-        if hasRulesButton.state == NSMixedState {
-            isNotChanged.rulesState = false
         }
     
         return isNotChanged
