@@ -23,11 +23,11 @@ class GlobalAnnoucementsWindow: NSWindow {
                     GlobalAnnouncementsObject.editAnnouncement(self)
                 }
                 //If the , key (which has a keyCode of 43) is pressed along with the command key, call the showPreferences function
-                if anEvent.keyCode == 43 {
+                else if anEvent.keyCode == 43 {
                     AppDelegateObject.showPreferences()
                 }
                 //if the q key (key code 12) is pressed along with the command key call the terminate function
-                if anEvent.keyCode == 12 {
+                else if anEvent.keyCode == 12 {
                     AppDelegateObject.terminate()
                 }
                 //Else just do what would have been expected
@@ -42,11 +42,11 @@ class GlobalAnnoucementsWindow: NSWindow {
                     AppDelegateObject.showSchedule()
                 }
                 //if the a key (key code 0) is pressed aling with the command and shift key, call the showAnnouncements function
-                if anEvent.keyCode == 0{
+                else if anEvent.keyCode == 0{
                     AppDelegateObject.showAnnouncements()
                 }
                 //if the e key (key code 14) is pressed aling with the command and shift key, call the editAnnouncements function
-                if anEvent.keyCode == 14 {
+                else if anEvent.keyCode == 14 {
                     AppDelegateObject.editAnnouncements()
                 }
                     //Else just do what would have been expected

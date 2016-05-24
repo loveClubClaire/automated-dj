@@ -168,8 +168,9 @@ class ShowWindow: NSObject {
         //Set the isAutomated Button to its default value (off)
         isAutomated.state = 0
         //Stop the NSApp modal and dismiss the window
-        NSApp.stopModal()
         showWindow.orderOut(self)
+        NSApp.stopModal()
+
     }
  
     @IBAction func isAutomatorButton(sender: AnyObject) {
