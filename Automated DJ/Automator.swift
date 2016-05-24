@@ -73,7 +73,7 @@ class Automator: NSObject {
         coder.encodeObject(songsBetweenBlocks, forKey: "songsBetweenBlocks")
         coder.encodeObject(rules, forKey: "rules")
     }
-    
+        
     func compare(anAutomator: Automator?) -> NSComparisonResult {
         if anAutomator == nil {
             return NSComparisonResult.OrderedDescending

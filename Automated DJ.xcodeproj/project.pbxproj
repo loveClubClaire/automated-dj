@@ -148,7 +148,6 @@
 				C04616A31CE43542004E1B38 /* AppDelegate.swift */,
 				C09D9F5A1CE95954009458FC /* ErrorChecker.swift */,
 				C0F6D2A31CF1EE76001E0E95 /* AdminAccess.swift */,
-				C08C15831CF0082F00EF8BCF /* AutomateShowCommand.swift */,
 				C09D9F5D1CE9C31F009458FC /* Custom Objects */,
 				C09D9F5C1CE9C2E4009458FC /* UI Classes */,
 				C09D9F571CE93D8C009458FC /* Custom UI */,
@@ -187,6 +186,7 @@
 				C08C15881CF01ED400EF8BCF /* ApplescriptBridge.h */,
 				C08C15891CF01ED400EF8BCF /* ApplescriptBridge.m */,
 				C08C15811CF007E900EF8BCF /* Automated DJ.sdef */,
+				C08C15831CF0082F00EF8BCF /* AutomateShowCommand.swift */,
 				C08C15851CF01ED400EF8BCF /* Automated DJ-Bridging-Header.h */,
 			);
 			name = Applescript;

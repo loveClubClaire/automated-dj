@@ -55,14 +55,15 @@ class ShowWindow: NSObject {
         
         if status.automator == true{
             if anAutomator == nil {
-               isAutomated.state = 0
+               isAutomated.state = NSOffState
             }
             else{
-                isAutomated.state = 1
+                isAutomated.state = NSOnState
             }
         }
         else{
-            isAutomated.state = -1
+            isAutomated.allowsMixedState = true
+            isAutomated.state = NSMixedState
         }
         //end value setting
         
@@ -171,5 +172,8 @@ class ShowWindow: NSObject {
         showWindow.orderOut(self)
     }
  
+    @IBAction func isAutomatorButton(sender: AnyObject) {
+        isAutomated.allowsMixedState = false
+    }
     
 }

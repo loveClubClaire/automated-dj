@@ -313,13 +313,6 @@ class AutomatorWindow: NSObject {
             }
         }
         return result
-        //        let result = RuleScrollViewObject.predicateEditor.objectValue
-        //        let pred = result as! NSCompoundPredicate
-        //        let change = NSCompoundPredicate.init(type: NSCompoundPredicateType.OrPredicateType, subpredicates: pred.subpredicates as! [NSPredicate])
-        
-        //        let bobPredicate = NSPredicate(format: "Artist = 'U2'")
-        //        RuleScrollViewObject.predicateEditor.objectValue = bobPredicate
-        //        RuleScrollViewObject.predicateEditor.reloadPredicate()
     }
     
     //TODO on ok / cancel check to see if window was called by show object or preferences object, different actions will need to be taken depending

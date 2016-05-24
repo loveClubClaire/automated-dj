@@ -93,6 +93,7 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
                 if dayFormatter.stringFromDate(aShow.endDate!) !=  dayFormatter.stringFromDate(dataArray[index].endDate!){status.endDay = false}
                 if timeFormatter.stringFromDate(aShow.endDate!) != timeFormatter.stringFromDate(dataArray[index].endDate!){status.endTime = false}
                 
+               
                 if dataArray[index].automator != nil {
                     if anAutomator == nil {
                         anAutomator = dataArray[index].automator
@@ -121,6 +122,10 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
                         }
                     }
                 }
+                else if anAutomator != nil{
+                    status.automator = false
+                }
+
                 index = selectedShows.indexGreaterThanIndex(index)
             }
             status.automatorStatus = automatorStatus
