@@ -90,8 +90,8 @@ class ShowStatus: NSObject {
         }
         //If the automator has been changed, get a new automator object with the approperate values and set it to the editedShow automator
         if automator == false {
-            //automatorStatus.modifyAutomator
-            editedShow.automator = masterShow.automator
+            editedShow.automator = automatorStatus.modifyAutomator(editedShow.automator!, masterAutomator: masterShow.automator!)
+            //editedShow.automator = masterShow.automator
         }
         
         return editedShow

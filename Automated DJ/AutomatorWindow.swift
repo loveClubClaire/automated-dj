@@ -126,6 +126,48 @@ class AutomatorWindow: NSObject {
 
     }
     
+    func getWindowStatus() -> AutomatorStatus{
+        let isNotChanged = AutomatorStatus()
+        if tierOneTextField.stringValue != "" {
+            isNotChanged.tierOnePrecent = false
+        }
+        if tierTwoTextField.stringValue != "" {
+            isNotChanged.tierTwoPrecent = false
+        }
+        if tierThreeTextField.stringValue != "" {
+            isNotChanged.tierThreePrecent = false
+        }
+        
+        if seedPlaylistButton.indexOfSelectedItem != -1 {
+            isNotChanged.seedPlayist = false
+        }
+        if bumpersPlaylistButton.indexOfSelectedItem != -1 {
+            isNotChanged.bumpersPlaylist = false
+        }
+        
+        if bumpersPerBlockTextField.stringValue != "" {
+            isNotChanged.bumpersPerBlock = false
+        }
+        if songsBetweenBlocksTextField.stringValue != "" {
+            isNotChanged.songsBetweenBlocks = false
+        }
+        
+        if RuleScrollViewObject.predicateEditorView.hidden == true{
+            isNotChanged.rules = false
+        }
+        
+        if hasSeedPlaylistButton.state == NSMixedState {
+            isNotChanged.seedState = false
+        }
+        if hasBumpersButton.state == NSMixedState {
+            isNotChanged.bumpersState = false
+        }
+        if hasRulesButton.state == NSMixedState {
+            isNotChanged.rulesState = false
+        }
+    
+        return isNotChanged
+    }
     
     @IBAction func okButton(sender: AnyObject) {
         let time = timeTextField.doubleValue
@@ -156,8 +198,10 @@ class AutomatorWindow: NSObject {
         
         //return or something. IDK yet
         show.automator = anAutomator
+        let status = ShowWindowObject.getWindowStatus()
+        status.automatorStatus = getWindowStatus()
         if ShowWindowObject.showWindow.title == "New Show" {MasterScheduleObject.addShow(show)}
-        else{MasterScheduleObject.modifyShows(show, aStatus: ShowWindowObject.getWindowStatus())}
+        else{MasterScheduleObject.modifyShows(show, aStatus: status)}
         finalSubmit = true
         cancelButton(self)
         ShowWindowObject.cancelButton(self)

@@ -24,4 +24,34 @@ class AutomatorStatus: NSObject {
     var rulesState = true
     var bumpersState = true
     var seedState = true
+    
+    func modifyAutomator(editedAutomator: Automator, masterAutomator: Automator) -> Automator{
+        //If the tierOnePrecent has been changed, set the editedAutomator name to the tierOnePrecent contained in the masterAutomator
+        if tierOnePrecent == false {
+            editedAutomator.tierOnePrecent = masterAutomator.tierOnePrecent
+        }
+        if tierTwoPrecent == false {
+            editedAutomator.tierTwoPrecent = masterAutomator.tierTwoPrecent
+        }
+        if tierThreePrecent == false {
+            editedAutomator.tierThreePrecent = masterAutomator.tierThreePrecent
+        }
+        if seedPlayist == false {
+            editedAutomator.seedPlayist = masterAutomator.seedPlayist
+        }
+        if bumpersPlaylist == false {
+            editedAutomator.bumpersPlaylist = masterAutomator.bumpersPlaylist
+        }
+        if bumpersPerBlock == false {
+            editedAutomator.bumpersPerBlock = masterAutomator.bumpersPerBlock
+        }
+        if songsBetweenBlocks == false {
+            editedAutomator.songsBetweenBlocks = masterAutomator.songsBetweenBlocks
+        }
+        if rules == false {
+            editedAutomator.rules = masterAutomator.rules
+        }
+        return editedAutomator
+    }
+    
 }
