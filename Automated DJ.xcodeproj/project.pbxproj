@@ -35,6 +35,8 @@
 		C0E88CA21CEBD27400BBA2B8 /* CustomPredicateEditorRowTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E88CA11CEBD27400BBA2B8 /* CustomPredicateEditorRowTemplate.swift */; };
 		C0F6D2A41CF1EE76001E0E95 /* AdminAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F6D2A31CF1EE76001E0E95 /* AdminAccess.swift */; };
 		C0F6D2A61CF2B6A7001E0E95 /* AutomatorStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F6D2A51CF2B6A7001E0E95 /* AutomatorStatus.swift */; };
+		C0F6D2A81CF4E262001E0E95 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F6D2A71CF4E262001E0E95 /* Playlist.swift */; };
+		C0F6D2AA1CF4F637001E0E95 /* String+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F6D2A91CF4F637001E0E95 /* String+Extention.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +94,8 @@
 		C0E88CA11CEBD27400BBA2B8 /* CustomPredicateEditorRowTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPredicateEditorRowTemplate.swift; sourceTree = "<group>"; };
 		C0F6D2A31CF1EE76001E0E95 /* AdminAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminAccess.swift; sourceTree = "<group>"; };
 		C0F6D2A51CF2B6A7001E0E95 /* AutomatorStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomatorStatus.swift; sourceTree = "<group>"; };
+		C0F6D2A71CF4E262001E0E95 /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
+		C0F6D2A91CF4F637001E0E95 /* String+Extention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extention.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +156,7 @@
 				C09D9F5C1CE9C2E4009458FC /* UI Classes */,
 				C09D9F571CE93D8C009458FC /* Custom UI */,
 				C08C158C1CF01EFB00EF8BCF /* Applescript */,
+				C0F6D2AB1CF4F64E001E0E95 /* Extentions */,
 				C04616A51CE43542004E1B38 /* Assets.xcassets */,
 				C04616A71CE43542004E1B38 /* MainMenu.xib */,
 				C04616AA1CE43542004E1B38 /* Info.plist */,
@@ -219,12 +224,21 @@
 		C09D9F5D1CE9C31F009458FC /* Custom Objects */ = {
 			isa = PBXGroup;
 			children = (
+				C0F6D2A71CF4E262001E0E95 /* Playlist.swift */,
 				C04616CE1CE436AF004E1B38 /* Show.swift */,
 				C04616D21CE436CD004E1B38 /* Automator.swift */,
 				C09D9F551CE7ECBE009458FC /* ShowStatus.swift */,
 				C0F6D2A51CF2B6A7001E0E95 /* AutomatorStatus.swift */,
 			);
 			name = "Custom Objects";
+			sourceTree = "<group>";
+		};
+		C0F6D2AB1CF4F64E001E0E95 /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				C0F6D2A91CF4F637001E0E95 /* String+Extention.swift */,
+			);
+			name = Extentions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,6 +375,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C08C15841CF0082F00EF8BCF /* AutomateShowCommand.swift in Sources */,
+				C0F6D2AA1CF4F637001E0E95 /* String+Extention.swift in Sources */,
 				C0E88CA21CEBD27400BBA2B8 /* CustomPredicateEditorRowTemplate.swift in Sources */,
 				C09D9F521CE7B615009458FC /* CustomDatePicker.swift in Sources */,
 				C0F6D2A41CF1EE76001E0E95 /* AdminAccess.swift in Sources */,
@@ -377,6 +392,7 @@
 				C04616D51CE436D7004E1B38 /* AutomatorWindow.swift in Sources */,
 				C04616A41CE43542004E1B38 /* AppDelegate.swift in Sources */,
 				C08372AA1CE62EAA0046F231 /* MasterScheduleWindow.swift in Sources */,
+				C0F6D2A81CF4E262001E0E95 /* Playlist.swift in Sources */,
 				C09D9F611CEA7B6D009458FC /* RuleScrollView.swift in Sources */,
 				C00162ED1CEE332A009EE840 /* GlobalAnnouncementsWindow.swift in Sources */,
 				C08C158A1CF01ED400EF8BCF /* MyApplescript.applescript in Sources */,
@@ -514,6 +530,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = NO;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = "Automated DJ/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "sixteensquared.Automated-DJ";
@@ -529,6 +547,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = NO;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = "Automated DJ/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "sixteensquared.Automated-DJ";
