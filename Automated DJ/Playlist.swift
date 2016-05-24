@@ -123,5 +123,18 @@ import Cocoa
         return self
     }
     
+    static func getPlaylistNames(aPlaylistArray: [Playlist]) -> [String]{
+        var allNames: [String] = []
+        
+        for aPlaylist in aPlaylistArray {
+            if aPlaylist.specialKind == "none" || aPlaylist.specialKind == "Purchased Music" {
+                if aPlaylist.duration > 0 && aPlaylist.name != "Music Videos" && aPlaylist.name != "Home Videos" && aPlaylist.name != "Audiobooks" && aPlaylist.name != "Tier 1" && aPlaylist.name != "Tier 2" && aPlaylist.name != "Tier 3"{
+                    allNames.append(aPlaylist.name)
+                }
+            }
+        }
+        
+        return allNames
+    }
 
 }

@@ -1240,13 +1240,7 @@ Gw
                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" enabled="NO" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="j9k-Up-DRA">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
-                            <menu key="menu" id="U70-jJ-MFU">
-                                <items>
-                                    <menuItem title="Item 1" id="lqA-Mb-XfR"/>
-                                    <menuItem title="Item 2" id="Hdh-RS-bMe"/>
-                                    <menuItem title="Item 3" id="vEz-zw-bib"/>
-                                </items>
-                            </menu>
+                            <menu key="menu" id="U70-jJ-MFU"/>
                         </popUpButtonCell>
                     </popUpButton>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U4t-NX-HEY">
@@ -1278,13 +1272,7 @@ Gw
                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" enabled="NO" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="MRy-Bg-Xpj">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
-                            <menu key="menu" id="8Ph-tS-yme">
-                                <items>
-                                    <menuItem title="Item 1" id="b1o-d2-KCN"/>
-                                    <menuItem title="Item 2" id="hTx-pW-pgo"/>
-                                    <menuItem title="Item 3" id="YE3-7O-P3Y"/>
-                                </items>
-                            </menu>
+                            <menu key="menu" id="8Ph-tS-yme"/>
                         </popUpButtonCell>
                     </popUpButton>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Gd-v9-2Cm">

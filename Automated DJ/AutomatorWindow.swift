@@ -37,6 +37,10 @@ class AutomatorWindow: NSObject {
     func spawnNewAutomatorWindow(length: Double, aShow: Show){
         automatorWindow.title = "New Automator"
         timeTextField.doubleValue = length
+        seedPlaylistButton.addItemsWithTitles(Playlist.getPlaylistNames(ApplescriptBridge().getPlaylists() as NSArray as! [Playlist]))
+        bumpersPlaylistButton.addItemsWithTitles(Playlist.getPlaylistNames(ApplescriptBridge().getPlaylists() as NSArray as! [Playlist]))
+        seedPlaylistButton.selectItemAtIndex(-1)
+        bumpersPlaylistButton.selectItemAtIndex(-1)
         show = aShow
         automatorWindow.center()
         automatorWindow.makeKeyAndOrderFront(self)
@@ -45,6 +49,8 @@ class AutomatorWindow: NSObject {
     
     func spawnEditAutomatorWindow(aShow: Show, status: AutomatorStatus){
         automatorWindow.title = "Edit Automators"
+        seedPlaylistButton.addItemsWithTitles(Playlist.getPlaylistNames(ApplescriptBridge().getPlaylists() as NSArray as! [Playlist]))
+        bumpersPlaylistButton.addItemsWithTitles(Playlist.getPlaylistNames(ApplescriptBridge().getPlaylists() as NSArray as! [Playlist]))
         show = aShow
         if status.totalTime == true {timeTextField.doubleValue = (aShow.automator?.totalTime)!}
         else{timeTextField.placeholderString = "Mixed"}
