@@ -18,4 +18,6 @@
 
 - (NSMutableArray*) getPlaylists;
 
+- (NSMutableArray*) getSongsInPlaylist:(NSString*)aPlaylist;
+
 @end

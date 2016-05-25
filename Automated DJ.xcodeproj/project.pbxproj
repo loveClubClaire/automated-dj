@@ -37,6 +37,7 @@
 		C0F6D2A61CF2B6A7001E0E95 /* AutomatorStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F6D2A51CF2B6A7001E0E95 /* AutomatorStatus.swift */; };
 		C0F6D2A81CF4E262001E0E95 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F6D2A71CF4E262001E0E95 /* Playlist.swift */; };
 		C0F6D2AA1CF4F637001E0E95 /* String+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F6D2A91CF4F637001E0E95 /* String+Extention.swift */; };
+		C0F6D2AD1CF51AB5001E0E95 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F6D2AC1CF51AB5001E0E95 /* Song.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 		C0F6D2A51CF2B6A7001E0E95 /* AutomatorStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomatorStatus.swift; sourceTree = "<group>"; };
 		C0F6D2A71CF4E262001E0E95 /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		C0F6D2A91CF4F637001E0E95 /* String+Extention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extention.swift"; sourceTree = "<group>"; };
+		C0F6D2AC1CF51AB5001E0E95 /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				C0F6D2A71CF4E262001E0E95 /* Playlist.swift */,
+				C0F6D2AC1CF51AB5001E0E95 /* Song.swift */,
 				C04616CE1CE436AF004E1B38 /* Show.swift */,
 				C04616D21CE436CD004E1B38 /* Automator.swift */,
 				C09D9F551CE7ECBE009458FC /* ShowStatus.swift */,
@@ -384,6 +387,7 @@
 				C04616D11CE436B9004E1B38 /* ShowWindow.swift in Sources */,
 				C04616D31CE436CD004E1B38 /* Automator.swift in Sources */,
 				C0F6D2A61CF2B6A7001E0E95 /* AutomatorStatus.swift in Sources */,
+				C0F6D2AD1CF51AB5001E0E95 /* Song.swift in Sources */,
 				C09D9F5B1CE95954009458FC /* ErrorChecker.swift in Sources */,
 				C04616CF1CE436AF004E1B38 /* Show.swift in Sources */,
 				C0DCCA4C1CEC14C60068533F /* GlobalAnnouncements.swift in Sources */,

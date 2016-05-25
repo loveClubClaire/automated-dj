@@ -4,8 +4,10 @@
 
 @protocol ApplescriptProtocol
 
-- (void)    iTunesPause;
+- (void)        iTunesPause;
 
--(NSArray*) getPlaylists;
+-(NSArray*)     getPlaylists;
+
+-(NSArray*)     getSongsInPlaylist:(NSString*)aPlaylist;
 
 @end

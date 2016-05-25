@@ -39,4 +39,17 @@
 
 }
 
+-(NSMutableArray*) getSongsInPlaylist:(NSString*)aPlaylist{
+    NSArray *rawSongs = [_myInstance getSongsInPlaylist:aPlaylist];
+    NSMutableArray *songs = [[NSMutableArray alloc]init];
+    
+    for (int i = 0; i < [rawSongs count]; i++) {
+        NSAppleEventDescriptor *aSong = [rawSongs objectAtIndex:i];
+        Song *tempSong = [[Song alloc] initWithString:aSong.debugDescription];
+        [songs addObject:tempSong];
+    }
+    
+    return songs;
+}
+
 @end
