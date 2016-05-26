@@ -190,22 +190,34 @@ class AutomatorWindow: NSObject {
         
         let anAutomator = Automator.init(aTotalTime: time, aTierOnePrecent: tier1, aTierTwoPrecent: tier2, aTierThreePrecent: tier3, aSeedPlaylist: seed, aBumpersPlaylist: bumpers, aBumpersPerBlock: bumpersPerBlock, aSongBetweenBlocks: songsBetweenBumpers, aRules: rules)
         
-        //test new automator 
+        //set up testing the new automator
         show.automator = anAutomator
         var selectedShows = MasterScheduleObject.getSelectedShows()
         if selectedShows.count == 0 {selectedShows.append(show)}
-        let isValidShow = ErrorChecker.checkAutomatorValidity(anAutomator, anAutomatorStatus: getWindowStatus(), selectedShows: selectedShows)
+        //We use a mutable dictionary because changes made to it in the async task actually are reflected after the async tasks completion. I don't have a wonderful understanding as to why that is though. 
+        var buttonOneDictionary = NSMutableDictionary()
         
-        if isValidShow == true {
+        //create a dispatch group which holds a list of items
+        let errorCheckerGroup = dispatch_group_create()
+        dispatch_group_enter(errorCheckerGroup)
+        
+        //Actually test the new automator. Async task. Yay not blocking the main thread.
+        ErrorChecker.checkAutomatorValidity(&buttonOneDictionary, anAutomator: anAutomator, anAutomatorStatus: getWindowStatus(), selectedShows: selectedShows, dispatchGroup: errorCheckerGroup)
+        
+        //Wait for the dispatch group is empty, then execute code in the block
+        dispatch_group_notify(errorCheckerGroup, dispatch_get_main_queue()) {
+            let isValidShow = buttonOneDictionary.valueForKey("isValid")
+            if isValidShow as! Bool == true {
             //return
-            let status = ShowWindowObject.getWindowStatus()
-            status.automatorStatus = getWindowStatus()
-            if ShowWindowObject.showWindow.title == "New Show" {MasterScheduleObject.addShow(show)}
-            else{MasterScheduleObject.modifyShows(show, aStatus: status)}
-            finalSubmit = true
-            cancelButton(self)
-            ShowWindowObject.cancelButton(self)
-            finalSubmit = false
+            let status = self.ShowWindowObject.getWindowStatus()
+            status.automatorStatus = self.getWindowStatus()
+            if self.ShowWindowObject.showWindow.title == "New Show" {self.MasterScheduleObject.addShow(self.show)}
+            else{self.MasterScheduleObject.modifyShows(self.show, aStatus: status)}
+            self.finalSubmit = true
+            self.cancelButton(self)
+            self.ShowWindowObject.cancelButton(self)
+            self.finalSubmit = false
+        }
         }
     }
     
