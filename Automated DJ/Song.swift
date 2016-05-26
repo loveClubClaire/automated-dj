@@ -272,4 +272,58 @@ import Cocoa
         
         return self
     }
+    
+    //Converts the keys found in the NSRuleEditor to their proper key values. NSRuleEditor stores incorrect keys because those keys are displayed to the user, so they include things like spaces. 
+    override func valueForKey(key: String) -> AnyObject? {
+        var newKey = ""
+        
+        switch key {
+        case "Album":
+            newKey = "album"
+        case "Album Artist":
+            newKey = "albumArtist"
+        case "Artist":
+            newKey = "artist"
+        case "Category":
+            newKey = "category"
+        case "Comments":
+            newKey = "comment"
+        case "Composer":
+            newKey = "composer"
+        case "Description":
+            newKey = "description"
+        case "Genre":
+            newKey = "genre"
+        case "Grouping":
+            newKey = "grouping"
+        case "Kind":
+            newKey = "kind"
+        case "Name":
+            newKey = "name"
+        case "Sort Album":
+            newKey = "sortAlbum"
+        case "Sort Album Artist":
+            newKey = "sortAlbumArtist"
+        case "Sort Artist":
+            newKey = "sortArtist"
+        case "Sort Composer":
+            newKey = "sortComposer"
+        case "Sort Name":
+            newKey = "sortName"
+        case "Plays":
+            newKey = "playCount"
+        case "Time":
+            newKey = "time"
+        case "Year":
+            newKey = "year"
+        default:
+            newKey = key
+        }
+        
+        return super.valueForKey(newKey)
+    }
+    
+    override var description: String {
+        return name + " by " + artist
+    }
 }
