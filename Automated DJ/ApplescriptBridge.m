@@ -53,4 +53,8 @@
     return songs;
 }
 
+-(void) createPlaylistWithName:(NSString*)aName{
+    [_myInstance createPlaylistWithName:aName];
+}
+
 @end

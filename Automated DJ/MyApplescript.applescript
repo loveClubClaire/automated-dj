@@ -20,4 +20,10 @@ script MyApplescript
         end tell
     end getSongsInPlaylist_
     
+    on createPlaylistWithName_(aName as string)
+        tell application "iTunes"
+            make user playlist with properties {name:aName}
+        end tell
+    end createPlaylistWithName_
+    
 end script

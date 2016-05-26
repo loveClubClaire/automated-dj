@@ -30,6 +30,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         //Required for the scripting bridge to function
         NSBundle.mainBundle().loadAppleScriptObjectiveCScripts()
         
+        //Check to see if tiered playlists have been created and if not, create them 
+        let areTieredPlaylistsCreated = ErrorChecker.doTieredPlaylistsExist()
+        if areTieredPlaylistsCreated.tier1Exist == false {ApplescriptBridge().createPlaylistWithName("Tier 1")}
+        if areTieredPlaylistsCreated.tier2Exist == false {ApplescriptBridge().createPlaylistWithName("Tier 2")}
+        if areTieredPlaylistsCreated.tier3Exist == false {ApplescriptBridge().createPlaylistWithName("Tier 3")}
+        
         //Inatalizes things in the masterScheduleObject related to its UI. Check this function for more information.
         MasterScheduleObject.viewDidLoad()
         

@@ -20,4 +20,6 @@
 
 - (NSMutableArray*) getSongsInPlaylist:(NSString*)aPlaylist;
 
+- (void)            createPlaylistWithName:(NSString*)aName;
+
 @end

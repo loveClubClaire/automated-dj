@@ -10,7 +10,24 @@ import Foundation
 import Cocoa
 
 class ErrorChecker: NSObject {
-    //do playlists exist
+    
+    static func doTieredPlaylistsExist() -> (tier1Exist: Bool, tier2Exist: Bool, tier3Exist: Bool){
+        var tierOneExist = true
+        var tierTwoExist = true
+        var tierThreeExist = true
+        let playlists = ApplescriptBridge().getPlaylists()
+        let playlistNames = Playlist.getPlaylistNames(true,aPlaylistArray: playlists as NSArray as! [Playlist])
+        if playlistNames.contains("Tier 1") == false {
+            tierOneExist = false
+        }
+        if playlistNames.contains("Tier 2") == false {
+            tierTwoExist = false
+        }
+        if playlistNames.contains("Tier 3") == false {
+            tierThreeExist = false
+        }
+        return (tierOneExist,tierTwoExist,tierThreeExist)
+    }
     
     static func checkAutomatorValidity(anAutomator: Automator, anAutomatorStatus: AutomatorStatus, selectedShows: [Show]) -> Bool {
         let applescriptBridge = ApplescriptBridge()
@@ -99,8 +116,6 @@ class ErrorChecker: NSObject {
         }
         return result
     }
-
-    
     
     static func checkShowValidity(aShow: Show, aShowStatus: ShowStatus, selectedShows: [Show]) -> Bool {
         
