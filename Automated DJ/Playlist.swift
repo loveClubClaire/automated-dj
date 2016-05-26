@@ -137,4 +137,13 @@ import Cocoa
         return allNames
     }
 
+    //In Seconds
+    static func getNewPlaylistDuration(someSongs: [Song]) -> Double{
+        var totalDuration = 0.0
+        for aSong in someSongs {
+            totalDuration = totalDuration + aSong.duration
+        }
+        return totalDuration
+    }
+    
 }

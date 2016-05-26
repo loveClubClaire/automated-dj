@@ -12,22 +12,112 @@ import Cocoa
 class ErrorChecker: NSObject {
     //do playlists exist
     
+    static func checkAutomatorValidity(anAutomator: Automator, anAutomatorStatus: AutomatorStatus, selectedShows: [Show]) -> Bool {
+        let applescriptBridge = ApplescriptBridge()
+        let masterTier1Songs = applescriptBridge.getSongsInPlaylist("Tier 1")
+        let masterTier2Songs = applescriptBridge.getSongsInPlaylist("Tier 2")
+        let masterTier3Songs = applescriptBridge.getSongsInPlaylist("Tier 3")
+        
+        var result = true
+        var is100Precent = true
+        var isTier1LongEnough = true
+        var isTier2LongEnough = true
+        var isTier3LongEnough = true
+        
+
+        for aSelectedShow in selectedShows {
+            var tier1 = anAutomator.tierOnePrecent
+            var tier2 = anAutomator.tierTwoPrecent
+            var tier3 = anAutomator.tierThreePrecent
+            let tier1Songs = NSMutableArray.init(array: masterTier1Songs)
+            let tier2Songs = NSMutableArray.init(array: masterTier2Songs)
+            let tier3Songs = NSMutableArray.init(array: masterTier3Songs)
+            
+            
+            if anAutomatorStatus.tierOnePrecent == true {tier1 = (aSelectedShow.automator?.tierOnePrecent)!}
+            if anAutomatorStatus.tierTwoPrecent == true {tier2 = (aSelectedShow.automator?.tierTwoPrecent)!}
+            if anAutomatorStatus.tierThreePrecent == true {tier3 = (aSelectedShow.automator?.tierThreePrecent)!}
+            
+            if (tier1 + tier2 + tier3) != 100 {
+                is100Precent = false
+                break
+            }
+            
+            var rules = anAutomator.rules
+            
+            if anAutomatorStatus.rules == true {
+                rules = aSelectedShow.automator?.rules
+            }
+            
+            if rules != nil {
+                tier1Songs.filterUsingPredicate(rules!)
+                tier2Songs.filterUsingPredicate(rules!)
+                tier3Songs.filterUsingPredicate(rules!)
+            }
+            
+            var totalTime = anAutomator.totalTime
+            if anAutomatorStatus.totalTime == true {totalTime = (aSelectedShow.automator?.totalTime)!}
+            
+            if (((totalTime * 3600) * (Double(tier1) / 100.0) * 1.15) > Playlist.getNewPlaylistDuration(tier1Songs as NSArray as! [Song])) {
+                isTier1LongEnough = false
+                break
+            }
+            if (((totalTime * 3600) * (Double(tier2) / 100.0) * 1.15) > Playlist.getNewPlaylistDuration(tier2Songs as NSArray as! [Song])) {
+                isTier2LongEnough = false
+                break
+            }
+            if (((totalTime * 3600) * (Double(tier3) / 100.0) * 1.15) > Playlist.getNewPlaylistDuration(tier3Songs as NSArray as! [Song])) {
+                isTier3LongEnough = false
+                break
+            }
+            
+        }
+        
+        let myPopup: NSAlert = NSAlert()
+        myPopup.alertStyle = NSAlertStyle.CriticalAlertStyle
+        myPopup.addButtonWithTitle("OK")
+        
+        if is100Precent == false {
+            result = false
+            myPopup.messageText = "Tiered precentages must add up to 100!"
+            myPopup.runModal()
+        }
+        if isTier1LongEnough == false {
+            result = false
+            myPopup.messageText = "Tier 1 is not long enough!"
+            myPopup.runModal()
+        }
+        if isTier2LongEnough == false {
+            result = false
+            myPopup.messageText = "Tier 2 is not long enough!"
+            myPopup.runModal()
+        }
+        if isTier3LongEnough == false {
+            result = false
+            myPopup.messageText = "Tier 3 is not long enough!"
+            myPopup.runModal()
+        }
+        return result
+    }
+
     
-    func checkShowValidity(aShow: Show, aShowStatus: ShowStatus, selectedShows: [Show]) -> Bool {
+    
+    static func checkShowValidity(aShow: Show, aShowStatus: ShowStatus, selectedShows: [Show]) -> Bool {
         
         var result = true
         var isOverTime = false
         var isSameDate = false
         var missingName = false
         let calendar = NSCalendar(identifier: NSCalendarIdentifierGregorian)
-        let startDateComponents = calendar!.components([.Hour, .Minute, .Day], fromDate: aShow.startDate!)
-        let endDateComponents = calendar!.components([.Hour,.Minute,.Day], fromDate: aShow.endDate!)
+
         
         if aShow.name == "" && selectedShows[0] == aShow{
            missingName = true
         }
         
         for aSelectedShow in selectedShows {
+            let startDateComponents = calendar!.components([.Hour, .Minute, .Day], fromDate: aShow.startDate!)
+            let endDateComponents = calendar!.components([.Hour,.Minute,.Day], fromDate: aShow.endDate!)
             let newStartComp = calendar!.components([.Hour, .Minute, .Day], fromDate: aSelectedShow.startDate!)
             let newEndComp = calendar!.components([.Hour,.Minute,.Day], fromDate: aSelectedShow.endDate!)
             if aShowStatus.startTime == true {startDateComponents.hour = newStartComp.hour; startDateComponents.minute = newStartComp.minute}

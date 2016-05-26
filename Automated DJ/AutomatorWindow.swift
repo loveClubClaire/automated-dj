@@ -191,18 +191,22 @@ class AutomatorWindow: NSObject {
         let anAutomator = Automator.init(aTotalTime: time, aTierOnePrecent: tier1, aTierTwoPrecent: tier2, aTierThreePrecent: tier3, aSeedPlaylist: seed, aBumpersPlaylist: bumpers, aBumpersPerBlock: bumpersPerBlock, aSongBetweenBlocks: songsBetweenBumpers, aRules: rules)
         
         //test new automator 
-        
-        //return or something. IDK yet
         show.automator = anAutomator
-        let status = ShowWindowObject.getWindowStatus()
-        status.automatorStatus = getWindowStatus()
-        if ShowWindowObject.showWindow.title == "New Show" {MasterScheduleObject.addShow(show)}
-        else{MasterScheduleObject.modifyShows(show, aStatus: status)}
-        finalSubmit = true
-        cancelButton(self)
-        ShowWindowObject.cancelButton(self)
-        finalSubmit = false
+        var selectedShows = MasterScheduleObject.getSelectedShows()
+        if selectedShows.count == 0 {selectedShows.append(show)}
+        let isValidShow = ErrorChecker.checkAutomatorValidity(anAutomator, anAutomatorStatus: getWindowStatus(), selectedShows: selectedShows)
         
+        if isValidShow == true {
+            //return
+            let status = ShowWindowObject.getWindowStatus()
+            status.automatorStatus = getWindowStatus()
+            if ShowWindowObject.showWindow.title == "New Show" {MasterScheduleObject.addShow(show)}
+            else{MasterScheduleObject.modifyShows(show, aStatus: status)}
+            finalSubmit = true
+            cancelButton(self)
+            ShowWindowObject.cancelButton(self)
+            finalSubmit = false
+        }
     }
     
     @IBAction func cancelButton(sender: AnyObject) {
