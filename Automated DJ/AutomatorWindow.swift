@@ -200,12 +200,13 @@ class AutomatorWindow: NSObject {
         //create a dispatch group which holds a list of items
         let errorCheckerGroup = dispatch_group_create()
         dispatch_group_enter(errorCheckerGroup)
-        
+        automatorWindow.makeDisabled()
         //Actually test the new automator. Async task. Yay not blocking the main thread.
         ErrorChecker.checkAutomatorValidity(&buttonOneDictionary, anAutomator: anAutomator, anAutomatorStatus: getWindowStatus(), selectedShows: selectedShows, dispatchGroup: errorCheckerGroup)
         
         //Wait for the dispatch group is empty, then execute code in the block
         dispatch_group_notify(errorCheckerGroup, dispatch_get_main_queue()) {
+            self.automatorWindow.makeEnabled()
             let isValidShow = buttonOneDictionary.valueForKey("isValid")
             if isValidShow as! Bool == true {
             //return

@@ -18,6 +18,7 @@
 		C04616D11CE436B9004E1B38 /* ShowWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04616D01CE436B9004E1B38 /* ShowWindow.swift */; };
 		C04616D31CE436CD004E1B38 /* Automator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04616D21CE436CD004E1B38 /* Automator.swift */; };
 		C04616D51CE436D7004E1B38 /* AutomatorWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04616D41CE436D7004E1B38 /* AutomatorWindow.swift */; };
+		C05CA75B1CF77395009FE793 /* NSWindow+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05CA75A1CF77395009FE793 /* NSWindow+Extention.swift */; };
 		C08372AA1CE62EAA0046F231 /* MasterScheduleWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08372A91CE62EAA0046F231 /* MasterScheduleWindow.swift */; };
 		C08C15801CEEF39100EF8BCF /* On Air.png in Resources */ = {isa = PBXBuildFile; fileRef = C08C157F1CEEF39100EF8BCF /* On Air.png */; };
 		C08C15821CF007E900EF8BCF /* Automated DJ.sdef in Resources */ = {isa = PBXBuildFile; fileRef = C08C15811CF007E900EF8BCF /* Automated DJ.sdef */; };
@@ -75,6 +76,7 @@
 		C04616D01CE436B9004E1B38 /* ShowWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowWindow.swift; sourceTree = "<group>"; };
 		C04616D21CE436CD004E1B38 /* Automator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Automator.swift; sourceTree = "<group>"; };
 		C04616D41CE436D7004E1B38 /* AutomatorWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomatorWindow.swift; sourceTree = "<group>"; };
+		C05CA75A1CF77395009FE793 /* NSWindow+Extention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSWindow+Extention.swift"; sourceTree = "<group>"; };
 		C08372A91CE62EAA0046F231 /* MasterScheduleWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterScheduleWindow.swift; sourceTree = "<group>"; };
 		C08C157F1CEEF39100EF8BCF /* On Air.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "On Air.png"; sourceTree = "<group>"; };
 		C08C15811CF007E900EF8BCF /* Automated DJ.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Automated DJ.sdef"; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 		C0F6D2AB1CF4F64E001E0E95 /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
+				C05CA75A1CF77395009FE793 /* NSWindow+Extention.swift */,
 				C0F6D2A91CF4F637001E0E95 /* String+Extention.swift */,
 			);
 			name = Extentions;
@@ -382,6 +385,7 @@
 				C0E88CA21CEBD27400BBA2B8 /* CustomPredicateEditorRowTemplate.swift in Sources */,
 				C09D9F521CE7B615009458FC /* CustomDatePicker.swift in Sources */,
 				C0F6D2A41CF1EE76001E0E95 /* AdminAccess.swift in Sources */,
+				C05CA75B1CF77395009FE793 /* NSWindow+Extention.swift in Sources */,
 				C0C43BEB1CEE734F00665376 /* Preferences.swift in Sources */,
 				C09D9F561CE7ECBE009458FC /* ShowStatus.swift in Sources */,
 				C04616D11CE436B9004E1B38 /* ShowWindow.swift in Sources */,

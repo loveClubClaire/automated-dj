@@ -1157,7 +1157,7 @@ Gw
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vw2-G8-EC2">
+                    <textField identifier="totalTime" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vw2-G8-EC2">
                         <rect key="frame" x="277" y="373" width="96" height="22"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="oy4-cC-vT5">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="Tav-sy-KfS"/>
@@ -1232,7 +1232,7 @@ Gw
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Bumpers Per Block:" id="SCF-ov-nWN">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="piJ-Ps-mMp">
@@ -1275,7 +1275,7 @@ Gw
                             <menu key="menu" id="8Ph-tS-yme"/>
                         </popUpButtonCell>
                     </popUpButton>
-                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Gd-v9-2Cm">
+                    <button identifier="rulesEnabled" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Gd-v9-2Cm">
                         <rect key="frame" x="18" y="100" width="172" height="18"/>
                         <buttonCell key="cell" type="check" title="Match the following rule:" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Qc6-cr-Bbu">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1369,6 +1369,9 @@ Gw
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="aWv-av-zPJ">
+                        <rect key="frame" x="232" y="191" width="32" height="32"/>
+                    </progressIndicator>
                 </subviews>
                 <constraints>
                     <constraint firstItem="ofe-VX-Re0" firstAttribute="bottom" secondItem="sUT-4g-aY1" secondAttribute="bottom" constant="-27" identifier="idVerticalOKAutomator" id="0ao-ee-GrS"/>
@@ -1849,6 +1852,16 @@ Gw
             </view>
             <point key="canvasLocation" x="224" y="-11.5"/>
         </window>
+        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="TZP-IE-PdV">
+            <rect key="frame" x="0.0" y="0.0" width="38" height="17"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="bNH-gQ-Tfl">
+                <font key="font" metaFont="system"/>
+                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+            </textFieldCell>
+            <point key="canvasLocation" x="542" y="138.5"/>
+        </textField>
     </objects>
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>
