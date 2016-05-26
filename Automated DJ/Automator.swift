@@ -9,7 +9,7 @@
 import Foundation
 
 class Automator: NSObject {
-    
+    //In Hours
     var totalTime: Double
     var tierOnePrecent: Int
     var tierTwoPrecent: Int

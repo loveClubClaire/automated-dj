@@ -273,7 +273,7 @@ import Cocoa
         return self
     }
     
-    //Converts the keys found in the NSRuleEditor to their proper key values. NSRuleEditor stores incorrect keys because those keys are displayed to the user, so they include things like spaces. 
+    //Converts the keys found in the NSRuleEditor to their proper key values. NSRuleEditor stores incorrect keys because those keys are displayed to the user, so they include things like spaces.
     override func valueForKey(key: String) -> AnyObject? {
         var newKey = ""
         

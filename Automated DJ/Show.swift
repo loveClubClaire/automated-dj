@@ -40,7 +40,7 @@ class Show: NSObject, NSCoding{
         coder.encodeObject(endDate, forKey: "endDate")
         coder.encodeObject(automator, forKey: "automator")
     }
-    
+        
     override var description: String {
         let timeFormatter = NSDateFormatter();timeFormatter.dateFormat = "hh:mm a"
         let dayFormatter = NSDateFormatter();dayFormatter.dateFormat = "EEEE"

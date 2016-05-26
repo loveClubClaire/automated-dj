@@ -112,7 +112,7 @@ class ShowWindow: NSObject {
         //Check for validity
         var selectedShows = MasterScheduleObject.getSelectedShows()
         if selectedShows.count == 0 {selectedShows.append(show)}
-        let isValidShow = ErrorChecker().checkShowValidity(show, aShowStatus: getWindowStatus(), selectedShows: selectedShows)
+        let isValidShow = ErrorChecker.checkShowValidity(show, aShowStatus: getWindowStatus(), selectedShows: selectedShows)
         
         if isValidShow == true {
         //Depending on the state of the isAutomated button...
