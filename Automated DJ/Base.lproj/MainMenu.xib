@@ -59,6 +59,7 @@
         <customObject id="7bL-4F-b7G" customClass="AutomatorWindow" customModule="Automated_DJ" customModuleProvider="target">
             <connections>
                 <outlet property="MasterScheduleObject" destination="uEM-xV-SIH" id="eWO-Dk-TaZ"/>
+                <outlet property="PreferencesObject" destination="yDZ-1S-ELR" id="jF6-Ys-sRa"/>
                 <outlet property="RuleScrollViewObject" destination="osi-q6-9Jp" id="xIM-yl-OAp"/>
                 <outlet property="ShowWindowObject" destination="vLi-vE-d4F" id="ck9-cK-WUj"/>
                 <outlet property="automatorWindow" destination="hq7-sJ-C1m" id="mVo-Y5-i4W"/>
@@ -92,6 +93,7 @@
         <customObject id="yDZ-1S-ELR" customClass="Preferences" customModule="Automated_DJ" customModuleProvider="target">
             <connections>
                 <outlet property="AppDelegateObject" destination="Voe-Tx-rLC" id="0hh-16-x29"/>
+                <outlet property="AutomatorWindowObject" destination="7bL-4F-b7G" id="eeT-PH-Tc0"/>
                 <outlet property="advancedPreferencesWindow" destination="JH5-kU-f0Y" id="5Om-Dt-I8I"/>
                 <outlet property="globalAnnouncementsDelayTextField" destination="eGZ-qR-8Cn" id="0H1-xK-oty"/>
                 <outlet property="isAdminButton" destination="qs7-SA-SaH" id="Cqx-50-8Uw"/>
@@ -1729,7 +1731,7 @@ Gw
 </string>
                         </buttonCell>
                         <connections>
-                            <action selector="performClose:" target="Oqq-od-7Zb" id="mff-wy-XRX"/>
+                            <action selector="cancelButton:" target="yDZ-1S-ELR" id="qY9-it-Gge"/>
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tsY-Pp-leA">

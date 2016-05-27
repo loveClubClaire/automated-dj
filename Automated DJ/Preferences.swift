@@ -11,6 +11,7 @@ import Cocoa
 
 class Preferences: NSObject {
     @IBOutlet weak var AppDelegateObject: AppDelegate!
+    @IBOutlet weak var AutomatorWindowObject: AutomatorWindow!
     
     @IBOutlet weak var preferencesWindow: NSWindow!
     @IBOutlet weak var advancedPreferencesWindow: NSWindow!
@@ -40,6 +41,7 @@ class Preferences: NSObject {
     
     func setValuesWith(anArray: [AnyObject]) {
         defaultAutomator = anArray[0] as! Automator
+        tempAutomator = defaultAutomator
         isAdmin = anArray[1] as! Bool
         globalAnnouncementsDelay = anArray[2] as! Int
         tollerence = anArray[3] as! Int
@@ -59,8 +61,11 @@ class Preferences: NSObject {
     }
     
     @IBAction func customizeDefaultAutomator(sender: AnyObject) {
-        //Sets tempAutomator
-        print("TODO")
+        let tempShow = Show.init(aName: "Temp", aStartDate: NSDate.init(), anEndDate: NSDate.init())
+        tempShow.automator = defaultAutomator
+        AutomatorWindowObject.automatorWindow.title = "Edit Default Automator"
+        AutomatorWindowObject.timeTextField.enabled = true
+        AutomatorWindowObject.spawnEditAutomatorWindow(tempShow, status: AutomatorStatus())
     }
     
     @IBAction func generalPreferencesButton(sender: AnyObject) {
@@ -86,7 +91,6 @@ class Preferences: NSObject {
     }
     
     @IBAction func okButton(sender: AnyObject) {
-        defaultAutomator = tempAutomator
         if isAdminButton.state == NSOnState {isAdmin = true}
         else{isAdmin = false}
         if testAutomatorButton.state == NSOnState {testAutomator = true}
@@ -101,6 +105,7 @@ class Preferences: NSObject {
     }
     
     @IBAction func cancelButton(sender: AnyObject) {
+        defaultAutomator = tempAutomator
         if isAdmin == true {isAdminButton.state = NSOnState}
         else{isAdminButton.state = NSOffState}
         if testAutomator == true {testAutomatorButton.state = NSOnState}

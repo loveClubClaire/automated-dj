@@ -13,6 +13,7 @@ class AutomatorWindow: NSObject {
     @IBOutlet weak var RuleScrollViewObject: RuleScrollView!
     @IBOutlet weak var ShowWindowObject: ShowWindow!
     @IBOutlet weak var MasterScheduleObject: MasterSchedule!
+    @IBOutlet weak var PreferencesObject: Preferences!
     
     @IBOutlet weak var automatorWindow: NSWindow!
     @IBOutlet weak var timeTextField: NSTextField!
@@ -48,7 +49,9 @@ class AutomatorWindow: NSObject {
     }
     
     func spawnEditAutomatorWindow(aShow: Show, status: AutomatorStatus){
-        automatorWindow.title = "Edit Automators"
+        if automatorWindow.title != "Edit Default Automator" {
+            automatorWindow.title = "Edit Automators"
+        }
         seedPlaylistButton.addItemsWithTitles(Playlist.getPlaylistNames(false,aPlaylistArray: ApplescriptBridge().getPlaylists() as NSArray as! [Playlist]))
         bumpersPlaylistButton.addItemsWithTitles(Playlist.getPlaylistNames(false,aPlaylistArray: ApplescriptBridge().getPlaylists() as NSArray as! [Playlist]))
         show = aShow
@@ -114,7 +117,7 @@ class AutomatorWindow: NSObject {
             else{
                 hasRulesButton.state = NSOnState
                 if status.rules == true {
-                    RuleScrollViewObject.predicateEditor.objectValue = (aShow.automator?.rules as! NSCompoundPredicate)
+                    RuleScrollViewObject.predicateEditor.objectValue = aShow.automator?.rules
                     RuleScrollViewObject.predicateEditor.reloadPredicate()
                     RuleScrollViewObject.predicateEditorView.hidden = false
                 }
@@ -213,6 +216,9 @@ class AutomatorWindow: NSObject {
             let status = self.ShowWindowObject.getWindowStatus()
             status.automatorStatus = self.getWindowStatus()
             if self.ShowWindowObject.showWindow.title == "New Show" {self.MasterScheduleObject.addShow(self.show)}
+            else if self.automatorWindow.title == "Edit Default Automator"{
+                self.PreferencesObject.defaultAutomator = self.show.automator!
+            }
             else{self.MasterScheduleObject.modifyShows(self.show, aStatus: status)}
             self.finalSubmit = true
             self.cancelButton(self)
@@ -245,6 +251,7 @@ class AutomatorWindow: NSObject {
         seedPlaylistButton.selectItemAtIndex(-1)
         bumpersPlaylistButton.selectItemAtIndex(-1)
         //Disable all the UI which is disabled when the buttons are all of
+        timeTextField.enabled = false
         seedPlaylistButton.enabled = false
         bumpersPlaylistButton.enabled = false
         bumpersPerBlockTextField.enabled = false
@@ -266,11 +273,12 @@ class AutomatorWindow: NSObject {
                 ShowWindowObject.showWindow.makeKeyAndOrderFront(self)
                 NSApp.runModalForWindow(ShowWindowObject.showWindow)
             }
-            else{
+            else if automatorWindow.title != "Edit Default Automator"{
                 ShowWindowObject.spawnNewShowWindow()
             }
         }
-        
+        //Changes the title so that spawnEditAutomatorWindow works as expected
+        automatorWindow.title = "Edit Automators"
     }
 
     //Funciton is bound to the seedPlaylist button. When changed to an off state, it disables the correcponding seed popupButton. When changed to an on state, it endables it. Whenever the button is pressed, it sets its allowsMixedState value to false. This allows for a button to have an NSMixedState to represent mixed values, but the user can not choose NSMixedState
