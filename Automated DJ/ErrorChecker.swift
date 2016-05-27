@@ -31,7 +31,7 @@ class ErrorChecker: NSObject {
     
     static func checkAutomatorValidity(inout isValid: NSMutableDictionary, anAutomator: Automator, anAutomatorStatus: AutomatorStatus, selectedShows: [Show], dispatchGroup: dispatch_group_t) {
         let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-
+        
         dispatch_async(dispatch_get_global_queue(priority, 0)) {
             let applescriptBridge = ApplescriptBridge()
             let masterTier1Songs = applescriptBridge.getSongsInPlaylist("Tier 1")
@@ -124,7 +124,7 @@ class ErrorChecker: NSObject {
     }
     
     static func checkShowValidity(aShow: Show, aShowStatus: ShowStatus, selectedShows: [Show]) -> Bool {
-        
+        //TODO prevent shows from having the same name as other shows (Make show names unique)
         var result = true
         var isOverTime = false
         var isSameDate = false

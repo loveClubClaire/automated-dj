@@ -10,9 +10,25 @@ import Foundation
 import Cocoa
 
 class AutomateShowCommand: NSScriptCommand {
+    
+    
     override func performDefaultImplementation() -> AnyObject? {
-        let show = self.evaluatedArguments!["ShowName"] as! String
-        debugPrint("We were prompted to automate: \(show)");
-        return true
+        var result = false
+        let appDelegate = NSApplication.sharedApplication().delegate
+        let dataArray = ((appDelegate as! AppDelegate).MasterScheduleObject.dataArray) as NSArray
+        let showName = self.evaluatedArguments!["ShowName"] as! String
+        let show = Show.init(aName: showName, aStartDate: NSDate.init(), anEndDate: NSDate.init())
+        let indexOfShow = dataArray.indexOfObject(show)
+        
+        if indexOfShow != NSNotFound {
+            (dataArray[indexOfShow] as! Show).automator = (appDelegate as! AppDelegate).PreferencesObject.defaultAutomator
+            (appDelegate as! AppDelegate).MasterScheduleObject.tableView.reloadData()
+            result = true
+        }
+        else{
+            self.scriptErrorNumber = -50
+            self.scriptErrorString = "Show does not exist"
+        }
+        return result
     }
 }
