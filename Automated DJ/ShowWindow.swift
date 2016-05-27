@@ -116,7 +116,7 @@ class ShowWindow: NSObject {
         
         if isValidShow == true {
         //Depending on the state of the isAutomated button...
-        if isAutomated.state == 0 {
+        if isAutomated.state == NSOffState {
             //Add it to the MasterScheduleObject or
             if showWindow.title == "New Show" {MasterScheduleObject.addShow(show)}
             else{MasterScheduleObject.modifyShows(show, aStatus: getWindowStatus())}

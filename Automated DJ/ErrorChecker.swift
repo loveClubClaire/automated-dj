@@ -75,7 +75,7 @@ class ErrorChecker: NSObject {
                 }
                 
                 var totalTime = anAutomator.totalTime
-                if anAutomatorStatus.totalTime == true {totalTime = (aSelectedShow.automator?.totalTime)!}
+                if anAutomatorStatus.totalTime == true && aSelectedShow.automator != nil {totalTime = (aSelectedShow.automator?.totalTime)!}
                 
                 if (((totalTime * 3600) * (Double(tier1) / 100.0) * 1.15) > Playlist.getNewPlaylistDuration(tier1Songs as NSArray as! [Song])) {
                     isTier1LongEnough = false
