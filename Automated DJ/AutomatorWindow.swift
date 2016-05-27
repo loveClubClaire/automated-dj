@@ -203,9 +203,11 @@ class AutomatorWindow: NSObject {
         //create a dispatch group which holds a list of items
         let errorCheckerGroup = dispatch_group_create()
         dispatch_group_enter(errorCheckerGroup)
+        //Called here because the result of this function depends on if the prediacte editor is visable or not and makeDisabled messes with the state of the predicate editors visability.
+        let aWindowStatus = getWindowStatus()
         automatorWindow.makeDisabled()
         //Actually test the new automator. Async task. Yay not blocking the main thread.
-        ErrorChecker.checkAutomatorValidity(&buttonOneDictionary, anAutomator: anAutomator, anAutomatorStatus: getWindowStatus(), selectedShows: selectedShows, dispatchGroup: errorCheckerGroup)
+        ErrorChecker.checkAutomatorValidity(&buttonOneDictionary, anAutomator: anAutomator, anAutomatorStatus: aWindowStatus, selectedShows: selectedShows, dispatchGroup: errorCheckerGroup)
         
         //Wait for the dispatch group is empty, then execute code in the block
         dispatch_group_notify(errorCheckerGroup, dispatch_get_main_queue()) {
