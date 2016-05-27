@@ -26,7 +26,7 @@ class RuleScrollView: NSObject {
     
     func initalize() {
     
-        let resultPredicate = NSPredicate(format: "Album = '' ")
+        let resultPredicate = NSPredicate(format: "Artist = '' ")
         let stringModifiers = [NSPredicateOperatorType.EqualToPredicateOperatorType.rawValue,NSPredicateOperatorType.NotEqualToPredicateOperatorType.rawValue,NSPredicateOperatorType.BeginsWithPredicateOperatorType.rawValue,NSPredicateOperatorType.EndsWithPredicateOperatorType.rawValue,NSPredicateOperatorType.ContainsPredicateOperatorType.rawValue]
         let intModifiers = [NSPredicateOperatorType.EqualToPredicateOperatorType.rawValue,NSPredicateOperatorType.NotEqualToPredicateOperatorType.rawValue,NSPredicateOperatorType.GreaterThanPredicateOperatorType.rawValue,NSPredicateOperatorType.LessThanPredicateOperatorType.rawValue]
         

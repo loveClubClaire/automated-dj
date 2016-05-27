@@ -1318,7 +1318,7 @@ Gw
                             <rect key="frame" x="0.0" y="0.0" width="443" height="125"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <predicateEditor verticalHuggingPriority="750" ambiguous="YES" nestingMode="compound" rowHeight="25" id="iFI-VU-gq6">
+                                <predicateEditor verticalHuggingPriority="750" ambiguous="YES" nestingMode="list" rowHeight="25" id="iFI-VU-gq6">
                                     <rect key="frame" x="0.0" y="0.0" width="443" height="125"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <rowTemplates/>

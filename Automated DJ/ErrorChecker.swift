@@ -96,6 +96,7 @@ class ErrorChecker: NSObject {
             let myPopup: NSAlert = NSAlert()
             myPopup.alertStyle = NSAlertStyle.CriticalAlertStyle
             myPopup.addButtonWithTitle("OK")
+            isValid.setValue(true, forKey: "isValid")
             
             if is100Precent == false {
                 isValid.setValue(false, forKey: "isValid")

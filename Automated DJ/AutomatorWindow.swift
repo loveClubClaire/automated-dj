@@ -114,7 +114,7 @@ class AutomatorWindow: NSObject {
             else{
                 hasRulesButton.state = NSOnState
                 if status.rules == true {
-                    RuleScrollViewObject.predicateEditor.objectValue = aShow.automator?.rules
+                    RuleScrollViewObject.predicateEditor.objectValue = (aShow.automator?.rules as! NSCompoundPredicate)
                     RuleScrollViewObject.predicateEditor.reloadPredicate()
                     RuleScrollViewObject.predicateEditorView.hidden = false
                 }
