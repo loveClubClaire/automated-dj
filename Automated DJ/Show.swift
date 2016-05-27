@@ -40,7 +40,18 @@ class Show: NSObject, NSCoding{
         coder.encodeObject(endDate, forKey: "endDate")
         coder.encodeObject(automator, forKey: "automator")
     }
-        
+    
+    //If two shows have the same name they are equal 
+    override func isEqual(object: AnyObject?) -> Bool {
+        var result = false
+        if object!.isKindOfClass(Show) {
+            if (object as! Show).name == name {
+                result = true
+            }
+        }
+        return result
+    }
+    
     override var description: String {
         let timeFormatter = NSDateFormatter();timeFormatter.dateFormat = "hh:mm a"
         let dayFormatter = NSDateFormatter();dayFormatter.dateFormat = "EEEE"
