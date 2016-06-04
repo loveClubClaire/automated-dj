@@ -28,7 +28,6 @@ class AutomateShowCommand: NSScriptCommand {
             //Get time between now and the end date of the next show
             //Get the weekdays of the current date and the showEndDate 
             let calendar = NSCalendar(identifier: NSCalendarIdentifierGregorian)
-            calendar?.timeZone = NSTimeZone.init(abbreviation: "EDT")!
             let currentDateComponents = calendar!.components([.Weekday, .Hour, .Minute], fromDate: NSDate.init())
             let endDateCompoents = calendar!.components([.Weekday, .Hour, .Minute], fromDate: (dataArray[indexOfShow] as! Show).endDate!)
             let currentWeekday = currentDateComponents.weekday
@@ -47,7 +46,7 @@ class AutomateShowCommand: NSScriptCommand {
             newEndDateComponents.hour = endDateCompoents.hour
             newEndDateComponents.minute = endDateCompoents.minute
             newEndDate = calendar!.dateFromComponents(newEndDateComponents)!
-            //Dispatch code to unautomate the show to execute when the show ends. 
+            //Dispatch code to unautomate the show to execute when the show ends.
             let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(newEndDate.timeIntervalSinceNow * Double(NSEC_PER_SEC)))
             dispatch_after(delayTime, dispatch_get_main_queue()) {
                 (dataArray[indexOfShow] as! Show).automator = nil
