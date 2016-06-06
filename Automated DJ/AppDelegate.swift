@@ -18,6 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var RuleScrollViewObject: RuleScrollView!
     @IBOutlet weak var AdminAccessObject: AdminAccess!
     @IBOutlet weak var AutomatorWindowObject: AutomatorWindow!
+    @IBOutlet weak var AutomatorControllerObject: AutomatorController!
     
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
     let myApplication = NSApplication.sharedApplication()
@@ -90,6 +91,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         else{
             PreferencesObject.setValuesWith([Automator.init(aTotalTime: 2.0, aTierOnePrecent: 15, aTierTwoPrecent: 25, aTierThreePrecent: 60),false,240,240,true])
         }
+        //Inatalize the timer
+        AutomatorControllerObject.spawnMasterTimer()
         
         //Inatalize the menu bar. Then create NSMenuItems and add them to the menu bar. Then set the menu bar to be our applications menu bar. NSMenuItems which are not separators are given a name an a selector which corresponds to a function related to the name.
         let menu = NSMenu()
