@@ -109,7 +109,11 @@
                 <outlet property="PreferencesObject" destination="yDZ-1S-ELR" id="coX-xg-zQI"/>
             </connections>
         </customObject>
-        <customObject id="kVP-21-RSl" customClass="AutomatorController" customModule="Automated_DJ" customModuleProvider="target"/>
+        <customObject id="kVP-21-RSl" customClass="AutomatorController" customModule="Automated_DJ" customModuleProvider="target">
+            <connections>
+                <outlet property="MasterScheduleObject" destination="uEM-xV-SIH" id="WaB-4V-bqd"/>
+            </connections>
+        </customObject>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
                 <menuItem title="Automated DJ" id="1Xt-HY-uBw">
