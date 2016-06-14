@@ -34,7 +34,9 @@ script MyApplescript
     
     on deletePlaylistWithName_(aName as string)
         tell application "iTunes"
-            delete playlist aName
+            try
+                delete playlist aName
+            end try
         end tell
     end deletePlaylistWithName_
     
