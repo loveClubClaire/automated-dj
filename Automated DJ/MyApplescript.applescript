@@ -26,4 +26,16 @@ script MyApplescript
         end tell
     end createPlaylistWithName_
     
+    on getCurrentPlaylist()
+        tell application "iTunes"
+            get name of current playlist
+        end tell
+    end getCurrentPlaylist
+    
+    on deletePlaylistWithName_(aName as string)
+        tell application "iTunes"
+            delete playlist aName
+        end tell
+    end deletePlaylistWithName_
+    
 end script

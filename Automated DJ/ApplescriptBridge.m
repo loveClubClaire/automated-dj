@@ -57,4 +57,12 @@
     [_myInstance createPlaylistWithName:aName];
 }
 
+-(NSString*) getCurrentPlaylist{
+    return [_myInstance getCurrentPlaylist];
+}
+
+-(void) deletePlaylistWithName:(NSString*)aName{
+    [_myInstance deletePlaylistWithName:aName];
+}
+
 @end

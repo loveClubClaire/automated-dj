@@ -22,4 +22,8 @@
 
 - (void)            createPlaylistWithName:(NSString*)aName;
 
+- (NSString*)       getCurrentPlaylist;
+
+- (void)            deletePlaylistWithName:(NSString*)aName;
+
 @end
