@@ -32,5 +32,6 @@
 
 -(void)         removeLastSongInPlaylist:(NSString*)aPlaylist;
 
+-(void)         addSongToPlaylist:(NSString*)aPlaylist songID:(NSString*)aSongID;
 
 @end

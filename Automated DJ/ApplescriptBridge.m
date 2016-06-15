@@ -104,5 +104,11 @@
     return result;
 }
 
+- (void) addSongsToPlaylist:(NSString*)aPlaylist songs:(NSArray*)songArray{
+    for (int i = 0; i < songArray.count; i++) {
+        [_myInstance addSongToPlaylist:aPlaylist songID:((Song*)[songArray objectAtIndex:i]).persistentID];
+    }
+}
+
 @end
 

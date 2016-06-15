@@ -43,4 +43,6 @@
 
 - (void)            removeLastSongInPlaylist:(NSString*)aPlaylist;
 
+- (void)            addSongsToPlaylist:(NSString*)aPlaylist songs:(NSArray*)songArray;
+
 @end

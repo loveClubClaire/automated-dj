@@ -119,6 +119,7 @@
         <customObject id="Vyk-Ws-TpC" customClass="TestClass" customModule="Automated_DJ" customModuleProvider="target">
             <connections>
                 <outlet property="AutomatorControllerObject" destination="kVP-21-RSl" id="SWI-RJ-NKc"/>
+                <outlet property="PreferencesObject" destination="yDZ-1S-ELR" id="sWO-3R-EiG"/>
             </connections>
         </customObject>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">

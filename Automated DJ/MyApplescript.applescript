@@ -94,4 +94,10 @@ script MyApplescript
         end tell
     end getiTunesPlayerState
     
+    on addSongToPlaylist_songID_(aPlaylist as string, aSongID as string)
+        tell application "iTunes"
+                duplicate (tracks of playlist "Music" whose persistent ID is aSongID) to playlist aPlaylist
+        end tell
+    end addSongToPlaylist_songID_
+    
 end script
