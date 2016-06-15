@@ -103,15 +103,16 @@ class AutomatorController: NSObject {
         var bumperBlockCount = 0
         var bumperCounter = 0
         var songsBetweenBlocks = 0
-        if anAutomator.songsBetweenBlocks != nil{
+        var bumpers = NSMutableArray()
+        if anAutomator.bumpersPlaylist != nil{
+            bumpers = applescriptBridge.getSongsInPlaylist(anAutomator.bumpersPlaylist)
             songsBetweenBlocks = anAutomator.songsBetweenBlocks!
         }
-        let bumpers = applescriptBridge.getSongsInPlaylist(anAutomator.bumpersPlaylist)
         //while the generated playlist length is less than the total time as required by the automator...
         while Playlist.getNewPlaylistDuration(generatedPlaylist as Array as! [Song]) < (anAutomator.totalTime * 3600) {
             //Check to see if its time to add bumpers. Automator contians how many songs there must be in between blocks. When that number is met (and a bumper playlist actually exists), then we add bumpers.
             //bumperBlockCount keeps track of how large our current block is, bumperCounter keeps track of where we are in the bumper playlist. This number rolls over so that once we reach the end of the bumper playlist, we go back to the begining rather than just ending or something. And songBlockCount keeps track of the number of songs added since we last added a bumper
-            if songBlockCount == songsBetweenBlocks + 1 && anAutomator.bumpersPlaylist != nil {
+            if songBlockCount == songsBetweenBlocks && anAutomator.bumpersPlaylist != nil {
                 while bumperBlockCount < anAutomator.bumpersPerBlock {
                     generatedPlaylist.addObject(bumpers.objectAtIndex(bumperCounter))
                     bumperBlockCount = bumperBlockCount + 1; bumperCounter = bumperCounter + 1
@@ -123,6 +124,7 @@ class AutomatorController: NSObject {
                 while Playlist.getNewPlaylistDuration(generatedPlaylist as Array as! [Song]) > ((anAutomator.totalTime * 3600) + Double(PreferencesObject.tollerence)) {
                     generatedPlaylist.removeLastObject()
                 }
+                bumperBlockCount = 0
                 songBlockCount = 0
             }
             //Actual main algorithm. Song adding yay.
@@ -130,10 +132,10 @@ class AutomatorController: NSObject {
                 var tieredPlaylist = NSMutableArray()
                 //Generate a random number between 0 to 99.
                 let randomNumber = arc4random_uniform(100)
-                if randomNumber >= 0 && randomNumber > UInt32(anAutomator.tierOnePrecent) {
+                if randomNumber >= 0 && randomNumber < UInt32(anAutomator.tierOnePrecent) {
                     tieredPlaylist = tier1
                 }
-                else if randomNumber >= UInt32(anAutomator.tierOnePrecent) && randomNumber > UInt32(anAutomator.tierOnePrecent + anAutomator.tierTwoPrecent){
+                else if randomNumber >= UInt32(anAutomator.tierOnePrecent) && randomNumber < UInt32(anAutomator.tierOnePrecent + anAutomator.tierTwoPrecent){
                     tieredPlaylist = tier2
                 }
                 else{
