@@ -65,4 +65,12 @@
     [_myInstance deletePlaylistWithName:aName];
 }
 
+- (void) disableShuffle{
+    [_myInstance disableShuffle];
+}
+
+- (void) disableRepeat{
+    [_myInstance disableRepeat];
+}
+
 @end

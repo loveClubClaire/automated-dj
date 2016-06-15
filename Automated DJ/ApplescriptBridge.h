@@ -26,4 +26,8 @@
 
 - (void)            deletePlaylistWithName:(NSString*)aName;
 
+- (void)            disableShuffle;
+
+- (void)            disableRepeat;
+
 @end

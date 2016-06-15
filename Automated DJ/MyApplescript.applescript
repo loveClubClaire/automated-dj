@@ -40,4 +40,16 @@ script MyApplescript
         end tell
     end deletePlaylistWithName_
     
+    on disableShuffle()
+        tell application "iTunes"
+            set shuffle enabled to false
+        end tell
+    end disableShuffle
+    
+    on disableRepeat()
+        tell application "iTunes"
+            set song repeat to off
+        end tell
+    end disableRepeat
+    
 end script

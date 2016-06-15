@@ -111,7 +111,9 @@
         </customObject>
         <customObject id="kVP-21-RSl" customClass="AutomatorController" customModule="Automated_DJ" customModuleProvider="target">
             <connections>
+                <outlet property="GlobalAnnouncementsObject" destination="wyT-FT-Ij2" id="hnW-WT-BVy"/>
                 <outlet property="MasterScheduleObject" destination="uEM-xV-SIH" id="WaB-4V-bqd"/>
+                <outlet property="PreferencesObject" destination="yDZ-1S-ELR" id="n06-Ii-LWP"/>
             </connections>
         </customObject>
         <customObject id="Vyk-Ws-TpC" customClass="TestClass" customModule="Automated_DJ" customModuleProvider="target">
@@ -1865,17 +1867,7 @@ Gw
             </view>
             <point key="canvasLocation" x="224" y="-11.5"/>
         </window>
-        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="TZP-IE-PdV">
-            <rect key="frame" x="0.0" y="0.0" width="38" height="17"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="bNH-gQ-Tfl">
-                <font key="font" metaFont="system"/>
-                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-            </textFieldCell>
-            <point key="canvasLocation" x="542" y="138.5"/>
-        </textField>
-        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="wbH-mT-fdl" customClass="NSPanel">
+        <window title="TestWindow" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="wbH-mT-fdl" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="139" y="85" width="276" height="138"/>
