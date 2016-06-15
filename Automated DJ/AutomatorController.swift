@@ -11,6 +11,8 @@ import Cocoa
 
 class AutomatorController: NSObject {
     @IBOutlet weak var MasterScheduleObject: MasterSchedule!
+    @IBOutlet weak var PreferencesObject: Preferences!
+    @IBOutlet weak var GlobalAnnouncementsObject: GloablAnnouncements!
 
     
     
@@ -21,7 +23,7 @@ class AutomatorController: NSObject {
     func masterTimerFunction(){
         let applescriptBridge = ApplescriptBridge()
         //Determine the name of our generated playlist. This is done to prevent name overlap. We also delete any automated DJ playlist which is not currently playing so that we do not have duplicates of the same playlist.
-        var usingAutomatedDJ = true
+        var generatedPlaylistName = "Automated DJ"
         //get currently playing playlist 
         let currentPlaylist = applescriptBridge.getCurrentPlaylist()
         if currentPlaylist != "Automated DJ" && currentPlaylist != "Automated DJ2" {
@@ -33,7 +35,7 @@ class AutomatorController: NSObject {
         }
         else if currentPlaylist == "Automated DJ" {
             applescriptBridge.deletePlaylistWithName("Automated DJ2")
-            usingAutomatedDJ = false
+            generatedPlaylistName = "Automated DJ2"
         }
         
         //Create a date object 3 minutes in the future (NOTE: Because of how the timer is configured - to fire every minute - this we will give us a max of three minutes before a show and a minimum of two)
@@ -49,25 +51,43 @@ class AutomatorController: NSObject {
         //Iterate though all shows and if the start time of a show matches the future time... (Do things)
         for aShow in MasterScheduleObject.dataArray {
             if dateFormatterShowTime.stringFromDate(aShow.startDate!) == dateFormatterShowTime.stringFromDate(futureTime){
-                
                 //Get the number of seconds into the hour that the show starts and of the current time. Get the difference of those two numbers and we have the number of seconds until the show begins, which we use as our delay time. If the show starts in the next hour relative to the hour of the current time, then the resulting difference is a negative number. Adding 60 to that negative number gets us the positive number of seconds until the show begins.
                 let showStartTimeSeconds = (Int(minuteFormatter.stringFromDate(aShow.startDate!))! * 60)
                 let currentTimeSeconds = (Int(minuteFormatter.stringFromDate(NSDate.init()))! * 60) + (Int(secondFormatter.stringFromDate(NSDate.init())))!
                 let delay = showStartTimeSeconds - currentTimeSeconds
                 if delay < 0 {delay + 60}
-                
-                let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(delay) * Double(NSEC_PER_SEC)))
-                dispatch_after(delayTime, dispatch_get_main_queue()) {
-                    print("Automator Started")
-                    print(NSDate.init())
+                //If the show is not automated then only the global announcements window needs to be spawned
+                if aShow.automator == nil {
+                    let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(delay + PreferencesObject.globalAnnouncementsDelay) * Double(NSEC_PER_SEC)))
+                    dispatch_after(delayTime, dispatch_get_main_queue()) {
+                        self.GlobalAnnouncementsObject.spawnImmutableGlobalAnnouncements()
+                    }
                 }
-                
+                //If the show is automated, a playlist must be generated and played
+                else{
+                    let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(delay) * Double(NSEC_PER_SEC)))
+                    dispatch_after(delayTime, dispatch_get_main_queue()) {
+                       self.playGeneratedPlaylist(generatedPlaylistName)
+                    }
+                    generatePlaylist(generatedPlaylistName)
+                }
                 break;
             }
         }
+    }
+    
+    func generatePlaylist(playlistName: String){
         
-
-        
+    }
+    
+    func playGeneratedPlaylist(playlistName: String){
+        let applescriptBridge = ApplescriptBridge()
+        //Disable shuffle && looping
+        applescriptBridge.disableShuffle()
+        applescriptBridge.disableRepeat()
+        //delay until current song concludes
+        //trim excess fat from generated playlist if possable 
+        //play playlist
     }
     
 }
