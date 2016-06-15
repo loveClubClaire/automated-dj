@@ -74,6 +74,7 @@ class AutomatorController: NSObject {
     }
     
     func generatePlaylist(playlistName: String, anAutomator: Automator){
+        //NOTE: Automator.totalTime is an hour value! Its a double representing hours. So it needs to be converted to seconds if you want seconds
         let applescriptBridge = ApplescriptBridge()
         let generatedPlaylist: NSMutableArray = NSMutableArray()
         //Get tiered playlists
@@ -92,13 +93,35 @@ class AutomatorController: NSObject {
             generatedPlaylist.addObjectsFromArray(applescriptBridge.getSongsInPlaylist(anAutomator.seedPlayist) as [AnyObject])
             //Remove excess if seed playlist is longer than playlist length
             //While actual time is greater than expected time + tolerance
-            while Playlist.getNewPlaylistDuration(generatedPlaylist as Array as! [Song]) > (anAutomator.totalTime + Double(PreferencesObject.tollerence)) {
+            while Playlist.getNewPlaylistDuration(generatedPlaylist as Array as! [Song]) > ((anAutomator.totalTime * 3600) + Double(PreferencesObject.tollerence)) {
                 generatedPlaylist.removeLastObject()
             }
         }
-        
-        
-        //algorithm 
+        //main algorithm
+        //inatalize variables used for inserting bumpers
+        var songBlockCount = 0
+        var bumperBlockCount = 0
+        var bumperCounter = 0
+        let bumpers = applescriptBridge.getSongsInPlaylist(anAutomator.bumpersPlaylist)
+        //while the generated playlist length is less than the total time as required by the automator...
+        while Playlist.getNewPlaylistDuration(generatedPlaylist as Array as! [Song]) < (anAutomator.totalTime * 3600) {
+            //Check to see if its time to add bumpers. Automator contians how many songs there must be in between blocks. When that number is met (and a bumper playlist actually exists), then we add bumpers.
+            //bumperBlockCount keeps track of how large our current block is, bumperCounter keeps track of where we are in the bumper playlist. This number rolls over so that once we reach the end of the bumper playlist, we go back to the begining rather than just ending or something. And songBlockCount keeps track of the number of songs added since we last added a bumper
+            if songBlockCount == anAutomator.songsBetweenBlocks! + 1 && anAutomator.bumpersPlaylist != nil {
+                while bumperBlockCount < anAutomator.bumpersPerBlock {
+                    generatedPlaylist.addObject(bumpers.objectAtIndex(bumperCounter))
+                    bumperBlockCount = bumperBlockCount + 1; bumperCounter = bumperCounter + 1
+                    if bumperCounter > bumpers.count {
+                        bumperCounter = 0
+                    }
+                }
+                //Because we just blindly add bumpers into the generatedPlaylist, this prevents that process from placing us over the expected time (which is the total time + the tollerence)
+                while Playlist.getNewPlaylistDuration(generatedPlaylist as Array as! [Song]) > ((anAutomator.totalTime * 3600) + Double(PreferencesObject.tollerence)) {
+                    generatedPlaylist.removeLastObject()
+                }
+                songBlockCount = 0
+            }
+        }
         
     }
     
