@@ -86,17 +86,22 @@ class AutomatorController: NSObject {
         applescriptBridge.disableRepeat()
         //delay until current song concludes
         //TODO test how good the delay is. Subtracting half a second from the dealy is a holdover from the 1.0 release. Make sure its still necessary
-        var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64( (applescriptBridge.timeLeftInCurrentSong() - 0.5) * Double(NSEC_PER_SEC)))
+        var rawDelayTime = applescriptBridge.timeLeftInCurrentSong()
+        var delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64( (rawDelayTime - 0.5) * Double(NSEC_PER_SEC)))
         //If iTunes is not playing, then set the delay to 0. (This needs to be done because if a song is paused midway, then timeLeftInCurrentSong will return a greater than zero value, because thats how much time is left in the song! THe only issue is that the song isnt playing. So unchecked, we would wait in silence)
         if applescriptBridge.isiTunesPlaying() == false {
             delayTime = 0
+            rawDelayTime = 0
         }
         dispatch_after(delayTime, dispatch_get_main_queue()) {
             applescriptBridge.playPlaylist(playlistName)
         }
-        
-        //trim excess fat from generated playlist if possible
-
+        //trim excess fat from generated playlist if possible.
+        //if the raw delay time is greater than the last song of the playlist, then subtract the length of that song from the raw delay time and remove that song from the playlist. We then check again to see if the newly updated raw delay time is greater than the (new) last song of the playlist. If so, repeat until no longer the case
+        while rawDelayTime > applescriptBridge.getLastSongInPlaylist(playlistName).duration {
+            rawDelayTime = rawDelayTime - applescriptBridge.getLastSongInPlaylist(playlistName).duration
+            applescriptBridge.removeLastSongInPlaylist(playlistName)
+        }
     }
     
 }

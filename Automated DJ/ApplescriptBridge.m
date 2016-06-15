@@ -40,7 +40,6 @@
 }
 
 -(NSMutableArray*) getSongsInPlaylist:(NSString*)aPlaylist{
-
     NSArray *rawSongs = [_myInstance getSongsInPlaylist:aPlaylist];
     NSMutableArray *songs = [[NSMutableArray alloc]init];
     
@@ -51,6 +50,15 @@
     }
     
     return songs;
+}
+
+-(Song*) getLastSongInPlaylist:(NSString*)aPlaylist{
+    NSAppleEventDescriptor *rawSong = [_myInstance getLastSongInPlaylist:aPlaylist];
+    return [[Song alloc] initWithString:rawSong.debugDescription];
+}
+
+-(void) removeLastSongInPlaylist:(NSString*)aPlaylist{
+    [_myInstance removeLastSongInPlaylist:aPlaylist];
 }
 
 -(void) createPlaylistWithName:(NSString*)aName{

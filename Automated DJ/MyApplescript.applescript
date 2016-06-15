@@ -20,6 +20,20 @@ script MyApplescript
         end tell
     end getSongsInPlaylist_
     
+    on getLastSongInPlaylist_(aPlaylist as string)
+        tell application "iTunes"
+            set trackNumber to count of tracks of playlist aPlaylist
+            return properties of track trackNumber of playlist aPlaylist
+        end tell
+    end getLastSongInPlaylist_
+    
+    on removeLastSongInPlaylist_(aPlaylist as string)
+        tell application "iTunes"
+            set trackNumber to count of tracks of playlist aPlaylist
+            delete track trackNumber of playlist aPlaylist
+        end tell
+    end removeLastSongInPlaylist_
+    
     on createPlaylistWithName_(aName as string)
         tell application "iTunes"
             make user playlist with properties {name:aName}

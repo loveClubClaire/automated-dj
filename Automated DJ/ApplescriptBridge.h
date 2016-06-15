@@ -10,6 +10,7 @@
 #import "MyApplescript.h"
 
 
+
 @interface ApplescriptBridge : NSObject
 
 @property id<ApplescriptProtocol> myInstance;
@@ -36,6 +37,8 @@
 
 - (BOOL)            isiTunesPlaying;
 
+- ()                getLastSongInPlaylist:(NSString*)aPlaylist;
 
+- (void)            removeLastSongInPlaylist:(NSString*)aPlaylist;
 
 @end

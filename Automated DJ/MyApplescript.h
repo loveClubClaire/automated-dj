@@ -26,4 +26,9 @@
 
 -(NSAppleEventDescriptor*)    getiTunesPlayerState;
 
+-(NSAppleEventDescriptor*)    getLastSongInPlaylist:(NSString*)aPlaylist;
+
+-(void)         removeLastSongInPlaylist:(NSString*)aPlaylist;
+
+
 @end
