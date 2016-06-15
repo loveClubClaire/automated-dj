@@ -52,4 +52,26 @@ script MyApplescript
         end tell
     end disableRepeat
     
+    on timeLeftInCurrentSong()
+        tell application "iTunes"
+            set totalTime to duration of current track
+            set currentTime to player position
+            return totalTime - currentTime
+        end tell
+    end timeLeftInCurrentSong
+    
+    on playPlaylist_(aPlaylist as string)
+        tell application "iTunes"
+            try
+                play playlist aPlaylist
+            end try
+        end tell
+    end playPlaylist_
+    
+    on getiTunesPlayerState()
+        tell application "iTunes"
+            return player state
+        end tell
+    end getiTunesPlayerState
+    
 end script

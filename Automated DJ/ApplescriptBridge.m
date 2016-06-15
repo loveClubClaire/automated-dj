@@ -73,4 +73,23 @@
     [_myInstance disableRepeat];
 }
 
+- (double) timeLeftInCurrentSong{
+    return [_myInstance timeLeftInCurrentSong].doubleValue;
+}
+
+- (void) playPlaylist:(NSString*)aPlaylist{
+    //When a playlist does not exist, this function does nothing rather then throw an error. (Part of the reason for this is that the applescript error which would be thrown isn't intutive)
+    [_myInstance playPlaylist:aPlaylist];
+}
+
+- (BOOL) isiTunesPlaying{
+    BOOL result = false;
+    NSString* state = [_myInstance getiTunesPlayerState].stringValue;
+    if ([state isEqualToString:@"kPSP"]) {
+        result = true;
+    }
+    return result;
+}
+
 @end
+

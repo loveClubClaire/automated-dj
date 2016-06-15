@@ -20,5 +20,10 @@
 
 -(void)         disableRepeat;
 
+-(NSNumber*)    timeLeftInCurrentSong;
+
+-(void)         playPlaylist:(NSString*)aPlaylist;
+
+-(NSAppleEventDescriptor*)    getiTunesPlayerState;
 
 @end

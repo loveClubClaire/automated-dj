@@ -30,4 +30,12 @@
 
 - (void)            disableRepeat;
 
+- (double)          timeLeftInCurrentSong;
+
+- (void)            playPlaylist:(NSString*)aPlaylist;
+
+- (BOOL)            isiTunesPlaying;
+
+
+
 @end
