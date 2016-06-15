@@ -14,8 +14,6 @@ class AutomatorController: NSObject {
     @IBOutlet weak var PreferencesObject: Preferences!
     @IBOutlet weak var GlobalAnnouncementsObject: GloablAnnouncements!
 
-    
-    
     func spawnMasterTimer(){
         NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(masterTimerFunction), userInfo: nil, repeats: true)
     }
@@ -68,14 +66,39 @@ class AutomatorController: NSObject {
                     dispatch_after(delayTime, dispatch_get_main_queue()) {
                        self.playGeneratedPlaylist(generatedPlaylistName)
                     }
-                    generatePlaylist(generatedPlaylistName)
+                    generatePlaylist(generatedPlaylistName, anAutomator: aShow.automator!)
                 }
                 break;
             }
         }
     }
     
-    func generatePlaylist(playlistName: String){
+    func generatePlaylist(playlistName: String, anAutomator: Automator){
+        let applescriptBridge = ApplescriptBridge()
+        let generatedPlaylist: NSMutableArray = NSMutableArray()
+        //Get tiered playlists
+        let tier1 = applescriptBridge.getSongsInPlaylist("Tier 1")
+        let tier2 = applescriptBridge.getSongsInPlaylist("Tier 2")
+        let tier3 = applescriptBridge.getSongsInPlaylist("Tier 3")
+        //Apply rules to tiered playlists if rules exist
+        if anAutomator.rules != nil {
+            tier1.filterUsingPredicate(anAutomator.rules!)
+            tier2.filterUsingPredicate(anAutomator.rules!)
+            tier3.filterUsingPredicate(anAutomator.rules!)
+        }
+        //get seed playlist if it exists and add seed playlist to generated playlist
+        //TODO test if this handles a non existant but non null playlist
+        if anAutomator.seedPlayist != nil{
+            generatedPlaylist.addObjectsFromArray(applescriptBridge.getSongsInPlaylist(anAutomator.seedPlayist) as [AnyObject])
+            //Remove excess if seed playlist is longer than playlist length
+            //While actual time is greater than expected time + tolerance
+            while Playlist.getNewPlaylistDuration(generatedPlaylist as Array as! [Song]) > (anAutomator.totalTime + Double(PreferencesObject.tollerence)) {
+                generatedPlaylist.removeLastObject()
+            }
+        }
+        
+        
+        //algorithm 
         
     }
     

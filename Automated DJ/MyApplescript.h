@@ -8,6 +8,8 @@
 
 -(NSArray*)     getPlaylists;
 
+-(NSAppleEventDescriptor*) getPlaylist:(NSString*)aPlaylist;
+
 -(NSArray*)     getSongsInPlaylist:(NSString*)aPlaylist;
 
 -(void)         createPlaylistWithName:(NSString*)aName;

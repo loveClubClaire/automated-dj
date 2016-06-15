@@ -13,6 +13,12 @@ script MyApplescript
         end tell
     end getPlaylists
     
+    on getPlaylist_(aPlaylist as string)
+        tell application "iTunes"
+            get properties of aPlaylist
+        end tell
+    end getPlaylist_
+    
     on getSongsInPlaylist_(aPlaylist as string)
         tell application "iTunes"
             set my_playlist to get playlist aPlaylist

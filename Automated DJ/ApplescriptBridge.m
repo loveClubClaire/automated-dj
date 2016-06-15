@@ -39,6 +39,11 @@
 
 }
 
+- (Playlist*) getPlaylist:(NSString*)aPlaylist{
+    NSAppleEventDescriptor *rawPlaylist = [_myInstance getPlaylist:aPlaylist];
+    return [[Playlist alloc] initWithString:rawPlaylist.debugDescription];
+}
+
 -(NSMutableArray*) getSongsInPlaylist:(NSString*)aPlaylist{
     NSArray *rawSongs = [_myInstance getSongsInPlaylist:aPlaylist];
     NSMutableArray *songs = [[NSMutableArray alloc]init];
@@ -65,12 +70,12 @@
     [_myInstance createPlaylistWithName:aName];
 }
 
--(NSString*) getCurrentPlaylist{
-    return [_myInstance getCurrentPlaylist];
-}
-
 -(void) deletePlaylistWithName:(NSString*)aName{
     [_myInstance deletePlaylistWithName:aName];
+}
+
+-(NSString*) getCurrentPlaylist{
+    return [_myInstance getCurrentPlaylist];
 }
 
 - (void) disableShuffle{

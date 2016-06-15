@@ -19,6 +19,8 @@
 
 - (NSMutableArray*) getPlaylists;
 
+- ()                getPlaylist:(NSString*)aPlaylist;
+
 - (NSMutableArray*) getSongsInPlaylist:(NSString*)aPlaylist;
 
 - (void)            createPlaylistWithName:(NSString*)aName;
