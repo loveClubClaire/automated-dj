@@ -17,7 +17,7 @@ import Cocoa
     var persistentID: String = ""
     var databaseID: Int = 0
     var time: String = ""
-    var duration: Double = 0
+    var duration: Double = 0.0
     var artist: String = ""
     var albumArtist: String = ""
     var composer: String = ""
@@ -82,7 +82,7 @@ import Cocoa
         }
 
         for info in myPlaylistArray {
-            let infoParts = info.componentsSeparatedByString(":")
+            var infoParts = info.componentsSeparatedByString(":")
             if infoParts[0].containsString("ID") {
                 ID = Int(infoParts[1])!
             }
@@ -90,6 +90,10 @@ import Cocoa
                 index = Int(infoParts[1])!
             }
             else if infoParts[0].containsString("pnam") {
+                while infoParts.count > 2 {
+                    let temp = infoParts.popLast()
+                    infoParts.append(infoParts.popLast()! + ":" + temp!)
+                }
                 var temp = infoParts[1].componentsSeparatedByString("\"")
                 temp.removeLast()
                 name = temp.last!
@@ -111,6 +115,10 @@ import Cocoa
                 duration = Double(infoParts[1])!
             }
             else if infoParts[0].containsString("pArt") {
+                while infoParts.count > 2 {
+                    let temp = infoParts.popLast()
+                    infoParts.append(infoParts.popLast()! + ":" + temp!)
+                }
                 var temp = info.componentsSeparatedByString("\"")
                 temp.removeLast()
                 artist = temp.last!
