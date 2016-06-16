@@ -64,23 +64,24 @@ import Cocoa
         myPlaylistArray.removeLast()
         
         var index = 0
-        var lyric = false
-        //This while loop reconstructs lyric strings broken up because they contained a , (or { or }) We do this so we can properly set the lyrics property
+        var broken = false
+        //This while loop reconstructs strings broken up because they contained a , We do this so we can properly set the values property
         while index < myPlaylistArray.count {
-            if myPlaylistArray[index].containsString("\'pCat\'") {
-                lyric = false
+            if matchesForRegexInText(" \'[a-zA-Z\\s]{4}\':", text: myPlaylistArray[index]) == true {
+                broken = false
             }
-            if lyric == true {
+            if broken == true {
                 myPlaylistArray[index-1] = myPlaylistArray[index-1] + "," + myPlaylistArray[index]
                 myPlaylistArray.removeAtIndex(index)
-                index = index - 1
+
             }
-            if myPlaylistArray[index].containsString("\'pLyr\'") {
-                lyric = true
+            if matchesForRegexInText(" \'[a-zA-Z\\s]{4}\':", text: myPlaylistArray[index]) == false {
+                broken = true
+                index = index - 1
             }
             index = index + 1
         }
-
+        
         for info in myPlaylistArray {
             var infoParts = info.componentsSeparatedByString(":")
             if infoParts[0].containsString("ID") {
@@ -331,7 +332,22 @@ import Cocoa
         return super.valueForKey(newKey)
     }
     
+    //Receives a string and a regular expression. If the regular expression is contained in the string at least once, return true. Otherwise return false.
+    func matchesForRegexInText(regex: String!, text: String!) -> Bool {
+        do {
+            let regex = try NSRegularExpression(pattern: regex, options: [])
+            let nsString = text as NSString
+            let results = regex.matchesInString(text, options: [], range: NSMakeRange(0, nsString.length))
+            let resultsArray = results.map { nsString.substringWithRange($0.range)}
+            if resultsArray.count > 0 {return true}
+            else{return false}
+        } catch let error as NSError {
+            print("invalid regex: \(error.localizedDescription)")
+            return false
+        }
+    }
+    
     override var description: String {
-        return name + " by " + artist
+        return name + " by " + artist + " on " + album
     }
 }
