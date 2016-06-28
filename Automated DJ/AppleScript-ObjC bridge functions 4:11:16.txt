@@ -1,0 +1,32 @@
+How to write AppleScript-ObjC bridge functions. 
+
+in the objective C header with a function defined as such: 
+- (void)          iTunesPause;
+we have a function called iTunesPause which has a return type of void. The applescript function is defined as such: 
+on isiTunesPlaying()
+	--Code
+end isiTunesPlaying
+
+the applescript function has the same name as the objective c function and because the objective c function takes no parameters, neither does the applescript function. 
+
+in the objective C header with a function defined as such: 
+- (NSString *)    getInfoFromiTunes:(NSString*)anExemptArtist:(NSString *)aNowPlayingFilepath;
+
+we have a function called getInfoFromiTunes which returns an NSString and takes two parameters, both NSString's. The applescript function is defined as such:
+on getInfoFromiTunes__(anExemptArtist as string,aNowPlayingFilepath as string)
+ --Code
+end getInfoFromiTunes__
+
+for each parameter in the objective c function, an underscore must be placed in the applescript function name. Otherwise there will be a runtime error: cannot find selector. Because the compiler wont be able to find an applescript function that takes two paramaters. Doesn't matter if there are two paramaters in the brackets. 
+
+Lastly, in the objective c header with a function defined as such: 
+- (NSString *)    getInfoFromiTunes:(NSString*)anExemptArtist AtNowPlayingFilepath:(NSString *)aNowPlayingFilepath;
+
+which is the functionally the same as the previous function. It's just named differently so a programmer possess more information about the required parameters. But even though its functionally the same, it requires a different applescript function definition:   
+on getInfoFromiTunes_AtNowPlayingFilepath_(anExemptArtist as string,aNowPlayingFilepath as string)
+	--Code
+end getInfoFromiTunes_AtNowPlayingFilepath_
+
+So for the applescript function definition, we have the Objective C function name, an underscore for the first parameter, the second parameter identifier string, and another underscore for the second parameter. 
+
+Whoever wrote this spec man. Like what the hell. 

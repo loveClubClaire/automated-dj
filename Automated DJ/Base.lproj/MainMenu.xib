@@ -773,6 +773,7 @@
         </menu>
         <window title="Master Schedule" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="OTS-To-fwt" customClass="MasterScheduleWindow" customModule="Automated_DJ" customModuleProvider="target">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" texturedBackground="YES"/>
+            <windowCollectionBehavior key="collectionBehavior" moveToActiveSpace="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="413" y="349" width="600" height="350"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
@@ -1001,6 +1002,7 @@
         </window>
         <window title="Show Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="RBR-ot-TiD">
             <windowStyleMask key="styleMask" titled="YES"/>
+            <windowCollectionBehavior key="collectionBehavior" moveToActiveSpace="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="131" y="158" width="367" height="217"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
@@ -1134,6 +1136,7 @@ Gw
         </window>
         <window title="Automator Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="hq7-sJ-C1m">
             <windowStyleMask key="styleMask" titled="YES"/>
+            <windowCollectionBehavior key="collectionBehavior" moveToActiveSpace="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="0.0" y="0.0" width="496" height="415"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
@@ -1415,6 +1418,7 @@ Gw
         </menu>
         <window title="Global Announcements" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="U6T-JL-RDx" customClass="GlobalAnnoucementsWindow" customModule="Automated_DJ" customModuleProvider="target">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" texturedBackground="YES" unifiedTitleAndToolbar="YES"/>
+            <windowCollectionBehavior key="collectionBehavior" moveToActiveSpace="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="131" y="158" width="600" height="300"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
@@ -1576,6 +1580,7 @@ Gw
         </window>
         <window title="Add Announcement" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="ram-yi-uF9">
             <windowStyleMask key="styleMask" titled="YES"/>
+            <windowCollectionBehavior key="collectionBehavior" moveToActiveSpace="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="131" y="158" width="400" height="300"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
@@ -1586,17 +1591,17 @@ Gw
                     <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C3S-dd-tMK">
                         <rect key="frame" x="-1" y="61" width="402" height="240"/>
                         <clipView key="contentView" ambiguous="YES" id="uss-bH-9HP">
-                            <rect key="frame" x="1" y="1" width="400" height="238"/>
+                            <rect key="frame" x="1" y="1" width="384" height="238"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textView ambiguous="YES" importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="uyp-Bd-WTO">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="238"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="384" height="238"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="400" height="238"/>
+                                    <size key="minSize" width="384" height="238"/>
                                     <size key="maxSize" width="487" height="10000000"/>
                                     <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <size key="minSize" width="400" height="238"/>
+                                    <size key="minSize" width="384" height="238"/>
                                     <size key="maxSize" width="487" height="10000000"/>
                                 </textView>
                             </subviews>
@@ -1657,8 +1662,9 @@ Gw
             </items>
             <point key="canvasLocation" x="299.5" y="-464.5"/>
         </menu>
-        <window title="Default Preferences Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="Oqq-od-7Zb">
+        <window title="Default Preferences Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Oqq-od-7Zb">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+            <windowCollectionBehavior key="collectionBehavior" moveToActiveSpace="YES"/>
             <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="584" y="560" width="350" height="167"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
@@ -1781,10 +1787,10 @@ Gw
                     <toolbarItem reference="xhO-Lx-ez0"/>
                 </defaultToolbarItems>
             </toolbar>
-            <point key="canvasLocation" x="224" y="-246.5"/>
+            <point key="canvasLocation" x="126" y="-7.5"/>
         </window>
         <window title="Advanced Preferences Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="JH5-kU-f0Y">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="534" y="560" width="350" height="151"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
@@ -1866,7 +1872,7 @@ Gw
                     </textField>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="224" y="-11.5"/>
+            <point key="canvasLocation" x="563" y="-7.5"/>
         </window>
         <window title="TestWindow" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="wbH-mT-fdl" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
