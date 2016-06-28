@@ -69,7 +69,6 @@ class Preferences: NSObject {
     }
     
     @IBAction func generalPreferencesButton(sender: AnyObject) {
-        //preferencesWindow.contentView = NSView()
         var tempFrame = preferencesWindow.frame
         tempFrame.origin.y += tempFrame.size.height
         tempFrame.origin.y -= 242
@@ -101,6 +100,7 @@ class Preferences: NSObject {
         let prefArray = preferencesAsArray()
         NSKeyedArchiver.archiveRootObject(prefArray, toFile: AppDelegateObject.storedPreferencesFilepath)
         preferencesWindow.orderOut(self)
+        preferencesToolbar.selectedItemIdentifier = "general"
         generalPreferencesButton(self)
     }
     
@@ -114,6 +114,7 @@ class Preferences: NSObject {
         tollerenceTextField.integerValue = tollerence
         
         preferencesWindow.orderOut(self)
+        preferencesToolbar.selectedItemIdentifier = "general"
         generalPreferencesButton(self)
     }
 }
