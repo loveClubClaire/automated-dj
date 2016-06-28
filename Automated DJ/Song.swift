@@ -84,6 +84,14 @@ import Cocoa
         
         for info in myPlaylistArray {
             var infoParts = info.componentsSeparatedByString(":")
+            //Replaces lost : chars for all paramaters which could have extra : chars. (So user defined params)
+            if infoParts[0].containsString("pnam") || infoParts[0].containsString("pArt") || infoParts[0].containsString("pAlA") || infoParts[0].containsString("pCmp") || infoParts[0].containsString("pAlb") || infoParts[0].containsString("pGen") || infoParts[0].containsString("pCmt") || infoParts[0].containsString("pAnt") || infoParts[0].containsString("pLyr") || infoParts[0].containsString("pCat") || infoParts[0].containsString("pDes") || infoParts[0].containsString("pSNm") || infoParts[0].containsString("pSAl") || infoParts[0].containsString("pSAr") || infoParts[0].containsString("pSCm") || infoParts[0].containsString("pSAA") {
+                while infoParts.count > 2 {
+                    let temp = infoParts.popLast()
+                    infoParts.append(infoParts.popLast()! + ":" + temp!)
+                }
+            }
+            
             if infoParts[0].containsString("ID") {
                 ID = Int(infoParts[1])!
             }
@@ -91,10 +99,6 @@ import Cocoa
                 index = Int(infoParts[1])!
             }
             else if infoParts[0].containsString("pnam") {
-                while infoParts.count > 2 {
-                    let temp = infoParts.popLast()
-                    infoParts.append(infoParts.popLast()! + ":" + temp!)
-                }
                 var temp = infoParts[1].componentsSeparatedByString("\"")
                 temp.removeLast()
                 name = temp.last!
@@ -116,10 +120,6 @@ import Cocoa
                 duration = Double(infoParts[1])!
             }
             else if infoParts[0].containsString("pArt") {
-                while infoParts.count > 2 {
-                    let temp = infoParts.popLast()
-                    infoParts.append(infoParts.popLast()! + ":" + temp!)
-                }
                 var temp = info.componentsSeparatedByString("\"")
                 temp.removeLast()
                 artist = temp.last!
