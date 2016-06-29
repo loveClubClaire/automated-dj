@@ -118,7 +118,7 @@
         </customObject>
         <customObject id="Dsi-bf-cg4" customClass="MiniPlayerCover" customModule="Automated_DJ" customModuleProvider="target">
             <connections>
-                <outlet property="MiniPlayerCoverPanel" destination="uW1-ot-W4v" id="zYN-vV-Odk"/>
+                <outlet property="MiniPlayerCoverPanel" destination="oOj-xi-VpX" id="i2Q-UQ-Ejw"/>
             </connections>
         </customObject>
         <customObject id="Vyk-Ws-TpC" customClass="TestClass" customModule="Automated_DJ" customModuleProvider="target">
@@ -126,6 +126,7 @@
                 <outlet property="AutomatorControllerObject" destination="kVP-21-RSl" id="SWI-RJ-NKc"/>
                 <outlet property="MiniPlayerCoverObject" destination="Dsi-bf-cg4" id="pgv-HZ-1A7"/>
                 <outlet property="PreferencesObject" destination="yDZ-1S-ELR" id="sWO-3R-EiG"/>
+                <outlet property="testPanel" destination="oOj-xi-VpX" id="ecR-P2-evB"/>
             </connections>
         </customObject>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
@@ -1720,7 +1721,7 @@ Gw
                         <font key="titleFont" metaFont="system"/>
                     </box>
                     <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="yeP-rg-kea">
-                        <rect key="frame" x="0.0" y="59" width="350" height="4"/>
+                        <rect key="frame" x="0.0" y="59" width="350" height="5"/>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <font key="titleFont" metaFont="system"/>
@@ -1828,7 +1829,7 @@ Gw
                         <font key="titleFont" metaFont="system"/>
                     </box>
                     <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="ePl-qy-ntA">
-                        <rect key="frame" x="0.0" y="59" width="350" height="5"/>
+                        <rect key="frame" x="0.0" y="59" width="350" height="4"/>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <font key="titleFont" metaFont="system"/>
@@ -1913,18 +1914,18 @@ Gw
             </view>
             <point key="canvasLocation" x="589" y="-301"/>
         </window>
-        <window title="MiniPlayer Cover" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="uW1-ot-W4v" customClass="NSPanel">
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="oOj-xi-VpX" customClass="NSPanel">
             <windowStyleMask key="styleMask" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="846" y="691" width="200" height="44"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
+            <rect key="contentRect" x="139" y="85" width="200" height="44"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <value key="minSize" type="size" width="148" height="44"/>
             <value key="maxSize" type="size" width="400" height="44"/>
-            <view key="contentView" id="cPm-m6-M4c">
+            <view key="contentView" id="WEc-yO-mQM" customClass="MiniPlayerCoverView" customModule="Automated_DJ" customModuleProvider="target">
                 <rect key="frame" x="0.0" y="0.0" width="200" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
             </view>
-            <point key="canvasLocation" x="229.5" y="-113.5"/>
+            <point key="canvasLocation" x="182" y="-168"/>
         </window>
     </objects>
     <resources>
