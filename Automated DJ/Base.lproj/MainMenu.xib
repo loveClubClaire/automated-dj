@@ -124,6 +124,7 @@
         <customObject id="Vyk-Ws-TpC" customClass="TestClass" customModule="Automated_DJ" customModuleProvider="target">
             <connections>
                 <outlet property="AutomatorControllerObject" destination="kVP-21-RSl" id="SWI-RJ-NKc"/>
+                <outlet property="MiniPlayerCoverObject" destination="Dsi-bf-cg4" id="pgv-HZ-1A7"/>
                 <outlet property="PreferencesObject" destination="yDZ-1S-ELR" id="sWO-3R-EiG"/>
             </connections>
         </customObject>
@@ -1719,7 +1720,7 @@ Gw
                         <font key="titleFont" metaFont="system"/>
                     </box>
                     <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="yeP-rg-kea">
-                        <rect key="frame" x="0.0" y="59" width="350" height="5"/>
+                        <rect key="frame" x="0.0" y="59" width="350" height="4"/>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <font key="titleFont" metaFont="system"/>
@@ -1898,17 +1899,29 @@ Gw
                             <action selector="test:" target="Vyk-Ws-TpC" id="tPF-RX-jc8"/>
                         </connections>
                     </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6ZJ-ir-hOi">
+                        <rect key="frame" x="100" y="19" width="78" height="32"/>
+                        <buttonCell key="cell" type="push" title="Test2!" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oaf-cz-ErL">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="test2:" target="Vyk-Ws-TpC" id="2S0-eI-0Jf"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <point key="canvasLocation" x="589" y="-301"/>
         </window>
-        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="uW1-ot-W4v" customClass="NSPanel">
+        <window title="MiniPlayer Cover" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="uW1-ot-W4v" customClass="NSPanel">
             <windowStyleMask key="styleMask" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="846" y="691" width="269" height="85"/>
+            <rect key="contentRect" x="846" y="691" width="200" height="44"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
+            <value key="minSize" type="size" width="148" height="44"/>
+            <value key="maxSize" type="size" width="400" height="44"/>
             <view key="contentView" id="cPm-m6-M4c">
-                <rect key="frame" x="0.0" y="0.0" width="269" height="85"/>
+                <rect key="frame" x="0.0" y="0.0" width="200" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
             </view>
             <point key="canvasLocation" x="229.5" y="-113.5"/>

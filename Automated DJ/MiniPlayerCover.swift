@@ -12,17 +12,15 @@ class MiniPlayerCover: NSObject {
     @IBOutlet weak var MiniPlayerCoverPanel: NSPanel!
     
     
-    func enableMiniPlayerCover(){
-        
-    }
-    
-    func disableMiniPlayerCover(){
-        
+    func spawnMiniPlayerCover(){
+        self.showMiniPlayerCover()
     }
     //Make the MiniPlayer cover invisible but still active
     func hideMiniPlayerCover(){
         //Prevents panel from appering in exposé
         MiniPlayerCoverPanel.collectionBehavior = NSWindowCollectionBehavior.Stationary
+        //Set the panel level so the panel is always above normal windows
+        MiniPlayerCoverPanel.level = Int(CGWindowLevelForKey(CGWindowLevelKey.PopUpMenuWindowLevelKey))
         //Makes the max and min size of the panel equal to its current size, so the size of the panel can not be modifed when it is hidded
         MiniPlayerCoverPanel.minSize = NSSize.init(width: MiniPlayerCoverPanel.frame.width, height: MiniPlayerCoverPanel.frame.height)
         MiniPlayerCoverPanel.maxSize = NSSize.init(width: MiniPlayerCoverPanel.frame.width, height: MiniPlayerCoverPanel.frame.height)
@@ -37,6 +35,8 @@ class MiniPlayerCover: NSObject {
     func showMiniPlayerCover(){
         //Allows panel to appear in exposé
         MiniPlayerCoverPanel.collectionBehavior = NSWindowCollectionBehavior.Managed
+        //Set the panel level so the panel behaves as expected
+        MiniPlayerCoverPanel.level = Int(CGWindowLevelForKey(CGWindowLevelKey.NormalWindowLevelKey))
         //Makes the max and min size of the panel equal to their defaults, so that the window can be adjusted
         MiniPlayerCoverPanel.minSize = NSSize.init(width: 148, height: 44)
         MiniPlayerCoverPanel.maxSize = NSSize.init(width: 400, height: 44)
@@ -53,5 +53,16 @@ class MiniPlayerCover: NSObject {
         MiniPlayerCoverPanel.opaque = true
         MiniPlayerCoverPanel.movable = true
         MiniPlayerCoverPanel.movableByWindowBackground = true
+        
+        MiniPlayerCoverPanel.makeKeyAndOrderFront(self)
+    }
+    
+    func isHidden() -> Bool {
+        if MiniPlayerCoverPanel.styleMask == 14 {
+            return true
+        }
+        else{
+            return false
+        }
     }
 }
