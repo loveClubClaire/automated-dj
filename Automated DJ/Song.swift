@@ -66,6 +66,7 @@ import Cocoa
         var index = 0
         var broken = false
         //This while loop reconstructs strings broken up because they contained a , We do this so we can properly set the values property
+        //Yes, to support { and } chars in user defined properties, this code would need to be rewritten. This is the location of your bug :p
         while index < myPlaylistArray.count {
             if matchesForRegexInText(" \'[a-zA-Z\\s]{4}\':", text: myPlaylistArray[index]) == true {
                 broken = false

@@ -116,6 +116,11 @@
                 <outlet property="PreferencesObject" destination="yDZ-1S-ELR" id="n06-Ii-LWP"/>
             </connections>
         </customObject>
+        <customObject id="Dsi-bf-cg4" customClass="MiniPlayerCover" customModule="Automated_DJ" customModuleProvider="target">
+            <connections>
+                <outlet property="MiniPlayerCoverPanel" destination="uW1-ot-W4v" id="zYN-vV-Odk"/>
+            </connections>
+        </customObject>
         <customObject id="Vyk-Ws-TpC" customClass="TestClass" customModule="Automated_DJ" customModuleProvider="target">
             <connections>
                 <outlet property="AutomatorControllerObject" destination="kVP-21-RSl" id="SWI-RJ-NKc"/>
@@ -1591,17 +1596,17 @@ Gw
                     <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C3S-dd-tMK">
                         <rect key="frame" x="-1" y="61" width="402" height="240"/>
                         <clipView key="contentView" ambiguous="YES" id="uss-bH-9HP">
-                            <rect key="frame" x="1" y="1" width="384" height="238"/>
+                            <rect key="frame" x="1" y="1" width="400" height="238"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textView ambiguous="YES" importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="uyp-Bd-WTO">
-                                    <rect key="frame" x="0.0" y="0.0" width="384" height="238"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="238"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="384" height="238"/>
+                                    <size key="minSize" width="400" height="238"/>
                                     <size key="maxSize" width="487" height="10000000"/>
                                     <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <size key="minSize" width="384" height="238"/>
+                                    <size key="minSize" width="400" height="238"/>
                                     <size key="maxSize" width="487" height="10000000"/>
                                 </textView>
                             </subviews>
@@ -1875,7 +1880,7 @@ Gw
             <point key="canvasLocation" x="563" y="-7.5"/>
         </window>
         <window title="TestWindow" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="wbH-mT-fdl" customClass="NSPanel">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="139" y="85" width="276" height="138"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
@@ -1895,7 +1900,18 @@ Gw
                     </button>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="693" y="-306"/>
+            <point key="canvasLocation" x="589" y="-301"/>
+        </window>
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="uW1-ot-W4v" customClass="NSPanel">
+            <windowStyleMask key="styleMask" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="846" y="691" width="269" height="85"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
+            <view key="contentView" id="cPm-m6-M4c">
+                <rect key="frame" x="0.0" y="0.0" width="269" height="85"/>
+                <autoresizingMask key="autoresizingMask"/>
+            </view>
+            <point key="canvasLocation" x="229.5" y="-113.5"/>
         </window>
     </objects>
     <resources>
