@@ -19,6 +19,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var AdminAccessObject: AdminAccess!
     @IBOutlet weak var AutomatorWindowObject: AutomatorWindow!
     @IBOutlet weak var AutomatorControllerObject: AutomatorController!
+    @IBOutlet weak var MiniPlayerCoverObject: MiniPlayerCover!
     
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
     let myApplication = NSApplication.sharedApplication()

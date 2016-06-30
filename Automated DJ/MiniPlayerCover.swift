@@ -10,6 +10,7 @@ import Foundation
 
 class MiniPlayerCover: NSObject {
     @IBOutlet weak var MiniPlayerCoverPanel: NSPanel!
+    @IBOutlet weak var MiniPlayerButton: NSButton!
     
     
     func spawnMiniPlayerCover(){
@@ -57,6 +58,25 @@ class MiniPlayerCover: NSObject {
         MiniPlayerCoverPanel.makeKeyAndOrderFront(self)
     }
     
+    func showButton(){
+        if isHidden() == true {
+            MiniPlayerButton.image = NSImage.init(named:"On Air.png")
+            MiniPlayerCoverPanel.opaque = true
+            MiniPlayerCoverPanel.backgroundColor = NSColor.whiteColor()
+        }
+    }
+    
+    func hideButton(){
+        if isHidden() == true {
+            MiniPlayerButton.image = nil
+            MiniPlayerCoverPanel.opaque = false
+            MiniPlayerCoverPanel.backgroundColor = NSColor.clearColor()
+        }
+    }
+    
+    @IBAction func buttonPressed(sender: AnyObject) {
+        print("Button Pressed")
+    }
     func isHidden() -> Bool {
         if MiniPlayerCoverPanel.styleMask == 14 {
             return true
