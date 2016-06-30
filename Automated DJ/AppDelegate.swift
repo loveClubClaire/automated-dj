@@ -102,11 +102,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(NSMenuItem(title: "Show Announcements", action: #selector(showAnnouncements), keyEquivalent: "A"))
         menu.addItem(NSMenuItem(title: "Edit Announcements", action: #selector(editAnnouncements), keyEquivalent: "E"))
         menu.addItem(NSMenuItem.separatorItem())
+        menu.addItem(NSMenuItem(title: "Activate MiniPlayer Cover", action: #selector(activateMiniPlayerCover), keyEquivalent: ""))
+        menu.addItem(NSMenuItem(title: "Hide MiniPlayer Cover", action: #selector(showMiniPlayerCover), keyEquivalent: ""))
+            menu.itemAtIndex(6)?.hidden = true
+        menu.addItem(NSMenuItem.separatorItem())
         menu.addItem(NSMenuItem(title: "Preferences", action: #selector(showPreferences), keyEquivalent: ","))
         menu.addItem(NSMenuItem.separatorItem())
         menu.addItem(NSMenuItem(title: "Quit", action: #selector(terminate), keyEquivalent: "q"))
         statusItem.menu = menu
         statusItem.button?.image = NSImage.init(named:"On Air.png")
+        //Activate 
+        //Deactivate 
+        //Show 
+        //Hide
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
@@ -145,6 +153,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if AdminAccessObject.isAuthorized() == true {
             myApplication.activateIgnoringOtherApps(true)
             GlobalAnnouncementsObject.spawnMutableGlobalAnnouncements()
+        }
+    }
+    func activateMiniPlayerCover(){
+        MiniPlayerCoverObject.spawnMiniPlayerCover()
+        (MiniPlayerCoverObject.MiniPlayerCoverPanel.contentView as! MiniPlayerCoverView).addTrackingArea()
+        statusItem.menu?.itemAtIndex(5)?.title = "Deactivate MiniPlayer Cover"
+        statusItem.menu?.itemAtIndex(5)?.action = #selector(deactivateMiniPlayerCover)
+        statusItem.menu?.itemAtIndex(6)?.hidden = false
+    }
+    func deactivateMiniPlayerCover(){
+        MiniPlayerCoverObject.MiniPlayerCoverPanel.close()
+        statusItem.menu?.itemAtIndex(5)?.title = "Activate MiniPlayer Cover"
+        statusItem.menu?.itemAtIndex(5)?.action = #selector(activateMiniPlayerCover)
+        statusItem.menu?.itemAtIndex(6)?.hidden = true
+        
+    }
+    func showMiniPlayerCover(){
+        if MiniPlayerCoverObject.isHidden() == false {
+            MiniPlayerCoverObject.hideMiniPlayerCover()
+            statusItem.menu?.itemAtIndex(6)?.title = "Show MiniPlayer Cover"
+        }
+        else{
+            MiniPlayerCoverObject.showMiniPlayerCover()
+            statusItem.menu?.itemAtIndex(6)?.title = "Hide MiniPlayer Cover"
         }
     }
     func showPreferences(){

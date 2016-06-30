@@ -29,7 +29,10 @@ class MiniPlayerCoverView: NSView {
     }
     override func mouseDown(theEvent: NSEvent) {
         Swift.print("Object has pressed")
-        self.addTrackingArea(NSTrackingArea.init(rect: self.bounds, options:[NSTrackingAreaOptions.ActiveAlways,NSTrackingAreaOptions.MouseEnteredAndExited], owner: self, userInfo: nil))
+        //self.addTrackingArea(NSTrackingArea.init(rect: self.bounds, options:[NSTrackingAreaOptions.ActiveAlways,NSTrackingAreaOptions.MouseEnteredAndExited], owner: self, userInfo: nil))
         super.mouseDown(theEvent)
+    }
+    func addTrackingArea() {
+        self.addTrackingArea(NSTrackingArea.init(rect: self.bounds, options:[NSTrackingAreaOptions.ActiveAlways,NSTrackingAreaOptions.MouseEnteredAndExited], owner: self, userInfo: nil))
     }
 }

@@ -123,14 +123,6 @@
                 <outlet property="MiniPlayerCoverPanel" destination="oOj-xi-VpX" id="i2Q-UQ-Ejw"/>
             </connections>
         </customObject>
-        <customObject id="Vyk-Ws-TpC" customClass="TestClass" customModule="Automated_DJ" customModuleProvider="target">
-            <connections>
-                <outlet property="AutomatorControllerObject" destination="kVP-21-RSl" id="SWI-RJ-NKc"/>
-                <outlet property="MiniPlayerCoverObject" destination="Dsi-bf-cg4" id="pgv-HZ-1A7"/>
-                <outlet property="PreferencesObject" destination="yDZ-1S-ELR" id="sWO-3R-EiG"/>
-                <outlet property="testPanel" destination="oOj-xi-VpX" id="ecR-P2-evB"/>
-            </connections>
-        </customObject>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
                 <menuItem title="Automated DJ" id="1Xt-HY-uBw">
@@ -1097,9 +1089,6 @@
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <connections>
-                            <action selector="isAutomatorButton:" target="vLi-vE-d4F" id="qgB-UM-ZHD"/>
-                        </connections>
                     </button>
                     <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="3eh-Pi-NSU">
                         <rect key="frame" x="12" y="90" width="343" height="5"/>
@@ -1883,41 +1872,8 @@ Gw
             </view>
             <point key="canvasLocation" x="563" y="-7.5"/>
         </window>
-        <window title="TestWindow" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="wbH-mT-fdl" customClass="NSPanel">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="139" y="85" width="276" height="138"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
-            <view key="contentView" id="s6e-5R-Pnm">
-                <rect key="frame" x="0.0" y="0.0" width="276" height="138"/>
-                <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V8r-OZ-ac0">
-                        <rect key="frame" x="100" y="52" width="77" height="32"/>
-                        <buttonCell key="cell" type="push" title="TEST!" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="vWZ-fb-W9g">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="test:" target="Vyk-Ws-TpC" id="tPF-RX-jc8"/>
-                        </connections>
-                    </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6ZJ-ir-hOi">
-                        <rect key="frame" x="100" y="19" width="78" height="32"/>
-                        <buttonCell key="cell" type="push" title="Test2!" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oaf-cz-ErL">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="test2:" target="Vyk-Ws-TpC" id="2S0-eI-0Jf"/>
-                        </connections>
-                    </button>
-                </subviews>
-            </view>
-            <point key="canvasLocation" x="589" y="-301"/>
-        </window>
-        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="oOj-xi-VpX" customClass="NSPanel">
-            <windowStyleMask key="styleMask" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="oOj-xi-VpX" customClass="MiniPlayerCoverWindow" customModule="Automated_DJ" customModuleProvider="target">
+            <windowStyleMask key="styleMask" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="139" y="85" width="200" height="44"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
