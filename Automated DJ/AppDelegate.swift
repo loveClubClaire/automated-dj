@@ -156,6 +156,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     func activateMiniPlayerCover(){
+        myApplication.activateIgnoringOtherApps(true)
         MiniPlayerCoverObject.spawnMiniPlayerCover()
         (MiniPlayerCoverObject.MiniPlayerCoverPanel.contentView as! MiniPlayerCoverView).addTrackingArea()
         statusItem.menu?.itemAtIndex(5)?.title = "Deactivate MiniPlayer Cover"
@@ -175,6 +176,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             statusItem.menu?.itemAtIndex(6)?.title = "Show MiniPlayer Cover"
         }
         else{
+            myApplication.activateIgnoringOtherApps(true)
             MiniPlayerCoverObject.showMiniPlayerCover()
             statusItem.menu?.itemAtIndex(6)?.title = "Hide MiniPlayer Cover"
         }

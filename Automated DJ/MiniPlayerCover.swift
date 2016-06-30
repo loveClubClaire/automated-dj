@@ -14,6 +14,7 @@ class MiniPlayerCover: NSObject {
     
     
     func spawnMiniPlayerCover(){
+        MiniPlayerCoverPanel.center()
         self.showMiniPlayerCover()
     }
     //Make the MiniPlayer cover invisible but still active

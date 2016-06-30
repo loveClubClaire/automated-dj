@@ -23,15 +23,6 @@ class MiniPlayerCoverView: NSView {
         appDelegate.MiniPlayerCoverObject.hideButton()
         super.mouseExited(theEvent)
     }
-    override func mouseMoved(theEvent: NSEvent) {
-        Swift.print("Object has moved")
-        super.mouseMoved(theEvent)
-    }
-    override func mouseDown(theEvent: NSEvent) {
-        Swift.print("Object has pressed")
-        //self.addTrackingArea(NSTrackingArea.init(rect: self.bounds, options:[NSTrackingAreaOptions.ActiveAlways,NSTrackingAreaOptions.MouseEnteredAndExited], owner: self, userInfo: nil))
-        super.mouseDown(theEvent)
-    }
     func addTrackingArea() {
         self.addTrackingArea(NSTrackingArea.init(rect: self.bounds, options:[NSTrackingAreaOptions.ActiveAlways,NSTrackingAreaOptions.MouseEnteredAndExited], owner: self, userInfo: nil))
     }

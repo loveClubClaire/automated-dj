@@ -227,9 +227,9 @@
 			isa = PBXGroup;
 			children = (
 				C0DF87461D235A6B00B275B5 /* MiniPlayerCover.swift */,
+				C04616CC1CE436A7004E1B38 /* MasterSchedule.swift */,
 				C0C43BEA1CEE734F00665376 /* Preferences.swift */,
 				C0DCCA4B1CEC14C60068533F /* GlobalAnnouncements.swift */,
-				C04616CC1CE436A7004E1B38 /* MasterSchedule.swift */,
 				C04616D01CE436B9004E1B38 /* ShowWindow.swift */,
 				C04616D41CE436D7004E1B38 /* AutomatorWindow.swift */,
 				C09D9F601CEA7B6D009458FC /* RuleScrollView.swift */,
