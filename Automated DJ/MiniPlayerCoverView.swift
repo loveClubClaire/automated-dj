@@ -10,15 +10,12 @@ import Foundation
 import Cocoa
 
 class MiniPlayerCoverView: NSView {
-    
     override func mouseEntered(theEvent: NSEvent) {
-        Swift.print("Object has entered")
         let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.MiniPlayerCoverObject.showButton()
         super.mouseEntered(theEvent)
     }
     override func mouseExited(theEvent: NSEvent) {
-        Swift.print("Obejct has left")
         let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.MiniPlayerCoverObject.hideButton()
         super.mouseExited(theEvent)

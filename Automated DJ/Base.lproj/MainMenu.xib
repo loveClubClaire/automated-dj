@@ -1884,9 +1884,9 @@ Gw
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VUg-az-Zvi">
-                        <rect key="frame" x="61" y="0.0" width="78" height="44"/>
-                        <buttonCell key="cell" type="bevel" bezelStyle="rounded" alignment="center" enabled="NO" state="on" transparent="YES" inset="2" id="Bd4-Bh-Gwl">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <rect key="frame" x="61" y="-25" width="0.0" height="21"/>
+                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" alternateImage="NSApplicationIcon" state="on" inset="2" id="Bd4-Bh-Gwl">
+                            <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
@@ -1901,6 +1901,7 @@ Gw
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSAdvanced" width="32" height="32"/>
+        <image name="NSApplicationIcon" width="128" height="128"/>
         <image name="NSPreferencesGeneral" width="32" height="32"/>
     </resources>
 </document>

@@ -61,7 +61,20 @@ class MiniPlayerCover: NSObject {
     
     func showButton(){
         if isHidden() == true {
-            MiniPlayerButton.image = NSImage.init(named:"On Air.png")
+            if ApplescriptBridge().isiTunesPlaying() == true {
+                let centerX = (MiniPlayerCoverPanel.frame.width / 2) - (28 / 2)
+                let centerY = (MiniPlayerCoverPanel.frame.height / 2) - (32 / 2)
+                MiniPlayerButton.frame = NSRect.init(x: centerX, y: centerY, width: 28, height: 32)
+                MiniPlayerButton.image = NSImage.init(named:"PauseMain.png")
+                MiniPlayerButton.alternateImage = NSImage.init(named: "PauseAlternate.pmg")
+            }
+            else{
+                let centerX = (MiniPlayerCoverPanel.frame.width / 2) - (36 / 2)
+                let centerY = (MiniPlayerCoverPanel.frame.height / 2) - (36 / 2)
+                MiniPlayerButton.frame = NSRect.init(x: centerX, y: centerY, width: 36, height: 36)
+                MiniPlayerButton.image = NSImage.init(named:"PlayMain.png")
+                MiniPlayerButton.alternateImage = NSImage.init(named: "PlayAlternate.pmg")
+            }
             MiniPlayerCoverPanel.opaque = true
             MiniPlayerCoverPanel.backgroundColor = NSColor.whiteColor()
         }
@@ -69,6 +82,7 @@ class MiniPlayerCover: NSObject {
     
     func hideButton(){
         if isHidden() == true {
+            MiniPlayerButton.frame = NSRect.init(x: 0, y: 0, width: 0, height: 0)
             MiniPlayerButton.image = nil
             MiniPlayerCoverPanel.opaque = false
             MiniPlayerCoverPanel.backgroundColor = NSColor.clearColor()
@@ -77,6 +91,13 @@ class MiniPlayerCover: NSObject {
     
     @IBAction func buttonPressed(sender: AnyObject) {
         print("Button Pressed")
+        if ApplescriptBridge().isiTunesPlaying() == true {
+            //Clear all upcoming songs from iTunes
+        }
+        else{
+            //Immediatily start playing a track from tier 1 and then start generating a playlist using the default automator
+        }
+        
     }
     func isHidden() -> Bool {
         if MiniPlayerCoverPanel.styleMask == 14 {

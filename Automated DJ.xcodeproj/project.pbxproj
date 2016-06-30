@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		C00162ED1CEE332A009EE840 /* GlobalAnnouncementsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00162EC1CEE332A009EE840 /* GlobalAnnouncementsWindow.swift */; };
+		C02D87B41D2508A500ED9B67 /* PauseMain.png in Resources */ = {isa = PBXBuildFile; fileRef = C02D87B01D2508A500ED9B67 /* PauseMain.png */; };
+		C02D87B51D2508A500ED9B67 /* PlayMain.png in Resources */ = {isa = PBXBuildFile; fileRef = C02D87B11D2508A500ED9B67 /* PlayMain.png */; };
+		C02D87B61D2508A500ED9B67 /* PlayAlternate.png in Resources */ = {isa = PBXBuildFile; fileRef = C02D87B21D2508A500ED9B67 /* PlayAlternate.png */; };
+		C02D87B71D2508A500ED9B67 /* PauseAlternate.png in Resources */ = {isa = PBXBuildFile; fileRef = C02D87B31D2508A500ED9B67 /* PauseAlternate.png */; };
 		C037F5951D24E51E000A91DB /* MiniPlayerCoverWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C037F5941D24E51E000A91DB /* MiniPlayerCoverWindow.swift */; };
 		C04616A41CE43542004E1B38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04616A31CE43542004E1B38 /* AppDelegate.swift */; };
 		C04616A61CE43542004E1B38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C04616A51CE43542004E1B38 /* Assets.xcassets */; };
@@ -64,6 +68,10 @@
 
 /* Begin PBXFileReference section */
 		C00162EC1CEE332A009EE840 /* GlobalAnnouncementsWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalAnnouncementsWindow.swift; sourceTree = "<group>"; };
+		C02D87B01D2508A500ED9B67 /* PauseMain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PauseMain.png; sourceTree = "<group>"; };
+		C02D87B11D2508A500ED9B67 /* PlayMain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayMain.png; sourceTree = "<group>"; };
+		C02D87B21D2508A500ED9B67 /* PlayAlternate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayAlternate.png; sourceTree = "<group>"; };
+		C02D87B31D2508A500ED9B67 /* PauseAlternate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PauseAlternate.png; sourceTree = "<group>"; };
 		C037F5941D24E51E000A91DB /* MiniPlayerCoverWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniPlayerCoverWindow.swift; sourceTree = "<group>"; };
 		C04616A01CE43542004E1B38 /* Automated DJ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Automated DJ.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C04616A31CE43542004E1B38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +144,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C02D87AF1D25087200ED9B67 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				C02D87B11D2508A500ED9B67 /* PlayMain.png */,
+				C02D87B21D2508A500ED9B67 /* PlayAlternate.png */,
+				C02D87B01D2508A500ED9B67 /* PauseMain.png */,
+				C02D87B31D2508A500ED9B67 /* PauseAlternate.png */,
+				C08C157F1CEEF39100EF8BCF /* On Air.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		C04616971CE43542004E1B38 = {
 			isa = PBXGroup;
 			children = (
@@ -160,7 +180,7 @@
 		C04616A21CE43542004E1B38 /* Automated DJ */ = {
 			isa = PBXGroup;
 			children = (
-				C08C157F1CEEF39100EF8BCF /* On Air.png */,
+				C02D87AF1D25087200ED9B67 /* Images */,
 				C04616A31CE43542004E1B38 /* AppDelegate.swift */,
 				C09D9F5A1CE95954009458FC /* ErrorChecker.swift */,
 				C0F6D2A31CF1EE76001E0E95 /* AdminAccess.swift */,
@@ -365,9 +385,13 @@
 			files = (
 				C04616A61CE43542004E1B38 /* Assets.xcassets in Resources */,
 				C08C15801CEEF39100EF8BCF /* On Air.png in Resources */,
+				C02D87B61D2508A500ED9B67 /* PlayAlternate.png in Resources */,
+				C02D87B71D2508A500ED9B67 /* PauseAlternate.png in Resources */,
+				C02D87B51D2508A500ED9B67 /* PlayMain.png in Resources */,
 				C04616A91CE43542004E1B38 /* MainMenu.xib in Resources */,
 				C0DF87451D230A8100B275B5 /* AppleScript-ObjC bridge functions 4:11:16.txt in Resources */,
 				C08C15821CF007E900EF8BCF /* Automated DJ.sdef in Resources */,
+				C02D87B41D2508A500ED9B67 /* PauseMain.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
