@@ -25,6 +25,10 @@
     [_myInstance iTunesPause];
 }
 
+- (void) iTunesStop{
+    [_myInstance iTunesStop];
+}
+
 -(NSMutableArray*) getPlaylists{
     NSArray *rawPlaylists = [_myInstance getPlaylists];
     NSMutableArray *Playlists = [[NSMutableArray alloc] init];

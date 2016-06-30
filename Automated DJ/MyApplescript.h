@@ -6,6 +6,8 @@
 
 - (void)        iTunesPause;
 
+- (void)        iTunesStop;
+
 -(NSArray*)     getPlaylists;
 
 -(NSAppleEventDescriptor*) getPlaylist:(NSString*)aPlaylist;

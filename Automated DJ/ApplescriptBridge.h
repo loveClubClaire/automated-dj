@@ -17,6 +17,8 @@
 
 - (void) iTunesPause;
 
+- (void) iTunesStop;
+
 - (NSMutableArray*) getPlaylists;
 
 - ()                getPlaylist:(NSString*)aPlaylist;

@@ -11,6 +11,7 @@ import Foundation
 class MiniPlayerCover: NSObject {
     @IBOutlet weak var MiniPlayerCoverPanel: NSPanel!
     @IBOutlet weak var MiniPlayerButton: NSButton!
+    var wasPressed = false
     
     
     func spawnMiniPlayerCover(){
@@ -62,6 +63,7 @@ class MiniPlayerCover: NSObject {
     func showButton(){
         if isHidden() == true {
             if ApplescriptBridge().isiTunesPlaying() == true {
+                //Center the button
                 let centerX = (MiniPlayerCoverPanel.frame.width / 2) - (28 / 2)
                 let centerY = (MiniPlayerCoverPanel.frame.height / 2) - (32 / 2)
                 MiniPlayerButton.frame = NSRect.init(x: centerX, y: centerY, width: 28, height: 32)
@@ -69,6 +71,7 @@ class MiniPlayerCover: NSObject {
                 MiniPlayerButton.alternateImage = NSImage.init(named: "PauseAlternate.pmg")
             }
             else{
+                //Center the button
                 let centerX = (MiniPlayerCoverPanel.frame.width / 2) - (36 / 2)
                 let centerY = (MiniPlayerCoverPanel.frame.height / 2) - (36 / 2)
                 MiniPlayerButton.frame = NSRect.init(x: centerX, y: centerY, width: 36, height: 36)
@@ -90,12 +93,25 @@ class MiniPlayerCover: NSObject {
     }
     
     @IBAction func buttonPressed(sender: AnyObject) {
-        print("Button Pressed")
-        if ApplescriptBridge().isiTunesPlaying() == true {
-            //Clear all upcoming songs from iTunes
-        }
-        else{
-            //Immediatily start playing a track from tier 1 and then start generating a playlist using the default automator
+        //Was pressed prevents the button from having any effect after it has been pressed but before the effects have taken affect. So if a user hits stop, the application waits for the song to finish, but the user can not flood the system with more stop requests.
+        if wasPressed == false {
+            let applescriptBridge = ApplescriptBridge()
+            if ApplescriptBridge().isiTunesPlaying() == true {
+                //**Clear all upcoming songs from iTunes**
+                //I wish. Apperently you can't do that with applescript. (At least not directly, and I refuse to and any 'tell system events to press a button' bullshit because that is SO breakable its not even funny. 
+                //What actually occures is that the stop command is issued once the track has completed. 
+                wasPressed = true
+                let rawDelayTime = applescriptBridge.timeLeftInCurrentSong()
+                let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64( (rawDelayTime - 0.5) * Double(NSEC_PER_SEC)))
+                dispatch_after(delayTime, dispatch_get_main_queue()) {
+                    applescriptBridge.iTunesStop()
+                    self.wasPressed = false
+                }
+            }
+            else{
+                //Immediatily start playing a track from tier 1 and then start generating a playlist using the default automator
+                //Change button icon to stop
+            }
         }
         
     }

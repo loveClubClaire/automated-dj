@@ -180,7 +180,6 @@
 		C04616A21CE43542004E1B38 /* Automated DJ */ = {
 			isa = PBXGroup;
 			children = (
-				C02D87AF1D25087200ED9B67 /* Images */,
 				C04616A31CE43542004E1B38 /* AppDelegate.swift */,
 				C09D9F5A1CE95954009458FC /* ErrorChecker.swift */,
 				C0F6D2A31CF1EE76001E0E95 /* AdminAccess.swift */,
@@ -190,6 +189,7 @@
 				C09D9F571CE93D8C009458FC /* Custom UI */,
 				C08C158C1CF01EFB00EF8BCF /* Applescript */,
 				C0F6D2AB1CF4F64E001E0E95 /* Extentions */,
+				C02D87AF1D25087200ED9B67 /* Images */,
 				C04616A51CE43542004E1B38 /* Assets.xcassets */,
 				C04616A71CE43542004E1B38 /* MainMenu.xib */,
 				C04616AA1CE43542004E1B38 /* Info.plist */,
