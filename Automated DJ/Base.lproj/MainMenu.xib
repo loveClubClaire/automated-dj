@@ -119,8 +119,10 @@
         </customObject>
         <customObject id="Dsi-bf-cg4" customClass="MiniPlayerCover" customModule="Automated_DJ" customModuleProvider="target">
             <connections>
+                <outlet property="AutomatorControllerObject" destination="kVP-21-RSl" id="mXL-vY-L1q"/>
                 <outlet property="MiniPlayerButton" destination="VUg-az-Zvi" id="4fq-aQ-QUH"/>
                 <outlet property="MiniPlayerCoverPanel" destination="oOj-xi-VpX" id="i2Q-UQ-Ejw"/>
+                <outlet property="PreferencesObject" destination="yDZ-1S-ELR" id="a25-19-ixs"/>
             </connections>
         </customObject>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">

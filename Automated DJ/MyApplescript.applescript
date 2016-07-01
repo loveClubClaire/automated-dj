@@ -32,6 +32,13 @@ script MyApplescript
         end tell
     end getSongsInPlaylist_
     
+    on getNumberOfSongsInPlaylist_(aPlaylist as string)
+        tell application "iTunes"
+            set my_playlist to get playlist aPlaylist
+            get number of tracks in my_playlist
+        end tell
+    end getNumberOfSongsInPlaylist_
+    
     on getLastSongInPlaylist_(aPlaylist as string)
         tell application "iTunes"
             set trackNumber to count of tracks of playlist aPlaylist
@@ -99,6 +106,12 @@ script MyApplescript
             return player state
         end tell
     end getiTunesPlayerState
+    
+    on playSongFromPlaylist_playlist_(aTrack as number, aPlaylist as string)
+        tell application "iTunes"
+            play track aTrack in playlist aPlaylist
+        end tell
+    end playSongFromPlaylist_playlist_
     
     on addSongToPlaylist_songID_(aPlaylist as string, aSongID as string)
         tell application "iTunes"

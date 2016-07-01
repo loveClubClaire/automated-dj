@@ -14,6 +14,8 @@
 
 -(NSArray*)     getSongsInPlaylist:(NSString*)aPlaylist;
 
+-(NSNumber*)    getNumberOfSongsInPlaylist:(NSString*)aPlaylist;
+
 -(void)         createPlaylistWithName:(NSString*)aName;
 
 -(NSString*)    getCurrentPlaylist;
@@ -33,6 +35,8 @@
 -(NSAppleEventDescriptor*)    getLastSongInPlaylist:(NSString*)aPlaylist;
 
 -(void)         removeLastSongInPlaylist:(NSString*)aPlaylist;
+
+-(void)         playSongFromPlaylist:(NSNumber*)aTrack playlist:(NSString*)aPlaylist;
 
 -(void)         addSongToPlaylist:(NSString*)aPlaylist songID:(NSString*)aSongID;
 

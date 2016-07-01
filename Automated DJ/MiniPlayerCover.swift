@@ -9,6 +9,8 @@
 import Foundation
 
 class MiniPlayerCover: NSObject {
+    @IBOutlet weak var AutomatorControllerObject: AutomatorController!
+    @IBOutlet weak var PreferencesObject: Preferences!
     @IBOutlet weak var MiniPlayerCoverPanel: NSPanel!
     @IBOutlet weak var MiniPlayerButton: NSButton!
     var wasPressed = false
@@ -109,11 +111,40 @@ class MiniPlayerCover: NSObject {
                 }
             }
             else{
-                //Immediatily start playing a track from tier 1 and then start generating a playlist using the default automator
+                //Immediatily start playing a track from tier 1
+                let numOfSongs = applescriptBridge.getNumberOfSongsInPlaylist("Tier 1")
+                let randomNumber = arc4random_uniform(numOfSongs.unsignedIntValue) + 1
+                applescriptBridge.playSongFromPlaylist(NSNumber.init(unsignedInt: randomNumber), playlist: "Tier 1")
+                //Then start generating a playlist using the default automator
+                //Determine the name of our generated playlist. This is done to prevent name overlap. We also delete any automated DJ playlist which is not currently playing so that we do not have duplicates of the same playlist.
+                var generatedPlaylistName = "Automated DJ"
+                //get currently playing playlist
+                let currentPlaylist = applescriptBridge.getCurrentPlaylist()
+                if currentPlaylist != "Automated DJ" && currentPlaylist != "Automated DJ2" {
+                    applescriptBridge.deletePlaylistWithName("Automated DJ")
+                    applescriptBridge.deletePlaylistWithName("Automated DJ2")
+                }
+                else if currentPlaylist == "Automated DJ2" {
+                    applescriptBridge.deletePlaylistWithName("Automated DJ")
+                }
+                else if currentPlaylist == "Automated DJ" {
+                    applescriptBridge.deletePlaylistWithName("Automated DJ2")
+                    generatedPlaylistName = "Automated DJ2"
+                }
+                let rawDelayTime = applescriptBridge.timeLeftInCurrentSong()
+                let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64( (rawDelayTime - 0.5) * Double(NSEC_PER_SEC)))
+                dispatch_after(delayTime, dispatch_get_main_queue()) {
+                    self.AutomatorControllerObject.playGeneratedPlaylist(generatedPlaylistName)
+                }
+                AutomatorControllerObject.generatePlaylist(generatedPlaylistName, anAutomator: PreferencesObject.defaultAutomator)
                 //Change button icon to stop
+                let centerX = (MiniPlayerCoverPanel.frame.width / 2) - (28 / 2)
+                let centerY = (MiniPlayerCoverPanel.frame.height / 2) - (32 / 2)
+                MiniPlayerButton.frame = NSRect.init(x: centerX, y: centerY, width: 28, height: 32)
+                MiniPlayerButton.image = NSImage.init(named:"PauseMain.png")
+                MiniPlayerButton.alternateImage = NSImage.init(named: "PauseAlternate.pmg")
             }
         }
-        
     }
     func isHidden() -> Bool {
         if MiniPlayerCoverPanel.styleMask == 14 {

@@ -61,6 +61,11 @@
     return songs;
 }
 
+-(NSNumber*) getNumberOfSongsInPlaylist:(NSString*)aPlaylist{
+    NSNumber *aNumber = [_myInstance getNumberOfSongsInPlaylist:aPlaylist];
+    return aNumber;
+}
+
 -(Song*) getLastSongInPlaylist:(NSString*)aPlaylist{
     NSAppleEventDescriptor *rawSong = [_myInstance getLastSongInPlaylist:aPlaylist];
     return [[Song alloc] initWithString:rawSong.debugDescription];
@@ -106,6 +111,10 @@
         result = true;
     }
     return result;
+}
+
+- (void) playSongFromPlaylist:(NSNumber*)aTrack playlist:(NSString*)aPlaylist{
+    [_myInstance playSongFromPlaylist:aTrack playlist:aPlaylist];
 }
 
 - (void) addSongsToPlaylist:(NSString*)aPlaylist songs:(NSArray*)songArray{
