@@ -107,7 +107,7 @@ script MyApplescript
         end tell
     end getiTunesPlayerState
     
-    on playSongFromPlaylist_playlist_(aTrack as number, aPlaylist as string)
+    on playSongFromPlaylist_playlist_(aTrack as integer, aPlaylist as string)
         tell application "iTunes"
             play track aTrack in playlist aPlaylist
         end tell

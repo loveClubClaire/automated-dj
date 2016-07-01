@@ -111,6 +111,7 @@ class MiniPlayerCover: NSObject {
                 }
             }
             else{
+                wasPressed = true
                 //Immediatily start playing a track from tier 1
                 let numOfSongs = applescriptBridge.getNumberOfSongsInPlaylist("Tier 1")
                 let randomNumber = arc4random_uniform(numOfSongs.unsignedIntValue) + 1
@@ -135,6 +136,7 @@ class MiniPlayerCover: NSObject {
                 let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64( (rawDelayTime - 0.5) * Double(NSEC_PER_SEC)))
                 dispatch_after(delayTime, dispatch_get_main_queue()) {
                     self.AutomatorControllerObject.playGeneratedPlaylist(generatedPlaylistName)
+                    self.wasPressed = false
                 }
                 AutomatorControllerObject.generatePlaylist(generatedPlaylistName, anAutomator: PreferencesObject.defaultAutomator)
                 //Change button icon to stop
