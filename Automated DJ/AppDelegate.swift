@@ -114,10 +114,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(NSMenuItem(title: "Quit", action: #selector(terminate), keyEquivalent: "q"))
         statusItem.menu = menu
         statusItem.button?.image = NSImage.init(named:"On Air.png")
-        //Activate 
-        //Deactivate 
-        //Show 
-        //Hide
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {

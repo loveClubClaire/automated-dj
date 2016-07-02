@@ -35,7 +35,7 @@ class Preferences: NSObject {
     var tollerence = 0
     var testAutomator = true
     var useLogs = false
-    var originalLogFilepath = ""
+    private var originalLogFilepath = ""
     var logFilepath = ""
     
     //using custom initialize and not init because this is guaranteed to be called after application has finished launching and all of our outlets have sucessfully bound.
