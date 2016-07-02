@@ -76,6 +76,8 @@ class AutomatorController: NSObject {
     func generatePlaylist(playlistName: String, anAutomator: Automator){
         let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
         dispatch_async(dispatch_get_global_queue(priority, 0)) {
+        //Initalize logging variables
+        let startTime = NSDate.init(); var tier1log = 0; var tier2log = 0; var tier3log = 0;
         //NOTE: Automator.totalTime is an hour value! Its a double representing hours. So it needs to be converted to seconds if you want seconds
         let applescriptBridge = ApplescriptBridge()
         let generatedPlaylist: NSMutableArray = NSMutableArray()
@@ -136,12 +138,15 @@ class AutomatorController: NSObject {
                 let randomNumber = arc4random_uniform(100)
                 if randomNumber >= 0 && randomNumber < UInt32(anAutomator.tierOnePrecent) {
                     tieredPlaylist = tier1
+                    tier1log = tier1log + 1
                 }
                 else if randomNumber >= UInt32(anAutomator.tierOnePrecent) && randomNumber < UInt32(anAutomator.tierOnePrecent + anAutomator.tierTwoPrecent){
                     tieredPlaylist = tier2
+                    tier2log = tier2log + 1
                 }
                 else{
                     tieredPlaylist = tier3
+                    tier3log = tier3log + 1
                 }
                 
                 while tieredPlaylist.count > 0 {
@@ -162,6 +167,15 @@ class AutomatorController: NSObject {
         //Once we generated our playlist, create the playlist in iTunes and add all the songs to the iTunes playlist.
         applescriptBridge.createPlaylistWithName(playlistName)
         applescriptBridge.addSongsToPlaylist(playlistName, songs: generatedPlaylist as [AnyObject])
+        //Logging
+        let log = LogGenerator.init()
+        log.writeToLog("Playlist generation time (in seconds): " + String(startTime.timeIntervalSinceNow * -1.0))
+        let allSongs = tier1log + tier2log + tier3log
+        let tier1Precent = (Double(tier1log) / Double(allSongs)) * 100.0
+        let tier2Precent = (Double(tier2log) / Double(allSongs)) * 100.0
+        let tier3Precent = (Double(tier3log) / Double(allSongs)) * 100.0
+            log.writeToLog("Precentages of tiered playlists: Tier 1: " + String(format: "%.3f",tier1Precent) + "% Tier 2: " + String(format: "%.3f",tier2Precent) + "% Tier 3: " + String(format: "%.3f",tier3Precent) + "%")
+        log.writeToLog("Expected playlist length (in hours): " + String(format: "%.3f",Playlist.getNewPlaylistDuration(generatedPlaylist as Array as! [Song]) / 3600.0))
         }
     }
     
@@ -181,6 +195,9 @@ class AutomatorController: NSObject {
         }
         dispatch_after(delayTime, dispatch_get_main_queue()) {
             applescriptBridge.playPlaylist(playlistName)
+            let log = LogGenerator()
+            log.writeToLog("Start time of playlist: " + NSDate.init().description)
+            log.writeToLog("------------------------------------------------")
         }
         //trim excess fat from generated playlist if possible.
         //if the raw delay time is greater than the last song of the playlist, then subtract the length of that song from the raw delay time and remove that song from the playlist. We then check again to see if the newly updated raw delay time is greater than the (new) last song of the playlist. If so, repeat until no longer the case

@@ -10,13 +10,12 @@ import Foundation
 import Cocoa
 
 class LogGenerator: NSObject {
-    @IBOutlet weak var PreferencesObject: Preferences!
-    
     //If user has enabled logging, then write the given string to the log
     func writeToLog(aString: String){
-        if PreferencesObject.useLogs == true {
+        let perferencesObject = (NSApplication.sharedApplication().delegate as! AppDelegate).PreferencesObject
+        if perferencesObject.useLogs == true {
             let logEntry = aString + "\n"
-            let logFile = PreferencesObject.logFilepath + "/log.txt"
+            let logFile = perferencesObject.logFilepath + "/Automated DJ log.txt"
             //If a log file exists, then append the logEntry to the log file. If it does not exist, then create a new log file and add the logEntry to it.
             if NSFileManager.defaultManager().fileExistsAtPath(logFile) == true {
                 let entryAsData = logEntry.dataUsingEncoding(NSUTF8StringEncoding)
