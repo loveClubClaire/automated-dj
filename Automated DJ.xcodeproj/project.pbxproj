@@ -13,7 +13,7 @@
 		C02D87B61D2508A500ED9B67 /* PlayAlternate.png in Resources */ = {isa = PBXBuildFile; fileRef = C02D87B21D2508A500ED9B67 /* PlayAlternate.png */; };
 		C02D87B71D2508A500ED9B67 /* PauseAlternate.png in Resources */ = {isa = PBXBuildFile; fileRef = C02D87B31D2508A500ED9B67 /* PauseAlternate.png */; };
 		C02D87B91D28433200ED9B67 /* LogGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D87B81D28433200ED9B67 /* LogGenerator.swift */; };
-		C037F5951D24E51E000A91DB /* MiniPlayerCoverWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C037F5941D24E51E000A91DB /* MiniPlayerCoverWindow.swift */; };
+		C037F5951D24E51E000A91DB /* MiniPlayerCoverPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C037F5941D24E51E000A91DB /* MiniPlayerCoverPanel.swift */; };
 		C04616A41CE43542004E1B38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04616A31CE43542004E1B38 /* AppDelegate.swift */; };
 		C04616A61CE43542004E1B38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C04616A51CE43542004E1B38 /* Assets.xcassets */; };
 		C04616A91CE43542004E1B38 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C04616A71CE43542004E1B38 /* MainMenu.xib */; };
@@ -74,7 +74,7 @@
 		C02D87B21D2508A500ED9B67 /* PlayAlternate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayAlternate.png; sourceTree = "<group>"; };
 		C02D87B31D2508A500ED9B67 /* PauseAlternate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PauseAlternate.png; sourceTree = "<group>"; };
 		C02D87B81D28433200ED9B67 /* LogGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogGenerator.swift; sourceTree = "<group>"; };
-		C037F5941D24E51E000A91DB /* MiniPlayerCoverWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniPlayerCoverWindow.swift; sourceTree = "<group>"; };
+		C037F5941D24E51E000A91DB /* MiniPlayerCoverPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniPlayerCoverPanel.swift; sourceTree = "<group>"; };
 		C04616A01CE43542004E1B38 /* Automated DJ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Automated DJ.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C04616A31CE43542004E1B38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C04616A51CE43542004E1B38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -237,7 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				C0DF874A1D237F6500B275B5 /* MiniPlayerCoverView.swift */,
-				C037F5941D24E51E000A91DB /* MiniPlayerCoverWindow.swift */,
+				C037F5941D24E51E000A91DB /* MiniPlayerCoverPanel.swift */,
 				C08372A91CE62EAA0046F231 /* MasterScheduleWindow.swift */,
 				C00162EC1CEE332A009EE840 /* GlobalAnnouncementsWindow.swift */,
 				C09D9F511CE7B615009458FC /* CustomDatePicker.swift */,
@@ -447,7 +447,7 @@
 				C09D9F611CEA7B6D009458FC /* RuleScrollView.swift in Sources */,
 				C00162ED1CEE332A009EE840 /* GlobalAnnouncementsWindow.swift in Sources */,
 				C08C158A1CF01ED400EF8BCF /* MyApplescript.applescript in Sources */,
-				C037F5951D24E51E000A91DB /* MiniPlayerCoverWindow.swift in Sources */,
+				C037F5951D24E51E000A91DB /* MiniPlayerCoverPanel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
