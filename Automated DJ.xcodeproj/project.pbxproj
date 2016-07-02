@@ -48,6 +48,7 @@
 		C0F6D2A81CF4E262001E0E95 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F6D2A71CF4E262001E0E95 /* Playlist.swift */; };
 		C0F6D2AA1CF4F637001E0E95 /* String+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F6D2A91CF4F637001E0E95 /* String+Extention.swift */; };
 		C0F6D2AD1CF51AB5001E0E95 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F6D2AC1CF51AB5001E0E95 /* Song.swift */; };
+		C0F99EB31D287B7F00A5F21B /* GeneratePlaylistCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F99EB21D287B7F00A5F21B /* GeneratePlaylistCommand.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +119,7 @@
 		C0F6D2A71CF4E262001E0E95 /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		C0F6D2A91CF4F637001E0E95 /* String+Extention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extention.swift"; sourceTree = "<group>"; };
 		C0F6D2AC1CF51AB5001E0E95 /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		C0F99EB21D287B7F00A5F21B /* GeneratePlaylistCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratePlaylistCommand.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +229,7 @@
 				C08C15881CF01ED400EF8BCF /* ApplescriptBridge.h */,
 				C08C15891CF01ED400EF8BCF /* ApplescriptBridge.m */,
 				C08C15811CF007E900EF8BCF /* Automated DJ.sdef */,
+				C0F99EB21D287B7F00A5F21B /* GeneratePlaylistCommand.swift */,
 				C08C15831CF0082F00EF8BCF /* AutomateShowCommand.swift */,
 				C08C15851CF01ED400EF8BCF /* Automated DJ-Bridging-Header.h */,
 			);
@@ -435,6 +438,7 @@
 				C0F6D2A61CF2B6A7001E0E95 /* AutomatorStatus.swift in Sources */,
 				C0F6D2AD1CF51AB5001E0E95 /* Song.swift in Sources */,
 				C02D87B91D28433200ED9B67 /* LogGenerator.swift in Sources */,
+				C0F99EB31D287B7F00A5F21B /* GeneratePlaylistCommand.swift in Sources */,
 				C09D9F5B1CE95954009458FC /* ErrorChecker.swift in Sources */,
 				C04616CF1CE436AF004E1B38 /* Show.swift in Sources */,
 				C0DCCA4C1CEC14C60068533F /* GlobalAnnouncements.swift in Sources */,

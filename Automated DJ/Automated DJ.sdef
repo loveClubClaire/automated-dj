@@ -9,5 +9,12 @@
 			</parameter>
 			<result type="boolean" description="Returns true if automation was successful."/>
 		</command>
+        <command name="generate playlist" code="AmDjGenP" description="Generate a playlist using the Automated DJ's default automator ">
+            <cocoa class="Automated_DJ.GeneratePlaylistCommand"/>
+            <parameter name="with name" code="PlyN" type="text" description="The name of the generated playlist">
+                <cocoa key="PlaylistName"/>
+            </parameter>
+            <result type="boolean" description="Returns true if generation was successful."/>
+        </command>
 	</suite>
 </dictionary>
