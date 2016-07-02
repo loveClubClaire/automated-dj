@@ -20,6 +20,10 @@ class Preferences: NSObject {
     @IBOutlet weak var tollerenceTextField: NSTextField!
     @IBOutlet weak var testAutomatorButton: NSButton!
     @IBOutlet weak var preferencesToolbar: NSToolbar!
+    @IBOutlet weak var enableLoggingButton: NSButton!
+    @IBOutlet weak var logLocationPopUpButton: NSPopUpButton!
+    @IBOutlet weak var logLocationMenu: NSMenu!
+
 
     var defaultPreferencesView: NSView!
     var advancedPreferencesView: NSView!
@@ -30,6 +34,9 @@ class Preferences: NSObject {
     var globalAnnouncementsDelay = 0
     var tollerence = 0
     var testAutomator = true
+    var useLogs = false
+    var originalLogFilepath = ""
+    var logFilepath = ""
     
     //using custom initialize and not init because this is guaranteed to be called after application has finished launching and all of our outlets have sucessfully bound.
     func initialize(){
@@ -46,18 +53,35 @@ class Preferences: NSObject {
         globalAnnouncementsDelay = anArray[2] as! Int
         tollerence = anArray[3] as! Int
         testAutomator = anArray[4] as! Bool
+        useLogs = anArray[5] as! Bool
+        logFilepath = anArray[6] as! String
+        originalLogFilepath = logFilepath
         //CancelButton is called so that the UI reflects the changes made to the internal values
         cancelButton(self)
     }
     
     func preferencesAsArray() -> [AnyObject] {
-        return [defaultAutomator,isAdmin,globalAnnouncementsDelay,tollerence,testAutomator]
+        return [defaultAutomator,isAdmin,globalAnnouncementsDelay,tollerence,testAutomator,useLogs,logFilepath]
     }
     
     func spawnPreferencesWindow(){
         tempAutomator = defaultAutomator
+        originalLogFilepath = logFilepath
         preferencesWindow.center()
         preferencesWindow.makeKeyAndOrderFront(self)
+    }
+    
+    //Gets a filepath and a menu and sets the first menuItem in the menu to the file given by the filepath and then selects that menuItem
+    func setFolderMenu(aFilepath: String, aMenu: NSMenu){
+        let myWorkspace = NSWorkspace()
+        let fileImage = myWorkspace.iconForFile(aFilepath)
+        var imageSize = NSSize(); imageSize.width = 16; imageSize.height = 16;
+        fileImage.size = imageSize
+        var filepathParts = aFilepath.componentsSeparatedByString("/")
+        let fileName = filepathParts[filepathParts.count - 1]
+        aMenu.itemAtIndex(0)?.image = fileImage
+        aMenu.itemAtIndex(0)?.title = fileName
+        aMenu.performActionForItemAtIndex(0)
     }
     
     @IBAction func customizeDefaultAutomator(sender: AnyObject) {
@@ -82,11 +106,36 @@ class Preferences: NSObject {
         //preferencesWindow.contentView = NSView()
         var tempFrame = preferencesWindow.frame
         tempFrame.origin.y += tempFrame.size.height
-        tempFrame.origin.y -= 226
-        tempFrame.size.height = 226
+        tempFrame.origin.y -= 257
+        tempFrame.size.height = 257
         preferencesWindow.setFrame(tempFrame, display: true, animate: true)
         preferencesWindow.title = "Advanced"
         preferencesWindow.contentView = advancedPreferencesView
+    }
+    
+    @IBAction func enableLoggingButton(sender: AnyObject) {
+        if enableLoggingButton.state == NSOnState {
+            logLocationPopUpButton.enabled = true
+        }
+        else{
+            logLocationPopUpButton.enabled = false
+        }
+    }
+    
+    @IBAction func getLogLocationFolder(sender: AnyObject) {
+        let myPanel = NSOpenPanel()
+        myPanel.allowsMultipleSelection = false
+        myPanel.canChooseDirectories = true
+        myPanel.canChooseFiles = false;
+        //If user confirms then call setFolderMenu to update the menu object and update the filepath by setting the signinFilepath variable
+        if myPanel.runModal() == NSModalResponseOK {
+            setFolderMenu(myPanel.URLs[0].path!, aMenu: logLocationMenu)
+            logFilepath = myPanel.URLs[0].path!
+        }
+            //If the user cancels then make the menu have the current directory selected, not the change filepath option selected. Its a UI thing.
+        else{
+            logLocationMenu.performActionForItemAtIndex(0)
+        }
     }
     
     @IBAction func okButton(sender: AnyObject) {
@@ -96,6 +145,8 @@ class Preferences: NSObject {
         else{testAutomator = false}
         globalAnnouncementsDelay = globalAnnouncementsDelayTextField.integerValue
         tollerence = tollerenceTextField.integerValue
+        if enableLoggingButton.state == NSOnState {useLogs = true}
+        else{useLogs = false}
         
         let prefArray = preferencesAsArray()
         NSKeyedArchiver.archiveRootObject(prefArray, toFile: AppDelegateObject.storedPreferencesFilepath)
@@ -112,6 +163,11 @@ class Preferences: NSObject {
         else{testAutomatorButton.state = NSOffState}
         globalAnnouncementsDelayTextField.integerValue = globalAnnouncementsDelay
         tollerenceTextField.integerValue = tollerence
+        if useLogs == true {enableLoggingButton.state = NSOnState}
+        else{enableLoggingButton.state = NSOffState}
+        enableLoggingButton(self)
+        logFilepath = originalLogFilepath
+        setFolderMenu(logFilepath, aMenu: logLocationMenu)
         
         preferencesWindow.orderOut(self)
         preferencesToolbar.selectedItemIdentifier = "general"

@@ -97,8 +97,11 @@
                 <outlet property="AppDelegateObject" destination="Voe-Tx-rLC" id="0hh-16-x29"/>
                 <outlet property="AutomatorWindowObject" destination="7bL-4F-b7G" id="eeT-PH-Tc0"/>
                 <outlet property="advancedPreferencesWindow" destination="JH5-kU-f0Y" id="5Om-Dt-I8I"/>
+                <outlet property="enableLoggingButton" destination="2N5-VA-YI2" id="roa-zC-IW8"/>
                 <outlet property="globalAnnouncementsDelayTextField" destination="eGZ-qR-8Cn" id="0H1-xK-oty"/>
                 <outlet property="isAdminButton" destination="qs7-SA-SaH" id="Cqx-50-8Uw"/>
+                <outlet property="logLocationMenu" destination="EAh-hK-JGy" id="ZoA-2l-eWB"/>
+                <outlet property="logLocationPopUpButton" destination="vWF-v7-Acu" id="Ndc-sY-pfK"/>
                 <outlet property="preferencesToolbar" destination="2Vg-xe-VpN" id="Ob4-wu-9nB"/>
                 <outlet property="preferencesWindow" destination="Oqq-od-7Zb" id="75F-nv-hML"/>
                 <outlet property="testAutomatorButton" destination="2N5-VA-YI2" id="vFW-9K-nAO"/>
@@ -1792,23 +1795,26 @@ Gw
         <window title="Advanced Preferences Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="JH5-kU-f0Y">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="534" y="560" width="350" height="151"/>
+            <rect key="contentRect" x="534" y="560" width="350" height="182"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
-            <value key="minSize" type="size" width="350" height="151"/>
-            <value key="maxSize" type="size" width="350" height="151"/>
+            <value key="minSize" type="size" width="350" height="182"/>
+            <value key="maxSize" type="size" width="350" height="182"/>
             <view key="contentView" id="Nmm-ad-Bl4">
-                <rect key="frame" x="0.0" y="0.0" width="350" height="151"/>
+                <rect key="frame" x="0.0" y="0.0" width="350" height="182"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2N5-VA-YI2">
-                        <rect key="frame" x="18" y="68" width="221" height="18"/>
-                        <buttonCell key="cell" type="check" title="Test Automator Before Creation" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="8G7-h7-pyq">
+                        <rect key="frame" x="18" y="146" width="112" height="18"/>
+                        <buttonCell key="cell" type="check" title="Enable logging" bezelStyle="regularSquare" imagePosition="left" inset="2" id="8G7-h7-pyq">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="enableLoggingButton:" target="yDZ-1S-ELR" id="UgZ-8E-NnM"/>
+                        </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G86-aS-SDg">
-                        <rect key="frame" x="18" y="114" width="73" height="17"/>
+                        <rect key="frame" x="30" y="73" width="73" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Tollerence:" id="Q0c-Q9-MYM">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -1816,7 +1822,7 @@ Gw
                         </textFieldCell>
                     </textField>
                     <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Sav-4G-qfN">
-                        <rect key="frame" x="12" y="90" width="326" height="5"/>
+                        <rect key="frame" x="12" y="101" width="326" height="5"/>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <font key="titleFont" metaFont="system"/>
@@ -1854,7 +1860,7 @@ Gw
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jIH-Pl-yxN">
-                        <rect key="frame" x="97" y="111" width="50" height="22"/>
+                        <rect key="frame" x="110" y="70" width="50" height="22"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="hyQ-C7-pBR">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" id="3Z3-gT-a0F"/>
                             <font key="font" metaFont="system"/>
@@ -1863,16 +1869,45 @@ Gw
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8cj-Gc-ZkA">
-                        <rect key="frame" x="153" y="114" width="60" height="17"/>
+                        <rect key="frame" x="166" y="73" width="60" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="seconds" id="Ytg-GY-dJO">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8oh-VB-GVa">
+                        <rect key="frame" x="18" y="116" width="86" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Log location: " id="6zR-gt-DHE">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vWF-v7-Acu">
+                        <rect key="frame" x="108" y="109" width="225" height="26"/>
+                        <popUpButtonCell key="cell" type="push" title="Other..." bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" enabled="NO" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="tB9-EG-34f" id="cNg-lj-hih">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="menu"/>
+                            <menu key="menu" id="EAh-hK-JGy">
+                                <items>
+                                    <menuItem title="Item 1" id="SUE-dr-Kxq">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                    </menuItem>
+                                    <menuItem isSeparatorItem="YES" id="Ulq-X5-rkJ"/>
+                                    <menuItem title="Other..." id="tB9-EG-34f">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="getLogLocationFolder:" target="yDZ-1S-ELR" id="hQO-oj-MWT"/>
+                                        </connections>
+                                    </menuItem>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                    </popUpButton>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="563" y="-7.5"/>
+            <point key="canvasLocation" x="563" y="8"/>
         </window>
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="oOj-xi-VpX" customClass="MiniPlayerCoverWindow" customModule="Automated_DJ" customModuleProvider="target">
             <windowStyleMask key="styleMask" utility="YES"/>

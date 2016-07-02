@@ -90,7 +90,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             PreferencesObject.setValuesWith(preferences as! [AnyObject])
         }
         else{
-            PreferencesObject.setValuesWith([Automator.init(aTotalTime: 2.0, aTierOnePrecent: 15, aTierTwoPrecent: 25, aTierThreePrecent: 60),false,240,240,true])
+            //Get the filepath to he desktop so the default log filepath can be set to the desktop
+            let fileManager = NSFileManager()
+            let desktopFilepathURL = try? fileManager.URLForDirectory(NSSearchPathDirectory.DesktopDirectory, inDomain: NSSearchPathDomainMask.UserDomainMask, appropriateForURL: nil, create:false)
+            PreferencesObject.setValuesWith([Automator.init(aTotalTime: 2.0, aTierOnePrecent: 15, aTierTwoPrecent: 25, aTierThreePrecent: 60),false,240,240,true,false,(desktopFilepathURL?.path)!])
         }
         //Inatalize the timer
         AutomatorControllerObject.spawnMasterTimer()
