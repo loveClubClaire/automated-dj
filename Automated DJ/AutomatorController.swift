@@ -74,6 +74,8 @@ class AutomatorController: NSObject {
     }
     
     func generatePlaylist(playlistName: String, anAutomator: Automator){
+        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+        dispatch_async(dispatch_get_global_queue(priority, 0)) {
         //NOTE: Automator.totalTime is an hour value! Its a double representing hours. So it needs to be converted to seconds if you want seconds
         let applescriptBridge = ApplescriptBridge()
         let generatedPlaylist: NSMutableArray = NSMutableArray()
@@ -93,7 +95,7 @@ class AutomatorController: NSObject {
             generatedPlaylist.addObjectsFromArray(applescriptBridge.getSongsInPlaylist(anAutomator.seedPlayist) as [AnyObject])
             //Remove excess if seed playlist is longer than playlist length
             //While actual time is greater than expected time + tolerance
-            while Playlist.getNewPlaylistDuration(generatedPlaylist as Array as! [Song]) > ((anAutomator.totalTime * 3600) + Double(PreferencesObject.tollerence)) {
+            while Playlist.getNewPlaylistDuration(generatedPlaylist as Array as! [Song]) > ((anAutomator.totalTime * 3600) + Double(self.PreferencesObject.tollerence)) {
                 generatedPlaylist.removeLastObject()
             }
         }
@@ -121,7 +123,7 @@ class AutomatorController: NSObject {
                     }
                 }
                 //Because we just blindly add bumpers into the generatedPlaylist, this prevents that process from placing us over the expected time (which is the total time + the tollerence)
-                while Playlist.getNewPlaylistDuration(generatedPlaylist as Array as! [Song]) > ((anAutomator.totalTime * 3600) + Double(PreferencesObject.tollerence)) {
+                while Playlist.getNewPlaylistDuration(generatedPlaylist as Array as! [Song]) > ((anAutomator.totalTime * 3600) + Double(self.PreferencesObject.tollerence)) {
                     generatedPlaylist.removeLastObject()
                 }
                 bumperBlockCount = 0
@@ -145,7 +147,7 @@ class AutomatorController: NSObject {
                 while tieredPlaylist.count > 0 {
                     let songPosition = Int(arc4random_uniform(UInt32(tieredPlaylist.count)))
                     let randomSong = tieredPlaylist.objectAtIndex(songPosition) as! Song; tieredPlaylist.removeObjectAtIndex(songPosition)
-                    if (Playlist.getNewPlaylistDuration(generatedPlaylist as Array as! [Song]) + randomSong.duration) < ((anAutomator.totalTime * 3600) + Double(PreferencesObject.tollerence)) {
+                    if (Playlist.getNewPlaylistDuration(generatedPlaylist as Array as! [Song]) + randomSong.duration) < ((anAutomator.totalTime * 3600) + Double(self.PreferencesObject.tollerence)) {
                             generatedPlaylist.addObject(randomSong)
                             songBlockCount = songBlockCount + 1
                             break;
@@ -160,6 +162,7 @@ class AutomatorController: NSObject {
         //Once we generated our playlist, create the playlist in iTunes and add all the songs to the iTunes playlist.
         applescriptBridge.createPlaylistWithName(playlistName)
         applescriptBridge.addSongsToPlaylist(playlistName, songs: generatedPlaylist as [AnyObject])
+        }
     }
     
     func playGeneratedPlaylist(playlistName: String){

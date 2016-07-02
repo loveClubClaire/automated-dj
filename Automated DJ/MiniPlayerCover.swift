@@ -104,7 +104,7 @@ class MiniPlayerCover: NSObject {
                 //What actually occures is that the stop command is issued once the track has completed. 
                 wasPressed = true
                 let rawDelayTime = applescriptBridge.timeLeftInCurrentSong()
-                let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64( (rawDelayTime - 0.5) * Double(NSEC_PER_SEC)))
+                let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64( (rawDelayTime - 1.0) * Double(NSEC_PER_SEC)))
                 dispatch_after(delayTime, dispatch_get_main_queue()) {
                     applescriptBridge.iTunesStop()
                     self.wasPressed = false
@@ -133,7 +133,7 @@ class MiniPlayerCover: NSObject {
                     generatedPlaylistName = "Automated DJ2"
                 }
                 let rawDelayTime = applescriptBridge.timeLeftInCurrentSong()
-                let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64( (rawDelayTime - 0.5) * Double(NSEC_PER_SEC)))
+                let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64( (rawDelayTime - 1.0) * Double(NSEC_PER_SEC)))
                 dispatch_after(delayTime, dispatch_get_main_queue()) {
                     self.AutomatorControllerObject.playGeneratedPlaylist(generatedPlaylistName)
                     self.wasPressed = false

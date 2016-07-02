@@ -14,7 +14,6 @@
 
 @class Playlist;
 
-
 -(id)init{
     Class myClass = NSClassFromString(@"MyApplescript");
     _myInstance = [[myClass alloc] init];
@@ -25,7 +24,7 @@
     [_myInstance iTunesPause];
 }
 
-- (void) iTunesStop{
+-(void) iTunesStop{
     [_myInstance iTunesStop];
 }
 
@@ -43,7 +42,7 @@
 
 }
 
-- (Playlist*) getPlaylist:(NSString*)aPlaylist{
+-(Playlist*) getPlaylist:(NSString*)aPlaylist{
     NSAppleEventDescriptor *rawPlaylist = [_myInstance getPlaylist:aPlaylist];
     return [[Playlist alloc] initWithString:rawPlaylist.debugDescription];
 }
@@ -87,24 +86,24 @@
     return [_myInstance getCurrentPlaylist];
 }
 
-- (void) disableShuffle{
+-(void) disableShuffle{
     [_myInstance disableShuffle];
 }
 
-- (void) disableRepeat{
+-(void) disableRepeat{
     [_myInstance disableRepeat];
 }
 
-- (double) timeLeftInCurrentSong{
+-(double) timeLeftInCurrentSong{
     return [_myInstance timeLeftInCurrentSong].doubleValue;
 }
 
-- (void) playPlaylist:(NSString*)aPlaylist{
+-(void) playPlaylist:(NSString*)aPlaylist{
     //When a playlist does not exist, this function does nothing rather then throw an error. (Part of the reason for this is that the applescript error which would be thrown isn't intutive)
     [_myInstance playPlaylist:aPlaylist];
 }
 
-- (BOOL) isiTunesPlaying{
+-(BOOL) isiTunesPlaying{
     BOOL result = false;
     NSString* state = [_myInstance getiTunesPlayerState].stringValue;
     if ([state isEqualToString:@"kPSP"]) {
@@ -113,11 +112,11 @@
     return result;
 }
 
-- (void) playSongFromPlaylist:(NSNumber*)aTrack playlist:(NSString*)aPlaylist{
+-(void) playSongFromPlaylist:(NSNumber*)aTrack playlist:(NSString*)aPlaylist{
     [_myInstance playSongFromPlaylist:aTrack playlist:aPlaylist];
 }
 
-- (void) addSongsToPlaylist:(NSString*)aPlaylist songs:(NSArray*)songArray{
+-(void) addSongsToPlaylist:(NSString*)aPlaylist songs:(NSArray*)songArray{
     for (int i = 0; i < songArray.count; i++) {
         [_myInstance addSongToPlaylist:aPlaylist songID:((Song*)[songArray objectAtIndex:i]).persistentID];
     }
