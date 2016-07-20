@@ -16,5 +16,12 @@
             </parameter>
             <result type="boolean" description="Returns true if generation was successful."/>
         </command>
+        <command name="change tolerance" code="AmDjCngT" description="Change the number of seconds in a playlists tolerance">
+            <cocoa class="Automated_DJ.ChangePlaylistTolerance"/>
+            <parameter name="to" code="TolR" type="number" description="The number of seconds the tolerance will be changed to">
+                <cocoa key="Tolerance"/>
+            </parameter>
+            <result type="boolean" description="Returns true if tolerance change was successful."/>
+        </command>
 	</suite>
 </dictionary>

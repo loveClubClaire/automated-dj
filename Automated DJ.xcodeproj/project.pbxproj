@@ -24,6 +24,7 @@
 		C04616D11CE436B9004E1B38 /* ShowWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04616D01CE436B9004E1B38 /* ShowWindow.swift */; };
 		C04616D31CE436CD004E1B38 /* Automator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04616D21CE436CD004E1B38 /* Automator.swift */; };
 		C04616D51CE436D7004E1B38 /* AutomatorWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04616D41CE436D7004E1B38 /* AutomatorWindow.swift */; };
+		C04C1C101D40180100F93EEC /* ChangePlaylistTolerance.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04C1C0F1D40180100F93EEC /* ChangePlaylistTolerance.swift */; };
 		C05CA75B1CF77395009FE793 /* NSWindow+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05CA75A1CF77395009FE793 /* NSWindow+Extention.swift */; };
 		C08372AA1CE62EAA0046F231 /* MasterScheduleWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08372A91CE62EAA0046F231 /* MasterScheduleWindow.swift */; };
 		C08B7F2E1D04E220008BF183 /* AutomatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08B7F2D1D04E220008BF183 /* AutomatorController.swift */; };
@@ -92,6 +93,7 @@
 		C04616D01CE436B9004E1B38 /* ShowWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowWindow.swift; sourceTree = "<group>"; };
 		C04616D21CE436CD004E1B38 /* Automator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Automator.swift; sourceTree = "<group>"; };
 		C04616D41CE436D7004E1B38 /* AutomatorWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomatorWindow.swift; sourceTree = "<group>"; };
+		C04C1C0F1D40180100F93EEC /* ChangePlaylistTolerance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePlaylistTolerance.swift; sourceTree = "<group>"; };
 		C05CA75A1CF77395009FE793 /* NSWindow+Extention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSWindow+Extention.swift"; sourceTree = "<group>"; };
 		C08372A91CE62EAA0046F231 /* MasterScheduleWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterScheduleWindow.swift; sourceTree = "<group>"; };
 		C08B7F2D1D04E220008BF183 /* AutomatorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomatorController.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				C08C15891CF01ED400EF8BCF /* ApplescriptBridge.m */,
 				C08C15811CF007E900EF8BCF /* Automated DJ.sdef */,
 				C0F99EB21D287B7F00A5F21B /* GeneratePlaylistCommand.swift */,
+				C04C1C0F1D40180100F93EEC /* ChangePlaylistTolerance.swift */,
 				C08C15831CF0082F00EF8BCF /* AutomateShowCommand.swift */,
 				C08C15851CF01ED400EF8BCF /* Automated DJ-Bridging-Header.h */,
 			);
@@ -449,6 +452,7 @@
 				C08372AA1CE62EAA0046F231 /* MasterScheduleWindow.swift in Sources */,
 				C0F6D2A81CF4E262001E0E95 /* Playlist.swift in Sources */,
 				C09D9F611CEA7B6D009458FC /* RuleScrollView.swift in Sources */,
+				C04C1C101D40180100F93EEC /* ChangePlaylistTolerance.swift in Sources */,
 				C00162ED1CEE332A009EE840 /* GlobalAnnouncementsWindow.swift in Sources */,
 				C08C158A1CF01ED400EF8BCF /* MyApplescript.applescript in Sources */,
 				C037F5951D24E51E000A91DB /* MiniPlayerCoverPanel.swift in Sources */,
