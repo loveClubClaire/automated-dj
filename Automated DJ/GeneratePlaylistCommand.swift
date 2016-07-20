@@ -17,6 +17,8 @@ class GeneratePlaylistCommand: NSScriptCommand {
         let automatorController = appDelegate.AutomatorControllerObject
         let defaultAutomator = appDelegate.PreferencesObject.defaultAutomator
         automatorController.generatePlaylist(playlistName, anAutomator: defaultAutomator)
+        let log = LogGenerator()
+        log.writeToLog("------------------------------------------------")
         return result
     }
 }
