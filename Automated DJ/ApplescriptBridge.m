@@ -31,15 +31,12 @@
 -(NSMutableArray*) getPlaylists{
     NSArray *rawPlaylists = [_myInstance getPlaylists];
     NSMutableArray *Playlists = [[NSMutableArray alloc] init];
-    
     for (int i = 0; i < [rawPlaylists count]; i++) {
         NSAppleEventDescriptor *aPlaylist = [rawPlaylists objectAtIndex:i];
         Playlist *tempPlaylist = [[Playlist alloc] initWithString:aPlaylist.debugDescription];
         [Playlists addObject:tempPlaylist];
     }
-    
     return Playlists;
-
 }
 
 -(Playlist*) getPlaylist:(NSString*)aPlaylist{
@@ -49,14 +46,12 @@
 
 -(NSMutableArray*) getSongsInPlaylist:(NSString*)aPlaylist{
     NSArray *rawSongs = [_myInstance getSongsInPlaylist:aPlaylist];
+
     NSMutableArray *songs = [[NSMutableArray alloc]init];
-    
     for (int i = 0; i < [rawSongs count]; i++) {
         NSAppleEventDescriptor *aSong = [rawSongs objectAtIndex:i];
-        Song *tempSong = [[Song alloc] initWithString:aSong.debugDescription];
-        [songs addObject:tempSong];
+        [songs addObject:[[Song alloc] initWithString:aSong.debugDescription]];
     }
-    
     return songs;
 }
 

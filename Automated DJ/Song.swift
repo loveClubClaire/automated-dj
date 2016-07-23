@@ -92,104 +92,81 @@ import Cocoa
                     infoParts.append(infoParts.popLast()! + ":" + temp!)
                 }
             }
-            
-            if infoParts[0].containsString("ID") {
+
+            switch infoParts[0] {
+            case let x where x.containsString("ID"):
                 ID = Int(infoParts[1])!
-            }
-            else if infoParts[0].containsString("pidx") {
+            case let x where x.containsString("pidx"):
                 index = Int(infoParts[1])!
-            }
-            else if infoParts[0].containsString("pnam") {
+            case let x where x.containsString("pnam"):
                 var temp = infoParts[1].componentsSeparatedByString("\"")
                 temp.removeLast()
                 name = temp.last!
-            }
-            else if infoParts[0].containsString("pPIS") {
+            case let x where x.containsString("pPIS"):
                 var temp = infoParts[1].componentsSeparatedByString("\"")
                 temp.removeLast()
                 persistentID = temp.last!
-            }
-            else if infoParts[0].containsString("pDID") {
+            case let x where x.containsString("pDID"):
                 databaseID = Int(infoParts[1])!
-            }
-            else if infoParts[0].containsString("pTim") {
+            case let x where x.containsString("pTim"):
                 var temp = info.componentsSeparatedByString("\"")
                 temp.removeLast()
                 time = temp.last!
-            }
-            else if infoParts[0].containsString("pDur") {
+            case let x where x.containsString("pDur"):
                 duration = Double(infoParts[1])!
-            }
-            else if infoParts[0].containsString("pArt") {
+            case let x where x.containsString("pArt"):
                 var temp = info.componentsSeparatedByString("\"")
                 temp.removeLast()
                 artist = temp.last!
-            }
-            else if infoParts[0].containsString("pAlA") {
+            case let x where x.containsString("pAlA"):
                 var temp = info.componentsSeparatedByString("\"")
                 temp.removeLast()
                 albumArtist = temp.last!
-            }
-            else if infoParts[0].containsString("pCmp") {
+            case let x where x.containsString("pCmp"):
                 var temp = info.componentsSeparatedByString("\"")
                 temp.removeLast()
                 composer = temp.last!
-            }
-            else if infoParts[0].containsString("pAlb") {
+            case let x where x.containsString("pAlb"):
                 var temp = info.componentsSeparatedByString("\"")
                 temp.removeLast()
                 album = temp.last!
-            }
-            else if infoParts[0].containsString("pGen") {
+            case let x where x.containsString("pGen"):
                 var temp = info.componentsSeparatedByString("\"")
                 temp.removeLast()
                 genre = temp.last!
-            }
-            else if infoParts[0].containsString("pBRt") {
+            case let x where x.containsString("pBRt"):
                 bitRate = Int(infoParts[1])!
-            }
-            else if infoParts[0].containsString("pSRT") {
+            case let x where x.containsString("pSRT"):
                 sampleRate = Int(infoParts[1])!
-            }
-            else if infoParts[0].containsString("pTrC") {
+            case let x where x.containsString("pTrC"):
                 trackCount = Int(infoParts[1])!
-            }
-            else if infoParts[0].containsString("pTrN") {
+            case let x where x.containsString("pTrN"):
                 trackNumber = Int(infoParts[1])!
-            }
-            else if infoParts[0].containsString("pDsC") {
+            case let x where x.containsString("pDsC"):
                 discCount = Int(infoParts[1])!
-            }
-            else if infoParts[0].containsString("pDsN") {
+            case let x where x.containsString("pDsN"):
                 discNumber = Int(infoParts[1])!
-            }
-            else if infoParts[0].containsString("pSiz") {
+            case let x where x.containsString("pSiz"):
                 let formatter = NSNumberFormatter()
                 formatter.numberStyle = NSNumberFormatterStyle.ScientificStyle
                 size = (formatter.numberFromString(infoParts[1])?.integerValue)!
-            }
-            else if infoParts[0].containsString("pAdj") {
+            case let x where x.containsString("pAdj"):
                 volumeAdjustment = Int(infoParts[1])!
-            }
-            else if infoParts[0].containsString("pYr") {
+            case let x where x.containsString("pYr"):
                 year = Int(infoParts[1])!
-            }
-            else if infoParts[0].containsString("pCmt") {
+            case let x where x.containsString("pCmt"):
                 var temp = info.componentsSeparatedByString("\"")
                 temp.removeLast()
                 comment = temp.last!
-            }
-            else if infoParts[0].containsString("pEQp") {
+            case let x where x.containsString("pEQp"):
                 var temp = info.componentsSeparatedByString("\"")
                 temp.removeLast()
                 eq = temp.last!
-            }
-            else if infoParts[0].containsString("pKnd") {
+            case let x where x.containsString("pKnd"):
                 var temp = info.componentsSeparatedByString("\"")
                 temp.removeLast()
                 kind = temp.last!
-            }
-            else if infoParts[0].containsString("pMdk") {
+            case let x where x.containsString("pMdk"):
                 //No this is not complete. I just dont need anything other than music tracks
                 if infoParts[1].containsString("kMdS") {
                     mediaKind = "music"
@@ -197,89 +174,71 @@ import Cocoa
                 else {
                     mediaKind = "none"
                 }
-            }
-            else if infoParts[0].containsString("enbl") {
+            case let x where x.containsString("enbl"):
                 var temp = infoParts[1].componentsSeparatedByString("\"")
                 temp.removeLast()
                 enabled = temp.last!.toBool()
-            }
-            else if infoParts[0].containsString("pStr") {
+            case let x where x.containsString("pStr"):
                 start = Double(infoParts[1])!
-            }
-            else if infoParts[0].containsString("pStp") {
+            case let x where x.containsString("pStp"):
                 end = Double(infoParts[1])!
-            }
-            else if infoParts[0].containsString("pPLC") {
+            case let x where x.containsString("pPLC"):
                 playCount = Int(infoParts[1])!
-            }
-            else if infoParts[0].containsString("pAnt") {
+            case let x where x.containsString("pAnt"):
                 var temp = infoParts[1].componentsSeparatedByString("\"")
                 temp.removeLast()
                 compilation = temp.last!.toBool()
-            }
-            else if infoParts[0].containsString("pRte") {
+            case let x where x.containsString("pRte"):
                 rating = Int(infoParts[1])!
-            }
-            else if infoParts[0].containsString("pBPM") {
+            case let x where x.containsString("pBPM"):
                 bpm = Int(infoParts[1])!
-            }
-            else if infoParts[0].containsString("pGrp") {
+            case let x where x.containsString("pGrp"):
                 var temp = info.componentsSeparatedByString("\"")
                 temp.removeLast()
                 grouping = temp.last!
-            }
-            else if infoParts[0].containsString("pLyr") {
+            case let x where x.containsString("pLyr"):
                 var temp = info.componentsSeparatedByString("\"")
                 temp.removeLast()
                 lyrics = temp.last!
-            }
-            else if infoParts[0].containsString("pCat") {
+            case let x where x.containsString("pCat"):
                 var temp = info.componentsSeparatedByString("\"")
                 temp.removeLast()
                 category = temp.last!
-            }
-            else if infoParts[0].containsString("pDes") {
+            case let x where x.containsString("pDes"):
                 var temp = info.componentsSeparatedByString("\"")
                 temp.removeLast()
                 songDescription = temp.last!
-            }
-            else if infoParts[0].containsString("pSNm") {
+            case let x where x.containsString("pSNm"):
                 var temp = info.componentsSeparatedByString("\"")
                 temp.removeLast()
                 sortName = temp.last!
-            }
-            else if infoParts[0].containsString("pSAl") {
+            case let x where x.containsString("pSAl"):
                 var temp = info.componentsSeparatedByString("\"")
                 temp.removeLast()
                 sortAlbum = temp.last!
-            }
-            else if infoParts[0].containsString("pSAr") {
+            case let x where x.containsString("pSAr"):
                 var temp = info.componentsSeparatedByString("\"")
                 temp.removeLast()
                 sortArtist = temp.last!
-            }
-            else if infoParts[0].containsString("pSCm") {
+            case let x where x.containsString("pSCm"):
                 var temp = info.componentsSeparatedByString("\"")
                 temp.removeLast()
                 sortComposer = temp.last!
-            }
-            else if infoParts[0].containsString("pSAA") {
+            case let x where x.containsString("pSAA"):
                 var temp = info.componentsSeparatedByString("\"")
                 temp.removeLast()
                 sortAlbumArtist = temp.last!
-            }
-            else if infoParts[0].containsString("pLov") {
+            case let x where x.containsString("pLov"):
                 var temp = infoParts[1].componentsSeparatedByString("\"")
                 temp.removeLast()
                 loved = temp.last!.toBool()
-            }
-            else if infoParts[0].containsString("pALv") {
+            case let x where x.containsString("pALv"):
                 var temp = infoParts[1].componentsSeparatedByString("\"")
                 temp.removeLast()
                 albumLoved = temp.last!.toBool()
+            default: break
             }
         }
-        
         return self
     }
     
@@ -338,8 +297,11 @@ import Cocoa
         do {
             let regex = try NSRegularExpression(pattern: regex, options: [])
             let nsString = text as NSString
-            let results = regex.matchesInString(text, options: [], range: NSMakeRange(0, nsString.length))
-            let resultsArray = results.map { nsString.substringWithRange($0.range)}
+            var resultsArray = [String]()
+            autoreleasepool {
+                let results = regex.matchesInString(text, options: [], range: NSMakeRange(0, nsString.length))
+                resultsArray = results.map { nsString.substringWithRange($0.range)}
+            }
             if resultsArray.count > 0 {return true}
             else{return false}
         } catch let error as NSError {

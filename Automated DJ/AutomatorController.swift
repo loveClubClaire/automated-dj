@@ -161,6 +161,8 @@ class AutomatorController: NSObject {
             }
             //If we have exhuasted all tracks from all tiered playlists, then nothing more can be added to the playlist, regardless of if it long enough. Break so we dont infinatly loop.
             if tier1.count == 0 && tier2.count == 0 && tier3.count == 0 {
+                let log = LogGenerator.init()
+                log.writeToLog("Tiered Playlists Exhausted")
                 break;
             }
         }
