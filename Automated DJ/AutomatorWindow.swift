@@ -38,8 +38,8 @@ class AutomatorWindow: NSObject {
     func spawnNewAutomatorWindow(length: Double, aShow: Show){
         automatorWindow.title = "New Automator"
         timeTextField.doubleValue = length
-        seedPlaylistButton.addItemsWithTitles(Playlist.getPlaylistNames(false,aPlaylistArray: ApplescriptBridge().getPlaylists() as NSArray as! [Playlist]))
-        bumpersPlaylistButton.addItemsWithTitles(Playlist.getPlaylistNames(false,aPlaylistArray: ApplescriptBridge().getPlaylists() as NSArray as! [Playlist]))
+        seedPlaylistButton.addItemsWithTitles(Playlist.getPlaylistNames(false,aPlaylistArray: ApplescriptBridge().getPlaylists()))
+        bumpersPlaylistButton.addItemsWithTitles(Playlist.getPlaylistNames(false,aPlaylistArray: ApplescriptBridge().getPlaylists()))
         seedPlaylistButton.selectItemAtIndex(-1)
         bumpersPlaylistButton.selectItemAtIndex(-1)
         show = aShow
@@ -52,8 +52,8 @@ class AutomatorWindow: NSObject {
         if automatorWindow.title != "Edit Default Automator" {
             automatorWindow.title = "Edit Automators"
         }
-        seedPlaylistButton.addItemsWithTitles(Playlist.getPlaylistNames(false,aPlaylistArray: ApplescriptBridge().getPlaylists() as NSArray as! [Playlist]))
-        bumpersPlaylistButton.addItemsWithTitles(Playlist.getPlaylistNames(false,aPlaylistArray: ApplescriptBridge().getPlaylists() as NSArray as! [Playlist]))
+        seedPlaylistButton.addItemsWithTitles(Playlist.getPlaylistNames(false,aPlaylistArray: ApplescriptBridge().getPlaylists()))
+        bumpersPlaylistButton.addItemsWithTitles(Playlist.getPlaylistNames(false,aPlaylistArray: ApplescriptBridge().getPlaylists()))
         show = aShow
         if status.totalTime == true {timeTextField.doubleValue = (aShow.automator?.totalTime)!}
         else{timeTextField.placeholderString = "Mixed"}

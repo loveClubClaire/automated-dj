@@ -82,9 +82,19 @@ class AutomatorController: NSObject {
         let applescriptBridge = ApplescriptBridge()
         let generatedPlaylist: NSMutableArray = NSMutableArray()
         //Get tiered playlists
-        let tier1 = applescriptBridge.getSongsInPlaylist("Tier 1")
-        let tier2 = applescriptBridge.getSongsInPlaylist("Tier 2")
-        let tier3 = applescriptBridge.getSongsInPlaylist("Tier 3")
+        var tier1 = NSMutableArray()
+        var tier2 = NSMutableArray()
+        var tier3 = NSMutableArray()
+        autoreleasepool{
+            tier1 = applescriptBridge.getSongsInPlaylist("Tier 1")
+            tier2 = applescriptBridge.getSongsInPlaylist("Tier 2")
+            tier3 = applescriptBridge.getSongsInPlaylist("Tier 3")
+        }
+            
+        //let dictionaryGroups = dispatch_group_create()
+        //dispatch_group_enter(dictionaryGroups)
+        //dispatch_group_wait(dictionaryGroups,DISPATCH_TIME_FOREVER)
+            
         //Apply rules to tiered playlists if rules exist
         if anAutomator.rules != nil {
             tier1.filterUsingPredicate(anAutomator.rules!)
@@ -94,7 +104,7 @@ class AutomatorController: NSObject {
         //get seed playlist if it exists and add seed playlist to generated playlist
         //TODO test if this handles a non existant but non null playlist
         if anAutomator.seedPlayist != nil{
-            generatedPlaylist.addObjectsFromArray(applescriptBridge.getSongsInPlaylist(anAutomator.seedPlayist) as [AnyObject])
+            generatedPlaylist.addObjectsFromArray(applescriptBridge.getSongsInPlaylist(anAutomator.seedPlayist!) as [AnyObject])
             //Remove excess if seed playlist is longer than playlist length
             //While actual time is greater than expected time + tolerance
             while Playlist.getNewPlaylistDuration(generatedPlaylist as Array as! [Song]) > ((anAutomator.totalTime * 3600) + Double(self.PreferencesObject.tollerence)) {
@@ -109,7 +119,7 @@ class AutomatorController: NSObject {
         var songsBetweenBlocks = 0
         var bumpers = NSMutableArray()
         if anAutomator.bumpersPlaylist != nil{
-            bumpers = applescriptBridge.getSongsInPlaylist(anAutomator.bumpersPlaylist)
+            bumpers = applescriptBridge.getSongsInPlaylist(anAutomator.bumpersPlaylist!)
             songsBetweenBlocks = anAutomator.songsBetweenBlocks!
         }
         //while the generated playlist length is less than the total time as required by the automator...
@@ -168,7 +178,7 @@ class AutomatorController: NSObject {
         }
         //Once we generated our playlist, create the playlist in iTunes and add all the songs to the iTunes playlist.
         applescriptBridge.createPlaylistWithName(playlistName)
-        applescriptBridge.addSongsToPlaylist(playlistName, songs: generatedPlaylist as [AnyObject])
+        applescriptBridge.addSongsToPlaylist(playlistName, songArray: generatedPlaylist as [AnyObject])
         //Logging
         let log = LogGenerator.init()
         log.writeToLog("Playlist generation time (in seconds): " + String(startTime.timeIntervalSinceNow * -1.0))

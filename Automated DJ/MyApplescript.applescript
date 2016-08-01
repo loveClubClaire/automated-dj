@@ -21,7 +21,7 @@ script MyApplescript
     
     on getPlaylist_(aPlaylist as string)
         tell application "iTunes"
-            get properties of aPlaylist
+            get properties of playlist aPlaylist
         end tell
     end getPlaylist_
     
@@ -107,16 +107,16 @@ script MyApplescript
         end tell
     end getiTunesPlayerState
     
-    on playSongFromPlaylist_playlist_(aTrack as integer, aPlaylist as string)
+    on playSongFromPlaylist_aPlaylist_(aTrack as integer, aPlaylist as string)
         tell application "iTunes"
             play track aTrack in playlist aPlaylist
         end tell
-    end playSongFromPlaylist_playlist_
+    end playSongFromPlaylist_aPlaylist_
     
-    on addSongToPlaylist_songID_(aPlaylist as string, aSongID as string)
+    on addSongToPlaylist_aSongID_(aPlaylist as string, aSongID as string)
         tell application "iTunes"
                 duplicate (tracks of playlist "Music" whose persistent ID is aSongID) to playlist aPlaylist
         end tell
-    end addSongToPlaylist_songID_
+    end addSongToPlaylist_aSongID_
     
 end script

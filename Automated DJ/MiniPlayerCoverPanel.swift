@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import Cocoa
 
 class MiniPlayerCoverPanel: NSPanel {
     override func orderOut(sender: AnyObject?) {
