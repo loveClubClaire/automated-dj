@@ -29,6 +29,33 @@ class ErrorChecker: NSObject {
         return (tierOneExist,tierTwoExist,tierThreeExist)
     }
     
+    //Only checks if the tiered playlists sum to 100%
+    static func simpleAutomatorValidityCheck(anAutomator: Automator, anAutomatorStatus: AutomatorStatus, selectedShows: [Show], inout isValid: NSMutableDictionary){
+        var is100Precent = true
+        
+        for aSelectedShow in selectedShows {
+        var tier1 = anAutomator.tierOnePrecent
+        var tier2 = anAutomator.tierTwoPrecent
+        var tier3 = anAutomator.tierThreePrecent
+        if anAutomatorStatus.tierOnePrecent == true {tier1 = (aSelectedShow.automator?.tierOnePrecent)!}
+        if anAutomatorStatus.tierTwoPrecent == true {tier2 = (aSelectedShow.automator?.tierTwoPrecent)!}
+        if anAutomatorStatus.tierThreePrecent == true {tier3 = (aSelectedShow.automator?.tierThreePrecent)!}
+            if (tier1 + tier2 + tier3) != 100 {
+                is100Precent = false
+                break
+            }
+        }
+        let myPopup: NSAlert = NSAlert()
+        myPopup.alertStyle = NSAlertStyle.CriticalAlertStyle
+        myPopup.addButtonWithTitle("OK")
+        isValid.setValue(true, forKey: "isValid")
+        if is100Precent == false {
+            isValid.setValue(false, forKey: "isValid")
+            myPopup.messageText = "Tiered precentages must add up to 100!"
+            myPopup.runModal()
+        }
+    }
+    
     static func checkAutomatorValidity(inout isValid: NSMutableDictionary, anAutomator: Automator, anAutomatorStatus: AutomatorStatus, selectedShows: [Show], dispatchGroup: dispatch_group_t) {
         let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
         
