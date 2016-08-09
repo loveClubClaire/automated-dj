@@ -60,8 +60,13 @@ script MyApplescript
     end createPlaylistWithName_
     
     on getCurrentPlaylist()
+        --If iTunes is not currently playing, returns the "Music" playlist (which is just the entire music library) as a default
         tell application "iTunes"
-            get name of current playlist
+           	set currentPlaylist to "Music"
+            try
+                set currentPlaylist to name of current playlist
+            end try
+            return currentPlaylist
         end tell
     end getCurrentPlaylist
     
@@ -87,8 +92,13 @@ script MyApplescript
     
     on timeLeftInCurrentSong()
         tell application "iTunes"
-            set totalTime to duration of current track
-            set currentTime to player position
+            --Try block is needed because will otherwise throw an error if iTunes is stopped
+            set totalTime to 0
+            set currentTime to 0
+            try
+                set totalTime to duration of current track
+                set currentTime to player position
+            end try
             return totalTime - currentTime
         end tell
     end timeLeftInCurrentSong
