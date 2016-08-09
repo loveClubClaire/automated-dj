@@ -51,8 +51,8 @@ class AutomatorController: NSObject {
                 //Get the number of seconds into the hour that the show starts and of the current time. Get the difference of those two numbers and we have the number of seconds until the show begins, which we use as our delay time. If the show starts in the next hour relative to the hour of the current time, then the resulting difference is a negative number. Adding 60 to that negative number gets us the positive number of seconds until the show begins.
                 let showStartTimeSeconds = (Int(minuteFormatter.stringFromDate(aShow.startDate!))! * 60)
                 let currentTimeSeconds = (Int(minuteFormatter.stringFromDate(NSDate.init()))! * 60) + (Int(secondFormatter.stringFromDate(NSDate.init())))!
-                let delay = showStartTimeSeconds - currentTimeSeconds
-                if delay < 0 {delay + 60}
+                var delay = showStartTimeSeconds - currentTimeSeconds
+                if delay < 0 {delay = delay + 3600}
                 //If the show is not automated then only the global announcements window needs to be spawned
                 if aShow.automator == nil {
                     let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(delay + PreferencesObject.globalAnnouncementsDelay) * Double(NSEC_PER_SEC)))
