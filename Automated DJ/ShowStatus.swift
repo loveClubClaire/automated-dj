@@ -53,7 +53,7 @@ class ShowStatus: NSObject {
             //Set the new edited show start date to the result of the components
             editedShow.startDate = calendar?.dateFromComponents(startTimeComponents)
         }
-        if startTime == false && startTime == false {
+        if startTime == false && startDay == false {
             editedShow.startDate = masterShow.startDate
         }
         

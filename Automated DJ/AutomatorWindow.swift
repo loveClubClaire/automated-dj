@@ -231,11 +231,15 @@ class AutomatorWindow: NSObject {
             //return
             let status = self.ShowWindowObject.getWindowStatus()
             status.automatorStatus = self.getWindowStatus()
-            if self.ShowWindowObject.showWindow.title == "New Show" {self.MasterScheduleObject.addShow(self.show)}
-            else if self.automatorWindow.title == "Edit Default Automator"{
+            if self.ShowWindowObject.showWindow.title == "New Show" {
+                self.MasterScheduleObject.addShow(self.show)
+            }
+            else if(self.automatorWindow.title == "Edit Default Automator"){
                 self.PreferencesObject.defaultAutomator = self.show.automator!
             }
-            else{self.MasterScheduleObject.modifyShows(self.show, aStatus: status)}
+            else{
+                self.MasterScheduleObject.modifyShows(self.show, aStatus: status)
+            }
             self.finalSubmit = true
             self.cancelButton(self)
             self.ShowWindowObject.cancelButton(self)

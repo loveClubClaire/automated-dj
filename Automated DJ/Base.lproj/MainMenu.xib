@@ -781,7 +781,7 @@
             <windowCollectionBehavior key="collectionBehavior" moveToActiveSpace="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="413" y="349" width="600" height="350"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1080"/>
             <value key="minSize" type="size" width="600" height="350"/>
             <value key="maxSize" type="size" width="600" height="350"/>
             <view key="contentView" id="UVc-wa-BDJ">
@@ -875,7 +875,7 @@
                                                 </tableCellView>
                                             </prototypeCellViews>
                                         </tableColumn>
-                                        <tableColumn identifier="automated" width="63.5" minWidth="40" maxWidth="1000" id="uY2-DL-30x">
+                                        <tableColumn identifier="automated" width="63" minWidth="40" maxWidth="1000" id="uY2-DL-30x">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Automated">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1010,7 +1010,7 @@
             <windowCollectionBehavior key="collectionBehavior" moveToActiveSpace="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="131" y="158" width="367" height="217"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1080"/>
             <view key="contentView" id="Lev-mG-0o4">
                 <rect key="frame" x="0.0" y="0.0" width="367" height="217"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -1141,7 +1141,7 @@ Gw
             <windowCollectionBehavior key="collectionBehavior" moveToActiveSpace="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="0.0" y="0.0" width="496" height="415"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1080"/>
             <view key="contentView" id="sUT-4g-aY1">
                 <rect key="frame" x="0.0" y="0.0" width="496" height="415"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -1423,7 +1423,7 @@ Gw
             <windowCollectionBehavior key="collectionBehavior" moveToActiveSpace="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="131" y="158" width="600" height="300"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1080"/>
             <value key="minSize" type="size" width="600" height="300"/>
             <value key="maxSize" type="size" width="600" height="300"/>
             <view key="contentView" id="gZq-zt-968">
@@ -1585,7 +1585,7 @@ Gw
             <windowCollectionBehavior key="collectionBehavior" moveToActiveSpace="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="131" y="158" width="400" height="300"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1080"/>
             <view key="contentView" id="arc-Ev-RoM">
                 <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -1669,7 +1669,7 @@ Gw
             <windowCollectionBehavior key="collectionBehavior" moveToActiveSpace="YES"/>
             <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="584" y="560" width="350" height="167"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1080"/>
             <value key="minSize" type="size" width="350" height="167"/>
             <value key="maxSize" type="size" width="350" height="167"/>
             <view key="contentView" id="de8-ox-8Vy">
@@ -1795,7 +1795,7 @@ Gw
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="534" y="560" width="350" height="182"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1080"/>
             <value key="minSize" type="size" width="350" height="182"/>
             <value key="maxSize" type="size" width="350" height="182"/>
             <view key="contentView" id="Nmm-ad-Bl4">
@@ -1912,7 +1912,7 @@ Gw
             <windowStyleMask key="styleMask" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="139" y="85" width="200" height="44"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1080"/>
             <value key="minSize" type="size" width="148" height="44"/>
             <value key="maxSize" type="size" width="400" height="44"/>
             <view key="contentView" id="WEc-yO-mQM" customClass="MiniPlayerCoverView" customModule="Automated_DJ" customModuleProvider="target">
