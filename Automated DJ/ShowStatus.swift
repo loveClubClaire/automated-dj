@@ -90,17 +90,28 @@ class ShowStatus: NSObject {
         }
         //If the automator has been changed, get a new automator object with the approperate values and set it to the editedShow automator
         if automator == false {
+            //Create a shallow copy of the editedShow's automator. This is done because shows can potenically share automator objects. If two shows share an automator object and a shallow copy is not made, when the automator object is modified the modifications effect both shows. Because they share an automator object. Creating a shallow copy which is not an identical object allows us to avoid this issue
+            var editedShowAutomator: Automator?
+            if editedShow.automator == nil {
+                editedShowAutomator = nil
+            }
+            else{
+                editedShowAutomator = Automator.init(aTotalTime: editedShow.automator!.totalTime, aTierOnePrecent: editedShow.automator!.tierOnePrecent, aTierTwoPrecent: editedShow.automator!.tierTwoPrecent, aTierThreePrecent: editedShow.automator!.tierThreePrecent, aSeedPlaylist: editedShow.automator!.seedPlayist, aBumpersPlaylist: editedShow.automator!.bumpersPlaylist, aBumpersPerBlock: editedShow.automator!.bumpersPerBlock, aSongBetweenBlocks: editedShow.automator!.songsBetweenBlocks, aRules: editedShow.automator!.rules)
+            }
+            
             if masterShow.automator != nil {
-                if editedShow.automator == nil {
-                    editedShow.automator = masterShow.automator
+                if editedShowAutomator == nil {
+                    editedShowAutomator = masterShow.automator
                 }
                 else{
-                     editedShow.automator = automatorStatus.modifyAutomator(editedShow.automator!, masterAutomator: masterShow.automator!)
+                     editedShowAutomator = automatorStatus.modifyAutomator(editedShowAutomator!, masterAutomator: masterShow.automator!)
                 }
             }
             else{
-                editedShow.automator = nil
+                editedShowAutomator = nil
             }
+            //Set the automator of the edited show to the, now modified, shallow copy of its automator
+            editedShow.automator = editedShowAutomator
         }
         
         return editedShow
