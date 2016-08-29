@@ -27,8 +27,10 @@ script MyApplescript
     
     on getSongsInPlaylist_(aPlaylist as string)
         tell application "iTunes"
-            set my_playlist to get playlist aPlaylist
-            get properties of tracks of my_playlist
+            with timeout of 2700 seconds
+                set my_playlist to get playlist aPlaylist
+                get properties of tracks of my_playlist
+            end timeout
         end tell
     end getSongsInPlaylist_
     
