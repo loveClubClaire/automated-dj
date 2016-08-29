@@ -28,6 +28,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var storedAnnouncementsFilepath = ""
     var storedPreferencesFilepath = ""
     
+    var cachedFilled = false
+    var cachedTier1Playlist = NSMutableArray()
+    var cachedTier2Playlist = NSMutableArray()
+    var cachedTier3Playlist = NSMutableArray()
+
+    
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         //Required for the scripting bridge to function
         NSBundle.mainBundle().loadAppleScriptObjectiveCScripts()
@@ -114,6 +120,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(NSMenuItem(title: "Quit", action: #selector(terminate), keyEquivalent: "q"))
         statusItem.menu = menu
         statusItem.button?.image = NSImage.init(named:"On Air.png")
+        
+        //Populate the tiered playlists caches. Can take an extended period of time so an async task is spawned
+        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+        dispatch_async(dispatch_get_global_queue(priority, 0)) {
+            let applescriptBridge = ApplescriptBridge()
+            autoreleasepool{
+                self.cachedTier1Playlist = applescriptBridge.getSongsInPlaylist("Tier 1")
+                self.cachedTier2Playlist = applescriptBridge.getSongsInPlaylist("Tier 2")
+                self.cachedTier3Playlist = applescriptBridge.getSongsInPlaylist("Tier 3")
+            }
+            self.cachedFilled = true
+        }
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {

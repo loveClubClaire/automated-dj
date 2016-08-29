@@ -90,11 +90,7 @@ class AutomatorController: NSObject {
             tier2 = applescriptBridge.getSongsInPlaylist("Tier 2")
             tier3 = applescriptBridge.getSongsInPlaylist("Tier 3")
         }
-            
-        //let dictionaryGroups = dispatch_group_create()
-        //dispatch_group_enter(dictionaryGroups)
-        //dispatch_group_wait(dictionaryGroups,DISPATCH_TIME_FOREVER)
-            
+        
         //Apply rules to tiered playlists if rules exist
         if anAutomator.rules != nil {
             tier1.filterUsingPredicate(anAutomator.rules!)
