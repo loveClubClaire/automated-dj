@@ -45,5 +45,7 @@ import Cocoa
     
     func playSongFromPlaylist(aTrack: NSNumber, aPlaylist: NSString)
     
-    func addSongToPlaylist(aPlaylist: NSString, aSongID: NSString) 
+    func addSongToPlaylist(aPlaylist: NSString, aSongID: NSString)
+    
+    func getPersistentIDsOfSongsInPlaylist(aPlaylist: NSString) -> [String]
 }

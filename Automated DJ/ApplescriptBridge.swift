@@ -108,4 +108,9 @@ class ApplescriptBridge: NSObject {
             instance.addSongToPlaylist(aPlaylist, aSongID: (song as! Song).persistentID)
         }
     }
+    
+    func getPersistentIDsOfSongsInPlaylist(aPlaylist: NSString) -> [String]{
+        let rawIDs = instance.getPersistentIDsOfSongsInPlaylist(aPlaylist)
+        return rawIDs
+    }
 }

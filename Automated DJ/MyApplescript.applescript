@@ -132,5 +132,12 @@ script MyApplescript
                 duplicate (tracks of playlist "Music" whose persistent ID is aSongID) to playlist aPlaylist
         end tell
     end addSongToPlaylist_aSongID_
-    
+
+    on getPersistentIDsOfSongsInPlaylist_(aPlaylist as string)
+        tell application "iTunes"
+           get persistent ID of tracks of playlist aPlaylist
+        end tell
+    end getSongsInPlaylist_
+
+
 end script
