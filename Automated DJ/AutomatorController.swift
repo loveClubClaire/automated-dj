@@ -13,6 +13,7 @@ class AutomatorController: NSObject {
     @IBOutlet weak var MasterScheduleObject: MasterSchedule!
     @IBOutlet weak var PreferencesObject: Preferences!
     @IBOutlet weak var GlobalAnnouncementsObject: GloablAnnouncements!
+    @IBOutlet weak var AppDelegateObject: AppDelegate!
 
     func spawnMasterTimer(){
         NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(masterTimerFunction), userInfo: nil, repeats: true)
@@ -82,15 +83,10 @@ class AutomatorController: NSObject {
         let applescriptBridge = ApplescriptBridge()
         let generatedPlaylist: NSMutableArray = NSMutableArray()
         //Get tiered playlists
-        var tier1 = NSMutableArray()
-        var tier2 = NSMutableArray()
-        var tier3 = NSMutableArray()
-        autoreleasepool{
-            tier1 = applescriptBridge.getSongsInPlaylist("Tier 1")
-            tier2 = applescriptBridge.getSongsInPlaylist("Tier 2")
-            tier3 = applescriptBridge.getSongsInPlaylist("Tier 3")
-        }
-        
+        self.AppDelegateObject.updateCachedPlaylists()
+        let tier1 = NSMutableArray(); tier1.addObjectsFromArray(self.AppDelegateObject.cachedTier1Playlist as [AnyObject])
+        let tier2 = NSMutableArray(); tier2.addObjectsFromArray(self.AppDelegateObject.cachedTier2Playlist as [AnyObject])
+        let tier3 = NSMutableArray(); tier3.addObjectsFromArray(self.AppDelegateObject.cachedTier3Playlist as [AnyObject])
         //Apply rules to tiered playlists if rules exist
         if anAutomator.rules != nil {
             tier1.filterUsingPredicate(anAutomator.rules!)

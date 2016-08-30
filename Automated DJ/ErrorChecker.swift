@@ -60,10 +60,11 @@ class ErrorChecker: NSObject {
         let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
         
         dispatch_async(dispatch_get_global_queue(priority, 0)) {
-            let applescriptBridge = ApplescriptBridge()
-            let masterTier1Songs = applescriptBridge.getSongsInPlaylist("Tier 1")
-            let masterTier2Songs = applescriptBridge.getSongsInPlaylist("Tier 2")
-            let masterTier3Songs = applescriptBridge.getSongsInPlaylist("Tier 3")
+            let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+            appDelegate.updateCachedPlaylists()
+            let masterTier1Songs = NSMutableArray(); masterTier1Songs.addObjectsFromArray(appDelegate.cachedTier1Playlist as [AnyObject])
+            let masterTier2Songs = NSMutableArray(); masterTier2Songs.addObjectsFromArray(appDelegate.cachedTier2Playlist as [AnyObject])
+            let masterTier3Songs = NSMutableArray(); masterTier3Songs.addObjectsFromArray(appDelegate.cachedTier3Playlist as [AnyObject])
             
             var is100Precent = true
             var isTier1LongEnough = true
