@@ -122,7 +122,7 @@ class AutomatorController: NSObject {
                 while bumperBlockCount < anAutomator.bumpersPerBlock {
                     generatedPlaylist.addObject(bumpers.objectAtIndex(bumperCounter))
                     bumperBlockCount = bumperBlockCount + 1; bumperCounter = bumperCounter + 1
-                    if bumperCounter > bumpers.count {
+                    if bumperCounter >= bumpers.count {
                         bumperCounter = 0
                     }
                 }
