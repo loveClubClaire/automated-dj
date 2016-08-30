@@ -48,4 +48,6 @@ import Cocoa
     func addSongToPlaylist(aPlaylist: NSString, aSongID: NSString)
     
     func getPersistentIDsOfSongsInPlaylist(aPlaylist: NSString) -> [String]
+    
+    func getSong(anID: NSString) -> NSAppleEventDescriptor
 }

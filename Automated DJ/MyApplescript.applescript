@@ -139,5 +139,11 @@ script MyApplescript
         end tell
     end getSongsInPlaylist_
 
+    on getSong_(anID as string)
+        tell application "iTunes"
+            get properties of tracks of playlist "Music" whose persistent ID is anID
+        end tell
+    end getSong_
+
 
 end script

@@ -113,4 +113,8 @@ class ApplescriptBridge: NSObject {
         let rawIDs = instance.getPersistentIDsOfSongsInPlaylist(aPlaylist)
         return rawIDs
     }
+    
+    func getSong(anID: NSString) -> Song{
+        return Song().initWithString(instance.getSong(anID).debugDescription)
+    }
 }
