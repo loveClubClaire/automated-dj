@@ -41,6 +41,7 @@ class ApplescriptBridge: NSObject {
     }
     
     func getSongsInPlaylist(aPlaylist: String) -> NSMutableArray {
+        //Older versions of iTunes with missing tracks will crash the application without explination. Update iTunes or fix the library
         let rawSongs = instance.getSongsInPlaylist(aPlaylist)
         let songs = NSMutableArray()
         for song in rawSongs {
