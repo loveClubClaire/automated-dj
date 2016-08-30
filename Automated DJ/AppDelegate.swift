@@ -155,6 +155,60 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return result
     }
     
+    func updateCachedPlaylists() -> Bool {
+        //If the cache has not yet been filled, then it can not be updated and this function returns false
+        if cachedFilled == false {
+            return false
+        }
+        else{
+            //Get sets of persistantID's of the three cached tiered playlists and the current tiered playlists in iTunes
+            let applescriptBridge = ApplescriptBridge()
+            let cachedTier1Set = Song.idSetFrom(cachedTier1Playlist as NSArray as! [Song])
+            let cachedTier2Set = Song.idSetFrom(cachedTier2Playlist as NSArray as! [Song])
+            let cachedTier3Set = Song.idSetFrom(cachedTier3Playlist as NSArray as! [Song])
+            let newTier1Set = Set(applescriptBridge.getPersistentIDsOfSongsInPlaylist("Tier 1"))
+            let newTier2Set = Set(applescriptBridge.getPersistentIDsOfSongsInPlaylist("Tier 2"))
+            let newTier3Set = Set(applescriptBridge.getPersistentIDsOfSongsInPlaylist("Tier 3"))
+            //Get all persistant ID's to be added to the tiered playlists
+            let tier1Add = newTier1Set.subtract(cachedTier1Set)
+            let tier2Add = newTier2Set.subtract(cachedTier2Set)
+            let tier3Add = newTier3Set.subtract(cachedTier3Set)
+            //Get all persistant ID's to be removed from the tiered playlists
+            let tier1Remove = cachedTier1Set.subtract(newTier1Set)
+            let tier2Remove = cachedTier2Set.subtract(newTier2Set)
+            let tier3Remove = cachedTier3Set.subtract(newTier3Set)
+            //Remove necessary songs from the cached playlists
+            for song in cachedTier1Playlist{
+                if tier1Remove.contains((song as! Song).persistentID) {
+                    cachedTier1Playlist.removeObject(song)
+                }
+            }
+            
+            for song in cachedTier2Playlist{
+                if tier2Remove.contains((song as! Song).persistentID) {
+                    cachedTier2Playlist.removeObject(song)
+                }
+            }
+            for song in cachedTier3Playlist{
+                if tier3Remove.contains((song as! Song).persistentID) {
+                    cachedTier3Playlist.removeObject(song)
+                }
+            }
+            //Add necessary songs to the cached playlists
+            for songID in tier1Add {
+                cachedTier1Playlist.addObject(applescriptBridge.getSong(songID))
+            }
+            for songID in tier2Add {
+                cachedTier2Playlist.addObject(applescriptBridge.getSong(songID))
+            }
+            for songID in tier3Add {
+                cachedTier3Playlist.addObject(applescriptBridge.getSong(songID))
+            }
+            //return true indicating that refreshing the cache was a sucessful 
+            return true
+        }
+    }
+    
     //Selector functions. The call to myApplication brings the system focus to the application when a window is called from the menu. This needs to be done because clicking on the app in the systemStatusBar doesn't bring focus to the application
     func showSchedule(){
         if AdminAccessObject.isAuthorized() == true {
