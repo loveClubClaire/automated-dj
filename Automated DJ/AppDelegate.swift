@@ -32,7 +32,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var cachedTier1Playlist = NSMutableArray()
     var cachedTier2Playlist = NSMutableArray()
     var cachedTier3Playlist = NSMutableArray()
-
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         //Required for the scripting bridge to function
@@ -178,22 +177,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let tier2Remove = cachedTier2Set.subtract(newTier2Set)
             let tier3Remove = cachedTier3Set.subtract(newTier3Set)
             //Remove necessary songs from the cached playlists
+            var toRemove = [Song]()
             for song in cachedTier1Playlist{
                 if tier1Remove.contains((song as! Song).persistentID) {
-                    cachedTier1Playlist.removeObject(song)
+                    toRemove.append(song as! Song)
                 }
             }
-            
+            cachedTier1Playlist.removeObjectsInArray(toRemove); toRemove = []
             for song in cachedTier2Playlist{
                 if tier2Remove.contains((song as! Song).persistentID) {
-                    cachedTier2Playlist.removeObject(song)
+                    toRemove.append(song as! Song)
                 }
             }
+            cachedTier2Playlist.removeObjectsInArray(toRemove); toRemove = []
             for song in cachedTier3Playlist{
                 if tier3Remove.contains((song as! Song).persistentID) {
-                    cachedTier3Playlist.removeObject(song)
+                    toRemove.append(song as! Song)
                 }
             }
+            cachedTier3Playlist.removeObjectsInArray(toRemove)
             //Add necessary songs to the cached playlists
             for songID in tier1Add {
                 cachedTier1Playlist.addObject(applescriptBridge.getSong(songID))
@@ -204,7 +206,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             for songID in tier3Add {
                 cachedTier3Playlist.addObject(applescriptBridge.getSong(songID))
             }
-            //return true indicating that refreshing the cache was a sucessful 
+            //return true indicating that refreshing the cache was a sucessful
             return true
         }
     }
