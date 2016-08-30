@@ -310,7 +310,16 @@ import Cocoa
         }
     }
     
+    static func idSetFrom(anArray: [Song]) -> Set<String> {
+        var newArray = [String]()
+        for song in anArray {
+            newArray.append(song.persistentID)
+        }
+        return Set(newArray)
+    }
+    
     override var description: String {
         return name + " by " + artist + " on " + album
     }
+    
 }
