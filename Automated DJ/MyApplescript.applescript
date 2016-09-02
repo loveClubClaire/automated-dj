@@ -145,5 +145,4 @@ script MyApplescript
         end tell
     end getSong_
 
-
 end script

@@ -90,13 +90,25 @@ class ShowStatus: NSObject {
         }
         //If the automator has been changed, get a new automator object with the approperate values and set it to the editedShow automator
         if automator == false {
+            //Calculate the length for the edited show and then pass that length to the newly created editedShowAutomator. This allows each automator to have the correct length, regardless of how shows were edited.
+            let calendar = NSCalendar(identifier: NSCalendarIdentifierGregorian)
+            let endTimeComponents = calendar!.components([.Day, .Hour, .Minute], fromDate: editedShow.endDate!)
+            let startTimeComponents = calendar!.components([.Day, .Hour, .Minute], fromDate: editedShow.startDate!)
+
+            var dayDifference = endTimeComponents.day - startTimeComponents.day
+            if startTimeComponents.day == 7 && endTimeComponents.day == 1 {dayDifference = 1}
+            let endTime = ((Double(endTimeComponents.minute)  / 60.0) + Double(endTimeComponents.hour))
+            let startTime = ((Double(startTimeComponents.minute) as Double / 60.0) + Double(startTimeComponents.hour))
+            let showLength = (endTime - startTime) + (Double(dayDifference) * 24.0)
+            
+            
             //Create a shallow copy of the editedShow's automator. This is done because shows can potenically share automator objects. If two shows share an automator object and a shallow copy is not made, when the automator object is modified the modifications effect both shows. Because they share an automator object. Creating a shallow copy which is not an identical object allows us to avoid this issue
             var editedShowAutomator: Automator?
             if editedShow.automator == nil {
                 editedShowAutomator = nil
             }
             else{
-                editedShowAutomator = Automator.init(aTotalTime: editedShow.automator!.totalTime, aTierOnePrecent: editedShow.automator!.tierOnePrecent, aTierTwoPrecent: editedShow.automator!.tierTwoPrecent, aTierThreePrecent: editedShow.automator!.tierThreePrecent, aSeedPlaylist: editedShow.automator!.seedPlayist, aBumpersPlaylist: editedShow.automator!.bumpersPlaylist, aBumpersPerBlock: editedShow.automator!.bumpersPerBlock, aSongBetweenBlocks: editedShow.automator!.songsBetweenBlocks, aRules: editedShow.automator!.rules)
+                editedShowAutomator = Automator.init(aTotalTime: showLength, aTierOnePrecent: editedShow.automator!.tierOnePrecent, aTierTwoPrecent: editedShow.automator!.tierTwoPrecent, aTierThreePrecent: editedShow.automator!.tierThreePrecent, aSeedPlaylist: editedShow.automator!.seedPlayist, aBumpersPlaylist: editedShow.automator!.bumpersPlaylist, aBumpersPerBlock: editedShow.automator!.bumpersPerBlock, aSongBetweenBlocks: editedShow.automator!.songsBetweenBlocks, aRules: editedShow.automator!.rules)
             }
             
             if masterShow.automator != nil {

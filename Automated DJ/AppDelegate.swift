@@ -130,6 +130,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 self.cachedTier3Playlist = applescriptBridge.getSongsInPlaylist("Tier 3")
             }
             self.cachedFilled = true
+            NSLog("Cache filled")
         }
     }
 

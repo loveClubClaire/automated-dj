@@ -34,7 +34,8 @@ class ShowWindow: NSObject {
     func spawnEditShowWindow(aShow: Show, anAutomator: Automator?, status: ShowStatus){
         showWindow.title = "Edit Shows"
         showStatus = status
-        editAutomator = anAutomator
+        //Creates a deep copy of the passed automator object to prevent any unexpected value modification due to shared objects
+        editAutomator = Automator.init(aTotalTime: (anAutomator?.totalTime)!, aTierOnePrecent: (anAutomator?.tierOnePrecent)!, aTierTwoPrecent: (anAutomator?.tierTwoPrecent)!, aTierThreePrecent: (anAutomator?.tierThreePrecent)!, aSeedPlaylist: anAutomator?.seedPlayist, aBumpersPlaylist: anAutomator?.bumpersPlaylist, aBumpersPerBlock: anAutomator?.bumpersPerBlock, aSongBetweenBlocks: anAutomator?.songsBetweenBlocks, aRules: anAutomator?.rules)
         //Set the values passed to their respective objects
         let timeFormatter = NSDateFormatter();timeFormatter.dateFormat = "hh:mm a"
         let dayFormatter = NSDateFormatter();dayFormatter.dateFormat = "EEEE"

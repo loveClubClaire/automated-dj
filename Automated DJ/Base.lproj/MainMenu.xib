@@ -1089,7 +1089,7 @@
                         </popUpButtonCell>
                     </popUpButton>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b5G-2X-m7m">
-                        <rect key="frame" x="18" y="68" width="125" height="18"/>
+                        <rect key="frame" x="18" y="68" width="134" height="18"/>
                         <buttonCell key="cell" type="check" title="Automated Show" bezelStyle="regularSquare" imagePosition="left" inset="2" id="uUa-TP-ips">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
