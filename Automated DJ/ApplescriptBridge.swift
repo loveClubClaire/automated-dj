@@ -35,39 +35,40 @@ class ApplescriptBridge: NSObject {
         return playlists
     }
 
-    func getPlaylist(aPlaylist: String) -> Playlist {
-        let rawPlaylist = instance.getPlaylist(aPlaylist)
+    func getPlaylist(_ aPlaylist: String) -> Playlist {
+        let rawPlaylist = instance.getPlaylist(
+            aPlaylist as NSString)
         return Playlist().initWithString(rawPlaylist.debugDescription)
     }
     
-    func getSongsInPlaylist(aPlaylist: String) -> NSMutableArray {
+    func getSongsInPlaylist(_ aPlaylist: String) -> NSMutableArray {
         //Older versions of iTunes with missing tracks will crash the application without explination. Update iTunes or fix the library
-        let rawSongs = instance.getSongsInPlaylist(aPlaylist)
+        let rawSongs = instance.getSongsInPlaylist(aPlaylist as NSString)
         let songs = NSMutableArray()
         for song in rawSongs {
-            songs.addObject(Song().initWithString((song as! NSAppleEventDescriptor).debugDescription))
+            songs.add(Song().initWithString((song as! NSAppleEventDescriptor).debugDescription))
         }
         return songs
     }
     
-    func getNumberOfSongsInPlaylist(aPlaylist: String) -> NSNumber{
-        return instance.getNumberOfSongsInPlaylist(aPlaylist)
+    func getNumberOfSongsInPlaylist(_ aPlaylist: String) -> NSNumber{
+        return instance.getNumberOfSongsInPlaylist(aPlaylist as NSString)
     }
 
-    func getLastSongInPlaylist(aPlaylist: String) -> Song {
-        return Song().initWithString(instance.getLastSongInPlaylist(aPlaylist).debugDescription)
+    func getLastSongInPlaylist(_ aPlaylist: String) -> Song {
+        return Song().initWithString(instance.getLastSongInPlaylist(aPlaylist as NSString).debugDescription)
     }
     
-    func removeLastSongInPlaylist(aPlaylist: String){
-        instance.removeLastSongInPlaylist(aPlaylist)
+    func removeLastSongInPlaylist(_ aPlaylist: String){
+        instance.removeLastSongInPlaylist(aPlaylist as NSString)
     }
     
-    func createPlaylistWithName(aName: String){
-        instance.createPlaylistWithName(aName)
+    func createPlaylistWithName(_ aName: String){
+        instance.createPlaylistWithName(aName as NSString)
     }
 
-    func deletePlaylistWithName(aName: String){
-        instance.deletePlaylistWithName(aName)
+    func deletePlaylistWithName(_ aName: String){
+        instance.deletePlaylistWithName(aName as NSString)
     }
     
     func getCurrentPlaylist() -> String {
@@ -86,9 +87,9 @@ class ApplescriptBridge: NSObject {
         return instance.timeLeftInCurrentSong().doubleValue
     }
 
-    func playPlaylist(aPlaylist: String){
+    func playPlaylist(_ aPlaylist: String){
         //When a playlist does not exist, this function does nothing rather then throw an error. (Part of the reason for this is that the applescript error which would be thrown isn't intutive)
-        instance.playPlaylist(aPlaylist)
+        instance.playPlaylist(aPlaylist as NSString)
     }
 
     func isiTunesPlaying() -> Bool {
@@ -100,22 +101,22 @@ class ApplescriptBridge: NSObject {
         return result
     }
     
-    func playSongFromPlaylist(aTrack: NSNumber, aPlaylist:String){
-        instance.playSongFromPlaylist(aTrack, aPlaylist: aPlaylist)
+    func playSongFromPlaylist(_ aTrack: NSNumber, aPlaylist:String){
+        instance.playSongFromPlaylist(aTrack, aPlaylist: aPlaylist as NSString)
     }
     
-    func addSongsToPlaylist(aPlaylist: String, songArray: NSArray){
+    func addSongsToPlaylist(_ aPlaylist: String, songArray: NSArray){
         for song in songArray {
-            instance.addSongToPlaylist(aPlaylist, aSongID: (song as! Song).persistentID)
+            instance.addSongToPlaylist(aPlaylist as NSString, aSongID: (song as! Song).persistentID as NSString)
         }
     }
     
-    func getPersistentIDsOfSongsInPlaylist(aPlaylist: NSString) -> [String]{
+    func getPersistentIDsOfSongsInPlaylist(_ aPlaylist: NSString) -> [String]{
         let rawIDs = instance.getPersistentIDsOfSongsInPlaylist(aPlaylist)
         return rawIDs
     }
     
-    func getSong(anID: NSString) -> Song{
+    func getSong(_ anID: NSString) -> Song{
         return Song().initWithString(instance.getSong(anID).debugDescription)
     }
 }
