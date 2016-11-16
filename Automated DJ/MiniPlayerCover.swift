@@ -24,41 +24,41 @@ class MiniPlayerCover: NSObject {
     //Make the MiniPlayer cover invisible but still active
     func hideMiniPlayerCover(){
         //Prevents panel from appering in exposé
-        MiniPlayerCoverPanel.collectionBehavior = NSWindowCollectionBehavior.Stationary
+        MiniPlayerCoverPanel.collectionBehavior = NSWindowCollectionBehavior.stationary
         //Set the panel level so the panel is always above normal windows
-        MiniPlayerCoverPanel.level = Int(CGWindowLevelForKey(CGWindowLevelKey.PopUpMenuWindowLevelKey))
+        MiniPlayerCoverPanel.level = Int(CGWindowLevelForKey(CGWindowLevelKey.popUpMenuWindow))
         //Makes the max and min size of the panel equal to its current size, so the size of the panel can not be modifed when it is hidded
         MiniPlayerCoverPanel.minSize = NSSize.init(width: MiniPlayerCoverPanel.frame.width, height: MiniPlayerCoverPanel.frame.height)
         MiniPlayerCoverPanel.maxSize = NSSize.init(width: MiniPlayerCoverPanel.frame.width, height: MiniPlayerCoverPanel.frame.height)
         //Setting the styleMask to 14 disables the menu bar but allows the panel to still exist (i.e. when clicking, our panel takes the click action, not any object beneith it)
-        MiniPlayerCoverPanel.styleMask = 14
+        MiniPlayerCoverPanel.styleMask = NSWindowStyleMask(rawValue: UInt(14))
         //Make the panel invisible and imovable
-        MiniPlayerCoverPanel.opaque = false
-        MiniPlayerCoverPanel.backgroundColor = NSColor.clearColor()
-        MiniPlayerCoverPanel.movable = false
+        MiniPlayerCoverPanel.isOpaque = false
+        MiniPlayerCoverPanel.backgroundColor = NSColor.clear
+        MiniPlayerCoverPanel.isMovable = false
     }
     //Make the MiniPlayer cover visable and adjustable
     func showMiniPlayerCover(){
         //Allows panel to appear in exposé
-        MiniPlayerCoverPanel.collectionBehavior = NSWindowCollectionBehavior.Managed
+        MiniPlayerCoverPanel.collectionBehavior = NSWindowCollectionBehavior.managed
         //Set the panel level so the panel behaves as expected
-        MiniPlayerCoverPanel.level = Int(CGWindowLevelForKey(CGWindowLevelKey.NormalWindowLevelKey))
+        MiniPlayerCoverPanel.level = Int(CGWindowLevelForKey(CGWindowLevelKey.normalWindow))
         //Makes the max and min size of the panel equal to their defaults, so that the window can be adjusted
         MiniPlayerCoverPanel.minSize = NSSize.init(width: 148, height: 44)
         MiniPlayerCoverPanel.maxSize = NSSize.init(width: 400, height: 44)
         //Adds close, minimise, and resize buttons to the window without adding a menu bar
-        MiniPlayerCoverPanel.titleVisibility = NSWindowTitleVisibility.Hidden;
-        MiniPlayerCoverPanel.styleMask = 15
-        MiniPlayerCoverPanel.styleMask |= NSFullSizeContentViewWindowMask;
-        MiniPlayerCoverPanel.styleMask |= NSClosableWindowMask
-        MiniPlayerCoverPanel.styleMask |= NSMiniaturizableWindowMask
-        MiniPlayerCoverPanel.styleMask |= NSResizableWindowMask
+        MiniPlayerCoverPanel.titleVisibility = NSWindowTitleVisibility.hidden;
+        MiniPlayerCoverPanel.styleMask = NSWindowStyleMask(rawValue: UInt(15))
+        MiniPlayerCoverPanel.styleMask.insert(.fullSizeContentView)
+        MiniPlayerCoverPanel.styleMask.insert(.closable)
+        MiniPlayerCoverPanel.styleMask.insert(.miniaturizable)
+        MiniPlayerCoverPanel.styleMask.insert(.resizable)
         MiniPlayerCoverPanel.titlebarAppearsTransparent = true
         //Makes the panel white, visible, and movable
-        MiniPlayerCoverPanel.backgroundColor = NSColor.whiteColor()
-        MiniPlayerCoverPanel.opaque = true
-        MiniPlayerCoverPanel.movable = true
-        MiniPlayerCoverPanel.movableByWindowBackground = true
+        MiniPlayerCoverPanel.backgroundColor = NSColor.white
+        MiniPlayerCoverPanel.isOpaque = true
+        MiniPlayerCoverPanel.isMovable = true
+        MiniPlayerCoverPanel.isMovableByWindowBackground = true
         
         MiniPlayerCoverPanel.makeKeyAndOrderFront(self)
     }
@@ -81,8 +81,8 @@ class MiniPlayerCover: NSObject {
                 MiniPlayerButton.image = NSImage.init(named:"PlayMain.png")
                 MiniPlayerButton.alternateImage = NSImage.init(named: "PlayAlternate.pmg")
             }
-            MiniPlayerCoverPanel.opaque = true
-            MiniPlayerCoverPanel.backgroundColor = NSColor.whiteColor()
+            MiniPlayerCoverPanel.isOpaque = true
+            MiniPlayerCoverPanel.backgroundColor = NSColor.white
         }
     }
     
@@ -90,12 +90,12 @@ class MiniPlayerCover: NSObject {
         if isHidden() == true {
             MiniPlayerButton.frame = NSRect.init(x: 0, y: 0, width: 0, height: 0)
             MiniPlayerButton.image = nil
-            MiniPlayerCoverPanel.opaque = false
-            MiniPlayerCoverPanel.backgroundColor = NSColor.clearColor()
+            MiniPlayerCoverPanel.isOpaque = false
+            MiniPlayerCoverPanel.backgroundColor = NSColor.clear
         }
     }
     
-    @IBAction func buttonPressed(sender: AnyObject) {
+    @IBAction func buttonPressed(_ sender: AnyObject) {
         //Was pressed prevents the button from having any effect after it has been pressed but before the effects have taken affect. So if a user hits stop, the application waits for the song to finish, but the user can not flood the system with more stop requests.
         if wasPressed == false {
             let applescriptBridge = ApplescriptBridge()
@@ -105,8 +105,8 @@ class MiniPlayerCover: NSObject {
                 //What actually occures is that the stop command is issued once the track has completed. 
                 wasPressed = true
                 let rawDelayTime = applescriptBridge.timeLeftInCurrentSong()
-                let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64( (rawDelayTime - 1.0) * Double(NSEC_PER_SEC)))
-                dispatch_after(delayTime, dispatch_get_main_queue()) {
+                let delayTime = DispatchTime.now() + Double(Int64( (rawDelayTime - 1.0) * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+                DispatchQueue.main.asyncAfter(deadline: delayTime) {
                     applescriptBridge.iTunesStop()
                     self.wasPressed = false
                 }
@@ -115,8 +115,8 @@ class MiniPlayerCover: NSObject {
                 wasPressed = true
                 //Immediatily start playing a track from tier 1
                 let numOfSongs = applescriptBridge.getNumberOfSongsInPlaylist("Tier 1")
-                let randomNumber = arc4random_uniform(numOfSongs.unsignedIntValue) + 1
-                applescriptBridge.playSongFromPlaylist(NSNumber.init(unsignedInt: randomNumber), aPlaylist: "Tier 1")
+                let randomNumber = arc4random_uniform(numOfSongs.uint32Value) + 1
+                applescriptBridge.playSongFromPlaylist(NSNumber.init(value: randomNumber as UInt32), aPlaylist: "Tier 1")
                 //Then start generating a playlist using the default automator
                 //Determine the name of our generated playlist. This is done to prevent name overlap. We also delete any automated DJ playlist which is not currently playing so that we do not have duplicates of the same playlist.
                 var generatedPlaylistName = "Automated DJ"
@@ -134,8 +134,8 @@ class MiniPlayerCover: NSObject {
                     generatedPlaylistName = "Automated DJ2"
                 }
                 let rawDelayTime = applescriptBridge.timeLeftInCurrentSong()
-                let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64( (rawDelayTime - 1.0) * Double(NSEC_PER_SEC)))
-                dispatch_after(delayTime, dispatch_get_main_queue()) {
+                let delayTime = DispatchTime.now() + Double(Int64( (rawDelayTime - 1.0) * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+                DispatchQueue.main.asyncAfter(deadline: delayTime) {
                     self.AutomatorControllerObject.playGeneratedPlaylist(generatedPlaylistName)
                     self.wasPressed = false
                 }
@@ -150,7 +150,7 @@ class MiniPlayerCover: NSObject {
         }
     }
     func isHidden() -> Bool {
-        if MiniPlayerCoverPanel.styleMask == 14 {
+        if MiniPlayerCoverPanel.styleMask.rawValue == 14 {
             return true
         }
         else{
