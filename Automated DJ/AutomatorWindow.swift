@@ -35,25 +35,25 @@ class AutomatorWindow: NSObject {
     var show: Show!
     var finalSubmit = false
     
-    func spawnNewAutomatorWindow(length: Double, aShow: Show){
+    func spawnNewAutomatorWindow(_ length: Double, aShow: Show){
         automatorWindow.title = "New Automator"
         timeTextField.doubleValue = length
-        seedPlaylistButton.addItemsWithTitles(Playlist.getPlaylistNames(false,aPlaylistArray: ApplescriptBridge().getPlaylists()))
-        bumpersPlaylistButton.addItemsWithTitles(Playlist.getPlaylistNames(false,aPlaylistArray: ApplescriptBridge().getPlaylists()))
-        seedPlaylistButton.selectItemAtIndex(-1)
-        bumpersPlaylistButton.selectItemAtIndex(-1)
+        seedPlaylistButton.addItems(withTitles: Playlist.getPlaylistNames(false,aPlaylistArray: ApplescriptBridge().getPlaylists()))
+        bumpersPlaylistButton.addItems(withTitles: Playlist.getPlaylistNames(false,aPlaylistArray: ApplescriptBridge().getPlaylists()))
+        seedPlaylistButton.selectItem(at: -1)
+        bumpersPlaylistButton.selectItem(at: -1)
         show = aShow
         automatorWindow.center()
         automatorWindow.makeKeyAndOrderFront(self)
-        NSApp.runModalForWindow(automatorWindow)
+        NSApp.runModal(for: automatorWindow)
     }
     
-    func spawnEditAutomatorWindow(aShow: Show, status: AutomatorStatus){
+    func spawnEditAutomatorWindow(_ aShow: Show, status: AutomatorStatus){
         if automatorWindow.title != "Edit Default Automator" {
             automatorWindow.title = "Edit Automators"
         }
-        seedPlaylistButton.addItemsWithTitles(Playlist.getPlaylistNames(false,aPlaylistArray: ApplescriptBridge().getPlaylists()))
-        bumpersPlaylistButton.addItemsWithTitles(Playlist.getPlaylistNames(false,aPlaylistArray: ApplescriptBridge().getPlaylists()))
+        seedPlaylistButton.addItems(withTitles: Playlist.getPlaylistNames(false,aPlaylistArray: ApplescriptBridge().getPlaylists()))
+        bumpersPlaylistButton.addItems(withTitles: Playlist.getPlaylistNames(false,aPlaylistArray: ApplescriptBridge().getPlaylists()))
         show = aShow
         if status.totalTime == true {timeTextField.doubleValue = (aShow.automator?.totalTime)!}
         else{timeTextField.placeholderString = "Mixed"}
@@ -68,15 +68,15 @@ class AutomatorWindow: NSObject {
         
         //If seedState == true, it means all automators are either on or off. If the seedPlaylist of the automator we have is nil, we know that ALL of the automators seedPlaylist are nil, and thusly we can set the button to the NSOffState. If its not nil, we know ALL of the automators have a seedPlaylist and we set the button to NSOnState. If all of the automators seedPlaylist's are the same, we set the seedPlaylistButton to that playlist. Otherwise, it will remain unselected. 
         //If seedState == false, we allow the button to have a mixed state and then set the state to mixed.
-        seedPlaylistButton.selectItemAtIndex(-1)
+        seedPlaylistButton.selectItem(at: -1)
         if status.seedState == true {
             if aShow.automator?.seedPlayist == nil {
                 hasSeedPlaylistButton.state = NSOffState
             }
             else{
                 hasSeedPlaylistButton.state = NSOnState
-                seedPlaylistButton.enabled = true
-                if status.seedPlayist == true {seedPlaylistButton.selectItemWithTitle((aShow.automator?.seedPlayist)!)}
+                seedPlaylistButton.isEnabled = true
+                if status.seedPlayist == true {seedPlaylistButton.selectItem(withTitle: (aShow.automator?.seedPlayist)!)}
             }
         }
         else{
@@ -85,17 +85,17 @@ class AutomatorWindow: NSObject {
         }
 
         //See seedState == true comment
-        bumpersPlaylistButton.selectItemAtIndex(-1)
+        bumpersPlaylistButton.selectItem(at: -1)
         if status.bumpersState == true {
             if aShow.automator?.bumpersPlaylist == nil {
                 hasBumpersButton.state = NSOffState
             }
             else{
                 hasBumpersButton.state = NSOnState
-                bumpersPlaylistButton.enabled = true
-                bumpersPerBlockTextField.enabled = true
-                songsBetweenBlocksTextField.enabled = true
-                if status.bumpersPlaylist == true {bumpersPlaylistButton.selectItemWithTitle((aShow.automator?.bumpersPlaylist)!)}
+                bumpersPlaylistButton.isEnabled = true
+                bumpersPerBlockTextField.isEnabled = true
+                songsBetweenBlocksTextField.isEnabled = true
+                if status.bumpersPlaylist == true {bumpersPlaylistButton.selectItem(withTitle: (aShow.automator?.bumpersPlaylist)!)}
             }
         }
         else{
@@ -119,7 +119,7 @@ class AutomatorWindow: NSObject {
                 if status.rules == true {
                     RuleScrollViewObject.predicateEditor.objectValue = aShow.automator?.rules
                     RuleScrollViewObject.predicateEditor.reloadPredicate()
-                    RuleScrollViewObject.predicateEditorView.hidden = false
+                    RuleScrollViewObject.predicateEditorView.isHidden = false
                 }
             }
         }
@@ -131,7 +131,7 @@ class AutomatorWindow: NSObject {
         //end value setting
         automatorWindow.center()
         automatorWindow.makeKeyAndOrderFront(self)
-        NSApp.runModalForWindow(automatorWindow)
+        NSApp.runModal(for: automatorWindow)
 
     }
     
@@ -161,14 +161,14 @@ class AutomatorWindow: NSObject {
             isNotChanged.songsBetweenBlocks = false
         }
         
-        if RuleScrollViewObject.predicateEditorView.hidden != true{
+        if RuleScrollViewObject.predicateEditorView.isHidden != true{
             isNotChanged.rules = false
         }
     
         return isNotChanged
     }
     
-    @IBAction func okButton(sender: AnyObject) {
+    @IBAction func okButton(_ sender: AnyObject) {
         let time = timeTextField.doubleValue
         let tier1 = tierOneTextField.integerValue
         let tier2 = tierTwoTextField.integerValue
@@ -201,8 +201,8 @@ class AutomatorWindow: NSObject {
         var buttonOneDictionary = NSMutableDictionary()
         
         //create a dispatch group which holds a list of items
-        let errorCheckerGroup = dispatch_group_create()
-        dispatch_group_enter(errorCheckerGroup)
+        let errorCheckerGroup = DispatchGroup()
+        errorCheckerGroup.enter()
         //Called here because the result of this function depends on if the prediacte editor is visable or not and makeDisabled messes with the state of the predicate editors visability.
         let aWindowStatus = getWindowStatus()
         automatorWindow.makeDisabled()
@@ -210,9 +210,9 @@ class AutomatorWindow: NSObject {
         let myPopup: NSAlert = NSAlert()
         myPopup.messageText = "Test Automator?"
         myPopup.informativeText = "Determines if expected time of an automator can be met. Can take several minutes to complete"
-        myPopup.alertStyle = NSAlertStyle.WarningAlertStyle
-        myPopup.addButtonWithTitle("OK")
-        myPopup.addButtonWithTitle("Cancel")
+        myPopup.alertStyle = NSAlertStyle.warning
+        myPopup.addButton(withTitle: "OK")
+        myPopup.addButton(withTitle: "Cancel")
         let result = myPopup.runModal()
         if result == NSAlertFirstButtonReturn{
             //Actually test the new automator. Async task. Yay not blocking the main thread.
@@ -221,12 +221,12 @@ class AutomatorWindow: NSObject {
         else{
             //If valility is not being tested call the simple automator test (only checks if tiered playlists sum up to 100%, its important and fast) and empty the dispatch group to allow the function to continue
             ErrorChecker.simpleAutomatorValidityCheck(anAutomator, anAutomatorStatus: aWindowStatus, selectedShows: selectedShows, isValid: &buttonOneDictionary)
-            dispatch_group_leave(errorCheckerGroup)
+            errorCheckerGroup.leave()
         }
         //Wait for the dispatch group is empty, then execute code in the block
-        dispatch_group_notify(errorCheckerGroup, dispatch_get_main_queue()) {
+        errorCheckerGroup.notify(queue: DispatchQueue.main) {
             self.automatorWindow.makeEnabled()
-            let isValidShow = buttonOneDictionary.valueForKey("isValid")
+            let isValidShow = buttonOneDictionary.value(forKey: "isValid")
             if isValidShow as! Bool == true {
             //return
             let status = self.ShowWindowObject.getWindowStatus()
@@ -248,7 +248,7 @@ class AutomatorWindow: NSObject {
         }
     }
     
-    @IBAction func cancelButton(sender: AnyObject) {
+    @IBAction func cancelButton(_ sender: AnyObject) {
         //Make all the text fields empty
         timeTextField.stringValue = ""
         tierOneTextField.stringValue = ""
@@ -268,15 +268,15 @@ class AutomatorWindow: NSObject {
         hasBumpersButton.state = NSOffState
         hasRulesButton.state = NSOffState
         //Unselect the popup buttons
-        seedPlaylistButton.selectItemAtIndex(-1)
-        bumpersPlaylistButton.selectItemAtIndex(-1)
+        seedPlaylistButton.selectItem(at: -1)
+        bumpersPlaylistButton.selectItem(at: -1)
         //Disable all the UI which is disabled when the buttons are all of
-        timeTextField.enabled = false
-        seedPlaylistButton.enabled = false
-        bumpersPlaylistButton.enabled = false
-        bumpersPerBlockTextField.enabled = false
-        songsBetweenBlocksTextField.enabled = false
-        RuleScrollViewObject.predicateEditorView.hidden = true
+        timeTextField.isEnabled = false
+        seedPlaylistButton.isEnabled = false
+        bumpersPlaylistButton.isEnabled = false
+        bumpersPerBlockTextField.isEnabled = false
+        songsBetweenBlocksTextField.isEnabled = false
+        RuleScrollViewObject.predicateEditorView.isHidden = true
         //Replace all rules with the default rule
         let predicate = NSPredicate(format: "Artist = ''")
         RuleScrollViewObject.predicateEditor.objectValue = predicate
@@ -291,7 +291,7 @@ class AutomatorWindow: NSObject {
             if automatorWindow.title == "Edit Automators" {
                 ShowWindowObject.showWindow.center()
                 ShowWindowObject.showWindow.makeKeyAndOrderFront(self)
-                NSApp.runModalForWindow(ShowWindowObject.showWindow)
+                NSApp.runModal(for: ShowWindowObject.showWindow)
             }
             else if automatorWindow.title != "Edit Default Automator"{
                 ShowWindowObject.spawnNewShowWindow()
@@ -302,40 +302,40 @@ class AutomatorWindow: NSObject {
     }
 
     //Funciton is bound to the seedPlaylist button. When changed to an off state, it disables the correcponding seed popupButton. When changed to an on state, it endables it. Whenever the button is pressed, it sets its allowsMixedState value to false. This allows for a button to have an NSMixedState to represent mixed values, but the user can not choose NSMixedState
-    @IBAction func seedPlaylistPressed(sender: AnyObject) {
+    @IBAction func seedPlaylistPressed(_ sender: AnyObject) {
         hasSeedPlaylistButton.allowsMixedState = false
         if hasSeedPlaylistButton.state == NSOnState {
-            seedPlaylistButton.enabled = true
+            seedPlaylistButton.isEnabled = true
         }
         else{
-            seedPlaylistButton.enabled = false
+            seedPlaylistButton.isEnabled = false
         }
     }
-    @IBAction func bumpersPlaylistPressed(sender: AnyObject) {
+    @IBAction func bumpersPlaylistPressed(_ sender: AnyObject) {
         hasBumpersButton.allowsMixedState = false
         if hasBumpersButton.state == NSOnState {
-            bumpersPlaylistButton.enabled = true
-            bumpersPerBlockTextField.enabled = true
-            songsBetweenBlocksTextField.enabled = true
+            bumpersPlaylistButton.isEnabled = true
+            bumpersPerBlockTextField.isEnabled = true
+            songsBetweenBlocksTextField.isEnabled = true
         }
         else{
-            bumpersPlaylistButton.enabled = false
-            bumpersPerBlockTextField.enabled = false
-            songsBetweenBlocksTextField.enabled = false
+            bumpersPlaylistButton.isEnabled = false
+            bumpersPerBlockTextField.isEnabled = false
+            songsBetweenBlocksTextField.isEnabled = false
             bumpersPerBlockTextField.placeholderString = ""
             songsBetweenBlocksTextField.placeholderString = ""
         }
     }
-    @IBAction func rulesPressed(sender: AnyObject) {
+    @IBAction func rulesPressed(_ sender: AnyObject) {
         hasRulesButton.allowsMixedState = false
         if hasRulesButton.state == NSOnState {
-            RuleScrollViewObject.predicateEditorView.hidden = false
+            RuleScrollViewObject.predicateEditorView.isHidden = false
         }
         else{
-            RuleScrollViewObject.predicateEditorView.hidden = true
+            RuleScrollViewObject.predicateEditorView.isHidden = true
         }
     }
-    func changeWindowSizeBy(aHeight: CGFloat){
+    func changeWindowSizeBy(_ aHeight: CGFloat){
         var windowFrame = automatorWindow.frame
         windowFrame.size.height = 415 + aHeight
         //If true, window is shrinking
