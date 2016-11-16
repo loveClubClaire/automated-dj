@@ -12,11 +12,12 @@ import Cocoa
 class MasterScheduleWindow: NSWindow {
     @IBOutlet weak var MasterScheduleObject: MasterSchedule!
     @IBOutlet weak var AppDelegateObject: AppDelegate!
-    override func keyDown(anEvent: NSEvent) {
+    override func keyDown(with anEvent: NSEvent) {
         //get the key modifier flags, and use the bitwise and function to remove the machine specific bits. Leaving you with the unadulatrated modiferFlag
-        let trueRawModiferFlag = anEvent.modifierFlags.rawValue & NSEventModifierFlags.DeviceIndependentModifierFlagsMask.rawValue
+        let trueRawModiferFlag = anEvent.modifierFlags.rawValue & NSEventModifierFlags.deviceIndependentFlagsMask.rawValue
         //If the key ModiferFlag equates to the command key being pressed
-        if (trueRawModiferFlag == NSEventModifierFlags.CommandKeyMask.rawValue) {
+        
+        if (trueRawModiferFlag == NSEventModifierFlags.command.rawValue) {
             //If the E key (which has a keyCode of 14) is pressed along with the command key, call the edit function
             if anEvent.keyCode == 14 {
                 MasterScheduleObject.editShows(self)
@@ -31,10 +32,10 @@ class MasterScheduleWindow: NSWindow {
             }
             //Else just do what would have been expected
             else{
-                super.keyDown(anEvent)
+                super.keyDown(with: anEvent)
             }
         }
-        else if (trueRawModiferFlag == (NSEventModifierFlags.CommandKeyMask.rawValue + NSEventModifierFlags.ShiftKeyMask.rawValue)) {
+        else if (trueRawModiferFlag == (NSEventModifierFlags.command.rawValue + NSEventModifierFlags.shift.rawValue)) {
             //if the a key (key code 0) is pressed aling with the command and shift key, call the showAnnouncements function
             if anEvent.keyCode == 0{
                 AppDelegateObject.showAnnouncements()
@@ -45,7 +46,7 @@ class MasterScheduleWindow: NSWindow {
             }
             //Else just do what would have been expected
             else{
-                super.keyDown(anEvent)
+                super.keyDown(with: anEvent)
             }
         }
         //Else if the delete key (key code 51) is pressed call the delete function
@@ -54,7 +55,7 @@ class MasterScheduleWindow: NSWindow {
         }
         //Else just do what would have been expected
         else{
-            super.keyDown(anEvent)
+            super.keyDown(with: anEvent)
         }
     }
 }
