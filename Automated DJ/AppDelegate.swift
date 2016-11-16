@@ -21,8 +21,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var AutomatorControllerObject: AutomatorController!
     @IBOutlet weak var MiniPlayerCoverObject: MiniPlayerCover!
     
-    let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
-    let myApplication = NSApplication.sharedApplication()
+    let statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
+    let myApplication = NSApplication.shared()
     
     var storedProgramsFilepath = ""
     var storedAnnouncementsFilepath = ""
@@ -33,9 +33,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var cachedTier2Playlist = NSMutableArray()
     var cachedTier3Playlist = NSMutableArray()
     
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
         //Required for the scripting bridge to function
-        NSBundle.mainBundle().loadAppleScriptObjectiveCScripts()
+        Bundle.main.loadAppleScriptObjectiveCScripts()
         
         //Check to see if tiered playlists have been created and if not, create them 
         let areTieredPlaylistsCreated = ErrorChecker.doTieredPlaylistsExist()
@@ -53,52 +53,52 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         PreferencesObject.initialize()
         
         //Hides the gloablAnnouncementsToolbar and places its buttons on the same level as the quit button and title
-        GlobalAnnouncementsObject.globalAnnouncementsWindow.titleVisibility = NSWindowTitleVisibility.Hidden
+        GlobalAnnouncementsObject.globalAnnouncementsWindow.titleVisibility = NSWindowTitleVisibility.hidden
         
         //Populate the Show Window drop down menus with the days of the week
         let daysOfTheWeek = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
-        ShowWindowObject.startDay.addItemsWithTitles(daysOfTheWeek)
-        ShowWindowObject.endDay.addItemsWithTitles(daysOfTheWeek)
+        ShowWindowObject.startDay.addItems(withTitles: daysOfTheWeek)
+        ShowWindowObject.endDay.addItems(withTitles: daysOfTheWeek)
 
         //Configure the number formatter for the automator window so we can have trailing zeros and doubles which are not too large
-        (AutomatorWindowObject.timeTextField.formatter as! NSNumberFormatter).minimumFractionDigits = 2
-        (AutomatorWindowObject.timeTextField.formatter as! NSNumberFormatter).maximumFractionDigits = 2
+        (AutomatorWindowObject.timeTextField.formatter as! NumberFormatter).minimumFractionDigits = 2
+        (AutomatorWindowObject.timeTextField.formatter as! NumberFormatter).maximumFractionDigits = 2
         
         //Get the filepaths of our applications stored data. 
         //We grab the URL for the application support folder and append the application name to the end of it, giving us the filepath where all data is stored. If the app has been run before, we should have a valid URL, if not, we create the directory so that the URL is valid. We then create constants with individual file names appended to the stored data directory. If a file does not exist, it will be created using that filepath.
-        let applicationSupportFilepath = try! NSFileManager().URLForDirectory(NSSearchPathDirectory.ApplicationSupportDirectory, inDomain: NSSearchPathDomainMask.UserDomainMask, appropriateForURL: nil, create: false)
-        let storedDataFilepath = applicationSupportFilepath.path! + "/Automated DJ"
-        if(NSFileManager().fileExistsAtPath(storedDataFilepath) == false){
-            try! NSFileManager().createDirectoryAtPath(storedDataFilepath, withIntermediateDirectories:false, attributes: nil)
+        let applicationSupportFilepath = try! FileManager().url(for: FileManager.SearchPathDirectory.applicationSupportDirectory, in: FileManager.SearchPathDomainMask.userDomainMask, appropriateFor: nil, create: false)
+        let storedDataFilepath = applicationSupportFilepath.path + "/Automated DJ"
+        if(FileManager().fileExists(atPath: storedDataFilepath) == false){
+            try! FileManager().createDirectory(atPath: storedDataFilepath, withIntermediateDirectories:false, attributes: nil)
         }
         storedProgramsFilepath = storedDataFilepath + "/MasterSchedule.txt"
         storedAnnouncementsFilepath = storedDataFilepath + "/GlobalAnnouncements.txt"
         storedPreferencesFilepath = storedDataFilepath + "/Preferences.txt"
         
         //Get the information stored in file at the storedProgramsFilepath. If its not empty (or non existant), set the data array to the reterived values and reload the tableview
-        let shows = NSKeyedUnarchiver.unarchiveObjectWithFile(storedProgramsFilepath)
+        let shows = NSKeyedUnarchiver.unarchiveObject(withFile: storedProgramsFilepath)
         if shows != nil {
             MasterScheduleObject.dataArray = shows as! [Show]
             MasterScheduleObject.tableView.reloadData()
         }
         
         //Get the information stored in file at the storedAnnouncementsFilepath. If its not empty (or non existant), set the global annoucements data array to the reterived values and reload the tableview
-        let announcements = NSKeyedUnarchiver.unarchiveObjectWithFile(storedAnnouncementsFilepath)
+        let announcements = NSKeyedUnarchiver.unarchiveObject(withFile: storedAnnouncementsFilepath)
         if announcements != nil {
             GlobalAnnouncementsObject.dataArray = announcements as! [String]
             GlobalAnnouncementsObject.tableView.reloadData()
         }
         
         //Get the information stored in file at the storedPreferencesFilePath. If it's not empty (or non existant), call Preferences' setValuesWith function and pass it the reterived array. Else, create a new array containing the default values and pass setValuesWith that new array
-        let preferences = NSKeyedUnarchiver.unarchiveObjectWithFile(storedPreferencesFilepath)
+        let preferences = NSKeyedUnarchiver.unarchiveObject(withFile: storedPreferencesFilepath)
         if preferences != nil {
             PreferencesObject.setValuesWith(preferences as! [AnyObject])
         }
         else{
             //Get the filepath to he desktop so the default log filepath can be set to the desktop
-            let fileManager = NSFileManager()
-            let desktopFilepathURL = try? fileManager.URLForDirectory(NSSearchPathDirectory.DesktopDirectory, inDomain: NSSearchPathDomainMask.UserDomainMask, appropriateForURL: nil, create:false)
-            PreferencesObject.setValuesWith([Automator.init(aTotalTime: 2.0, aTierOnePrecent: 15, aTierTwoPrecent: 25, aTierThreePrecent: 60),false,240,50,true,false,(desktopFilepathURL?.path)!])
+            let fileManager = FileManager()
+            let desktopFilepathURL = try? fileManager.url(for: FileManager.SearchPathDirectory.desktopDirectory, in: FileManager.SearchPathDomainMask.userDomainMask, appropriateFor: nil, create:false)
+            PreferencesObject.setValuesWith([Automator.init(aTotalTime: 2.0, aTierOnePrecent: 15, aTierTwoPrecent: 25, aTierThreePrecent: 60),false as AnyObject,240 as AnyObject,50 as AnyObject,true as AnyObject,false as AnyObject,(desktopFilepathURL?.path)! as AnyObject])
         }
         //Inatalize the timer
         AutomatorControllerObject.spawnMasterTimer()
@@ -106,23 +106,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         //Inatalize the menu bar. Then create NSMenuItems and add them to the menu bar. Then set the menu bar to be our applications menu bar. NSMenuItems which are not separators are given a name an a selector which corresponds to a function related to the name.
         let menu = NSMenu()
         menu.addItem(NSMenuItem(title: "Show Schedule", action: #selector(showSchedule), keyEquivalent: "S"))
-        menu.addItem(NSMenuItem.separatorItem())
+        menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Show Announcements", action: #selector(showAnnouncements), keyEquivalent: "A"))
         menu.addItem(NSMenuItem(title: "Edit Announcements", action: #selector(editAnnouncements), keyEquivalent: "E"))
-        menu.addItem(NSMenuItem.separatorItem())
+        menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Activate MiniPlayer Cover", action: #selector(activateMiniPlayerCover), keyEquivalent: ""))
         menu.addItem(NSMenuItem(title: "Hide MiniPlayer Cover", action: #selector(showMiniPlayerCover), keyEquivalent: ""))
-            menu.itemAtIndex(6)?.hidden = true
-        menu.addItem(NSMenuItem.separatorItem())
+            menu.item(at: 6)?.isHidden = true
+        menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Preferences", action: #selector(showPreferences), keyEquivalent: ","))
-        menu.addItem(NSMenuItem.separatorItem())
+        menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Quit", action: #selector(terminate), keyEquivalent: "q"))
         statusItem.menu = menu
         statusItem.button?.image = NSImage.init(named:"On Air.png")
         
         //Populate the tiered playlists caches. Can take an extended period of time so an async task is spawned
-        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-        dispatch_async(dispatch_get_global_queue(priority, 0)) {
+        let priority = DispatchQueue.GlobalQueuePriority.default
+        DispatchQueue.global(priority: priority).async {
             let applescriptBridge = ApplescriptBridge()
             autoreleasepool{
                 self.cachedTier1Playlist = applescriptBridge.getSongsInPlaylist("Tier 1")
@@ -134,21 +134,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
-    func applicationWillTerminate(aNotification: NSNotification) {
+    func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
     
-    func application(sender: NSApplication, openFile filename: String) -> Bool {
+    func application(_ sender: NSApplication, openFile filename: String) -> Bool {
         var result = false;
         let myPopup: NSAlert = NSAlert()
         myPopup.messageText = "All unsaved scheduler data will be lost"
         myPopup.informativeText = "Are you sure you want to continue?"
-        myPopup.alertStyle = NSAlertStyle.CriticalAlertStyle
-        myPopup.addButtonWithTitle("OK")
-        myPopup.addButtonWithTitle("Cancel")
+        myPopup.alertStyle = NSAlertStyle.critical
+        myPopup.addButton(withTitle: "OK")
+        myPopup.addButton(withTitle: "Cancel")
         let res = myPopup.runModal()
         if res == NSAlertFirstButtonReturn {
-            MasterScheduleObject.dataArray = NSKeyedUnarchiver.unarchiveObjectWithFile(filename) as! [Show]
+            MasterScheduleObject.dataArray = NSKeyedUnarchiver.unarchiveObject(withFile: filename) as! [Show]
             result = NSKeyedArchiver.archiveRootObject(MasterScheduleObject.dataArray, toFile: storedProgramsFilepath)
             MasterScheduleObject.tableView.reloadData()
         }
@@ -170,13 +170,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let newTier2Set = Set(applescriptBridge.getPersistentIDsOfSongsInPlaylist("Tier 2"))
             let newTier3Set = Set(applescriptBridge.getPersistentIDsOfSongsInPlaylist("Tier 3"))
             //Get all persistant ID's to be added to the tiered playlists
-            let tier1Add = newTier1Set.subtract(cachedTier1Set)
-            let tier2Add = newTier2Set.subtract(cachedTier2Set)
-            let tier3Add = newTier3Set.subtract(cachedTier3Set)
+            let tier1Add = newTier1Set.subtracting(cachedTier1Set)
+            let tier2Add = newTier2Set.subtracting(cachedTier2Set)
+            let tier3Add = newTier3Set.subtracting(cachedTier3Set)
             //Get all persistant ID's to be removed from the tiered playlists
-            let tier1Remove = cachedTier1Set.subtract(newTier1Set)
-            let tier2Remove = cachedTier2Set.subtract(newTier2Set)
-            let tier3Remove = cachedTier3Set.subtract(newTier3Set)
+            let tier1Remove = cachedTier1Set.subtracting(newTier1Set)
+            let tier2Remove = cachedTier2Set.subtracting(newTier2Set)
+            let tier3Remove = cachedTier3Set.subtracting(newTier3Set)
             //Remove necessary songs from the cached playlists
             var toRemove = [Song]()
             for song in cachedTier1Playlist{
@@ -184,28 +184,28 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     toRemove.append(song as! Song)
                 }
             }
-            cachedTier1Playlist.removeObjectsInArray(toRemove); toRemove = []
+            cachedTier1Playlist.removeObjects(in: toRemove); toRemove = []
             for song in cachedTier2Playlist{
                 if tier2Remove.contains((song as! Song).persistentID) {
                     toRemove.append(song as! Song)
                 }
             }
-            cachedTier2Playlist.removeObjectsInArray(toRemove); toRemove = []
+            cachedTier2Playlist.removeObjects(in: toRemove); toRemove = []
             for song in cachedTier3Playlist{
                 if tier3Remove.contains((song as! Song).persistentID) {
                     toRemove.append(song as! Song)
                 }
             }
-            cachedTier3Playlist.removeObjectsInArray(toRemove)
+            cachedTier3Playlist.removeObjects(in: toRemove)
             //Add necessary songs to the cached playlists
             for songID in tier1Add {
-                cachedTier1Playlist.addObject(applescriptBridge.getSong(songID))
+                cachedTier1Playlist.add(applescriptBridge.getSong(songID as NSString))
             }
             for songID in tier2Add {
-                cachedTier2Playlist.addObject(applescriptBridge.getSong(songID))
+                cachedTier2Playlist.add(applescriptBridge.getSong(songID as NSString))
             }
             for songID in tier3Add {
-                cachedTier3Playlist.addObject(applescriptBridge.getSong(songID))
+                cachedTier3Playlist.add(applescriptBridge.getSong(songID as NSString))
             }
             //return true indicating that refreshing the cache was a sucessful
             return true
@@ -215,55 +215,55 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     //Selector functions. The call to myApplication brings the system focus to the application when a window is called from the menu. This needs to be done because clicking on the app in the systemStatusBar doesn't bring focus to the application
     func showSchedule(){
         if AdminAccessObject.isAuthorized() == true {
-            myApplication.activateIgnoringOtherApps(true)
+            myApplication.activate(ignoringOtherApps: true)
             MasterScheduleObject.spawnMasterScheduleWindow()
         }
     }
     func showAnnouncements(){
-        myApplication.activateIgnoringOtherApps(true)
+        myApplication.activate(ignoringOtherApps: true)
         GlobalAnnouncementsObject.spawnImmutableGlobalAnnouncements()
     }
     func editAnnouncements(){
         if AdminAccessObject.isAuthorized() == true {
-            myApplication.activateIgnoringOtherApps(true)
+            myApplication.activate(ignoringOtherApps: true)
             GlobalAnnouncementsObject.spawnMutableGlobalAnnouncements()
         }
     }
     func activateMiniPlayerCover(){
-        myApplication.activateIgnoringOtherApps(true)
+        myApplication.activate(ignoringOtherApps: true)
         MiniPlayerCoverObject.spawnMiniPlayerCover()
         (MiniPlayerCoverObject.MiniPlayerCoverPanel.contentView as! MiniPlayerCoverView).addTrackingArea()
-        statusItem.menu?.itemAtIndex(5)?.title = "Deactivate MiniPlayer Cover"
-        statusItem.menu?.itemAtIndex(5)?.action = #selector(deactivateMiniPlayerCover)
-        statusItem.menu?.itemAtIndex(6)?.hidden = false
+        statusItem.menu?.item(at: 5)?.title = "Deactivate MiniPlayer Cover"
+        statusItem.menu?.item(at: 5)?.action = #selector(deactivateMiniPlayerCover)
+        statusItem.menu?.item(at: 6)?.isHidden = false
     }
     func deactivateMiniPlayerCover(){
         MiniPlayerCoverObject.MiniPlayerCoverPanel.close()
-        statusItem.menu?.itemAtIndex(5)?.title = "Activate MiniPlayer Cover"
-        statusItem.menu?.itemAtIndex(5)?.action = #selector(activateMiniPlayerCover)
-        statusItem.menu?.itemAtIndex(6)?.hidden = true
+        statusItem.menu?.item(at: 5)?.title = "Activate MiniPlayer Cover"
+        statusItem.menu?.item(at: 5)?.action = #selector(activateMiniPlayerCover)
+        statusItem.menu?.item(at: 6)?.isHidden = true
         
     }
     func showMiniPlayerCover(){
         if MiniPlayerCoverObject.isHidden() == false {
             MiniPlayerCoverObject.hideMiniPlayerCover()
-            statusItem.menu?.itemAtIndex(6)?.title = "Show MiniPlayer Cover"
+            statusItem.menu?.item(at: 6)?.title = "Show MiniPlayer Cover"
         }
         else{
-            myApplication.activateIgnoringOtherApps(true)
+            myApplication.activate(ignoringOtherApps: true)
             MiniPlayerCoverObject.showMiniPlayerCover()
-            statusItem.menu?.itemAtIndex(6)?.title = "Hide MiniPlayer Cover"
+            statusItem.menu?.item(at: 6)?.title = "Hide MiniPlayer Cover"
         }
     }
     func showPreferences(){
         if AdminAccessObject.isAuthorized() == true {
-            myApplication.activateIgnoringOtherApps(true)
+            myApplication.activate(ignoringOtherApps: true)
             PreferencesObject.spawnPreferencesWindow()
         }
     }
     func terminate(){
         if AdminAccessObject.isAuthorized() == true {
-            NSApplication.sharedApplication().terminate(self)
+            NSApplication.shared().terminate(self)
         }
     }
 
