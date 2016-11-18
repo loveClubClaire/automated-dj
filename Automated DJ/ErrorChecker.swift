@@ -30,7 +30,7 @@ class ErrorChecker: NSObject {
     }
     
     //Only checks if the tiered playlists sum to 100%
-    static func simpleAutomatorValidityCheck(anAutomator: Automator, anAutomatorStatus: AutomatorStatus, selectedShows: [Show], inout isValid: NSMutableDictionary){
+    static func simpleAutomatorValidityCheck(anAutomator: Automator, anAutomatorStatus: AutomatorStatus, selectedShows: [Show], isValid:@escaping (Bool) -> Void){
         var is100Precent = true
         
         for aSelectedShow in selectedShows {
@@ -46,25 +46,25 @@ class ErrorChecker: NSObject {
             }
         }
         let myPopup: NSAlert = NSAlert()
-        myPopup.alertStyle = NSAlertStyle.CriticalAlertStyle
-        myPopup.addButtonWithTitle("OK")
-        isValid.setValue(true, forKey: "isValid")
+        myPopup.alertStyle = NSAlertStyle.critical
+        myPopup.addButton(withTitle: "OK")
+        isValid(true)
         if is100Precent == false {
-            isValid.setValue(false, forKey: "isValid")
+            isValid(false)
             myPopup.messageText = "Tiered precentages must add up to 100!"
             myPopup.runModal()
         }
     }
     
-    static func checkAutomatorValidity(inout isValid: NSMutableDictionary, anAutomator: Automator, anAutomatorStatus: AutomatorStatus, selectedShows: [Show], dispatchGroup: dispatch_group_t) {
-        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+    static func checkAutomatorValidity(isValid: @escaping (Bool) -> Void, anAutomator: Automator, anAutomatorStatus: AutomatorStatus, selectedShows: [Show], dispatchGroup: DispatchGroup) {
+        let priority = DispatchQueue.GlobalQueuePriority.default
         
-        dispatch_async(dispatch_get_global_queue(priority, 0)) {
-            let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+        DispatchQueue.global(priority: priority).async {
+            let appDelegate = NSApplication.shared().delegate as! AppDelegate
             appDelegate.updateCachedPlaylists()
-            let masterTier1Songs = NSMutableArray(); masterTier1Songs.addObjectsFromArray(appDelegate.cachedTier1Playlist as [AnyObject])
-            let masterTier2Songs = NSMutableArray(); masterTier2Songs.addObjectsFromArray(appDelegate.cachedTier2Playlist as [AnyObject])
-            let masterTier3Songs = NSMutableArray(); masterTier3Songs.addObjectsFromArray(appDelegate.cachedTier3Playlist as [AnyObject])
+            let masterTier1Songs = NSMutableArray(); masterTier1Songs.addObjects(from: appDelegate.cachedTier1Playlist as [AnyObject])
+            let masterTier2Songs = NSMutableArray(); masterTier2Songs.addObjects(from: appDelegate.cachedTier2Playlist as [AnyObject])
+            let masterTier3Songs = NSMutableArray(); masterTier3Songs.addObjects(from: appDelegate.cachedTier3Playlist as [AnyObject])
             
             var is100Precent = true
             var isTier1LongEnough = true
@@ -97,9 +97,9 @@ class ErrorChecker: NSObject {
                 }
                 
                 if rules != nil {
-                    tier1Songs.filterUsingPredicate(rules!)
-                    tier2Songs.filterUsingPredicate(rules!)
-                    tier3Songs.filterUsingPredicate(rules!)
+                    tier1Songs.filter(using: rules!)
+                    tier2Songs.filter(using: rules!)
+                    tier3Songs.filter(using: rules!)
                 }
                 
                 var totalTime = anAutomator.totalTime
@@ -120,44 +120,47 @@ class ErrorChecker: NSObject {
                 
             }
         
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             let myPopup: NSAlert = NSAlert()
-            myPopup.alertStyle = NSAlertStyle.CriticalAlertStyle
-            myPopup.addButtonWithTitle("OK")
-            isValid.setValue(true, forKey: "isValid")
-            
+            myPopup.alertStyle = NSAlertStyle.critical
+            myPopup.addButton(withTitle: "OK")
+            isValid(true)
+                
             if is100Precent == false {
-                isValid.setValue(false, forKey: "isValid")
+                isValid(false)
                 myPopup.messageText = "Tiered precentages must add up to 100!"
                 myPopup.runModal()
             }
             if isTier1LongEnough == false {
-                isValid.setValue(false, forKey: "isValid")
+                isValid(false)
                 myPopup.messageText = "Tier 1 is not long enough!"
                 myPopup.runModal()
             }
             if isTier2LongEnough == false {
-                isValid.setValue(false, forKey: "isValid")
+                isValid(false)
                 myPopup.messageText = "Tier 2 is not long enough!"
                 myPopup.runModal()
             }
             if isTier3LongEnough == false {
-                isValid.setValue(false, forKey: "isValid")
+               isValid(false)
                 myPopup.messageText = "Tier 3 is not long enough!"
                 myPopup.runModal()
             }
-            dispatch_group_leave(dispatchGroup)
+            dispatchGroup.leave()
         }
+            
+            
+            
         }
     }
     
-    static func checkShowValidity(aShow: Show, aShowStatus: ShowStatus, selectedShows: [Show]) -> Bool {
+    static func checkShowValidity(_ aShow: Show, aShowStatus: ShowStatus, selectedShows: [Show]) -> Bool {
         //TODO prevent shows from having the same name as other shows (Make show names unique)
         var result = true
         var isOverTime = false
         var isSameDate = false
         var missingName = false
-        let calendar = NSCalendar(identifier: NSCalendarIdentifierGregorian)
+        let calendar = Calendar(identifier: Calendar.Identifier.gregorian)
 
         
         if aShow.name == "" && selectedShows[0] == aShow{
@@ -165,16 +168,16 @@ class ErrorChecker: NSObject {
         }
         
         for aSelectedShow in selectedShows {
-            let startDateComponents = calendar!.components([.Hour, .Minute, .Day], fromDate: aShow.startDate!)
-            let endDateComponents = calendar!.components([.Hour,.Minute,.Day], fromDate: aShow.endDate!)
-            let newStartComp = calendar!.components([.Hour, .Minute, .Day], fromDate: aSelectedShow.startDate!)
-            let newEndComp = calendar!.components([.Hour,.Minute,.Day], fromDate: aSelectedShow.endDate!)
+            var startDateComponents = (calendar as NSCalendar).components([.hour, .minute, .day], from: aShow.startDate! as Date)
+            var endDateComponents = (calendar as NSCalendar).components([.hour,.minute,.day], from: aShow.endDate! as Date)
+            let newStartComp = (calendar as NSCalendar).components([.hour, .minute, .day], from: aSelectedShow.startDate! as Date)
+            let newEndComp = (calendar as NSCalendar).components([.hour,.minute,.day], from: aSelectedShow.endDate! as Date)
             if aShowStatus.startTime == true {startDateComponents.hour = newStartComp.hour; startDateComponents.minute = newStartComp.minute}
             if aShowStatus.startDay == true {startDateComponents.day = newStartComp.day}
             if aShowStatus.endTime == true {endDateComponents.hour = newEndComp.hour; endDateComponents.minute = newEndComp.minute}
             if aShowStatus.endDay == true {endDateComponents.day = newEndComp.day}
             
-            var dayDifference = endDateComponents.day - startDateComponents.day
+            var dayDifference = endDateComponents.day! - startDateComponents.day!
             
             if startDateComponents.day == 7 && endDateComponents.day == 1 {dayDifference = 1}
             
@@ -183,8 +186,8 @@ class ErrorChecker: NSObject {
                 break
             }
             
-            let endTime = ((Double(endDateComponents.minute)  / 60.0) + Double(endDateComponents.hour))
-            let startTime = ((Double(startDateComponents.minute) as Double / 60.0) + Double(startDateComponents.hour))
+            let endTime = ((Double(endDateComponents.minute!)  / 60.0) + Double(endDateComponents.hour!))
+            let startTime = ((Double(startDateComponents.minute!) as Double / 60.0) + Double(startDateComponents.hour!))
             let showLength = (endTime - startTime) + (Double(dayDifference) * 24.0)
             
             if showLength > 24.0 || showLength < 0{
@@ -200,8 +203,8 @@ class ErrorChecker: NSObject {
         
         
         let myPopup: NSAlert = NSAlert()
-        myPopup.alertStyle = NSAlertStyle.CriticalAlertStyle
-        myPopup.addButtonWithTitle("OK")
+        myPopup.alertStyle = NSAlertStyle.critical
+        myPopup.addButton(withTitle: "OK")
 
         
         if isOverTime == true {

@@ -198,7 +198,9 @@ class AutomatorWindow: NSObject {
         var selectedShows = MasterScheduleObject.getSelectedShows()
         if selectedShows.count == 0 {selectedShows.append(show)}
         //We use a mutable dictionary because changes made to it in the async task actually are reflected after the async tasks completion. I don't have a wonderful understanding as to why that is though. 
-        var buttonOneDictionary = NSMutableDictionary()
+        //var buttonOneDictionary = NSMutableDictionary()
+        var isValidShow = false
+        
         
         //create a dispatch group which holds a list of items
         let errorCheckerGroup = DispatchGroup()
@@ -216,18 +218,17 @@ class AutomatorWindow: NSObject {
         let result = myPopup.runModal()
         if result == NSAlertFirstButtonReturn{
             //Actually test the new automator. Async task. Yay not blocking the main thread.
-            ErrorChecker.checkAutomatorValidity(&buttonOneDictionary, anAutomator: anAutomator, anAutomatorStatus: aWindowStatus, selectedShows: selectedShows, dispatchGroup: errorCheckerGroup)
+            ErrorChecker.checkAutomatorValidity(isValid:{value in isValidShow = value}, anAutomator: anAutomator, anAutomatorStatus: aWindowStatus, selectedShows: selectedShows, dispatchGroup: errorCheckerGroup)
         }
         else{
             //If valility is not being tested call the simple automator test (only checks if tiered playlists sum up to 100%, its important and fast) and empty the dispatch group to allow the function to continue
-            ErrorChecker.simpleAutomatorValidityCheck(anAutomator, anAutomatorStatus: aWindowStatus, selectedShows: selectedShows, isValid: &buttonOneDictionary)
+            ErrorChecker.simpleAutomatorValidityCheck(anAutomator: anAutomator, anAutomatorStatus: aWindowStatus, selectedShows: selectedShows, isValid: {value in isValidShow = value})
             errorCheckerGroup.leave()
         }
         //Wait for the dispatch group is empty, then execute code in the block
         errorCheckerGroup.notify(queue: DispatchQueue.main) {
             self.automatorWindow.makeEnabled()
-            let isValidShow = buttonOneDictionary.value(forKey: "isValid")
-            if isValidShow as! Bool == true {
+            if isValidShow == true {
             //return
             let status = self.ShowWindowObject.getWindowStatus()
             status.automatorStatus = self.getWindowStatus()
