@@ -35,7 +35,7 @@ class ApplescriptBridge: NSObject {
         let name = "getPlaylists"
         let selector = NSSelectorFromString(name)
         let returnObject = instance.perform(selector)
-        let rawPlaylists = returnObject?.takeRetainedValue() as! NSArray
+        let rawPlaylists = returnObject?.takeUnretainedValue() as! NSArray
         var playlists = [Playlist]()
         for aRawPlaylist in rawPlaylists {
             playlists.append(Playlist().initWithString((aRawPlaylist as! NSAppleEventDescriptor).debugDescription))
@@ -47,7 +47,7 @@ class ApplescriptBridge: NSObject {
         let name = "getPlaylist:"
         let selector = NSSelectorFromString(name)
         let result = instance.perform(selector, with: aPlaylist)
-        let rawPlaylist = result?.takeRetainedValue() as! NSAppleEventDescriptor
+        let rawPlaylist = result?.takeUnretainedValue() as! NSAppleEventDescriptor
         return Playlist().initWithString(rawPlaylist.debugDescription)
     }
     
@@ -56,7 +56,7 @@ class ApplescriptBridge: NSObject {
         let name = "getSongsInPlaylist:"
         let selector = NSSelectorFromString(name)
         let result = instance.perform(selector, with: aPlaylist)
-        let rawSongs = result?.takeRetainedValue() as! NSArray
+        let rawSongs = result?.takeUnretainedValue() as! NSArray
         let songs = NSMutableArray()
         for song in rawSongs {
             songs.add(Song().initWithString((song as! NSAppleEventDescriptor).debugDescription))
@@ -68,14 +68,14 @@ class ApplescriptBridge: NSObject {
         let name = "getNumberOfSongsInPlaylist:"
         let selector = NSSelectorFromString(name)
         let result = instance.perform(selector, with: aPlaylist)
-        return result?.takeRetainedValue() as! NSNumber
+        return result?.takeUnretainedValue() as! NSNumber
     }
 
     func getLastSongInPlaylist(aPlaylist: String) -> Song {
         let name = "getLastSongInPlaylist:"
         let selector = NSSelectorFromString(name)
         let result = instance.perform(selector, with: aPlaylist)
-        let rawSong = (result?.takeRetainedValue() as! NSAppleEventDescriptor).debugDescription
+        let rawSong = (result?.takeUnretainedValue() as! NSAppleEventDescriptor).debugDescription
         return Song().initWithString(rawSong)
     }
     
@@ -101,7 +101,7 @@ class ApplescriptBridge: NSObject {
         let name = "getCurrentPlaylist"
         let selector = NSSelectorFromString(name)
         let returnObject = instance.perform(selector)
-        return returnObject?.takeRetainedValue() as! String
+        return returnObject?.takeUnretainedValue() as! String
     }
 
     func disableShuffle(){
@@ -120,7 +120,7 @@ class ApplescriptBridge: NSObject {
         let name = "timeLeftInCurrentSong"
         let selector = NSSelectorFromString(name)
         let returnObject = instance.perform(selector)
-        let result = returnObject?.takeRetainedValue() as! NSNumber
+        let result = returnObject?.takeUnretainedValue() as! NSNumber
         return result.doubleValue
     }
 
@@ -135,7 +135,7 @@ class ApplescriptBridge: NSObject {
         let name = "getiTunesPlayerState"
         let selector = NSSelectorFromString(name)
         let returnObject = instance.perform(selector)
-        let applescriptResult = returnObject?.takeRetainedValue() as! NSAppleEventDescriptor
+        let applescriptResult = returnObject?.takeUnretainedValue() as! NSAppleEventDescriptor
         var result = false
         let state = applescriptResult.stringValue
         if state == "kPSP" {
@@ -162,14 +162,14 @@ class ApplescriptBridge: NSObject {
         let name = "getPersistentIDsOfSongsInPlaylist:"
         let selector = NSSelectorFromString(name)
         let result = instance.perform(selector, with: aPlaylist)
-        return result?.takeRetainedValue() as! [String]
+        return result?.takeUnretainedValue() as! [String]
     }
     
     func getSong(anID: NSString) -> Song{
         let name = "getSong:"
         let selector = NSSelectorFromString(name)
         let result = instance.perform(selector, with: anID)
-        let rawSong = ((result?.takeRetainedValue() as! NSArray)[0] as! NSAppleEventDescriptor).debugDescription
+        let rawSong = ((result?.takeUnretainedValue() as! NSArray)[0] as! NSAppleEventDescriptor).debugDescription
         return Song().initWithString(rawSong)
     }
 }
