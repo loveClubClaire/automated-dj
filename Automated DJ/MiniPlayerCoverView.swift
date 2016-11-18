@@ -10,17 +10,17 @@ import Foundation
 import Cocoa
 
 class MiniPlayerCoverView: NSView {
-    override func mouseEntered(theEvent: NSEvent) {
-        let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+    override func mouseEntered(with theEvent: NSEvent) {
+        let appDelegate = NSApplication.shared().delegate as! AppDelegate
         appDelegate.MiniPlayerCoverObject.showButton()
-        super.mouseEntered(theEvent)
+        super.mouseEntered(with: theEvent)
     }
-    override func mouseExited(theEvent: NSEvent) {
-        let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+    override func mouseExited(with theEvent: NSEvent) {
+        let appDelegate = NSApplication.shared().delegate as! AppDelegate
         appDelegate.MiniPlayerCoverObject.hideButton()
-        super.mouseExited(theEvent)
+        super.mouseExited(with: theEvent)
     }
     func addTrackingArea() {
-        self.addTrackingArea(NSTrackingArea.init(rect: self.bounds, options:[NSTrackingAreaOptions.ActiveAlways,NSTrackingAreaOptions.MouseEnteredAndExited], owner: self, userInfo: nil))
+        self.addTrackingArea(NSTrackingArea.init(rect: self.bounds, options:[NSTrackingAreaOptions.activeAlways,NSTrackingAreaOptions.mouseEnteredAndExited], owner: self, userInfo: nil))
     }
 }

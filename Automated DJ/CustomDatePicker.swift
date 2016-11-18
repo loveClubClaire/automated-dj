@@ -12,15 +12,15 @@ import Cocoa
 class CustomDatePicker: NSDatePicker {
 
     func makePlaceholder(){
-        self.textColor = NSColor.whiteColor()
+        self.textColor = NSColor.white
     }
     
     func disablePlaceholder(){
-        self.textColor = NSColor.textColor()
+        self.textColor = NSColor.textColor
     }
     
     func isPlaceholder() -> Bool{
-        if self.textColor == NSColor.textColor() {
+        if self.textColor == NSColor.textColor {
             return false
         }
         else{
@@ -28,18 +28,18 @@ class CustomDatePicker: NSDatePicker {
         }
     }
     
-    override func mouseDown(theEvent: NSEvent) {
-        if self.textColor == NSColor.whiteColor() {
-            self.textColor = NSColor.textColor()
+    override func mouseDown(with theEvent: NSEvent) {
+        if self.textColor == NSColor.white {
+            self.textColor = NSColor.textColor
         }
-        super.mouseDown(theEvent)
+        super.mouseDown(with: theEvent)
     }
     
-    override func keyUp(theEvent: NSEvent) {
-        if self.textColor == NSColor.whiteColor() {
-            self.textColor = NSColor.textColor()
+    override func keyUp(with theEvent: NSEvent) {
+        if self.textColor == NSColor.white {
+            self.textColor = NSColor.textColor
         }
-        super.keyUp(theEvent)
+        super.keyUp(with: theEvent)
     }
  
     

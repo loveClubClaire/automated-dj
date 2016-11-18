@@ -25,7 +25,7 @@ class AutomatorStatus: NSObject {
     var bumpersState = true
     var seedState = true
     
-    func modifyAutomator(editedAutomator: Automator, masterAutomator: Automator) -> Automator{
+    func modifyAutomator(_ editedAutomator: Automator, masterAutomator: Automator) -> Automator{
         //If the tierOnePrecent has been changed, set the editedAutomator name to the tierOnePrecent contained in the masterAutomator
         if tierOnePrecent == false {
             editedAutomator.tierOnePrecent = masterAutomator.tierOnePrecent

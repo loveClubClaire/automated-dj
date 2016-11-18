@@ -114,23 +114,23 @@ class MiniPlayerCover: NSObject {
             else{
                 wasPressed = true
                 //Immediatily start playing a track from tier 1
-                let numOfSongs = applescriptBridge.getNumberOfSongsInPlaylist("Tier 1")
+                let numOfSongs = applescriptBridge.getNumberOfSongsInPlaylist(aPlaylist: "Tier 1")
                 let randomNumber = arc4random_uniform(numOfSongs.uint32Value) + 1
-                applescriptBridge.playSongFromPlaylist(NSNumber.init(value: randomNumber as UInt32), aPlaylist: "Tier 1")
+                applescriptBridge.playSongFromPlaylist(aTrack: Int(randomNumber), aPlaylist: "Tier 1")
                 //Then start generating a playlist using the default automator
                 //Determine the name of our generated playlist. This is done to prevent name overlap. We also delete any automated DJ playlist which is not currently playing so that we do not have duplicates of the same playlist.
                 var generatedPlaylistName = "Automated DJ"
                 //get currently playing playlist
                 let currentPlaylist = applescriptBridge.getCurrentPlaylist()
                 if currentPlaylist != "Automated DJ" && currentPlaylist != "Automated DJ2" {
-                    applescriptBridge.deletePlaylistWithName("Automated DJ")
-                    applescriptBridge.deletePlaylistWithName("Automated DJ2")
+                    applescriptBridge.deletePlaylistWithName(aName: "Automated DJ")
+                    applescriptBridge.deletePlaylistWithName(aName: "Automated DJ2")
                 }
                 else if currentPlaylist == "Automated DJ2" {
-                    applescriptBridge.deletePlaylistWithName("Automated DJ")
+                    applescriptBridge.deletePlaylistWithName(aName: "Automated DJ")
                 }
                 else if currentPlaylist == "Automated DJ" {
-                    applescriptBridge.deletePlaylistWithName("Automated DJ2")
+                    applescriptBridge.deletePlaylistWithName(aName: "Automated DJ2")
                     generatedPlaylistName = "Automated DJ2"
                 }
                 let rawDelayTime = applescriptBridge.timeLeftInCurrentSong()

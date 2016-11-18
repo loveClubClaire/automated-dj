@@ -50,14 +50,14 @@ class AutomatorController: NSObject {
                 //get currently playing playlist
                 let currentPlaylist = applescriptBridge.getCurrentPlaylist()
                 if currentPlaylist != "Automated DJ" && currentPlaylist != "Automated DJ2" {
-                    applescriptBridge.deletePlaylistWithName("Automated DJ")
-                    applescriptBridge.deletePlaylistWithName("Automated DJ2")
+                    applescriptBridge.deletePlaylistWithName(aName: "Automated DJ")
+                    applescriptBridge.deletePlaylistWithName(aName: "Automated DJ2")
                 }
                 else if currentPlaylist == "Automated DJ2" {
-                    applescriptBridge.deletePlaylistWithName("Automated DJ")
+                    applescriptBridge.deletePlaylistWithName(aName: "Automated DJ")
                 }
                 else if currentPlaylist == "Automated DJ" {
-                    applescriptBridge.deletePlaylistWithName("Automated DJ2")
+                    applescriptBridge.deletePlaylistWithName(aName: "Automated DJ2")
                     generatedPlaylistName = "Automated DJ2"
                 }
                 //Get the number of seconds into the hour that the show starts and of the current time. Get the difference of those two numbers and we have the number of seconds until the show begins, which we use as our delay time. If the show starts in the next hour relative to the hour of the current time, then the resulting difference is a negative number. Adding 3600 to that negative number gets us the positive number of seconds until the show begins.
@@ -107,7 +107,7 @@ class AutomatorController: NSObject {
         //get seed playlist if it exists and add seed playlist to generated playlist
         //TODO test if this handles a non existant but non null playlist
         if anAutomator.seedPlayist != nil{
-            generatedPlaylist.addObjects(from: applescriptBridge.getSongsInPlaylist(anAutomator.seedPlayist!) as [AnyObject])
+            generatedPlaylist.addObjects(from: applescriptBridge.getSongsInPlaylist(aPlaylist: anAutomator.seedPlayist!) as [AnyObject])
             //Remove excess if seed playlist is longer than playlist length
             //While actual time is greater than expected time + tolerance
             while Playlist.getNewPlaylistDuration(generatedPlaylist as Array as! [Song]) > ((anAutomator.totalTime * 3600) + Double(self.PreferencesObject.tollerence)) {
@@ -122,7 +122,7 @@ class AutomatorController: NSObject {
         var songsBetweenBlocks = 0
         var bumpers = NSMutableArray()
         if anAutomator.bumpersPlaylist != nil{
-            bumpers = applescriptBridge.getSongsInPlaylist(anAutomator.bumpersPlaylist!)
+            bumpers = applescriptBridge.getSongsInPlaylist(aPlaylist: anAutomator.bumpersPlaylist!)
             songsBetweenBlocks = anAutomator.songsBetweenBlocks!
         }
         //while the generated playlist length is less than the total time as required by the automator...
@@ -180,8 +180,8 @@ class AutomatorController: NSObject {
             }
         }
         //Once we generated our playlist, create the playlist in iTunes and add all the songs to the iTunes playlist.
-        applescriptBridge.createPlaylistWithName(playlistName)
-        applescriptBridge.addSongsToPlaylist(playlistName, songArray: generatedPlaylist)
+        applescriptBridge.createPlaylistWithName(aName: playlistName)
+        applescriptBridge.addSongsToPlaylist(aPlaylist: playlistName, songArray: generatedPlaylist)
         //Logging
         let log = LogGenerator.init()
         log.writeToLog("Playlist generation time (in seconds): " + String(startTime.timeIntervalSinceNow * -1.0))
@@ -211,16 +211,16 @@ class AutomatorController: NSObject {
             rawDelayTime = 0
         }
         DispatchQueue.main.asyncAfter(deadline: delayTime) {
-            applescriptBridge.playPlaylist(playlistName)
+            applescriptBridge.playPlaylist(aPlaylist: playlistName)
             let log = LogGenerator()
             log.writeToLog("Start time of playlist: " + Date.init().description)
             log.writeToLog("------------------------------------------------")
         }
         //trim excess fat from generated playlist if possible.
         //if the raw delay time is greater than the last song of the playlist, then subtract the length of that song from the raw delay time and remove that song from the playlist. We then check again to see if the newly updated raw delay time is greater than the (new) last song of the playlist. If so, repeat until no longer the case
-        while rawDelayTime > applescriptBridge.getLastSongInPlaylist(playlistName).duration {
-            rawDelayTime = rawDelayTime - applescriptBridge.getLastSongInPlaylist(playlistName).duration
-            applescriptBridge.removeLastSongInPlaylist(playlistName)
+        while rawDelayTime > applescriptBridge.getLastSongInPlaylist(aPlaylist: playlistName).duration {
+            rawDelayTime = rawDelayTime - applescriptBridge.getLastSongInPlaylist(aPlaylist: playlistName).duration
+            applescriptBridge.removeLastSongInPlaylist(aPlaylist: playlistName)
         }
     }
     

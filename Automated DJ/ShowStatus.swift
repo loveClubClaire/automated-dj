@@ -19,7 +19,7 @@ class ShowStatus: NSObject {
     var endTime = true
     var automator = true
     
-    func modifyShow(editedShow: Show, masterShow: Show) -> Show{
+    func modifyShow(_ editedShow: Show, masterShow: Show) -> Show{
         //If the name has been changed, set the editedShows name to the name contained in the masterShow
         if name == false {
             editedShow.name = masterShow.name
@@ -27,31 +27,31 @@ class ShowStatus: NSObject {
         //If the day changed, change the day. If the time changed, change the time. If they both changed, just set the editedShow date to the date provided by the masterShow
         if startDay == false && startTime == true {
             //Create a Gregorian calendar object and create NSDateComponents for the start and end time of the show which contain the hour and minute.
-            let calendar = NSCalendar(identifier: NSCalendarIdentifierGregorian)
-            let startDateComponents = calendar!.components([.Hour, .Minute], fromDate: editedShow.startDate!)
+            let calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+            var startDateComponents = (calendar as NSCalendar).components([.hour, .minute], from: editedShow.startDate! as Date)
             //Get the day component from the masterShow
-            let masterShowComponents = calendar!.components([.Day], fromDate: masterShow.startDate!)
+            let masterShowComponents = (calendar as NSCalendar).components([.day], from: masterShow.startDate! as Date)
             //Set the date to a day in the first week of June, 2015. This month and year were picked because June 1 is a Monday. The actual day isn't relevant, as long as the correct day of the week is preserved in the date.
             startDateComponents.year = 2015
             startDateComponents.month = 6
             //Set the day of the startDate to the day parsed from the masterShow
             startDateComponents.day = masterShowComponents.day
             //Set the new edited show start date to the result of the components
-            editedShow.startDate = calendar?.dateFromComponents(startDateComponents)
+            editedShow.startDate = calendar.date(from: startDateComponents)
         }
         if startTime == false && startDay == true {
             //Create a Gregorian calendar object and create NSDateComponents for the start and end time of the show which contain the hour and minute.
-            let calendar = NSCalendar(identifier: NSCalendarIdentifierGregorian)
-            let startTimeComponents = calendar!.components([.Day], fromDate: editedShow.startDate!)
+            let calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+            var startTimeComponents = (calendar as NSCalendar).components([.day], from: editedShow.startDate! as Date)
             //Get the day component from the masterShow
-            let masterShowComponents = calendar!.components([.Hour, .Minute], fromDate: masterShow.startDate!)
+            let masterShowComponents = (calendar as NSCalendar).components([.hour, .minute], from: masterShow.startDate! as Date)
             //Set the date to a day in the first week of June, 2015. This month and year were picked because June 1 is a Monday. The actual day isn't relevant, as long as the correct day of the week is preserved in the date.
             startTimeComponents.year = 2015
             startTimeComponents.month = 6
             startTimeComponents.hour = masterShowComponents.hour
             startTimeComponents.minute = masterShowComponents.minute
             //Set the new edited show start date to the result of the components
-            editedShow.startDate = calendar?.dateFromComponents(startTimeComponents)
+            editedShow.startDate = calendar.date(from: startTimeComponents)
         }
         if startTime == false && startDay == false {
             editedShow.startDate = masterShow.startDate
@@ -59,31 +59,31 @@ class ShowStatus: NSObject {
         
         if endDay == false && endTime == true{
             //Create a Gregorian calendar object and create NSDateComponents for the start and end time of the show which contain the hour and minute.
-            let calendar = NSCalendar(identifier: NSCalendarIdentifierGregorian)
-            let endDateComponents = calendar!.components([.Hour, .Minute], fromDate: editedShow.endDate!)
+            let calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+            var endDateComponents = (calendar as NSCalendar).components([.hour, .minute], from: editedShow.endDate! as Date)
             //Get the day component from the masterShow
-            let masterShowComponents = calendar!.components([.Day], fromDate: masterShow.endDate!)
+            let masterShowComponents = (calendar as NSCalendar).components([.day], from: masterShow.endDate! as Date)
             //Set the date to a day in the first week of June, 2015. This month and year were picked because June 1 is a Monday. The actual day isn't relevant, as long as the correct day of the week is preserved in the date.
             endDateComponents.year = 2015
             endDateComponents.month = 6
             //Set the day of the startDate to the day parsed from the masterShow
             endDateComponents.day = masterShowComponents.day
             //Set the new edited show start date to the result of the components
-            editedShow.endDate = calendar?.dateFromComponents(endDateComponents)
+            editedShow.endDate = calendar.date(from: endDateComponents)
         }
         if endTime == false && endDay == true{
             //Create a Gregorian calendar object and create NSDateComponents for the start and end time of the show which contain the hour and minute.
-            let calendar = NSCalendar(identifier: NSCalendarIdentifierGregorian)
-            let endTimeComponents = calendar!.components([.Day], fromDate: editedShow.endDate!)
+            let calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+            var endTimeComponents = (calendar as NSCalendar).components([.day], from: editedShow.endDate! as Date)
             //Get the day component from the masterShow
-            let masterShowComponents = calendar!.components([.Hour, .Minute], fromDate: masterShow.endDate!)
+            let masterShowComponents = (calendar as NSCalendar).components([.hour, .minute], from: masterShow.endDate! as Date)
             //Set the date to a day in the first week of June, 2015. This month and year were picked because June 1 is a Monday. The actual day isn't relevant, as long as the correct day of the week is preserved in the date.
             endTimeComponents.year = 2015
             endTimeComponents.month = 6
             endTimeComponents.hour = masterShowComponents.hour
             endTimeComponents.minute = masterShowComponents.minute
             //Set the new edited show start date to the result of the components
-            editedShow.endDate = calendar?.dateFromComponents(endTimeComponents)
+            editedShow.endDate = calendar.date(from: endTimeComponents)
         }
         if endTime == false && endDay == false {
             editedShow.endDate = masterShow.endDate
@@ -91,14 +91,14 @@ class ShowStatus: NSObject {
         //If the automator has been changed, get a new automator object with the approperate values and set it to the editedShow automator
         if automator == false {
             //Calculate the length for the edited show and then pass that length to the newly created editedShowAutomator. This allows each automator to have the correct length, regardless of how shows were edited.
-            let calendar = NSCalendar(identifier: NSCalendarIdentifierGregorian)
-            let endTimeComponents = calendar!.components([.Day, .Hour, .Minute], fromDate: editedShow.endDate!)
-            let startTimeComponents = calendar!.components([.Day, .Hour, .Minute], fromDate: editedShow.startDate!)
+            let calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+            let endTimeComponents = (calendar as NSCalendar).components([.day, .hour, .minute], from: editedShow.endDate! as Date)
+            let startTimeComponents = (calendar as NSCalendar).components([.day, .hour, .minute], from: editedShow.startDate! as Date)
 
-            var dayDifference = endTimeComponents.day - startTimeComponents.day
+            var dayDifference = endTimeComponents.day! - startTimeComponents.day!
             if startTimeComponents.day == 7 && endTimeComponents.day == 1 {dayDifference = 1}
-            let endTime = ((Double(endTimeComponents.minute)  / 60.0) + Double(endTimeComponents.hour))
-            let startTime = ((Double(startTimeComponents.minute) as Double / 60.0) + Double(startTimeComponents.hour))
+            let endTime = ((Double(endTimeComponents.minute!)  / 60.0) + Double(endTimeComponents.hour!))
+            let startTime = ((Double(startTimeComponents.minute!) as Double / 60.0) + Double(startTimeComponents.hour!))
             let showLength = (endTime - startTime) + (Double(dayDifference) * 24.0)
             
             

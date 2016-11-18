@@ -48,38 +48,38 @@ class Automator: NSObject {
     
     //Decode each individual object and then create a new object instance
     required convenience init?(coder decoder: NSCoder) {
-        guard let totalTime = decoder.decodeObjectForKey("totalTime") as? Double,
-            let tierOnePrecent = decoder.decodeObjectForKey("tierOnePrecent") as? Int,
-            let tierTwoPrecent = decoder.decodeObjectForKey("tierTwoPrecent") as? Int,
-            let tierThreePrecent = decoder.decodeObjectForKey("tierThreePrecent") as? Int,
-            let seedPlayist = decoder.decodeObjectForKey("seedPlayist") as? String?,
-            let bumpersPlaylist = decoder.decodeObjectForKey("bumpersPlaylist") as? String?,
-            let bumpersPerBlock = decoder.decodeObjectForKey("bumpersPerBlock") as? Int?,
-            let songsBetweenBlocks = decoder.decodeObjectForKey("songsBetweenBlocks") as? Int?,
-            let rules = decoder.decodeObjectForKey("rules") as? NSPredicate?
+        guard let totalTime = decoder.decodeObject(forKey: "totalTime") as? Double,
+            let tierOnePrecent = decoder.decodeObject(forKey: "tierOnePrecent") as? Int,
+            let tierTwoPrecent = decoder.decodeObject(forKey: "tierTwoPrecent") as? Int,
+            let tierThreePrecent = decoder.decodeObject(forKey: "tierThreePrecent") as? Int,
+            let seedPlayist = decoder.decodeObject(forKey: "seedPlayist") as? String?,
+            let bumpersPlaylist = decoder.decodeObject(forKey: "bumpersPlaylist") as? String?,
+            let bumpersPerBlock = decoder.decodeObject(forKey: "bumpersPerBlock") as? Int?,
+            let songsBetweenBlocks = decoder.decodeObject(forKey: "songsBetweenBlocks") as? Int?,
+            let rules = decoder.decodeObject(forKey: "rules") as? NSPredicate?
             else { return nil }
         
         self.init(aTotalTime: totalTime, aTierOnePrecent: tierOnePrecent, aTierTwoPrecent: tierTwoPrecent, aTierThreePrecent: tierThreePrecent, aSeedPlaylist: seedPlayist, aBumpersPlaylist: bumpersPlaylist, aBumpersPerBlock: bumpersPerBlock, aSongBetweenBlocks: songsBetweenBlocks, aRules: rules)
     }
     //Encoding fucntion for saving. Encode each object with a key for retervial
-    func encodeWithCoder(coder: NSCoder) {
-        coder.encodeObject(totalTime, forKey: "totalTime")
-        coder.encodeObject(tierOnePrecent, forKey: "tierOnePrecent")
-        coder.encodeObject(tierTwoPrecent, forKey: "tierTwoPrecent")
-        coder.encodeObject(tierThreePrecent, forKey: "tierThreePrecent")
-        coder.encodeObject(seedPlayist, forKey: "seedPlayist")
-        coder.encodeObject(bumpersPlaylist, forKey: "bumpersPlaylist")
-        coder.encodeObject(bumpersPerBlock, forKey: "bumpersPerBlock")
-        coder.encodeObject(songsBetweenBlocks, forKey: "songsBetweenBlocks")
-        coder.encodeObject(rules, forKey: "rules")
+    func encodeWithCoder(_ coder: NSCoder) {
+        coder.encode(totalTime, forKey: "totalTime")
+        coder.encode(tierOnePrecent, forKey: "tierOnePrecent")
+        coder.encode(tierTwoPrecent, forKey: "tierTwoPrecent")
+        coder.encode(tierThreePrecent, forKey: "tierThreePrecent")
+        coder.encode(seedPlayist, forKey: "seedPlayist")
+        coder.encode(bumpersPlaylist, forKey: "bumpersPlaylist")
+        coder.encode(bumpersPerBlock, forKey: "bumpersPerBlock")
+        coder.encode(songsBetweenBlocks, forKey: "songsBetweenBlocks")
+        coder.encode(rules, forKey: "rules")
     }
         
-    func compare(anAutomator: Automator?) -> NSComparisonResult {
+    func compare(_ anAutomator: Automator?) -> ComparisonResult {
         if anAutomator == nil {
-            return NSComparisonResult.OrderedDescending
+            return ComparisonResult.orderedDescending
         }
         else{
-            return NSComparisonResult.OrderedSame
+            return ComparisonResult.orderedSame
         }
 }
     

@@ -37,7 +37,6 @@
 		C09D9F561CE7ECBE009458FC /* ShowStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09D9F551CE7ECBE009458FC /* ShowStatus.swift */; };
 		C09D9F5B1CE95954009458FC /* ErrorChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09D9F5A1CE95954009458FC /* ErrorChecker.swift */; };
 		C09D9F611CEA7B6D009458FC /* RuleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09D9F601CEA7B6D009458FC /* RuleScrollView.swift */; };
-		C0A31BB71D4FFC5800B64A5B /* MyApplescript.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A31BB61D4FFC5800B64A5B /* MyApplescript.swift */; };
 		C0A31BB91D4FFF0A00B64A5B /* ApplescriptBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A31BB81D4FFF0A00B64A5B /* ApplescriptBridge.swift */; };
 		C0C43BEB1CEE734F00665376 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C43BEA1CEE734F00665376 /* Preferences.swift */; };
 		C0DCCA4C1CEC14C60068533F /* GlobalAnnouncements.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DCCA4B1CEC14C60068533F /* GlobalAnnouncements.swift */; };
@@ -107,7 +106,6 @@
 		C09D9F551CE7ECBE009458FC /* ShowStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowStatus.swift; sourceTree = "<group>"; };
 		C09D9F5A1CE95954009458FC /* ErrorChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorChecker.swift; sourceTree = "<group>"; };
 		C09D9F601CEA7B6D009458FC /* RuleScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleScrollView.swift; sourceTree = "<group>"; };
-		C0A31BB61D4FFC5800B64A5B /* MyApplescript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyApplescript.swift; sourceTree = "<group>"; };
 		C0A31BB81D4FFF0A00B64A5B /* ApplescriptBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplescriptBridge.swift; sourceTree = "<group>"; };
 		C0C43BEA1CEE734F00665376 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		C0DCCA4B1CEC14C60068533F /* GlobalAnnouncements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalAnnouncements.swift; sourceTree = "<group>"; };
@@ -226,7 +224,6 @@
 			children = (
 				C0DF87441D230A8100B275B5 /* AppleScript-ObjC bridge functions 4:11:16.txt */,
 				C08C15871CF01ED400EF8BCF /* MyApplescript.applescript */,
-				C0A31BB61D4FFC5800B64A5B /* MyApplescript.swift */,
 				C0A31BB81D4FFF0A00B64A5B /* ApplescriptBridge.swift */,
 				C08C15811CF007E900EF8BCF /* Automated DJ.sdef */,
 				C0F99EB21D287B7F00A5F21B /* GeneratePlaylistCommand.swift */,
@@ -348,7 +345,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "16^2";
 				TargetAttributes = {
 					C046169F1CE43542004E1B38 = {
@@ -452,7 +449,6 @@
 				C08372AA1CE62EAA0046F231 /* MasterScheduleWindow.swift in Sources */,
 				C0F6D2A81CF4E262001E0E95 /* Playlist.swift in Sources */,
 				C09D9F611CEA7B6D009458FC /* RuleScrollView.swift in Sources */,
-				C0A31BB71D4FFC5800B64A5B /* MyApplescript.swift in Sources */,
 				C04C1C101D40180100F93EEC /* ChangePlaylistTolerance.swift in Sources */,
 				C00162ED1CEE332A009EE840 /* GlobalAnnouncementsWindow.swift in Sources */,
 				C08C158A1CF01ED400EF8BCF /* MyApplescript.applescript in Sources */,
@@ -517,8 +513,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -562,8 +560,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -582,17 +582,18 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
 		C04616C41CE43542004E1B38 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = NO;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = "Automated DJ/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -607,11 +608,11 @@
 		C04616C51CE43542004E1B38 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = NO;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = "Automated DJ/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;

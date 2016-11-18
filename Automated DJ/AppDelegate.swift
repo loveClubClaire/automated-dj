@@ -37,12 +37,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         //Required for the scripting bridge to function
         Bundle.main.loadAppleScriptObjectiveCScripts()
         
-        //Check to see if tiered playlists have been created and if not, create them 
+        //Check to see if tiered playlists have been created and if not, create them
         let areTieredPlaylistsCreated = ErrorChecker.doTieredPlaylistsExist()
-        if areTieredPlaylistsCreated.tier1Exist == false {ApplescriptBridge().createPlaylistWithName("Tier 1")}
-        if areTieredPlaylistsCreated.tier2Exist == false {ApplescriptBridge().createPlaylistWithName("Tier 2")}
-        if areTieredPlaylistsCreated.tier3Exist == false {ApplescriptBridge().createPlaylistWithName("Tier 3")}
-        
+        if areTieredPlaylistsCreated.tier1Exist == false {ApplescriptBridge().createPlaylistWithName(aName: "Tier 1")}
+        if areTieredPlaylistsCreated.tier2Exist == false {ApplescriptBridge().createPlaylistWithName(aName: "Tier 2")}
+        if areTieredPlaylistsCreated.tier3Exist == false {ApplescriptBridge().createPlaylistWithName(aName: "Tier 3")}
+
         //Inatalizes things in the masterScheduleObject related to its UI. Check this function for more information.
         MasterScheduleObject.viewDidLoad()
         
@@ -54,7 +54,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         //Hides the gloablAnnouncementsToolbar and places its buttons on the same level as the quit button and title
         GlobalAnnouncementsObject.globalAnnouncementsWindow.titleVisibility = NSWindowTitleVisibility.hidden
-        
+
         //Populate the Show Window drop down menus with the days of the week
         let daysOfTheWeek = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
         ShowWindowObject.startDay.addItems(withTitles: daysOfTheWeek)
@@ -64,7 +64,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         (AutomatorWindowObject.timeTextField.formatter as! NumberFormatter).minimumFractionDigits = 2
         (AutomatorWindowObject.timeTextField.formatter as! NumberFormatter).maximumFractionDigits = 2
         
-        //Get the filepaths of our applications stored data. 
+        //Get the filepaths of our applications stored data.
         //We grab the URL for the application support folder and append the application name to the end of it, giving us the filepath where all data is stored. If the app has been run before, we should have a valid URL, if not, we create the directory so that the URL is valid. We then create constants with individual file names appended to the stored data directory. If a file does not exist, it will be created using that filepath.
         let applicationSupportFilepath = try! FileManager().url(for: FileManager.SearchPathDirectory.applicationSupportDirectory, in: FileManager.SearchPathDomainMask.userDomainMask, appropriateFor: nil, create: false)
         let storedDataFilepath = applicationSupportFilepath.path + "/Automated DJ"
@@ -121,13 +121,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem.button?.image = NSImage.init(named:"On Air.png")
         
         //Populate the tiered playlists caches. Can take an extended period of time so an async task is spawned
-        let priority = DispatchQueue.GlobalQueuePriority.default
-        DispatchQueue.global(priority: priority).async {
+        DispatchQueue.global().async {
             let applescriptBridge = ApplescriptBridge()
             autoreleasepool{
-                self.cachedTier1Playlist = applescriptBridge.getSongsInPlaylist("Tier 1")
-                self.cachedTier2Playlist = applescriptBridge.getSongsInPlaylist("Tier 2")
-                self.cachedTier3Playlist = applescriptBridge.getSongsInPlaylist("Tier 3")
+                self.cachedTier1Playlist = applescriptBridge.getSongsInPlaylist(aPlaylist: "Tier 1")
+                self.cachedTier2Playlist = applescriptBridge.getSongsInPlaylist(aPlaylist: "Tier 2")
+                self.cachedTier3Playlist = applescriptBridge.getSongsInPlaylist(aPlaylist: "Tier 3")
             }
             self.cachedFilled = true
             NSLog("Cache filled")
@@ -166,9 +165,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let cachedTier1Set = Song.idSetFrom(cachedTier1Playlist as NSArray as! [Song])
             let cachedTier2Set = Song.idSetFrom(cachedTier2Playlist as NSArray as! [Song])
             let cachedTier3Set = Song.idSetFrom(cachedTier3Playlist as NSArray as! [Song])
-            let newTier1Set = Set(applescriptBridge.getPersistentIDsOfSongsInPlaylist("Tier 1"))
-            let newTier2Set = Set(applescriptBridge.getPersistentIDsOfSongsInPlaylist("Tier 2"))
-            let newTier3Set = Set(applescriptBridge.getPersistentIDsOfSongsInPlaylist("Tier 3"))
+            let newTier1Set = Set(applescriptBridge.getPersistentIDsOfSongsInPlaylist(aPlaylist: "Tier 1"))
+            let newTier2Set = Set(applescriptBridge.getPersistentIDsOfSongsInPlaylist(aPlaylist: "Tier 2"))
+            let newTier3Set = Set(applescriptBridge.getPersistentIDsOfSongsInPlaylist(aPlaylist: "Tier 3"))
             //Get all persistant ID's to be added to the tiered playlists
             let tier1Add = newTier1Set.subtracting(cachedTier1Set)
             let tier2Add = newTier2Set.subtracting(cachedTier2Set)
@@ -199,13 +198,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             cachedTier3Playlist.removeObjects(in: toRemove)
             //Add necessary songs to the cached playlists
             for songID in tier1Add {
-                cachedTier1Playlist.add(applescriptBridge.getSong(songID as NSString))
+                cachedTier1Playlist.add(applescriptBridge.getSong(anID: songID as NSString))
             }
             for songID in tier2Add {
-                cachedTier2Playlist.add(applescriptBridge.getSong(songID as NSString))
+                cachedTier2Playlist.add(applescriptBridge.getSong(anID: songID as NSString))
             }
             for songID in tier3Add {
-                cachedTier3Playlist.add(applescriptBridge.getSong(songID as NSString))
+                cachedTier3Playlist.add(applescriptBridge.getSong(anID: songID as NSString))
             }
             //return true indicating that refreshing the cache was a sucessful
             return true

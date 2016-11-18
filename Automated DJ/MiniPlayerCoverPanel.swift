@@ -10,8 +10,8 @@ import Foundation
 import Cocoa
 
 class MiniPlayerCoverPanel: NSPanel {
-    override func orderOut(sender: AnyObject?) {
-        let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+    override func orderOut(_ sender: Any?) {
+        let appDelegate = NSApplication.shared().delegate as! AppDelegate
         appDelegate.deactivateMiniPlayerCover()
         super.orderOut(sender)
     }

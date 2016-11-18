@@ -17,20 +17,20 @@ extension NSWindow {
         
         for _ in 0...count!-1{
             let item = subviews?.popLast()
-            if(item!.isKindOfClass(NSButton)){
-                (item as! NSButton).enabled = false
+            if(item!.isKind(of: NSButton.self)){
+                (item as! NSButton).isEnabled = false
             }
-            if (item!.isKindOfClass(NSTextField)) {
-                (item as! NSTextField).enabled = false
-                (item as! NSTextField).textColor = NSColor.scrollBarColor()
+            if (item!.isKind(of: NSTextField.self)) {
+                (item as! NSTextField).isEnabled = false
+                (item as! NSTextField).textColor = NSColor.scrollBarColor
             }
-            if item!.isKindOfClass(NSPopUpButton) {
-                (item as! NSPopUpButton).enabled = false
+            if item!.isKind(of: NSPopUpButton.self) {
+                (item as! NSPopUpButton).isEnabled = false
             }
-            if item!.isKindOfClass(NSScrollView) {
-                (item as! NSScrollView).hidden = true
+            if item!.isKind(of: NSScrollView.self) {
+                (item as! NSScrollView).isHidden = true
             }
-            if(item!.isKindOfClass(NSProgressIndicator)){
+            if(item!.isKind(of: NSProgressIndicator.self)){
                 (item as! NSProgressIndicator).startAnimation(self)
             }
         }
@@ -43,28 +43,28 @@ extension NSWindow {
         
         for _ in 0...count!-1{
             let item = subviews?.popLast()
-            if(item!.isKindOfClass(NSButton)){
-                (item as! NSButton).enabled = true
+            if(item!.isKind(of: NSButton.self)){
+                (item as! NSButton).isEnabled = true
                 if item?.identifier == "rulesEnabled" {
                     if (item as! NSButton).state == NSOffState{
-                        scrollView!.hidden = true
+                        scrollView!.isHidden = true
                     }
                 }
             }
-            if (item!.isKindOfClass(NSTextField)) {
+            if (item!.isKind(of: NSTextField.self)) {
                 if item?.identifier != "totalTime"{
-                    (item as! NSTextField).enabled = true
-                    (item as! NSTextField).textColor = NSColor.labelColor()
+                    (item as! NSTextField).isEnabled = true
+                    (item as! NSTextField).textColor = NSColor.labelColor
                 }
             }
-            if item!.isKindOfClass(NSPopUpButton) {
-                (item as! NSPopUpButton).enabled = true
+            if item!.isKind(of: NSPopUpButton.self) {
+                (item as! NSPopUpButton).isEnabled = true
             }
-            if item!.isKindOfClass(NSScrollView) {
+            if item!.isKind(of: NSScrollView.self) {
                 scrollView = (item as! NSScrollView)
-                (item as! NSScrollView).hidden = false
+                (item as! NSScrollView).isHidden = false
             }
-            if(item!.isKindOfClass(NSProgressIndicator)){
+            if(item!.isKind(of: NSProgressIndicator.self)){
                 (item as! NSProgressIndicator).stopAnimation(self)
             }
         }

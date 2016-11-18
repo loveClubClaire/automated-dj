@@ -28,14 +28,14 @@ class Preferences: NSObject {
     var defaultPreferencesView: NSView!
     var advancedPreferencesView: NSView!
     
-    private var tempAutomator: Automator = Automator.init(aTotalTime: 2.0, aTierOnePrecent: 15, aTierTwoPrecent: 25, aTierThreePrecent: 60)
+    fileprivate var tempAutomator: Automator = Automator.init(aTotalTime: 2.0, aTierOnePrecent: 15, aTierTwoPrecent: 25, aTierThreePrecent: 60)
     var defaultAutomator: Automator = Automator.init(aTotalTime: 2.0, aTierOnePrecent: 15, aTierTwoPrecent: 25, aTierThreePrecent: 60)
     var isAdmin = false
     var globalAnnouncementsDelay = 0
     var tollerence = 0
     var testAutomator = true
     var useLogs = false
-    private var originalLogFilepath = ""
+    fileprivate var originalLogFilepath = ""
     var logFilepath = ""
     
     //using custom initialize and not init because this is guaranteed to be called after application has finished launching and all of our outlets have sucessfully bound.
@@ -46,7 +46,7 @@ class Preferences: NSObject {
         preferencesToolbar.selectedItemIdentifier = "general"
     }
     
-    func setValuesWith(anArray: [AnyObject]) {
+    func setValuesWith(_ anArray: [AnyObject]) {
         defaultAutomator = anArray[0] as! Automator
         tempAutomator = defaultAutomator
         isAdmin = anArray[1] as! Bool
@@ -61,7 +61,7 @@ class Preferences: NSObject {
     }
     
     func preferencesAsArray() -> [AnyObject] {
-        return [defaultAutomator,isAdmin,globalAnnouncementsDelay,tollerence,testAutomator,useLogs,logFilepath]
+        return [defaultAutomator,isAdmin as AnyObject,globalAnnouncementsDelay as AnyObject,tollerence as AnyObject,testAutomator as AnyObject,useLogs as AnyObject,logFilepath as AnyObject]
     }
     
     func spawnPreferencesWindow(){
@@ -72,27 +72,27 @@ class Preferences: NSObject {
     }
     
     //Gets a filepath and a menu and sets the first menuItem in the menu to the file given by the filepath and then selects that menuItem
-    func setFolderMenu(aFilepath: String, aMenu: NSMenu){
+    func setFolderMenu(_ aFilepath: String, aMenu: NSMenu){
         let myWorkspace = NSWorkspace()
-        let fileImage = myWorkspace.iconForFile(aFilepath)
+        let fileImage = myWorkspace.icon(forFile: aFilepath)
         var imageSize = NSSize(); imageSize.width = 16; imageSize.height = 16;
         fileImage.size = imageSize
-        var filepathParts = aFilepath.componentsSeparatedByString("/")
+        var filepathParts = aFilepath.components(separatedBy: "/")
         let fileName = filepathParts[filepathParts.count - 1]
-        aMenu.itemAtIndex(0)?.image = fileImage
-        aMenu.itemAtIndex(0)?.title = fileName
-        aMenu.performActionForItemAtIndex(0)
+        aMenu.item(at: 0)?.image = fileImage
+        aMenu.item(at: 0)?.title = fileName
+        aMenu.performActionForItem(at: 0)
     }
     
-    @IBAction func customizeDefaultAutomator(sender: AnyObject) {
-        let tempShow = Show.init(aName: "Temp", aStartDate: NSDate.init(), anEndDate: NSDate.init())
+    @IBAction func customizeDefaultAutomator(_ sender: AnyObject) {
+        let tempShow = Show.init(aName: "Temp", aStartDate: Date.init(), anEndDate: Date.init())
         tempShow.automator = defaultAutomator
         AutomatorWindowObject.automatorWindow.title = "Edit Default Automator"
-        AutomatorWindowObject.timeTextField.enabled = true
+        AutomatorWindowObject.timeTextField.isEnabled = true
         AutomatorWindowObject.spawnEditAutomatorWindow(tempShow, status: AutomatorStatus())
     }
     
-    @IBAction func generalPreferencesButton(sender: AnyObject) {
+    @IBAction func generalPreferencesButton(_ sender: AnyObject) {
         var tempFrame = preferencesWindow.frame
         tempFrame.origin.y += tempFrame.size.height
         tempFrame.origin.y -= 242
@@ -102,7 +102,7 @@ class Preferences: NSObject {
         preferencesWindow.contentView = defaultPreferencesView
     }
     
-    @IBAction func advancedPrefernecesButton(sender: AnyObject) {
+    @IBAction func advancedPrefernecesButton(_ sender: AnyObject) {
         //preferencesWindow.contentView = NSView()
         var tempFrame = preferencesWindow.frame
         tempFrame.origin.y += tempFrame.size.height
@@ -113,32 +113,32 @@ class Preferences: NSObject {
         preferencesWindow.contentView = advancedPreferencesView
     }
     
-    @IBAction func enableLoggingButton(sender: AnyObject) {
+    @IBAction func enableLoggingButton(_ sender: AnyObject) {
         if enableLoggingButton.state == NSOnState {
-            logLocationPopUpButton.enabled = true
+            logLocationPopUpButton.isEnabled = true
         }
         else{
-            logLocationPopUpButton.enabled = false
+            logLocationPopUpButton.isEnabled = false
         }
     }
     
-    @IBAction func getLogLocationFolder(sender: AnyObject) {
+    @IBAction func getLogLocationFolder(_ sender: AnyObject) {
         let myPanel = NSOpenPanel()
         myPanel.allowsMultipleSelection = false
         myPanel.canChooseDirectories = true
         myPanel.canChooseFiles = false;
         //If user confirms then call setFolderMenu to update the menu object and update the filepath by setting the signinFilepath variable
         if myPanel.runModal() == NSModalResponseOK {
-            setFolderMenu(myPanel.URLs[0].path!, aMenu: logLocationMenu)
-            logFilepath = myPanel.URLs[0].path!
+            setFolderMenu(myPanel.urls[0].path, aMenu: logLocationMenu)
+            logFilepath = myPanel.urls[0].path
         }
             //If the user cancels then make the menu have the current directory selected, not the change filepath option selected. Its a UI thing.
         else{
-            logLocationMenu.performActionForItemAtIndex(0)
+            logLocationMenu.performActionForItem(at: 0)
         }
     }
     
-    @IBAction func okButton(sender: AnyObject) {
+    @IBAction func okButton(_ sender: AnyObject) {
         if isAdminButton.state == NSOnState {isAdmin = true}
         else{isAdmin = false}
         if testAutomatorButton.state == NSOnState {testAutomator = true}
@@ -155,7 +155,7 @@ class Preferences: NSObject {
         generalPreferencesButton(self)
     }
     
-    @IBAction func cancelButton(sender: AnyObject) {
+    @IBAction func cancelButton(_ sender: AnyObject) {
         defaultAutomator = tempAutomator
         if isAdmin == true {isAdminButton.state = NSOnState}
         else{isAdminButton.state = NSOffState}

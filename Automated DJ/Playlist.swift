@@ -25,97 +25,97 @@ import Cocoa
     var shared: Bool = false
     var genius: Bool = false
     
-    func initWithString(aString: String) -> Playlist{
+    func initWithString(_ aString: String) -> Playlist{
         //let myPlaylist = Playlist()
-        let mySet = NSCharacterSet.init(charactersInString: "{,}")
-        var myPlaylistArray = aString.componentsSeparatedByCharactersInSet(mySet)
+        let mySet = CharacterSet.init(charactersIn: "{,}")
+        var myPlaylistArray = aString.components(separatedBy: mySet)
         myPlaylistArray.removeFirst()
         myPlaylistArray.removeLast()
         for info in myPlaylistArray {
-            let infoParts = info.componentsSeparatedByString(":")
-            if infoParts[0].containsString("ID") {
+            let infoParts = info.components(separatedBy: ":")
+            if infoParts[0].contains("ID") {
                 ID = Int(infoParts[1])!
             }
-            else if infoParts[0].containsString("pidx") {
+            else if infoParts[0].contains("pidx") {
                 index = Int(infoParts[1])!
             }
-            else if infoParts[0].containsString("pnam") {
-                var temp = infoParts[1].componentsSeparatedByString("\"")
+            else if infoParts[0].contains("pnam") {
+                var temp = infoParts[1].components(separatedBy: "\"")
                 temp.removeLast()
                 name = temp.last!
             }
-            else if infoParts[0].containsString("pPIS") {
-                var temp = infoParts[1].componentsSeparatedByString("\"")
+            else if infoParts[0].contains("pPIS") {
+                var temp = infoParts[1].components(separatedBy: "\"")
                 temp.removeLast()
                 persistentID = temp.last!
             }
-            else if infoParts[0].containsString("pDur") {
+            else if infoParts[0].contains("pDur") {
                 duration = Int(infoParts[1])!
             }
-            else if infoParts[0].containsString("pSiz") {
-                let formatter = NSNumberFormatter()
-                formatter.numberStyle = NSNumberFormatterStyle.ScientificStyle
-                size = (formatter.numberFromString(infoParts[1])?.integerValue)!
+            else if infoParts[0].contains("pSiz") {
+                let formatter = NumberFormatter()
+                formatter.numberStyle = NumberFormatter.Style.scientific
+                size = (formatter.number(from: infoParts[1])?.intValue)!
             }
-            else if infoParts[0].containsString("pTim") {
-                var temp = info.componentsSeparatedByString("\"")
+            else if infoParts[0].contains("pTim") {
+                var temp = info.components(separatedBy: "\"")
                 temp.removeLast()
                 time = temp.last!
             }
-            else if infoParts[0].containsString("pvis") {
-                var temp = infoParts[1].componentsSeparatedByString("\"")
+            else if infoParts[0].contains("pvis") {
+                var temp = infoParts[1].components(separatedBy: "\"")
                 temp.removeLast()
                 visible = temp.last!.toBool()
             }
-            else if infoParts[0].containsString("pSpK") {
-                if infoParts[1].containsString("kNon") {
+            else if infoParts[0].contains("pSpK") {
+                if infoParts[1].contains("kNon") {
                     specialKind = "none"
                 }
-                else if infoParts[1].containsString("kSpL") {
+                else if infoParts[1].contains("kSpL") {
                     specialKind = "Library"
                 }
-                else if infoParts[1].containsString("kSpZ") {
+                else if infoParts[1].contains("kSpZ") {
                     specialKind = "Music"
                 }
-                else if infoParts[1].containsString("kSpI") {
+                else if infoParts[1].contains("kSpI") {
                     specialKind = "Movies"
                 }
-                else if infoParts[1].containsString("kSpT") {
+                else if infoParts[1].contains("kSpT") {
                     specialKind = "TV Shows"
                 }
-                else if infoParts[1].containsString("kSpP") {
+                else if infoParts[1].contains("kSpP") {
                     specialKind = "Podcasts"
                 }
-                else if infoParts[1].containsString("kSpU") {
+                else if infoParts[1].contains("kSpU") {
                     specialKind = "iTunes U"
                 }
-                else if infoParts[1].containsString("kSpA") {
+                else if infoParts[1].contains("kSpA") {
                     specialKind = "Audiobooks"
                 }
-                else if infoParts[1].containsString("kSpM") {
+                else if infoParts[1].contains("kSpM") {
                     specialKind = "Purchased Music"
                 }
-                else if infoParts[1].containsString("kSpF") {
+                else if infoParts[1].contains("kSpF") {
                     specialKind = "Folder"
                 }
             }
-            else if infoParts[0].containsString("pLov") {
-                var temp = infoParts[1].componentsSeparatedByString("\"")
+            else if infoParts[0].contains("pLov") {
+                var temp = infoParts[1].components(separatedBy: "\"")
                 temp.removeLast()
                 loved = temp.last!.toBool()
             }
-            else if infoParts[0].containsString("pSmt") {
-                var temp = infoParts[1].componentsSeparatedByString("\"")
+            else if infoParts[0].contains("pSmt") {
+                var temp = infoParts[1].components(separatedBy: "\"")
                 temp.removeLast()
                 smart = temp.last!.toBool()
             }
-            else if infoParts[0].containsString("pShr") {
-                var temp = infoParts[1].componentsSeparatedByString("\"")
+            else if infoParts[0].contains("pShr") {
+                var temp = infoParts[1].components(separatedBy: "\"")
                 temp.removeLast()
                 shared = temp.last!.toBool()
             }
-            else if infoParts[0].containsString("pGns") {
-                var temp = infoParts[1].componentsSeparatedByString("\"")
+            else if infoParts[0].contains("pGns") {
+                var temp = infoParts[1].components(separatedBy: "\"")
                 temp.removeLast()
                 genius = temp.last!.toBool()
             }
@@ -123,7 +123,7 @@ import Cocoa
         return self
     }
     
-    static func getPlaylistNames(withTieredPlaylists: Bool, aPlaylistArray: [Playlist]) -> [String]{
+    static func getPlaylistNames(_ withTieredPlaylists: Bool, aPlaylistArray: [Playlist]) -> [String]{
         var allNames: [String] = []
         
         for aPlaylist in aPlaylistArray {
@@ -140,7 +140,7 @@ import Cocoa
         return allNames
     }
 
-    static func getNewPlaylistDuration(someSongs: [Song]) -> Double{
+    static func getNewPlaylistDuration(_ someSongs: [Song]) -> Double{
         var totalDuration = 0.0
         for aSong in someSongs {
             totalDuration = totalDuration + aSong.duration
