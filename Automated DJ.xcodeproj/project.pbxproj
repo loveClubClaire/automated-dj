@@ -88,7 +88,7 @@
 		C04616BA1CE43542004E1B38 /* Automated DJUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Automated DJUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C04616BE1CE43542004E1B38 /* Automated_DJUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Automated_DJUITests.swift; sourceTree = "<group>"; };
 		C04616C01CE43542004E1B38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C04616CC1CE436A7004E1B38 /* MasterSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterSchedule.swift; sourceTree = "<group>"; };
+		C04616CC1CE436A7004E1B38 /* MasterSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MasterSchedule.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C04616CE1CE436AF004E1B38 /* Show.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Show.swift; sourceTree = "<group>"; };
 		C04616D01CE436B9004E1B38 /* ShowWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowWindow.swift; sourceTree = "<group>"; };
 		C04616D21CE436CD004E1B38 /* Automator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Automator.swift; sourceTree = "<group>"; };

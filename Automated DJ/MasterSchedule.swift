@@ -82,7 +82,7 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
             let automatorStatus = AutomatorStatus()
             let aShow = dataArray[index!]
             var anAutomator = aShow.automator
-            index = selectedShows.integerGreaterThan(index!)
+            index = (selectedShows as NSIndexSet).indexGreaterThanIndex(index!)
             while index != NSNotFound {
                 let timeFormatter = DateFormatter();timeFormatter.dateFormat = "hh:mm a"
                 let dayFormatter = DateFormatter();dayFormatter.dateFormat = "EEEE"
@@ -126,7 +126,7 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
                     status.automator = false
                 }
 
-                index = selectedShows.integerGreaterThan(index!)
+                index = (selectedShows as NSIndexSet).indexGreaterThanIndex(index!)
             }
             status.automatorStatus = automatorStatus
             ShowWindowObject.spawnEditShowWindow(aShow, anAutomator: anAutomator, status: status)
@@ -141,7 +141,7 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
         //itterate through the selected shows and modify each one
         while index != NSNotFound {
             dataArray[index!] = aStatus.modifyShow(dataArray[index!], masterShow: aShow)
-            index = selectedShows.integerGreaterThan(index!)
+            index = (selectedShows as NSIndexSet).indexGreaterThanIndex(index!)
         }
         NSKeyedArchiver.archiveRootObject(dataArray, toFile: AppDelegateObject.storedProgramsFilepath)
         tableView.reloadData()
@@ -189,7 +189,7 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
         var index = selectedShows.first
         while index != NSNotFound {
             selectedShowsArray.append(dataArray[index!])
-            index = selectedShows.integerGreaterThan(index!)
+            index = (selectedShows as NSIndexSet).indexGreaterThanIndex(index!)
         }
         return selectedShowsArray
     }
