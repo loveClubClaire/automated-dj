@@ -34,8 +34,10 @@ class ShowWindow: NSObject {
     func spawnEditShowWindow(_ aShow: Show, anAutomator: Automator?, status: ShowStatus){
         showWindow.title = "Edit Shows"
         showStatus = status
-        //Creates a deep copy of the passed automator object to prevent any unexpected value modification due to shared objects
-        editAutomator = Automator.init(aTotalTime: (anAutomator?.totalTime)!, aTierOnePrecent: (anAutomator?.tierOnePrecent)!, aTierTwoPrecent: (anAutomator?.tierTwoPrecent)!, aTierThreePrecent: (anAutomator?.tierThreePrecent)!, aSeedPlaylist: anAutomator?.seedPlayist, aBumpersPlaylist: anAutomator?.bumpersPlaylist, aBumpersPerBlock: anAutomator?.bumpersPerBlock, aSongBetweenBlocks: anAutomator?.songsBetweenBlocks, aRules: anAutomator?.rules)
+        if(anAutomator != nil){
+            //Creates a deep copy of the passed automator object to prevent any unexpected value modification due to shared objects
+            editAutomator = Automator.init(aTotalTime: (anAutomator?.totalTime)!, aTierOnePrecent: (anAutomator?.tierOnePrecent)!, aTierTwoPrecent: (anAutomator?.tierTwoPrecent)!, aTierThreePrecent: (anAutomator?.tierThreePrecent)!, aSeedPlaylist: anAutomator?.seedPlayist, aBumpersPlaylist: anAutomator?.bumpersPlaylist, aBumpersPerBlock: anAutomator?.bumpersPerBlock, aSongBetweenBlocks: anAutomator?.songsBetweenBlocks, aRules: anAutomator?.rules)
+        }
         //Set the values passed to their respective objects
         let timeFormatter = DateFormatter();timeFormatter.dateFormat = "hh:mm a"
         let dayFormatter = DateFormatter();dayFormatter.dateFormat = "EEEE"
