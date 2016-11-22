@@ -186,10 +186,10 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
         }
 
         var selectedShowsArray = [Show]()
-        var index = selectedShows.first
+        var index = (selectedShows as NSIndexSet).firstIndex
         while index != NSNotFound {
-            selectedShowsArray.append(dataArray[index!])
-            index = (selectedShows as NSIndexSet).indexGreaterThanIndex(index!)
+            selectedShowsArray.append(dataArray[index])
+            index = (selectedShows as NSIndexSet).indexGreaterThanIndex(index)
         }
         return selectedShowsArray
     }
