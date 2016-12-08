@@ -158,7 +158,7 @@ class ApplescriptBridge: NSObject {
         }
     }
     
-    func getPersistentIDsOfSongsInPlaylist(aPlaylist: NSString) -> [String]{
+    func getPersistentIDsOfSongsInPlaylist(aPlaylist: String) -> [String]{
         let name = "getPersistentIDsOfSongsInPlaylist:"
         let selector = NSSelectorFromString(name)
         let result = instance.perform(selector, with: aPlaylist)
