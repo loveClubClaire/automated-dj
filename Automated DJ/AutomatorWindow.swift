@@ -208,23 +208,8 @@ class AutomatorWindow: NSObject {
         //Called here because the result of this function depends on if the prediacte editor is visable or not and makeDisabled messes with the state of the predicate editors visability.
         let aWindowStatus = getWindowStatus()
         automatorWindow.makeDisabled()
-        //Ask the user if they want to test the automator
-        let myPopup: NSAlert = NSAlert()
-        myPopup.messageText = "Test Automator?"
-        myPopup.informativeText = "Determines if expected time of an automator can be met. Can take several minutes to complete"
-        myPopup.alertStyle = NSAlertStyle.warning
-        myPopup.addButton(withTitle: "OK")
-        myPopup.addButton(withTitle: "Cancel")
-        let result = myPopup.runModal()
-        if result == NSAlertFirstButtonReturn{
-            //Actually test the new automator. Async task. Yay not blocking the main thread.
-            ErrorChecker.checkAutomatorValidity(isValid:{value in isValidShow = value}, anAutomator: anAutomator, anAutomatorStatus: aWindowStatus, selectedShows: selectedShows, dispatchGroup: errorCheckerGroup)
-        }
-        else{
-            //If valility is not being tested call the simple automator test (only checks if tiered playlists sum up to 100%, its important and fast) and empty the dispatch group to allow the function to continue
-            ErrorChecker.simpleAutomatorValidityCheck(anAutomator: anAutomator, anAutomatorStatus: aWindowStatus, selectedShows: selectedShows, isValid: {value in isValidShow = value})
-            errorCheckerGroup.leave()
-        }
+        //Actually test the new automator. Async task. Yay not blocking the main thread.
+        ErrorChecker.checkAutomatorValidity(isValid:{value in isValidShow = value}, anAutomator: anAutomator, anAutomatorStatus: aWindowStatus, selectedShows: selectedShows, dispatchGroup: errorCheckerGroup)
         //Wait for the dispatch group is empty, then execute code in the block
         errorCheckerGroup.notify(queue: DispatchQueue.main) {
             self.automatorWindow.makeEnabled()
