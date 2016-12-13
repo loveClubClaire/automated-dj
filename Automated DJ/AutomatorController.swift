@@ -86,15 +86,14 @@ class AutomatorController: NSObject {
     }
     
     func generatePlaylist(_ playlistName: String, anAutomator: Automator){
-        let priority = DispatchQueue.GlobalQueuePriority.default
-        DispatchQueue.global(priority: priority).async {
+        DispatchQueue.main.async {
         //Initalize logging variables
         let startTime = Date.init(); var tier1log = 0; var tier2log = 0; var tier3log = 0;
         //NOTE: Automator.totalTime is an hour value! Its a double representing hours. So it needs to be converted to seconds if you want seconds
         let applescriptBridge = ApplescriptBridge()
         let generatedPlaylist: NSMutableArray = NSMutableArray()
         //Get tiered playlists
-        self.AppDelegateObject.updateCachedPlaylists()
+        _ = self.AppDelegateObject.updateCachedPlaylists()
         let tier1 = NSMutableArray(); tier1.addObjects(from: self.AppDelegateObject.cachedTier1Playlist as [AnyObject])
         let tier2 = NSMutableArray(); tier2.addObjects(from: self.AppDelegateObject.cachedTier2Playlist as [AnyObject])
         let tier3 = NSMutableArray(); tier3.addObjects(from: self.AppDelegateObject.cachedTier3Playlist as [AnyObject])

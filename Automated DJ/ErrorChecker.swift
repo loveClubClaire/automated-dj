@@ -57,11 +57,9 @@ class ErrorChecker: NSObject {
     }
     
     static func checkAutomatorValidity(isValid: @escaping (Bool) -> Void, anAutomator: Automator, anAutomatorStatus: AutomatorStatus, selectedShows: [Show], dispatchGroup: DispatchGroup) {
-        let priority = DispatchQueue.GlobalQueuePriority.default
-        
-        DispatchQueue.global(priority: priority).async {
+        DispatchQueue.main.async {
             let appDelegate = NSApplication.shared().delegate as! AppDelegate
-            appDelegate.updateCachedPlaylists()
+            _ = appDelegate.updateCachedPlaylists()
             let masterTier1Songs = NSMutableArray(); masterTier1Songs.addObjects(from: appDelegate.cachedTier1Playlist as [AnyObject])
             let masterTier2Songs = NSMutableArray(); masterTier2Songs.addObjects(from: appDelegate.cachedTier2Playlist as [AnyObject])
             let masterTier3Songs = NSMutableArray(); masterTier3Songs.addObjects(from: appDelegate.cachedTier3Playlist as [AnyObject])
@@ -117,7 +115,6 @@ class ErrorChecker: NSObject {
                     isTier3LongEnough = false
                     break
                 }
-                
             }
         
         DispatchQueue.main.async {
@@ -151,7 +148,10 @@ class ErrorChecker: NSObject {
             
             
             
+        
         }
+        
+       //DispatchQueue.global(priority: priority).async {}
     }
     
     static func checkShowValidity(_ aShow: Show, aShowStatus: ShowStatus, selectedShows: [Show]) -> Bool {
