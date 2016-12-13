@@ -48,16 +48,16 @@ class Automator: NSObject {
     
     //Decode each individual object and then create a new object instance
     required convenience init?(coder decoder: NSCoder) {
-        guard let totalTime = decoder.decodeObject(forKey: "totalTime") as? Double,
-            let tierOnePrecent = decoder.decodeObject(forKey: "tierOnePrecent") as? Int,
-            let tierTwoPrecent = decoder.decodeObject(forKey: "tierTwoPrecent") as? Int,
-            let tierThreePrecent = decoder.decodeObject(forKey: "tierThreePrecent") as? Int,
-            let seedPlayist = decoder.decodeObject(forKey: "seedPlayist") as? String?,
+        let totalTime = decoder.decodeDouble(forKey: "totalTime")
+        let tierOnePrecent = decoder.decodeInteger(forKey: "tierOnePrecent")
+        let tierTwoPrecent = decoder.decodeInteger(forKey: "tierTwoPrecent")
+        let tierThreePrecent = decoder.decodeInteger(forKey: "tierThreePrecent")
+        guard let seedPlayist = decoder.decodeObject(forKey: "seedPlayist") as? String?,
             let bumpersPlaylist = decoder.decodeObject(forKey: "bumpersPlaylist") as? String?,
             let bumpersPerBlock = decoder.decodeObject(forKey: "bumpersPerBlock") as? Int?,
             let songsBetweenBlocks = decoder.decodeObject(forKey: "songsBetweenBlocks") as? Int?,
             let rules = decoder.decodeObject(forKey: "rules") as? NSPredicate?
-            else { return nil }
+        else { return nil }
         
         self.init(aTotalTime: totalTime, aTierOnePrecent: tierOnePrecent, aTierTwoPrecent: tierTwoPrecent, aTierThreePrecent: tierThreePrecent, aSeedPlaylist: seedPlayist, aBumpersPlaylist: bumpersPlaylist, aBumpersPerBlock: bumpersPerBlock, aSongBetweenBlocks: songsBetweenBlocks, aRules: rules)
     }
