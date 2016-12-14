@@ -8,17 +8,6 @@
 
 import Foundation
 import Cocoa
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
-}
-
 
 class AutomatorController: NSObject {
     @IBOutlet weak var MasterScheduleObject: MasterSchedule!
@@ -129,7 +118,7 @@ class AutomatorController: NSObject {
             //Check to see if its time to add bumpers. Automator contians how many songs there must be in between blocks. When that number is met (and a bumper playlist actually exists), then we add bumpers.
             //bumperBlockCount keeps track of how large our current block is, bumperCounter keeps track of where we are in the bumper playlist. This number rolls over so that once we reach the end of the bumper playlist, we go back to the begining rather than just ending or something. And songBlockCount keeps track of the number of songs added since we last added a bumper
             if songBlockCount == songsBetweenBlocks && anAutomator.bumpersPlaylist != nil {
-                while bumperBlockCount < anAutomator.bumpersPerBlock {
+                while bumperBlockCount < anAutomator.bumpersPerBlock! {
                     generatedPlaylist.add(bumpers.object(at: bumperCounter))
                     bumperBlockCount = bumperBlockCount + 1; bumperCounter = bumperCounter + 1
                     if bumperCounter >= bumpers.count {

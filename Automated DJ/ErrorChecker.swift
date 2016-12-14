@@ -87,7 +87,7 @@ class ErrorChecker: NSObject {
                     is100Precent = false
                     break
                 }
-                
+   
                 var rules = anAutomator.rules
                 
                 if anAutomatorStatus.rules == true {
