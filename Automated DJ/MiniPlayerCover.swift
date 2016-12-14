@@ -107,7 +107,7 @@ class MiniPlayerCover: NSObject {
                 wasPressed = true
                 let rawDelayTime = applescriptBridge.timeLeftInCurrentSong()
                 let delayTime = DispatchTime.now() + Double(Int64( (rawDelayTime - 1.0) * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-                DispatchQueue.main.asyncAfter(deadline: delayTime) {
+                DispatchQueue.global(qos: .background).asyncAfter(deadline: delayTime) {
                     applescriptBridge.iTunesStop()
                     self.wasPressed = false
                 }
@@ -136,7 +136,7 @@ class MiniPlayerCover: NSObject {
                 }
                 let rawDelayTime = applescriptBridge.timeLeftInCurrentSong()
                 let delayTime = DispatchTime.now() + Double(Int64( (rawDelayTime - 1.0) * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-                DispatchQueue.main.asyncAfter(deadline: delayTime) {
+                DispatchQueue.global(qos: .background).asyncAfter(deadline: delayTime) {
                     self.AutomatorControllerObject.playGeneratedPlaylist(generatedPlaylistName)
                     self.wasPressed = false
                 }

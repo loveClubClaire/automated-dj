@@ -57,14 +57,14 @@ class AutomatorController: NSObject {
                 //If the show is not automated then only the global announcements window needs to be spawned
                 if aShow.automator == nil {
                     let delayTime = DispatchTime.now() + Double(Int64(Double(delay + PreferencesObject.globalAnnouncementsDelay) * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-                    DispatchQueue.main.asyncAfter(deadline: delayTime) {
+                    DispatchQueue.global(qos: .background).asyncAfter(deadline: delayTime) {
                         self.GlobalAnnouncementsObject.spawnImmutableGlobalAnnouncements()
                     }
                 }
                 //If the show is automated, a playlist must be generated and played
                 else{
                     let delayTime = DispatchTime.now() + Double(Int64(Double(delay) * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-                    DispatchQueue.main.asyncAfter(deadline: delayTime) {
+                    DispatchQueue.global(qos: .background).asyncAfter(deadline: delayTime) {
                        self.playGeneratedPlaylist(generatedPlaylistName)
                     }
                     generatePlaylist(generatedPlaylistName, anAutomator: aShow.automator!)
@@ -75,7 +75,7 @@ class AutomatorController: NSObject {
     }
     
     func generatePlaylist(_ playlistName: String, anAutomator: Automator){
-        DispatchQueue.main.async {
+        DispatchQueue.global(qos: .background).async {
         //Initalize logging variables
         let startTime = Date.init(); var tier1log = 0; var tier2log = 0; var tier3log = 0;
         //NOTE: Automator.totalTime is an hour value! Its a double representing hours. So it needs to be converted to seconds if you want seconds
@@ -198,7 +198,7 @@ class AutomatorController: NSObject {
             delayTime = DispatchTime.init(uptimeNanoseconds: 0)
             rawDelayTime = 0
         }
-        DispatchQueue.main.asyncAfter(deadline: delayTime) {
+        DispatchQueue.global(qos: .background).asyncAfter(deadline: delayTime) {
             applescriptBridge.playPlaylist(aPlaylist: playlistName)
             let log = LogGenerator()
             log.writeToLog("Start time of playlist: " + Date.init().description)

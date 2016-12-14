@@ -57,7 +57,7 @@ class ErrorChecker: NSObject {
     }
     
     static func checkAutomatorValidity(isValid: @escaping (Bool) -> Void, anAutomator: Automator, anAutomatorStatus: AutomatorStatus, selectedShows: [Show], dispatchGroup: DispatchGroup) {
-        DispatchQueue.main.async {
+        DispatchQueue.global(qos: .background).async {
             let appDelegate = NSApplication.shared().delegate as! AppDelegate
             _ = appDelegate.updateCachedPlaylists()
             let masterTier1Songs = NSMutableArray(); masterTier1Songs.addObjects(from: appDelegate.cachedTier1Playlist as [AnyObject])
@@ -117,7 +117,7 @@ class ErrorChecker: NSObject {
                 }
             }
         
-        DispatchQueue.main.async {
+        DispatchQueue.global(qos: .background).async {
             let myPopup: NSAlert = NSAlert()
             myPopup.alertStyle = NSAlertStyle.critical
             myPopup.addButton(withTitle: "OK")

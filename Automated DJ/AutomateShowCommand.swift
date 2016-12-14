@@ -48,7 +48,7 @@ class AutomateShowCommand: NSScriptCommand {
             newEndDate = calendar.date(from: newEndDateComponents)!
             //Dispatch code to unautomate the show to execute when the show ends.
             let delayTime = DispatchTime.now() + Double(Int64(newEndDate.timeIntervalSinceNow * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-            DispatchQueue.main.asyncAfter(deadline: delayTime) {
+            DispatchQueue.global(qos: .background).asyncAfter(deadline: delayTime) {
                 (dataArray[indexOfShow] as! Show).automator = nil
                 appDelegate.MasterScheduleObject.tableView.reloadData()
             }
