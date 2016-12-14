@@ -65,6 +65,7 @@ class ErrorChecker: NSObject {
             let masterTier3Songs = NSMutableArray(); masterTier3Songs.addObjects(from: appDelegate.cachedTier3Playlist as [AnyObject])
             
             var is100Precent = true
+            var validBumpers = true
             var isTier1LongEnough = true
             var isTier2LongEnough = true
             var isTier3LongEnough = true
@@ -86,6 +87,12 @@ class ErrorChecker: NSObject {
                 if (tier1 + tier2 + tier3) != 100 {
                     is100Precent = false
                     break
+                }
+                
+                if anAutomator.bumpersPlaylist != nil{
+                    if anAutomator.bumpersPerBlock == 0 || anAutomator.songsBetweenBlocks == 0{
+                        validBumpers = false
+                    }
                 }
    
                 var rules = anAutomator.rules
@@ -117,7 +124,7 @@ class ErrorChecker: NSObject {
                 }
             }
         
-        DispatchQueue.global(qos: .background).async {
+        DispatchQueue.main.async {
             let myPopup: NSAlert = NSAlert()
             myPopup.alertStyle = NSAlertStyle.critical
             myPopup.addButton(withTitle: "OK")
@@ -126,6 +133,11 @@ class ErrorChecker: NSObject {
             if is100Precent == false {
                 isValid(false)
                 myPopup.messageText = "Tiered precentages must add up to 100!"
+                myPopup.runModal()
+            }
+            if validBumpers == false{
+                isValid(false)
+                myPopup.messageText = "Bumpers Per Block and Songs Between Blocks must be greater than zero"
                 myPopup.runModal()
             }
             if isTier1LongEnough == false {
@@ -150,8 +162,6 @@ class ErrorChecker: NSObject {
             
         
         }
-        
-       //DispatchQueue.global(priority: priority).async {}
     }
     
     static func checkShowValidity(_ aShow: Show, aShowStatus: ShowStatus, selectedShows: [Show]) -> Bool {

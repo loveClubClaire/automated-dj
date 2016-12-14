@@ -57,14 +57,14 @@ class AutomatorController: NSObject {
                 //If the show is not automated then only the global announcements window needs to be spawned
                 if aShow.automator == nil {
                     let delayTime = DispatchTime.now() + Double(Int64(Double(delay + PreferencesObject.globalAnnouncementsDelay) * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-                    DispatchQueue.global(qos: .background).asyncAfter(deadline: delayTime) {
+                    DispatchQueue.main.asyncAfter(deadline: delayTime) {
                         self.GlobalAnnouncementsObject.spawnImmutableGlobalAnnouncements()
                     }
                 }
                 //If the show is automated, a playlist must be generated and played
                 else{
                     let delayTime = DispatchTime.now() + Double(Int64(Double(delay) * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-                    DispatchQueue.global(qos: .background).asyncAfter(deadline: delayTime) {
+                    DispatchQueue.main.asyncAfter(deadline: delayTime) {
                        self.playGeneratedPlaylist(generatedPlaylistName)
                     }
                     generatePlaylist(generatedPlaylistName, anAutomator: aShow.automator!)
@@ -198,7 +198,7 @@ class AutomatorController: NSObject {
             delayTime = DispatchTime.init(uptimeNanoseconds: 0)
             rawDelayTime = 0
         }
-        DispatchQueue.global(qos: .background).asyncAfter(deadline: delayTime) {
+        DDispatchQueue.main.asyncAfter(deadline: delayTime) {
             applescriptBridge.playPlaylist(aPlaylist: playlistName)
             let log = LogGenerator()
             log.writeToLog("Start time of playlist: " + Date.init().description)
