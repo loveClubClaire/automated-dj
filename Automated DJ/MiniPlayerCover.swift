@@ -30,6 +30,7 @@ class MiniPlayerCover: NSObject {
         //Makes the max and min size of the panel equal to its current size, so the size of the panel can not be modifed when it is hidded
         MiniPlayerCoverPanel.minSize = NSSize.init(width: MiniPlayerCoverPanel.frame.width, height: MiniPlayerCoverPanel.frame.height)
         MiniPlayerCoverPanel.maxSize = NSSize.init(width: MiniPlayerCoverPanel.frame.width, height: MiniPlayerCoverPanel.frame.height)
+        ((MiniPlayerCoverPanel.contentView) as! MiniPlayerCoverView).addTrackingArea()
         //Setting the styleMask to 14 disables the menu bar but allows the panel to still exist (i.e. when clicking, our panel takes the click action, not any object beneith it)
         MiniPlayerCoverPanel.styleMask = NSWindowStyleMask(rawValue: UInt(14))
         //Make the panel invisible and imovable
