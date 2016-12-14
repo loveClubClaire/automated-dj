@@ -198,7 +198,7 @@ class AutomatorController: NSObject {
             delayTime = DispatchTime.init(uptimeNanoseconds: 0)
             rawDelayTime = 0
         }
-        DDispatchQueue.main.asyncAfter(deadline: delayTime) {
+        DispatchQueue.main.asyncAfter(deadline: delayTime) {
             applescriptBridge.playPlaylist(aPlaylist: playlistName)
             let log = LogGenerator()
             log.writeToLog("Start time of playlist: " + Date.init().description)
