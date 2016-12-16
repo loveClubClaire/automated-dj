@@ -6,16 +6,20 @@
 	<true/>
 	<key>com.apple.security.files.user-selected.read-write</key>
 	<true/>
-    <key>com.apple.security.scripting-targets</key>
-    <dict>
-        <key>com.apple.iTunes</key>
-        <array>
-            <string>com.apple.itunes.library.read-write</string>
-            <string>com.apple.iTunes.library.read</string>
-            <string>com.apple.iTunes.playback </string>
-            <string>com.apple.iTunes.podcast </string>
-            <string>com.apple.iTunes.user-interface </string>
-        </array>
-    </dict>
+	<key>com.apple.security.temporary-exception.apple-events</key>
+	<string>com.apple.iTunes</string>
+    
+<!--    <key>com.apple.security.scripting-targets</key>-->
+<!--    <dict>-->
+<!--        <key>com.apple.iTunes</key>-->
+<!--        <array>-->
+<!--            <string>com.apple.iTunes.device</string>-->
+<!--            <string>com.apple.iTunes.library.read</string>-->
+<!--            <string>com.apple.iTunes.library.read-write</string>-->
+<!--            <string>com.apple.iTunes.playback</string>-->
+<!--            <string>com.apple.iTunes.podcast</string>-->
+<!--            <string>com.apple.iTunes.user-interface</string>-->
+<!--        </array>-->
+<!--    </dict>-->
 </dict>
 </plist>

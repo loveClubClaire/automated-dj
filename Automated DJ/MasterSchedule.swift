@@ -196,10 +196,10 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
     
     @IBAction func saveSchedule(_ sender: AnyObject) {
         let savePanel = NSSavePanel()
+        savePanel.allowedFileTypes = ["adjs"]
         let result = savePanel.runModal()
         if result == NSFileHandlingPanelOKButton {
-            var filepath = savePanel.url?.path
-            filepath = filepath! + ".adjs"
+            let filepath = savePanel.url?.path
             NSKeyedArchiver.archiveRootObject(dataArray, toFile: filepath!)
         }
     }
