@@ -156,12 +156,12 @@ class ErrorChecker: NSObject {
                     myPopup.messageText = "Tier 3 is not long enough!"
                     myPopup.runModal()
                 }
-                dispatchGroup.leave()
             }
                 
                 
                 
             }
+            dispatchGroup.leave()
         }
     }
     
