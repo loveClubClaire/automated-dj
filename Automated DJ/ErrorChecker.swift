@@ -59,108 +59,109 @@ class ErrorChecker: NSObject {
     static func checkAutomatorValidity(isValid: @escaping (Bool) -> Void, anAutomator: Automator, anAutomatorStatus: AutomatorStatus, selectedShows: [Show], dispatchGroup: DispatchGroup) {
         DispatchQueue.global(qos: .background).async {
             let appDelegate = NSApplication.shared().delegate as! AppDelegate
-            _ = appDelegate.updateCachedPlaylists()
-            let masterTier1Songs = NSMutableArray(); masterTier1Songs.addObjects(from: appDelegate.cachedTier1Playlist as [AnyObject])
-            let masterTier2Songs = NSMutableArray(); masterTier2Songs.addObjects(from: appDelegate.cachedTier2Playlist as [AnyObject])
-            let masterTier3Songs = NSMutableArray(); masterTier3Songs.addObjects(from: appDelegate.cachedTier3Playlist as [AnyObject])
-            
-            var is100Precent = true
-            var validBumpers = true
-            var isTier1LongEnough = true
-            var isTier2LongEnough = true
-            var isTier3LongEnough = true
-            
+            let isCacheFull = appDelegate.updateCachedPlaylists()
+            if(isCacheFull == true){
+                let masterTier1Songs = NSMutableArray(); masterTier1Songs.addObjects(from: appDelegate.cachedTier1Playlist as [AnyObject])
+                let masterTier2Songs = NSMutableArray(); masterTier2Songs.addObjects(from: appDelegate.cachedTier2Playlist as [AnyObject])
+                let masterTier3Songs = NSMutableArray(); masterTier3Songs.addObjects(from: appDelegate.cachedTier3Playlist as [AnyObject])
+                
+                var is100Precent = true
+                var validBumpers = true
+                var isTier1LongEnough = true
+                var isTier2LongEnough = true
+                var isTier3LongEnough = true
+                
 
-            for aSelectedShow in selectedShows {
-                var tier1 = anAutomator.tierOnePrecent
-                var tier2 = anAutomator.tierTwoPrecent
-                var tier3 = anAutomator.tierThreePrecent
-                let tier1Songs = NSMutableArray.init(array: masterTier1Songs)
-                let tier2Songs = NSMutableArray.init(array: masterTier2Songs)
-                let tier3Songs = NSMutableArray.init(array: masterTier3Songs)
-                
-                
-                if anAutomatorStatus.tierOnePrecent == true {tier1 = (aSelectedShow.automator?.tierOnePrecent)!}
-                if anAutomatorStatus.tierTwoPrecent == true {tier2 = (aSelectedShow.automator?.tierTwoPrecent)!}
-                if anAutomatorStatus.tierThreePrecent == true {tier3 = (aSelectedShow.automator?.tierThreePrecent)!}
-                
-                if (tier1 + tier2 + tier3) != 100 {
-                    is100Precent = false
-                    break
-                }
-                
-                if anAutomator.bumpersPlaylist != nil{
-                    if anAutomator.bumpersPerBlock == 0 || anAutomator.songsBetweenBlocks == 0{
-                        validBumpers = false
+                for aSelectedShow in selectedShows {
+                    var tier1 = anAutomator.tierOnePrecent
+                    var tier2 = anAutomator.tierTwoPrecent
+                    var tier3 = anAutomator.tierThreePrecent
+                    let tier1Songs = NSMutableArray.init(array: masterTier1Songs)
+                    let tier2Songs = NSMutableArray.init(array: masterTier2Songs)
+                    let tier3Songs = NSMutableArray.init(array: masterTier3Songs)
+                    
+                    
+                    if anAutomatorStatus.tierOnePrecent == true {tier1 = (aSelectedShow.automator?.tierOnePrecent)!}
+                    if anAutomatorStatus.tierTwoPrecent == true {tier2 = (aSelectedShow.automator?.tierTwoPrecent)!}
+                    if anAutomatorStatus.tierThreePrecent == true {tier3 = (aSelectedShow.automator?.tierThreePrecent)!}
+                    
+                    if (tier1 + tier2 + tier3) != 100 {
+                        is100Precent = false
+                        break
+                    }
+                    
+                    if anAutomator.bumpersPlaylist != nil{
+                        if anAutomator.bumpersPerBlock == 0 || anAutomator.songsBetweenBlocks == 0{
+                            validBumpers = false
+                        }
+                    }
+       
+                    var rules = anAutomator.rules
+                    
+                    if anAutomatorStatus.rules == true {
+                        rules = aSelectedShow.automator?.rules
+                    }
+                    
+                    if rules != nil {
+                        tier1Songs.filter(using: rules!)
+                        tier2Songs.filter(using: rules!)
+                        tier3Songs.filter(using: rules!)
+                    }
+                    
+                    var totalTime = anAutomator.totalTime
+                    if anAutomatorStatus.totalTime == true && aSelectedShow.automator != nil {totalTime = (aSelectedShow.automator?.totalTime)!}
+                    
+                    if (((totalTime * 3600) * (Double(tier1) / 100.0) * 1.15) > Playlist.getNewPlaylistDuration(tier1Songs as NSArray as! [Song])) {
+                        isTier1LongEnough = false
+                        break
+                    }
+                    if (((totalTime * 3600) * (Double(tier2) / 100.0) * 1.15) > Playlist.getNewPlaylistDuration(tier2Songs as NSArray as! [Song])) {
+                        isTier2LongEnough = false
+                        break
+                    }
+                    if (((totalTime * 3600) * (Double(tier3) / 100.0) * 1.15) > Playlist.getNewPlaylistDuration(tier3Songs as NSArray as! [Song])) {
+                        isTier3LongEnough = false
+                        break
                     }
                 }
-   
-                var rules = anAutomator.rules
-                
-                if anAutomatorStatus.rules == true {
-                    rules = aSelectedShow.automator?.rules
-                }
-                
-                if rules != nil {
-                    tier1Songs.filter(using: rules!)
-                    tier2Songs.filter(using: rules!)
-                    tier3Songs.filter(using: rules!)
-                }
-                
-                var totalTime = anAutomator.totalTime
-                if anAutomatorStatus.totalTime == true && aSelectedShow.automator != nil {totalTime = (aSelectedShow.automator?.totalTime)!}
-                
-                if (((totalTime * 3600) * (Double(tier1) / 100.0) * 1.15) > Playlist.getNewPlaylistDuration(tier1Songs as NSArray as! [Song])) {
-                    isTier1LongEnough = false
-                    break
-                }
-                if (((totalTime * 3600) * (Double(tier2) / 100.0) * 1.15) > Playlist.getNewPlaylistDuration(tier2Songs as NSArray as! [Song])) {
-                    isTier2LongEnough = false
-                    break
-                }
-                if (((totalTime * 3600) * (Double(tier3) / 100.0) * 1.15) > Playlist.getNewPlaylistDuration(tier3Songs as NSArray as! [Song])) {
-                    isTier3LongEnough = false
-                    break
-                }
-            }
-        
-        DispatchQueue.main.async {
-            let myPopup: NSAlert = NSAlert()
-            myPopup.alertStyle = NSAlertStyle.critical
-            myPopup.addButton(withTitle: "OK")
-            isValid(true)
-                
-            if is100Precent == false {
-                isValid(false)
-                myPopup.messageText = "Tiered precentages must add up to 100!"
-                myPopup.runModal()
-            }
-            if validBumpers == false{
-                isValid(false)
-                myPopup.messageText = "Bumpers Per Block and Songs Between Blocks must be greater than zero"
-                myPopup.runModal()
-            }
-            if isTier1LongEnough == false {
-                isValid(false)
-                myPopup.messageText = "Tier 1 is not long enough!"
-                myPopup.runModal()
-            }
-            if isTier2LongEnough == false {
-                isValid(false)
-                myPopup.messageText = "Tier 2 is not long enough!"
-                myPopup.runModal()
-            }
-            if isTier3LongEnough == false {
-               isValid(false)
-                myPopup.messageText = "Tier 3 is not long enough!"
-                myPopup.runModal()
-            }
-            dispatchGroup.leave()
-        }
             
-            
-            
-        
+            DispatchQueue.main.async {
+                let myPopup: NSAlert = NSAlert()
+                myPopup.alertStyle = NSAlertStyle.critical
+                myPopup.addButton(withTitle: "OK")
+                isValid(true)
+                    
+                if is100Precent == false {
+                    isValid(false)
+                    myPopup.messageText = "Tiered precentages must add up to 100!"
+                    myPopup.runModal()
+                }
+                if validBumpers == false{
+                    isValid(false)
+                    myPopup.messageText = "Bumpers Per Block and Songs Between Blocks must be greater than zero"
+                    myPopup.runModal()
+                }
+                if isTier1LongEnough == false {
+                    isValid(false)
+                    myPopup.messageText = "Tier 1 is not long enough!"
+                    myPopup.runModal()
+                }
+                if isTier2LongEnough == false {
+                    isValid(false)
+                    myPopup.messageText = "Tier 2 is not long enough!"
+                    myPopup.runModal()
+                }
+                if isTier3LongEnough == false {
+                   isValid(false)
+                    myPopup.messageText = "Tier 3 is not long enough!"
+                    myPopup.runModal()
+                }
+                dispatchGroup.leave()
+            }
+                
+                
+                
+            }
         }
     }
     

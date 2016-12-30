@@ -82,104 +82,106 @@ class AutomatorController: NSObject {
         let applescriptBridge = ApplescriptBridge()
         let generatedPlaylist: NSMutableArray = NSMutableArray()
         //Get tiered playlists
-        _ = self.AppDelegateObject.updateCachedPlaylists()
-        let tier1 = NSMutableArray(); tier1.addObjects(from: self.AppDelegateObject.cachedTier1Playlist as [AnyObject])
-        let tier2 = NSMutableArray(); tier2.addObjects(from: self.AppDelegateObject.cachedTier2Playlist as [AnyObject])
-        let tier3 = NSMutableArray(); tier3.addObjects(from: self.AppDelegateObject.cachedTier3Playlist as [AnyObject])
-        //Apply rules to tiered playlists if rules exist
-        if anAutomator.rules != nil {
-            tier1.filter(using: anAutomator.rules!)
-            tier2.filter(using: anAutomator.rules!)
-            tier3.filter(using: anAutomator.rules!)
-        }
-        //get seed playlist if it exists and add seed playlist to generated playlist
-        //TODO test if this handles a non existant but non null playlist
-        if anAutomator.seedPlayist != nil{
-            generatedPlaylist.addObjects(from: applescriptBridge.getSongsInPlaylist(aPlaylist: anAutomator.seedPlayist!) as [AnyObject])
-            //Remove excess if seed playlist is longer than playlist length
-            //While actual time is greater than expected time + tolerance
-            while Playlist.getNewPlaylistDuration(generatedPlaylist as Array as! [Song]) > ((anAutomator.totalTime * 3600) + Double(self.PreferencesObject.tollerence)) {
-                generatedPlaylist.removeLastObject()
+        let isCacheFull = self.AppDelegateObject.updateCachedPlaylists()
+        if(isCacheFull == true){
+            let tier1 = NSMutableArray(); tier1.addObjects(from: self.AppDelegateObject.cachedTier1Playlist as [AnyObject])
+            let tier2 = NSMutableArray(); tier2.addObjects(from: self.AppDelegateObject.cachedTier2Playlist as [AnyObject])
+            let tier3 = NSMutableArray(); tier3.addObjects(from: self.AppDelegateObject.cachedTier3Playlist as [AnyObject])
+            //Apply rules to tiered playlists if rules exist
+            if anAutomator.rules != nil {
+                tier1.filter(using: anAutomator.rules!)
+                tier2.filter(using: anAutomator.rules!)
+                tier3.filter(using: anAutomator.rules!)
             }
-        }
-        //main algorithm
-        //inatalize variables used for inserting bumpers
-        var songBlockCount = 0
-        var bumperBlockCount = 0
-        var bumperCounter = 0
-        var songsBetweenBlocks = 0
-        var bumpers = NSMutableArray()
-        if anAutomator.bumpersPlaylist != nil{
-            bumpers = applescriptBridge.getSongsInPlaylist(aPlaylist: anAutomator.bumpersPlaylist!)
-            songsBetweenBlocks = anAutomator.songsBetweenBlocks!
-        }
-        //while the generated playlist length is less than the total time as required by the automator...
-        while Playlist.getNewPlaylistDuration(generatedPlaylist as Array as! [Song]) < (anAutomator.totalTime * 3600) {
-            //Check to see if its time to add bumpers. Automator contians how many songs there must be in between blocks. When that number is met (and a bumper playlist actually exists), then we add bumpers.
-            //bumperBlockCount keeps track of how large our current block is, bumperCounter keeps track of where we are in the bumper playlist. This number rolls over so that once we reach the end of the bumper playlist, we go back to the begining rather than just ending or something. And songBlockCount keeps track of the number of songs added since we last added a bumper
-            if songBlockCount == songsBetweenBlocks && anAutomator.bumpersPlaylist != nil {
-                while bumperBlockCount < anAutomator.bumpersPerBlock! {
-                    generatedPlaylist.add(bumpers.object(at: bumperCounter))
-                    bumperBlockCount = bumperBlockCount + 1; bumperCounter = bumperCounter + 1
-                    if bumperCounter >= bumpers.count {
-                        bumperCounter = 0
-                    }
-                }
-                //Because we just blindly add bumpers into the generatedPlaylist, this prevents that process from placing us over the expected time (which is the total time + the tollerence)
+            //get seed playlist if it exists and add seed playlist to generated playlist
+            //TODO test if this handles a non existant but non null playlist
+            if anAutomator.seedPlayist != nil{
+                generatedPlaylist.addObjects(from: applescriptBridge.getSongsInPlaylist(aPlaylist: anAutomator.seedPlayist!) as [AnyObject])
+                //Remove excess if seed playlist is longer than playlist length
+                //While actual time is greater than expected time + tolerance
                 while Playlist.getNewPlaylistDuration(generatedPlaylist as Array as! [Song]) > ((anAutomator.totalTime * 3600) + Double(self.PreferencesObject.tollerence)) {
                     generatedPlaylist.removeLastObject()
                 }
-                bumperBlockCount = 0
-                songBlockCount = 0
             }
-            //Actual main algorithm. Song adding yay.
-            else{
-                var tieredPlaylist = NSMutableArray()
-                //Generate a random number between 0 to 99.
-                let randomNumber = arc4random_uniform(100)
-                if randomNumber >= 0 && randomNumber < UInt32(anAutomator.tierOnePrecent) {
-                    tieredPlaylist = tier1
-                    tier1log = tier1log + 1
+            //main algorithm
+            //inatalize variables used for inserting bumpers
+            var songBlockCount = 0
+            var bumperBlockCount = 0
+            var bumperCounter = 0
+            var songsBetweenBlocks = 0
+            var bumpers = NSMutableArray()
+            if anAutomator.bumpersPlaylist != nil{
+                bumpers = applescriptBridge.getSongsInPlaylist(aPlaylist: anAutomator.bumpersPlaylist!)
+                songsBetweenBlocks = anAutomator.songsBetweenBlocks!
+            }
+            //while the generated playlist length is less than the total time as required by the automator...
+            while Playlist.getNewPlaylistDuration(generatedPlaylist as Array as! [Song]) < (anAutomator.totalTime * 3600) {
+                //Check to see if its time to add bumpers. Automator contians how many songs there must be in between blocks. When that number is met (and a bumper playlist actually exists), then we add bumpers.
+                //bumperBlockCount keeps track of how large our current block is, bumperCounter keeps track of where we are in the bumper playlist. This number rolls over so that once we reach the end of the bumper playlist, we go back to the begining rather than just ending or something. And songBlockCount keeps track of the number of songs added since we last added a bumper
+                if songBlockCount == songsBetweenBlocks && anAutomator.bumpersPlaylist != nil {
+                    while bumperBlockCount < anAutomator.bumpersPerBlock! {
+                        generatedPlaylist.add(bumpers.object(at: bumperCounter))
+                        bumperBlockCount = bumperBlockCount + 1; bumperCounter = bumperCounter + 1
+                        if bumperCounter >= bumpers.count {
+                            bumperCounter = 0
+                        }
+                    }
+                    //Because we just blindly add bumpers into the generatedPlaylist, this prevents that process from placing us over the expected time (which is the total time + the tollerence)
+                    while Playlist.getNewPlaylistDuration(generatedPlaylist as Array as! [Song]) > ((anAutomator.totalTime * 3600) + Double(self.PreferencesObject.tollerence)) {
+                        generatedPlaylist.removeLastObject()
+                    }
+                    bumperBlockCount = 0
+                    songBlockCount = 0
                 }
-                else if randomNumber >= UInt32(anAutomator.tierOnePrecent) && randomNumber < UInt32(anAutomator.tierOnePrecent + anAutomator.tierTwoPrecent){
-                    tieredPlaylist = tier2
-                    tier2log = tier2log + 1
-                }
+                //Actual main algorithm. Song adding yay.
                 else{
-                    tieredPlaylist = tier3
-                    tier3log = tier3log + 1
-                }
-                
-                while tieredPlaylist.count > 0 {
-                    let songPosition = Int(arc4random_uniform(UInt32(tieredPlaylist.count)))
-                    let randomSong = tieredPlaylist.object(at: songPosition) as! Song; tieredPlaylist.removeObject(at: songPosition)
-                    if (Playlist.getNewPlaylistDuration(generatedPlaylist as Array as! [Song]) + randomSong.duration) < ((anAutomator.totalTime * 3600) + Double(self.PreferencesObject.tollerence)) {
-                            generatedPlaylist.add(randomSong)
-                            songBlockCount = songBlockCount + 1
-                            break;
+                    var tieredPlaylist = NSMutableArray()
+                    //Generate a random number between 0 to 99.
+                    let randomNumber = arc4random_uniform(100)
+                    if randomNumber >= 0 && randomNumber < UInt32(anAutomator.tierOnePrecent) {
+                        tieredPlaylist = tier1
+                        tier1log = tier1log + 1
+                    }
+                    else if randomNumber >= UInt32(anAutomator.tierOnePrecent) && randomNumber < UInt32(anAutomator.tierOnePrecent + anAutomator.tierTwoPrecent){
+                        tieredPlaylist = tier2
+                        tier2log = tier2log + 1
+                    }
+                    else{
+                        tieredPlaylist = tier3
+                        tier3log = tier3log + 1
+                    }
+                    
+                    while tieredPlaylist.count > 0 {
+                        let songPosition = Int(arc4random_uniform(UInt32(tieredPlaylist.count)))
+                        let randomSong = tieredPlaylist.object(at: songPosition) as! Song; tieredPlaylist.removeObject(at: songPosition)
+                        if (Playlist.getNewPlaylistDuration(generatedPlaylist as Array as! [Song]) + randomSong.duration) < ((anAutomator.totalTime * 3600) + Double(self.PreferencesObject.tollerence)) {
+                                generatedPlaylist.add(randomSong)
+                                songBlockCount = songBlockCount + 1
+                                break;
+                        }
                     }
                 }
+                //If we have exhuasted all tracks from all tiered playlists, then nothing more can be added to the playlist, regardless of if its long enough. Break so we dont infinatly loop.
+                if tier1.count == 0 && tier2.count == 0 && tier3.count == 0 {
+                    let log = LogGenerator.init()
+                    log.writeToLog("Tiered Playlists Exhausted")
+                    break;
+                }
             }
-            //If we have exhuasted all tracks from all tiered playlists, then nothing more can be added to the playlist, regardless of if its long enough. Break so we dont infinatly loop.
-            if tier1.count == 0 && tier2.count == 0 && tier3.count == 0 {
-                let log = LogGenerator.init()
-                log.writeToLog("Tiered Playlists Exhausted")
-                break;
+            //Once we generated our playlist, create the playlist in iTunes and add all the songs to the iTunes playlist.
+            applescriptBridge.createPlaylistWithName(aName: playlistName)
+            applescriptBridge.addSongsToPlaylist(aPlaylist: playlistName, songArray: generatedPlaylist)
+            //Logging
+            let log = LogGenerator.init()
+            log.writeToLog("Playlist generation time (in seconds): " + String(startTime.timeIntervalSinceNow * -1.0))
+            let allSongs = tier1log + tier2log + tier3log
+            let tier1Precent = (Double(tier1log) / Double(allSongs)) * 100.0
+            let tier2Precent = (Double(tier2log) / Double(allSongs)) * 100.0
+            let tier3Precent = (Double(tier3log) / Double(allSongs)) * 100.0
+                log.writeToLog("Precentages of tiered playlists: Tier 1: " + String(format: "%.3f",tier1Precent) + "% Tier 2: " + String(format: "%.3f",tier2Precent) + "% Tier 3: " + String(format: "%.3f",tier3Precent) + "%")
+            log.writeToLog("Generated playlist length (in hours): " + String(format: "%.3f",Playlist.getNewPlaylistDuration(generatedPlaylist as Array as! [Song]) / 3600.0))
+            log.writeToLog("Current tolerance: " + String(self.PreferencesObject.tollerence) + " seconds")
             }
-        }
-        //Once we generated our playlist, create the playlist in iTunes and add all the songs to the iTunes playlist.
-        applescriptBridge.createPlaylistWithName(aName: playlistName)
-        applescriptBridge.addSongsToPlaylist(aPlaylist: playlistName, songArray: generatedPlaylist)
-        //Logging
-        let log = LogGenerator.init()
-        log.writeToLog("Playlist generation time (in seconds): " + String(startTime.timeIntervalSinceNow * -1.0))
-        let allSongs = tier1log + tier2log + tier3log
-        let tier1Precent = (Double(tier1log) / Double(allSongs)) * 100.0
-        let tier2Precent = (Double(tier2log) / Double(allSongs)) * 100.0
-        let tier3Precent = (Double(tier3log) / Double(allSongs)) * 100.0
-            log.writeToLog("Precentages of tiered playlists: Tier 1: " + String(format: "%.3f",tier1Precent) + "% Tier 2: " + String(format: "%.3f",tier2Precent) + "% Tier 3: " + String(format: "%.3f",tier3Precent) + "%")
-        log.writeToLog("Generated playlist length (in hours): " + String(format: "%.3f",Playlist.getNewPlaylistDuration(generatedPlaylist as Array as! [Song]) / 3600.0))
-        log.writeToLog("Current tolerance: " + String(self.PreferencesObject.tollerence) + " seconds")
         }
     }
     
