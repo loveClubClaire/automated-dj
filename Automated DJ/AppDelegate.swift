@@ -133,7 +133,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             DispatchQueue.main.sync {
                 let myPopup: NSAlert = NSAlert()
                 myPopup.messageText = "Cache filled"
-                myPopup.informativeText = "more text"
                 myPopup.alertStyle = NSAlertStyle.critical
                 myPopup.addButton(withTitle: "OK")
                 //Brings focus to the application because this alert can spawn when the user is not using the app. Maybe in the future it would be better to have the icon change color or something but that is a feature for another time.
