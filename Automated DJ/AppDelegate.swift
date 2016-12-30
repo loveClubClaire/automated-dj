@@ -130,6 +130,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
             self.cachedFilled = true
             NSLog("Cache filled")
+            DispatchQueue.main.sync {
+                let myPopup: NSAlert = NSAlert()
+                myPopup.messageText = "Cache filled"
+                myPopup.informativeText = "more text"
+                myPopup.alertStyle = NSAlertStyle.critical
+                myPopup.addButton(withTitle: "OK")
+                myPopup.runModal()
+            }
         }
     }
 
@@ -157,6 +165,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func updateCachedPlaylists() -> Bool {
         //If the cache has not yet been filled, then it can not be updated and this function returns false
         if cachedFilled == false {
+            DispatchQueue.main.sync {
+                let myPopup: NSAlert = NSAlert()
+                myPopup.messageText = "Cache not filled"
+                myPopup.informativeText = "This process can take several minutes after application launch"
+                myPopup.alertStyle = NSAlertStyle.critical
+                myPopup.addButton(withTitle: "OK")
+                myPopup.runModal()
+            }
             return false
         }
         else{
