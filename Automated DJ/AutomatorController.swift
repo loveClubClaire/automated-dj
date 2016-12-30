@@ -178,7 +178,7 @@ class AutomatorController: NSObject {
             let tier1Precent = (Double(tier1log) / Double(allSongs)) * 100.0
             let tier2Precent = (Double(tier2log) / Double(allSongs)) * 100.0
             let tier3Precent = (Double(tier3log) / Double(allSongs)) * 100.0
-                log.writeToLog("Precentages of tiered playlists: Tier 1: " + String(format: "%.3f",tier1Precent) + "% Tier 2: " + String(format: "%.3f",tier2Precent) + "% Tier 3: " + String(format: "%.3f",tier3Precent) + "%")
+            log.writeToLog("Precentages of tiered playlists: Tier 1: " + String(format: "%.3f",tier1Precent) + "% Tier 2: " + String(format: "%.3f",tier2Precent) + "% Tier 3: " + String(format: "%.3f",tier3Precent) + "%")
             log.writeToLog("Generated playlist length (in hours): " + String(format: "%.3f",Playlist.getNewPlaylistDuration(generatedPlaylist as Array as! [Song]) / 3600.0))
             log.writeToLog("Current tolerance: " + String(self.PreferencesObject.tollerence) + " seconds")
             }

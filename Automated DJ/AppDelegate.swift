@@ -136,6 +136,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 myPopup.informativeText = "more text"
                 myPopup.alertStyle = NSAlertStyle.critical
                 myPopup.addButton(withTitle: "OK")
+                //Brings focus to the application because this alert can spawn when the user is not using the app. Maybe in the future it would be better to have the icon change color or something but that is a feature for another time.
+                self.myApplication.activate(ignoringOtherApps: true)
                 myPopup.runModal()
             }
         }
@@ -171,6 +173,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 myPopup.informativeText = "This process can take several minutes after application launch"
                 myPopup.alertStyle = NSAlertStyle.critical
                 myPopup.addButton(withTitle: "OK")
+                myApplication.activate(ignoringOtherApps: true)
                 myPopup.runModal()
             }
             return false
