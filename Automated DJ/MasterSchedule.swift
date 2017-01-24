@@ -107,8 +107,8 @@ class MasterSchedule: NSObject, NSTableViewDataSource, NSTableViewDelegate{
                         if (anAutomator?.tierThreePrecent)! != (dataArray[index!].automator?.tierThreePrecent)! {automatorStatus.tierThreePrecent = false}
                         if anAutomator?.seedPlayist != dataArray[index!].automator?.seedPlayist {automatorStatus.seedPlayist = false}
                         if anAutomator?.bumpersPlaylist != dataArray[index!].automator?.bumpersPlaylist {automatorStatus.bumpersPlaylist = false}
-                        if anAutomator?.bumpersPerBlock != (dataArray[index!].automator?.bumpersPerBlock)! {automatorStatus.bumpersPerBlock = false}
-                        if anAutomator?.songsBetweenBlocks != (dataArray[index!].automator?.songsBetweenBlocks)! {automatorStatus.songsBetweenBlocks = false}
+                        if anAutomator?.bumpersPerBlock != dataArray[index!].automator?.bumpersPerBlock {automatorStatus.bumpersPerBlock = false}
+                        if anAutomator?.songsBetweenBlocks != dataArray[index!].automator?.songsBetweenBlocks {automatorStatus.songsBetweenBlocks = false}
                         if anAutomator?.rules != dataArray[index!].automator?.rules {automatorStatus.rules = false}
                         
                         if (anAutomator?.seedPlayist == nil && dataArray[index!].automator?.seedPlayist != nil) || (anAutomator?.seedPlayist != nil && dataArray[index!].automator?.seedPlayist == nil){

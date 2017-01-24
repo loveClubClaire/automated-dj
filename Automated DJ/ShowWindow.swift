@@ -26,6 +26,7 @@ class ShowWindow: NSObject {
     
     func spawnNewShowWindow(){
         showWindow.title = "New Show"
+        isAutomated.allowsMixedState = false
         showWindow.center()
         showWindow.makeKeyAndOrderFront(self)
         NSApp.runModal(for: showWindow)
@@ -33,10 +34,14 @@ class ShowWindow: NSObject {
     
     func spawnEditShowWindow(_ aShow: Show, anAutomator: Automator?, status: ShowStatus){
         showWindow.title = "Edit Shows"
+        isAutomated.allowsMixedState = false
         showStatus = status
         if(anAutomator != nil){
             //Creates a deep copy of the passed automator object to prevent any unexpected value modification due to shared objects
             editAutomator = Automator.init(aTotalTime: (anAutomator?.totalTime)!, aTierOnePrecent: (anAutomator?.tierOnePrecent)!, aTierTwoPrecent: (anAutomator?.tierTwoPrecent)!, aTierThreePrecent: (anAutomator?.tierThreePrecent)!, aSeedPlaylist: anAutomator?.seedPlayist, aBumpersPlaylist: anAutomator?.bumpersPlaylist, aBumpersPerBlock: anAutomator?.bumpersPerBlock, aSongBetweenBlocks: anAutomator?.songsBetweenBlocks, aRules: anAutomator?.rules)
+        }
+        else{
+            editAutomator = nil
         }
         //Set the values passed to their respective objects
         let timeFormatter = DateFormatter();timeFormatter.dateFormat = "hh:mm a"
@@ -127,11 +132,18 @@ class ShowWindow: NSObject {
         }
         else{
             //Calculate the length of the show and thusly the length of the automator
+            //dayDifference is redundent code because shows cannot be longer than 24 hours, so if a showlength time is negative, we can safely assume the dayDifference is 1 and there is no need to calculate it. Sue me I'm lazy. 
+            //Because we make sure showLength will never be a negative, we can use -1 as an error code. I.E. when spawnEditAutomatorWindow gets a -1 for show length, it can set the labels value to "mixed"
             var dayDifference = endDateComponents.day! - startDateComponents.day!
             if startDateComponents.day == 7 && endDateComponents.day == 1 {dayDifference = 1}
             let endTime = ((Double(endDateComponents.minute!)  / 60.0) + Double(endDateComponents.hour!))
             let startTime = ((Double(startDateComponents.minute!) as Double / 60.0) + Double(startDateComponents.hour!))
-            let showLength = (endTime - startTime) + (Double(dayDifference) * 24.0)
+            var showLength = (endTime - startTime) + (Double(dayDifference) * 24.0)
+            if showLength < 0 {showLength = showLength + 24}
+            if((self.startTime as! CustomDatePicker).isPlaceholder() == true || (self.endTime as! CustomDatePicker).isPlaceholder() == true){
+                showLength = -1
+                showStatus.automatorStatus.totalTime = false
+            }
             NSApp.stopModal()
             showWindow.orderOut(self)
             

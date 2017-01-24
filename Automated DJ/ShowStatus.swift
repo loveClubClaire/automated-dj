@@ -114,6 +114,7 @@ class ShowStatus: NSObject {
             if masterShow.automator != nil {
                 if editedShowAutomator == nil {
                     editedShowAutomator = masterShow.automator
+                    editedShowAutomator?.totalTime = showLength
                 }
                 else{
                      editedShowAutomator = automatorStatus.modifyAutomator(editedShowAutomator!, masterAutomator: masterShow.automator!)

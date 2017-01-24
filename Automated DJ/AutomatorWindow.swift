@@ -37,7 +37,8 @@ class AutomatorWindow: NSObject {
     
     func spawnNewAutomatorWindow(_ length: Double, aShow: Show){
         automatorWindow.title = "New Automator"
-        timeTextField.doubleValue = length
+        if(length == -1){timeTextField.placeholderString = "Mixed"}
+        else{timeTextField.doubleValue = length}
         seedPlaylistButton.addItems(withTitles: Playlist.getPlaylistNames(false,aPlaylistArray: ApplescriptBridge().getPlaylists()))
         bumpersPlaylistButton.addItems(withTitles: Playlist.getPlaylistNames(false,aPlaylistArray: ApplescriptBridge().getPlaylists()))
         seedPlaylistButton.selectItem(at: -1)

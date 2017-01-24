@@ -81,9 +81,9 @@ class ErrorChecker: NSObject {
                     let tier3Songs = NSMutableArray.init(array: masterTier3Songs)
                     
                     
-                    if anAutomatorStatus.tierOnePrecent == true {tier1 = (aSelectedShow.automator?.tierOnePrecent)!}
-                    if anAutomatorStatus.tierTwoPrecent == true {tier2 = (aSelectedShow.automator?.tierTwoPrecent)!}
-                    if anAutomatorStatus.tierThreePrecent == true {tier3 = (aSelectedShow.automator?.tierThreePrecent)!}
+                    if anAutomatorStatus.tierOnePrecent == true {tier1 = (aSelectedShow.automator?.tierOnePrecent) ?? 0}
+                    if anAutomatorStatus.tierTwoPrecent == true {tier2 = (aSelectedShow.automator?.tierTwoPrecent) ?? 0}
+                    if anAutomatorStatus.tierThreePrecent == true {tier3 = (aSelectedShow.automator?.tierThreePrecent) ?? 0}
                     
                     if (tier1 + tier2 + tier3) != 100 {
                         is100Precent = false
