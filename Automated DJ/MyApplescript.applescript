@@ -28,11 +28,15 @@ script MyApplescript
     on getSongsInPlaylist_(aPlaylist as string)
         tell application "iTunes"
             --Custom timeout of 45 minutes to allow slower systems with large libraries to sucessfully return. The passed parameter is set to another variable because passed parameters can not be directlly called in a timeout block or the applescript will not compile. 
-        set thePlaylist to aPlaylist
+            set thePlaylist to aPlaylist
+            set my_result to {}
             with timeout of 2700 seconds
                 set my_playlist to get playlist thePlaylist
-                get properties of tracks of my_playlist
+                try
+                    set my_result to properties of tracks of my_playlist
+                end try
             end timeout
+        return my_result
         end tell
     end getSongsInPlaylist_
     
