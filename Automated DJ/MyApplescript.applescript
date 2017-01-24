@@ -139,7 +139,11 @@ script MyApplescript
 
     on getPersistentIDsOfSongsInPlaylist_(aPlaylist as string)
         tell application "iTunes"
-           get persistent ID of tracks of playlist aPlaylist
+            set my_result to {}
+            try
+                set my_result to persistent ID of tracks of playlist aPlaylist
+            end try
+            return my_result
         end tell
     end getSongsInPlaylist_
 
