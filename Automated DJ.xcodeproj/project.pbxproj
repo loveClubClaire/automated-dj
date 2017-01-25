@@ -98,6 +98,7 @@
 		C04616D21CE436CD004E1B38 /* Automator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Automator.swift; sourceTree = "<group>"; };
 		C04616D41CE436D7004E1B38 /* AutomatorWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomatorWindow.swift; sourceTree = "<group>"; };
 		C04C1C0F1D40180100F93EEC /* ChangePlaylistTolerance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePlaylistTolerance.swift; sourceTree = "<group>"; };
+		C05435DD1E382CAF00416B87 /* Automated DJ-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Automated DJ-Bridging-Header.h"; sourceTree = "<group>"; };
 		C05835531DE522C200CFF6B6 /* PlaylistGenerationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistGenerationTests.swift; sourceTree = "<group>"; };
 		C05CA75A1CF77395009FE793 /* NSWindow+Extention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSWindow+Extention.swift"; sourceTree = "<group>"; };
 		C08372A91CE62EAA0046F231 /* MasterScheduleWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterScheduleWindow.swift; sourceTree = "<group>"; };
@@ -284,6 +285,7 @@
 		C0F6D2AB1CF4F64E001E0E95 /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
+				C05435DD1E382CAF00416B87 /* Automated DJ-Bridging-Header.h */,
 				C05CA75A1CF77395009FE793 /* NSWindow+Extention.swift */,
 				C0F6D2A91CF4F637001E0E95 /* String+Extention.swift */,
 			);
@@ -620,6 +622,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sixteensquared.Automated-DJ";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Automated DJ/Automated DJ-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -642,6 +645,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sixteensquared.Automated-DJ";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Automated DJ/Automated DJ-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
