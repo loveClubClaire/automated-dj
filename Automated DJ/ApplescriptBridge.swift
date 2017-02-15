@@ -36,6 +36,18 @@ class ApplescriptBridge: NSObject {
         let selector = NSSelectorFromString(name)
         let returnObject = instance.perform(selector)
         let rawPlaylists = returnObject?.takeUnretainedValue() as! NSArray
+        //If rawPlaylists == {} then iTunes is not configured. Please configure iTunes and then relaunch the automated DJ. 
+        if rawPlaylists.count == 0{
+            let myPopup: NSAlert = NSAlert()
+            myPopup.messageText = "Fatal Error: iTunes not configured"
+            myPopup.informativeText = "Please configure iTunes then relaunch the Automated DJ"
+            myPopup.alertStyle = NSAlertStyle.critical
+            myPopup.addButton(withTitle: "OK")
+            myPopup.runModal()
+            //Kill applicaiton
+            NSApp.terminate(self)
+        }
+        
         var playlists = [Playlist]()
         for aRawPlaylist in rawPlaylists {
             playlists.append(Playlist().initWithString((aRawPlaylist as! NSAppleEventDescriptor).debugDescription))

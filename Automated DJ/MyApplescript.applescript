@@ -15,7 +15,11 @@ script MyApplescript
     
     on getPlaylists()
         tell application "iTunes"
-            get properties of playlists
+            set my_result to {}
+            try
+                set my_result to properties of playlists
+            end try
+            return my_result
         end tell
     end getPlaylists
     
