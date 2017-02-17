@@ -95,10 +95,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             PreferencesObject.setValuesWith(preferences as! [AnyObject])
         }
         else{
-            //Get the filepath to he desktop so the default log filepath can be set to the desktop
-            let fileManager = FileManager()
-            let desktopFilepathURL = try? fileManager.url(for: FileManager.SearchPathDirectory.desktopDirectory, in: FileManager.SearchPathDomainMask.userDomainMask, appropriateFor: nil, create:false)
-            PreferencesObject.setValuesWith([Automator.init(aTotalTime: 2.0, aTierOnePrecent: 15, aTierTwoPrecent: 25, aTierThreePrecent: 60),false as AnyObject,240 as AnyObject,50 as AnyObject,true as AnyObject,false as AnyObject,(desktopFilepathURL?.path)! as AnyObject])
+            PreferencesObject.setValuesWith([Automator.init(aTotalTime: 2.0, aTierOnePrecent: 15, aTierTwoPrecent: 25, aTierThreePrecent: 60),false as AnyObject,240 as AnyObject,50 as AnyObject,true as AnyObject,false as AnyObject,("") as AnyObject])
+        }
+        //Get the log filepath and get a sandbox security exception for it. If no exception exists, then do nothing 
+        let userDefault = UserDefaults.standard
+        if let bookmarkData = userDefault.object(forKey: "bookmark") as? NSData {
+            do {
+                let url = try NSURL.init(resolvingBookmarkData: bookmarkData as Data, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: nil)
+                url.startAccessingSecurityScopedResource()
+            } catch let error as NSError {
+                print("Bookmark Access Fails: \(error.description)")
+            }
         }
         //Inatalize the timer
         AutomatorControllerObject.spawnMasterTimer()

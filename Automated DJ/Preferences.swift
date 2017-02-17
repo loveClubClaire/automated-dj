@@ -72,6 +72,7 @@ class Preferences: NSObject {
     }
     
     //Gets a filepath and a menu and sets the first menuItem in the menu to the file given by the filepath and then selects that menuItem
+    //If that filepath is the default ("" an empty string, a non existant filepath) then we do not set a file image and we set the state of the menu item to off to remove the check mark from the menu item
     func setFolderMenu(_ aFilepath: String, aMenu: NSMenu){
         let myWorkspace = NSWorkspace()
         let fileImage = myWorkspace.icon(forFile: aFilepath)
@@ -79,7 +80,12 @@ class Preferences: NSObject {
         fileImage.size = imageSize
         var filepathParts = aFilepath.components(separatedBy: "/")
         let fileName = filepathParts[filepathParts.count - 1]
-        aMenu.item(at: 0)?.image = fileImage
+        if aFilepath != "" {
+            aMenu.item(at: 0)?.image = fileImage
+        }
+        else{
+            aMenu.item(at: 0)?.state = 0
+        }
         aMenu.item(at: 0)?.title = fileName
         aMenu.performActionForItem(at: 0)
     }
@@ -103,7 +109,6 @@ class Preferences: NSObject {
     }
     
     @IBAction func advancedPrefernecesButton(_ sender: AnyObject) {
-        //preferencesWindow.contentView = NSView()
         var tempFrame = preferencesWindow.frame
         tempFrame.origin.y += tempFrame.size.height
         tempFrame.origin.y -= 257
@@ -131,6 +136,14 @@ class Preferences: NSObject {
         if myPanel.runModal() == NSModalResponseOK {
             setFolderMenu(myPanel.urls[0].path, aMenu: logLocationMenu)
             logFilepath = myPanel.urls[0].path
+            do {
+                let userDefault = UserDefaults.standard
+                let bookmark = try myPanel.urls[0].bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: nil, relativeTo: nil)
+                userDefault.set(bookmark, forKey: "bookmark")
+            }
+            catch let error as NSError{
+                print("Set Bookmark Fails: \(error.description)")
+            }
         }
             //If the user cancels then make the menu have the current directory selected, not the change filepath option selected. Its a UI thing.
         else{
@@ -145,8 +158,8 @@ class Preferences: NSObject {
         else{testAutomator = false}
         globalAnnouncementsDelay = globalAnnouncementsDelayTextField.integerValue
         tollerence = tollerenceTextField.integerValue
-        if enableLoggingButton.state == NSOnState {useLogs = true}
-        else{useLogs = false}
+        if enableLoggingButton.state == NSOnState && logFilepath != "" {useLogs = true}
+        else{useLogs = false; enableLoggingButton.state = NSOffState; logLocationPopUpButton.isEnabled = false}
         
         let prefArray = preferencesAsArray()
         NSKeyedArchiver.archiveRootObject(prefArray, toFile: AppDelegateObject.storedPreferencesFilepath)
