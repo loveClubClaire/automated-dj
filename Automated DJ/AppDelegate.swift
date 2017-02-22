@@ -111,6 +111,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         AutomatorControllerObject.spawnMasterTimer()
         
         //Inatalize the menu bar. Then create NSMenuItems and add them to the menu bar. Then set the menu bar to be our applications menu bar. NSMenuItems which are not separators are given a name an a selector which corresponds to a function related to the name.
+        //The menu bar icon is initially the off air image, then the subsequent loading images as each tiered playlist is loaded into the cache. Once the loading is done, the complete loading image is shown for two secnods, then replcaed with the on air icon, signifing the app is ready to use
         let menu = NSMenu()
         menu.addItem(NSMenuItem(title: "Show Schedule", action: #selector(showSchedule), keyEquivalent: "S"))
         menu.addItem(NSMenuItem.separator())
@@ -125,26 +126,31 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Quit", action: #selector(terminate), keyEquivalent: "q"))
         statusItem.menu = menu
-        statusItem.button?.image = NSImage.init(named:"On Air.png")
+        statusItem.button?.image = NSImage.init(named:"Off Air.png")
         
         //Populate the tiered playlists caches. Can take an extended period of time so an async task is spawned
         DispatchQueue.global().async {
             let applescriptBridge = ApplescriptBridge()
             autoreleasepool{
                 self.cachedTier1Playlist = applescriptBridge.getSongsInPlaylist(aPlaylist: "Tier 1")
+                self.statusItem.button?.image = NSImage.init(named:"Loading 1.png")
                 self.cachedTier2Playlist = applescriptBridge.getSongsInPlaylist(aPlaylist: "Tier 2")
+                self.statusItem.button?.image = NSImage.init(named:"Loading 2.png")
                 self.cachedTier3Playlist = applescriptBridge.getSongsInPlaylist(aPlaylist: "Tier 3")
+                self.statusItem.button?.image = NSImage.init(named:"Loading 3.png")
             }
             self.cachedFilled = true
             NSLog("Cache filled")
-            DispatchQueue.main.sync {
-                let myPopup: NSAlert = NSAlert()
-                myPopup.messageText = "Cache filled"
-                myPopup.alertStyle = NSAlertStyle.critical
-                myPopup.addButton(withTitle: "OK")
-                //Brings focus to the application because this alert can spawn when the user is not using the app. Maybe in the future it would be better to have the icon change color or something but that is a feature for another time.
-                self.myApplication.activate(ignoringOtherApps: true)
-                myPopup.runModal()
+            //Send a notification that the cache is filled and the app is ready for use
+            let notification = NSUserNotification()
+            notification.title = "Cache Filled"
+            notification.informativeText = "Ready to generate playlists"
+            notification.soundName = NSUserNotificationDefaultSoundName
+            NSUserNotificationCenter.default.deliver(notification)
+            
+            //After two seconds, set the menu bar icon to the on air image
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.statusItem.button?.image = NSImage.init(named:"On Air.png")
             }
         }
     }

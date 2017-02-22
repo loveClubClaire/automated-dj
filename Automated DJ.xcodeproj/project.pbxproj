@@ -28,6 +28,10 @@
 		C04C1C101D40180100F93EEC /* ChangePlaylistTolerance.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04C1C0F1D40180100F93EEC /* ChangePlaylistTolerance.swift */; };
 		C05835541DE522C200CFF6B6 /* PlaylistGenerationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05835531DE522C200CFF6B6 /* PlaylistGenerationTests.swift */; };
 		C05CA75B1CF77395009FE793 /* NSWindow+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05CA75A1CF77395009FE793 /* NSWindow+Extention.swift */; };
+		C080EF651E5E2D740072C55F /* Loading 2.png in Resources */ = {isa = PBXBuildFile; fileRef = C080EF611E5E2D740072C55F /* Loading 2.png */; };
+		C080EF661E5E2D740072C55F /* Loading 3.png in Resources */ = {isa = PBXBuildFile; fileRef = C080EF621E5E2D740072C55F /* Loading 3.png */; };
+		C080EF671E5E2D740072C55F /* Loading 1.png in Resources */ = {isa = PBXBuildFile; fileRef = C080EF631E5E2D740072C55F /* Loading 1.png */; };
+		C080EF681E5E2D740072C55F /* Off Air.png in Resources */ = {isa = PBXBuildFile; fileRef = C080EF641E5E2D740072C55F /* Off Air.png */; };
 		C08372AA1CE62EAA0046F231 /* MasterScheduleWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08372A91CE62EAA0046F231 /* MasterScheduleWindow.swift */; };
 		C08B7F2E1D04E220008BF183 /* AutomatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08B7F2D1D04E220008BF183 /* AutomatorController.swift */; };
 		C08C15801CEEF39100EF8BCF /* On Air.png in Resources */ = {isa = PBXBuildFile; fileRef = C08C157F1CEEF39100EF8BCF /* On Air.png */; };
@@ -101,6 +105,10 @@
 		C05435DD1E382CAF00416B87 /* Automated DJ-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Automated DJ-Bridging-Header.h"; sourceTree = "<group>"; };
 		C05835531DE522C200CFF6B6 /* PlaylistGenerationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistGenerationTests.swift; sourceTree = "<group>"; };
 		C05CA75A1CF77395009FE793 /* NSWindow+Extention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSWindow+Extention.swift"; sourceTree = "<group>"; };
+		C080EF611E5E2D740072C55F /* Loading 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Loading 2.png"; sourceTree = "<group>"; };
+		C080EF621E5E2D740072C55F /* Loading 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Loading 3.png"; sourceTree = "<group>"; };
+		C080EF631E5E2D740072C55F /* Loading 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Loading 1.png"; sourceTree = "<group>"; };
+		C080EF641E5E2D740072C55F /* Off Air.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Off Air.png"; sourceTree = "<group>"; };
 		C08372A91CE62EAA0046F231 /* MasterScheduleWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterScheduleWindow.swift; sourceTree = "<group>"; };
 		C08B7F2D1D04E220008BF183 /* AutomatorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomatorController.swift; sourceTree = "<group>"; };
 		C08C157F1CEEF39100EF8BCF /* On Air.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "On Air.png"; sourceTree = "<group>"; };
@@ -160,6 +168,10 @@
 				C02D87B21D2508A500ED9B67 /* PlayAlternate.png */,
 				C02D87B01D2508A500ED9B67 /* PauseMain.png */,
 				C02D87B31D2508A500ED9B67 /* PauseAlternate.png */,
+				C080EF641E5E2D740072C55F /* Off Air.png */,
+				C080EF631E5E2D740072C55F /* Loading 1.png */,
+				C080EF611E5E2D740072C55F /* Loading 2.png */,
+				C080EF621E5E2D740072C55F /* Loading 3.png */,
 				C08C157F1CEEF39100EF8BCF /* On Air.png */,
 			);
 			name = Images;
@@ -413,7 +425,11 @@
 				C02D87B51D2508A500ED9B67 /* PlayMain.png in Resources */,
 				C04616A91CE43542004E1B38 /* MainMenu.xib in Resources */,
 				C0DF87451D230A8100B275B5 /* AppleScript-ObjC bridge functions 4:11:16.txt in Resources */,
+				C080EF671E5E2D740072C55F /* Loading 1.png in Resources */,
+				C080EF661E5E2D740072C55F /* Loading 3.png in Resources */,
 				C08C15821CF007E900EF8BCF /* Automated DJ.sdef in Resources */,
+				C080EF651E5E2D740072C55F /* Loading 2.png in Resources */,
+				C080EF681E5E2D740072C55F /* Off Air.png in Resources */,
 				C02D87B41D2508A500ED9B67 /* PauseMain.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
