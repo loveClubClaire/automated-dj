@@ -85,6 +85,7 @@ class Preferences: NSObject {
         }
         else{
             aMenu.item(at: 0)?.state = 0
+            aMenu.item(at: 0)?.image = nil
         }
         aMenu.item(at: 0)?.title = fileName
         aMenu.performActionForItem(at: 0)
@@ -159,8 +160,8 @@ class Preferences: NSObject {
         globalAnnouncementsDelay = globalAnnouncementsDelayTextField.integerValue
         tollerence = tollerenceTextField.integerValue
         if enableLoggingButton.state == NSOnState && logFilepath != "" {useLogs = true}
-        else{useLogs = false; enableLoggingButton.state = NSOffState; logLocationPopUpButton.isEnabled = false}
-        
+        else{useLogs = false; enableLoggingButton.state = NSOffState; logLocationPopUpButton.isEnabled = false; setFolderMenu("", aMenu: logLocationMenu); logFilepath = ""}
+    
         let prefArray = preferencesAsArray()
         NSKeyedArchiver.archiveRootObject(prefArray, toFile: AppDelegateObject.storedPreferencesFilepath)
         preferencesWindow.orderOut(self)
