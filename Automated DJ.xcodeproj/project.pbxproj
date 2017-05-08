@@ -50,6 +50,11 @@
 		C0DF87471D235A6B00B275B5 /* MiniPlayerCover.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DF87461D235A6B00B275B5 /* MiniPlayerCover.swift */; };
 		C0DF874B1D237F6500B275B5 /* MiniPlayerCoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DF874A1D237F6500B275B5 /* MiniPlayerCoverView.swift */; };
 		C0E88CA21CEBD27400BBA2B8 /* CustomPredicateEditorRowTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E88CA11CEBD27400BBA2B8 /* CustomPredicateEditorRowTemplate.swift */; };
+		C0ECDDA81EC1023200A28820 /* On Air DarkMode.png in Resources */ = {isa = PBXBuildFile; fileRef = C0ECDDA71EC1023200A28820 /* On Air DarkMode.png */; };
+		C0ECDDAD1EC105AA00A28820 /* Loading 2 DarkMode.png in Resources */ = {isa = PBXBuildFile; fileRef = C0ECDDA91EC105AA00A28820 /* Loading 2 DarkMode.png */; };
+		C0ECDDAE1EC105AA00A28820 /* Loading 1 DarkMode.png in Resources */ = {isa = PBXBuildFile; fileRef = C0ECDDAA1EC105AA00A28820 /* Loading 1 DarkMode.png */; };
+		C0ECDDAF1EC105AA00A28820 /* Off Air DarkMode.png in Resources */ = {isa = PBXBuildFile; fileRef = C0ECDDAB1EC105AA00A28820 /* Off Air DarkMode.png */; };
+		C0ECDDB01EC105AA00A28820 /* Loading 3 DarkMode.png in Resources */ = {isa = PBXBuildFile; fileRef = C0ECDDAC1EC105AA00A28820 /* Loading 3 DarkMode.png */; };
 		C0F6D2A41CF1EE76001E0E95 /* AdminAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F6D2A31CF1EE76001E0E95 /* AdminAccess.swift */; };
 		C0F6D2A61CF2B6A7001E0E95 /* AutomatorStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F6D2A51CF2B6A7001E0E95 /* AutomatorStatus.swift */; };
 		C0F6D2A81CF4E262001E0E95 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F6D2A71CF4E262001E0E95 /* Playlist.swift */; };
@@ -127,6 +132,11 @@
 		C0DF87461D235A6B00B275B5 /* MiniPlayerCover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniPlayerCover.swift; sourceTree = "<group>"; };
 		C0DF874A1D237F6500B275B5 /* MiniPlayerCoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniPlayerCoverView.swift; sourceTree = "<group>"; };
 		C0E88CA11CEBD27400BBA2B8 /* CustomPredicateEditorRowTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPredicateEditorRowTemplate.swift; sourceTree = "<group>"; };
+		C0ECDDA71EC1023200A28820 /* On Air DarkMode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "On Air DarkMode.png"; sourceTree = "<group>"; };
+		C0ECDDA91EC105AA00A28820 /* Loading 2 DarkMode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Loading 2 DarkMode.png"; sourceTree = "<group>"; };
+		C0ECDDAA1EC105AA00A28820 /* Loading 1 DarkMode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Loading 1 DarkMode.png"; sourceTree = "<group>"; };
+		C0ECDDAB1EC105AA00A28820 /* Off Air DarkMode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Off Air DarkMode.png"; sourceTree = "<group>"; };
+		C0ECDDAC1EC105AA00A28820 /* Loading 3 DarkMode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Loading 3 DarkMode.png"; sourceTree = "<group>"; };
 		C0F6D2A31CF1EE76001E0E95 /* AdminAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminAccess.swift; sourceTree = "<group>"; };
 		C0F6D2A51CF2B6A7001E0E95 /* AutomatorStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomatorStatus.swift; sourceTree = "<group>"; };
 		C0F6D2A71CF4E262001E0E95 /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
@@ -164,6 +174,11 @@
 		C02D87AF1D25087200ED9B67 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C0ECDDA71EC1023200A28820 /* On Air DarkMode.png */,
+				C0ECDDAB1EC105AA00A28820 /* Off Air DarkMode.png */,
+				C0ECDDAA1EC105AA00A28820 /* Loading 1 DarkMode.png */,
+				C0ECDDA91EC105AA00A28820 /* Loading 2 DarkMode.png */,
+				C0ECDDAC1EC105AA00A28820 /* Loading 3 DarkMode.png */,
 				C02D87B11D2508A500ED9B67 /* PlayMain.png */,
 				C02D87B21D2508A500ED9B67 /* PlayAlternate.png */,
 				C02D87B01D2508A500ED9B67 /* PauseMain.png */,
@@ -420,17 +435,22 @@
 			files = (
 				C04616A61CE43542004E1B38 /* Assets.xcassets in Resources */,
 				C08C15801CEEF39100EF8BCF /* On Air.png in Resources */,
+				C0ECDDAF1EC105AA00A28820 /* Off Air DarkMode.png in Resources */,
 				C02D87B61D2508A500ED9B67 /* PlayAlternate.png in Resources */,
 				C02D87B71D2508A500ED9B67 /* PauseAlternate.png in Resources */,
+				C0ECDDB01EC105AA00A28820 /* Loading 3 DarkMode.png in Resources */,
 				C02D87B51D2508A500ED9B67 /* PlayMain.png in Resources */,
 				C04616A91CE43542004E1B38 /* MainMenu.xib in Resources */,
+				C0ECDDA81EC1023200A28820 /* On Air DarkMode.png in Resources */,
 				C0DF87451D230A8100B275B5 /* AppleScript-ObjC bridge functions 4:11:16.txt in Resources */,
 				C080EF671E5E2D740072C55F /* Loading 1.png in Resources */,
 				C080EF661E5E2D740072C55F /* Loading 3.png in Resources */,
+				C0ECDDAD1EC105AA00A28820 /* Loading 2 DarkMode.png in Resources */,
 				C08C15821CF007E900EF8BCF /* Automated DJ.sdef in Resources */,
 				C080EF651E5E2D740072C55F /* Loading 2.png in Resources */,
 				C080EF681E5E2D740072C55F /* Off Air.png in Resources */,
 				C02D87B41D2508A500ED9B67 /* PauseMain.png in Resources */,
+				C0ECDDAE1EC105AA00A28820 /* Loading 1 DarkMode.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

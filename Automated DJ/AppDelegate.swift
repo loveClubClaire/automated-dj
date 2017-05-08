@@ -126,18 +126,62 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Quit", action: #selector(terminate), keyEquivalent: "q"))
         statusItem.menu = menu
-        statusItem.button?.image = NSImage.init(named:"Off Air.png")
-        
+        statusItem.button?.image?.isTemplate = true
+        statusItem.button?.image = isDarkMode() ? NSImage.init(named:"Off Air DarkMode.png") : NSImage.init(named:"Off Air.png")
+        //Add observer which fires whenever Dark Mode is enabled or disabled. This observer switches the statusItem button image to the approperate image
+        DistributedNotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "AppleInterfaceThemeChangedNotification"), object: nil, queue: OperationQueue.main, using:{(note: Notification) in
+            
+            //If we are transitioning from normal to dark mode
+            if self.isDarkMode() && self.statusItem.button?.image?.name() == "On Air"{
+                self.statusItem.button?.image = NSImage.init(named:"On Air DarkMode.png")
+            }
+            //If we are transitioning from dark mode to normal
+            if !self.isDarkMode() && self.statusItem.button?.image?.name() == "On Air DarkMode"{
+                self.statusItem.button?.image = NSImage.init(named:"On Air.png")
+            }
+            //If we are transitioning from normal to dark mode
+            if self.isDarkMode() && self.statusItem.button?.image?.name() == "Off Air"{
+                self.statusItem.button?.image = NSImage.init(named:"Off Air DarkMode.png")
+            }
+            //If we are transitioning from dark mode to normal
+            if !self.isDarkMode() && self.statusItem.button?.image?.name() == "Off Air DarkMode"{
+                self.statusItem.button?.image = NSImage.init(named:"Off Air.png")
+            }
+            //If we are transitioning from normal to dark mode
+            if self.isDarkMode() && self.statusItem.button?.image?.name() == "Loading 1"{
+                self.statusItem.button?.image = NSImage.init(named:"Loading 1 DarkMode.png")
+            }
+            //If we are transitioning from dark mode to normal
+            if !self.isDarkMode() && self.statusItem.button?.image?.name() == "Loading 1 DarkMode"{
+                self.statusItem.button?.image = NSImage.init(named:"Loading 1.png")
+            }
+            //If we are transitioning from normal to dark mode
+            if self.isDarkMode() && self.statusItem.button?.image?.name() == "Loading 2"{
+                self.statusItem.button?.image = NSImage.init(named:"Loading 2 DarkMode.png")
+            }
+            //If we are transitioning from dark mode to normal
+            if !self.isDarkMode() && self.statusItem.button?.image?.name() == "Loading 2 DarkMode"{
+                self.statusItem.button?.image = NSImage.init(named:"Loading 2.png")
+            }
+            //If we are transitioning from normal to dark mode
+            if self.isDarkMode() && self.statusItem.button?.image?.name() == "Loading 3"{
+                self.statusItem.button?.image = NSImage.init(named:"Loading 3 DarkMode.png")
+            }
+            //If we are transitioning from dark mode to normal
+            if !self.isDarkMode() && self.statusItem.button?.image?.name() == "Loading 3 DarkMode"{
+                self.statusItem.button?.image = NSImage.init(named:"Loading 3.png")
+            }
+        })
         //Populate the tiered playlists caches. Can take an extended period of time so an async task is spawned
         DispatchQueue.global().async {
             let applescriptBridge = ApplescriptBridge()
             autoreleasepool{
                 self.cachedTier1Playlist = applescriptBridge.getSongsInPlaylist(aPlaylist: "Tier 1")
-                self.statusItem.button?.image = NSImage.init(named:"Loading 1.png")
+                self.statusItem.button?.image = self.isDarkMode() ? NSImage.init(named:"Loading 1 DarkMode.png") : NSImage.init(named:"Loading 1.png")
                 self.cachedTier2Playlist = applescriptBridge.getSongsInPlaylist(aPlaylist: "Tier 2")
-                self.statusItem.button?.image = NSImage.init(named:"Loading 2.png")
+                self.statusItem.button?.image = self.isDarkMode() ? NSImage.init(named:"Loading 2 DarkMode.png") : NSImage.init(named:"Loading 2.png")
                 self.cachedTier3Playlist = applescriptBridge.getSongsInPlaylist(aPlaylist: "Tier 3")
-                self.statusItem.button?.image = NSImage.init(named:"Loading 3.png")
+                self.statusItem.button?.image = self.isDarkMode() ? NSImage.init(named:"Loading 3 DarkMode.png") : NSImage.init(named:"Loading 3.png")
             }
             self.cachedFilled = true
             NSLog("Cache filled")
@@ -148,9 +192,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             notification.soundName = NSUserNotificationDefaultSoundName
             NSUserNotificationCenter.default.deliver(notification)
             
-            //After two seconds, set the menu bar icon to the on air image
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                self.statusItem.button?.image = NSImage.init(named:"On Air.png")
+            //After one second, set the menu bar icon to the on air image
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.statusItem.button?.image = self.isDarkMode() ? NSImage.init(named:"On Air DarkMode.png") : NSImage.init(named:"On Air.png")
             }
         }
     }
@@ -296,6 +340,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             NSApplication.shared().terminate(self)
         }
     }
-
+    
+    //Function to check if Dark Mode is enabled 
+    func isDarkMode() -> Bool{
+        let type = UserDefaults.standard.string(forKey: "AppleInterfaceStyle") ?? "Light"
+        if type == "Dark" {
+            return true
+        }
+        else{
+            return false
+        }
+    }
+    
 }
 
